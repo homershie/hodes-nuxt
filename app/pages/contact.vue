@@ -35,20 +35,28 @@
           <div class="info full-width md-mb80">
             <div class="item mb-30 d-flex align-items-center">
               <div class="mr-15">
-                <font-awesome-icon :icon="['far', 'envelope']" class="icon main-color" />
+                <font-awesome-icon
+                  :icon="['far', 'envelope']"
+                  class="icon main-color"
+                />
               </div>
               <div class="mr-10">
                 <h6 class="opacity-7">Email</h6>
               </div>
               <div class="ml-auto">
                 <h4>
-                  <a href="mailto:homerxworkshop@gmail.com">homerxworkshop@gmail.com</a>
+                  <a href="mailto:homerxworkshop@gmail.com"
+                    >homerxworkshop@gmail.com</a
+                  >
                 </h4>
               </div>
             </div>
             <div class="item d-flex align-items-center">
               <div class="mr-15">
-                <font-awesome-icon :icon="['far', 'map']" class="icon main-color" />
+                <font-awesome-icon
+                  :icon="['far', 'map']"
+                  class="icon main-color"
+                />
               </div>
               <div class="mr-10">
                 <h6 class="opacity-7">Address</h6>
@@ -83,12 +91,15 @@
                       }"
                       @blur="
                         () => {
-                          nameBlur()
-                          touched.name = true
+                          nameBlur();
+                          touched.name = true;
                         }
                       "
                     />
-                    <div v-if="touched.name && errors.name" class="error-message">
+                    <div
+                      v-if="touched.name && errors.name"
+                      class="error-message"
+                    >
                       {{ errors.name }}
                     </div>
                   </div>
@@ -110,12 +121,15 @@
                       }"
                       @blur="
                         () => {
-                          emailBlur()
-                          touched.email = true
+                          emailBlur();
+                          touched.email = true;
                         }
                       "
                     />
-                    <div v-if="touched.email && errors.email" class="error-message">
+                    <div
+                      v-if="touched.email && errors.email"
+                      class="error-message"
+                    >
                       {{ errors.email }}
                     </div>
                   </div>
@@ -132,16 +146,20 @@
                       class="form-control"
                       :class="{
                         'is-invalid': touched.subject && errors.subject,
-                        'is-valid': touched.subject && subject && !errors.subject,
+                        'is-valid':
+                          touched.subject && subject && !errors.subject,
                       }"
                       @blur="
                         () => {
-                          subjectBlur()
-                          touched.subject = true
+                          subjectBlur();
+                          touched.subject = true;
                         }
                       "
                     />
-                    <div v-if="touched.subject && errors.subject" class="error-message">
+                    <div
+                      v-if="touched.subject && errors.subject"
+                      class="error-message"
+                    >
                       {{ errors.subject }}
                     </div>
                   </div>
@@ -160,16 +178,20 @@
                       class="form-control"
                       :class="{
                         'is-invalid': touched.message && errors.message,
-                        'is-valid': touched.message && message && !errors.message,
+                        'is-valid':
+                          touched.message && message && !errors.message,
                       }"
                       @blur="
                         () => {
-                          messageBlur()
-                          touched.message = true
+                          messageBlur();
+                          touched.message = true;
                         }
                       "
                     ></textarea>
-                    <div v-if="touched.message && errors.message" class="error-message">
+                    <div
+                      v-if="touched.message && errors.message"
+                      class="error-message"
+                    >
                       {{ errors.message }}
                     </div>
                   </div>
@@ -186,7 +208,11 @@
                   </div>
 
                   <div class="mt-30">
-                    <button type="submit" :disabled="isSubmitting" class="submit-btn">
+                    <button
+                      type="submit"
+                      :disabled="isSubmitting"
+                      class="submit-btn"
+                    >
                       <span v-if="!isSubmitting" class="text">傳送訊息</span>
                       <span v-else class="text">
                         <i class="fas fa-spinner fa-spin"></i> 傳送中...
@@ -205,17 +231,17 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { useForm, useField } from 'vee-validate'
-import { useReCaptcha } from 'vue-recaptcha-v3'
-import { useTimeoutFn } from '@vueuse/core'
-import { useFormValidation } from '@/composables/useFormValidation.js'
+import { ref, onMounted } from "vue";
+import { useForm, useField } from "vee-validate";
+import { useReCaptcha } from "vue-recaptcha-v3";
+import { useTimeoutFn } from "@vueuse/core";
+import { useFormValidation } from "@composables/useFormValidation.js";
 
-const isSubmitting = ref(false)
-const formMessage = ref('')
-const messageClass = ref('')
-const recaptchaToken = ref('')
-const honeypot = ref('') // 蜜罐欄位
+const isSubmitting = ref(false);
+const formMessage = ref("");
+const messageClass = ref("");
+const recaptchaToken = ref("");
+const honeypot = ref(""); // 蜜罐欄位
 
 // 追蹤欄位是否已被觸碰
 const touched = ref({
@@ -223,10 +249,11 @@ const touched = ref({
   email: false,
   subject: false,
   message: false,
-})
+});
 
 // 引入表單驗證
-const { formSchema, isBot, checkSpam, updateSubmitStats, initFormStartTime } = useFormValidation()
+const { formSchema, isBot, checkSpam, updateSubmitStats, initFormStartTime } =
+  useFormValidation();
 
 // 使用 VeeValidate
 const { handleSubmit, resetForm, errors } = useForm({
@@ -235,86 +262,89 @@ const { handleSubmit, resetForm, errors } = useForm({
   validateOnBlur: true, // 在失去焦點時驗證
   validateOnChange: true, // 在值改變時驗證
   validateOnInput: false, // 禁止在輸入時驗證
-})
+});
 
 // 使用 useField 處理各個欄位
-const { value: name, handleBlur: nameBlur } = useField('name')
-const { value: email, handleBlur: emailBlur } = useField('email')
-const { value: subject, handleBlur: subjectBlur } = useField('subject')
-const { value: message, handleBlur: messageBlur } = useField('message')
+const { value: name, handleBlur: nameBlur } = useField("name");
+const { value: email, handleBlur: emailBlur } = useField("email");
+const { value: subject, handleBlur: subjectBlur } = useField("subject");
+const { value: message, handleBlur: messageBlur } = useField("message");
 
 // 使用 reCAPTCHA
-const { executeRecaptcha, recaptchaLoaded } = useReCaptcha()
+const { executeRecaptcha, recaptchaLoaded } = useReCaptcha();
 
 // 初始化
 onMounted(() => {
-  initFormStartTime()
-})
+  initFormStartTime();
+});
 
 // 提交表單
-const submitForm = handleSubmit(async formValues => {
+const submitForm = handleSubmit(async (formValues) => {
   // 在提交時將所有欄位標記為已觸碰
-  Object.keys(touched.value).forEach(key => {
-    touched.value[key] = true
-  })
+  Object.keys(touched.value).forEach((key) => {
+    touched.value[key] = true;
+  });
 
-  if (isSubmitting.value) return
+  if (isSubmitting.value) return;
 
   // 檢查是否為機器人
   if (isBot() || honeypot.value) {
     // 若為機器人，假裝成功但不實際發送
-    formMessage.value = '訊息已成功發送！'
-    messageClass.value = 'alert alert-success'
-    resetForm()
-    return
+    formMessage.value = "訊息已成功發送！";
+    messageClass.value = "alert alert-success";
+    resetForm();
+    return;
   }
 
   // 防垃圾訊息檢查
   if (!checkSpam()) {
-    formMessage.value = '提交過於頻繁，請稍後再試'
-    messageClass.value = 'alert alert-danger'
-    return
+    formMessage.value = "提交過於頻繁，請稍後再試";
+    messageClass.value = "alert alert-danger";
+    return;
   }
 
-  isSubmitting.value = true
-  formMessage.value = ''
+  isSubmitting.value = true;
+  formMessage.value = "";
 
   try {
     // 獲取 reCAPTCHA token
-    await recaptchaLoaded()
-    recaptchaToken.value = await executeRecaptcha('contact')
+    await recaptchaLoaded();
+    recaptchaToken.value = await executeRecaptcha("contact");
 
     // 提交表單
-    const res = await fetch('https://portfolio-backend-pky9.onrender.com/api/send-email', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ...formValues,
-        recaptchaToken: recaptchaToken.value,
-      }),
-    })
+    const res = await fetch(
+      "https://portfolio-backend-pky9.onrender.com/api/send-email",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formValues,
+          recaptchaToken: recaptchaToken.value,
+        }),
+      }
+    );
 
-    if (!res.ok) throw new Error()
+    if (!res.ok) throw new Error();
 
     // 更新提交統計
-    updateSubmitStats()
+    updateSubmitStats();
 
-    formMessage.value = '訊息已成功發送！'
-    messageClass.value = 'alert alert-success'
-    resetForm()
+    formMessage.value = "訊息已成功發送！";
+    messageClass.value = "alert alert-success";
+    resetForm();
     // 重置觸碰狀態
-    Object.keys(touched.value).forEach(key => {
-      touched.value[key] = false
-    })
+    Object.keys(touched.value).forEach((key) => {
+      touched.value[key] = false;
+    });
   } catch {
-    formMessage.value = '發送失敗，請稍後再試。'
-    messageClass.value = 'alert alert-danger'
+    formMessage.value = "發送失敗，請稍後再試。";
+    messageClass.value = "alert alert-danger";
   } finally {
-    isSubmitting.value = false
+    isSubmitting.value = false;
     // 使用 VueUse 的 useTimeoutFn 替代 setTimeout
-    useTimeoutFn(() => (formMessage.value = ''), 5000)
+    useTimeoutFn(() => (formMessage.value = ""), 5000);
   }
-})
+});
 </script>
 
 <style scoped>
@@ -333,26 +363,34 @@ const submitForm = handleSubmit(async formValues => {
 }
 
 .info .item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(140deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.24),
+    rgba(255, 255, 255, 0.04)
+  );
   opacity: 0.3;
   pointer-events: none;
   border-radius: 10px;
 }
 
 .info .item::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -1px;
   right: -1px;
   bottom: -1px;
   left: -1px;
-  background: linear-gradient(140deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.01)
+  );
   pointer-events: none;
   border-radius: 10px;
 }
@@ -477,10 +515,14 @@ const submitForm = handleSubmit(async formValues => {
 }
 
 .contact-card:before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(140deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.04));
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.24),
+    rgba(255, 255, 255, 0.04)
+  );
   opacity: 0.3;
   border-radius: 10px;
   pointer-events: none;

@@ -1,7 +1,22 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { fileURLToPath } from "node:url";
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
+
+  // 路徑別名設定
+  alias: {
+    "@data": fileURLToPath(new URL("./data", import.meta.url)),
+    "@composables": fileURLToPath(new URL("./composables", import.meta.url)),
+    "@components": fileURLToPath(new URL("./app/components", import.meta.url)),
+    "@assets": fileURLToPath(new URL("./app/assets", import.meta.url)),
+    "@pages": fileURLToPath(new URL("./app/pages", import.meta.url)),
+    "@layouts": fileURLToPath(new URL("./app/layouts", import.meta.url)),
+  },
+
+  // 全局 CSS 設定
+  css: ["~/app/assets/style.css", "~/app/assets/scss/style.scss"],
 
   modules: [
     "@nuxt/content",

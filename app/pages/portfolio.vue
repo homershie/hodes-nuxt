@@ -19,70 +19,76 @@
       </div>
 
       <!-- 閱讀進度條 -->
-      <div class="reading-progress-bar" :style="{ width: progress + '%' }"></div>
+      <div
+        class="reading-progress-bar"
+        :style="{ width: progress + '%' }"
+      ></div>
 
       <!-- 作品列表 -->
       <div class="portfolio-list">
-        <PortfolioList :works="portfolioData" @view-details="handleViewDetails" />
+        <PortfolioList
+          :works="portfolioData"
+          @view-details="handleViewDetails"
+        />
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
-import PortfolioList from '@/components/PortfolioList.vue'
-import { useImageCache } from '@/composables/useImageCache'
-import { usePortfolio } from '@/composables/usePortfolio.js'
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useScroll, useIntersectionObserver } from '@vueuse/core'
+import { useRouter } from "vue-router";
+import PortfolioList from "@components/PortfolioList.vue";
+import { useImageCache } from "@composables/useImageCache";
+import { usePortfolio } from "@composables/usePortfolio.js";
+import { ref, computed, onMounted, onUnmounted } from "vue";
+import { useScroll, useIntersectionObserver } from "@vueuse/core";
 
-const { preloadImages, startCacheCleanup, stopCacheCleanup } = useImageCache()
-const { portfolioData } = usePortfolio()
-const router = useRouter()
+const { preloadImages, startCacheCleanup, stopCacheCleanup } = useImageCache();
+const { portfolioData } = usePortfolio();
+const router = useRouter();
 
-const { y } = useScroll(window)
+const { y } = useScroll(window);
 const progress = computed(() => {
-  const scrollTop = y.value
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight
-  return docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
-})
+  const scrollTop = y.value;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  return docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+});
 
 function handleViewDetails(work) {
-  router.push(`/project/${work.id}`)
+  router.push(`/project/${work.id}`);
 }
 
-const workRefs = ref([])
-const visibleWorks = ref([])
+const workRefs = ref([]);
+const visibleWorks = ref([]);
 
 onMounted(() => {
   workRefs.value.forEach((el, idx) => {
     useIntersectionObserver(
       el,
       ([{ isIntersecting }]) => {
-        if (isIntersecting) visibleWorks.value[idx] = true
+        if (isIntersecting) visibleWorks.value[idx] = true;
       },
       { threshold: 0.1 }
-    )
-  })
-})
+    );
+  });
+});
 
 // 預載入多張圖片
 const preloadGalleryImages = async () => {
-  const imageUrls = portfolioData.value.map(work => work.image)
-  await preloadImages(imageUrls)
-}
+  const imageUrls = portfolioData.value.map((work) => work.image);
+  await preloadImages(imageUrls);
+};
 
 // 在元件掛載時預載入圖片
 onMounted(async () => {
-  await preloadGalleryImages()
+  await preloadGalleryImages();
   // 初始化快取清理
-  startCacheCleanup()
-})
+  startCacheCleanup();
+});
 
 onUnmounted(() => {
-  stopCacheCleanup()
-})
+  stopCacheCleanup();
+});
 </script>
 
 <style scoped>

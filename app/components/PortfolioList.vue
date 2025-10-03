@@ -25,9 +25,12 @@
             <div class="cont d-flex align-items-center">
               <div>
                 <h6>{{ work.title }}</h6>
-                <span v-for="(tag, tagIndex) in work.category" :key="tagIndex" class="tag">{{
-                  tag
-                }}</span>
+                <span
+                  v-for="(tag, tagIndex) in work.category"
+                  :key="tagIndex"
+                  class="tag"
+                  >{{ tag }}</span
+                >
               </div>
               <div class="ml-auto">
                 <div class="arrow">
@@ -54,148 +57,152 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Masonry from 'masonry-layout'
-import { useImagePreloader } from '@/composables/useImagePreloader'
-import { useEventListener, useIntersectionObserver, useTimeoutFn } from '@vueuse/core'
+import { ref, computed, onMounted, onUnmounted } from "vue";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Masonry from "masonry-layout";
+import { useImagePreloader } from "@composables/useImagePreloader";
+import {
+  useEventListener,
+  useIntersectionObserver,
+  useTimeoutFn,
+} from "@vueuse/core";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 const props = defineProps({
   works: {
     type: Array,
     required: true,
   },
-})
+});
 
-const emit = defineEmits(['view-details'])
+const emit = defineEmits(["view-details"]);
 
 function viewDetails(work) {
-  emit('view-details', work)
+  emit("view-details", work);
 }
 
-const displayedWorks = ref([])
+const displayedWorks = ref([]);
 const sortedWorks = computed(() => {
-  return [...props.works].sort((a, b) => b.id - a.id)
-})
+  return [...props.works].sort((a, b) => b.id - a.id);
+});
 
-const { preloadImages, loadingProgress, isPreloading } = useImagePreloader()
+const { preloadImages, loadingProgress, isPreloading } = useImagePreloader();
 
-let masonryInstance = null
+let masonryInstance = null;
 
 // 初始化 Masonry
 const initMasonry = () => {
-  const container = document.querySelector('.gallery')
-  if (!container) return
+  const container = document.querySelector(".gallery");
+  if (!container) return;
 
   if (masonryInstance) {
-    masonryInstance.destroy()
+    masonryInstance.destroy();
   }
 
   masonryInstance = new Masonry(container, {
-    itemSelector: '.items',
-    columnWidth: '.items',
+    itemSelector: ".items",
+    columnWidth: ".items",
     percentPosition: true,
     gutter: 0,
     transitionDuration: 0,
     stagger: 30,
     initLayout: true,
-  })
-}
+  });
+};
 
 // 等待短暫延遲，用於確保 DOM 更新
 const waitForDomUpdate = () => {
-  return new Promise(resolve => {
-    useTimeoutFn(resolve, 50)
-  })
-}
+  return new Promise((resolve) => {
+    useTimeoutFn(resolve, 50);
+  });
+};
 
 // 為新項目設置動畫
 const setupAnimationsForNewItems = (specificItems = null) => {
   // 選擇要設置動畫的項目
-  const items = specificItems || document.querySelectorAll('.items')
-  const itemsToAnimate = Array.isArray(items) ? items : Array.from(items)
+  const items = specificItems || document.querySelectorAll(".items");
+  const itemsToAnimate = Array.isArray(items) ? items : Array.from(items);
 
   // 僅為未動畫的項目設定初始狀態
-  itemsToAnimate.forEach(item => {
-    if (!item.classList.contains('animated')) {
-      gsap.set(item, { opacity: 0, y: 50 })
+  itemsToAnimate.forEach((item) => {
+    if (!item.classList.contains("animated")) {
+      gsap.set(item, { opacity: 0, y: 50 });
     }
-  })
+  });
 
   // 使用 VueUse 的 useIntersectionObserver
-  itemsToAnimate.forEach(item => {
-    if (!item.classList.contains('animated')) {
+  itemsToAnimate.forEach((item) => {
+    if (!item.classList.contains("animated")) {
       const { stop } = useIntersectionObserver(
         item,
         ([{ isIntersecting, target }]) => {
-          if (isIntersecting && !target.classList.contains('animated')) {
-            target.classList.add('animated')
+          if (isIntersecting && !target.classList.contains("animated")) {
+            target.classList.add("animated");
 
             gsap.to(target, {
               opacity: 1,
               y: 0,
               duration: 0.6,
-              ease: 'power2.out',
+              ease: "power2.out",
               onComplete: () => {
                 // 動畫完成後重新布局 Masonry
                 if (masonryInstance) {
-                  masonryInstance.layout()
+                  masonryInstance.layout();
                 }
               },
-            })
+            });
 
-            stop()
+            stop();
           }
         },
         {
           threshold: 0.1,
-          rootMargin: '0px 0px -10% 0px',
+          rootMargin: "0px 0px -10% 0px",
         }
-      )
+      );
     }
-  })
-}
+  });
+};
 
 onMounted(async () => {
   // 直接加載所有作品
-  displayedWorks.value = sortedWorks.value
+  displayedWorks.value = sortedWorks.value;
 
   // 收集所有需要預載入的圖片URL
   const imageUrls = displayedWorks.value
-    .map(work => [work.image, ...(work.gallery || [])])
+    .map((work) => [work.image, ...(work.gallery || [])])
     .flat()
-    .filter(Boolean)
+    .filter(Boolean);
 
   // 預載入圖片
-  await preloadImages(imageUrls)
+  await preloadImages(imageUrls);
 
   // 等待 DOM 更新
-  await waitForDomUpdate()
+  await waitForDomUpdate();
 
   // 初始化 Masonry 和動畫
-  initMasonry()
-  setupAnimationsForNewItems()
+  initMasonry();
+  setupAnimationsForNewItems();
 
   // 使用 VueUse 的 useEventListener 監聽窗口大小改變
-  useEventListener(window, 'resize', () => {
+  useEventListener(window, "resize", () => {
     if (masonryInstance) {
       // 使用 setTimeout 進行防抖處理
       setTimeout(() => {
-        masonryInstance.layout()
-      }, 100)
+        masonryInstance.layout();
+      }, 100);
     }
-  })
-})
+  });
+});
 
 onUnmounted(() => {
   if (masonryInstance) {
-    masonryInstance.destroy()
+    masonryInstance.destroy();
   }
   // useEventListener 會自動清理事件監聽器，不需要手動移除
-})
+});
 </script>
 
 <style scoped>

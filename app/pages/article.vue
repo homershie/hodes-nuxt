@@ -2,7 +2,10 @@
   <section v-if="article" class="main-post section-padding">
     <div class="container with-pad">
       <!-- 閱讀進度條 -->
-      <div class="reading-progress-bar" :style="{ width: progress + '%' }"></div>
+      <div
+        class="reading-progress-bar"
+        :style="{ width: progress + '%' }"
+      ></div>
 
       <div class="row justify-content-center">
         <div class="col-lg-10">
@@ -13,7 +16,9 @@
               >
             </div>
             <h1 class="fz-40 mt-30">{{ article.title }}</h1>
-            <p class="sub-title mt-15">{{ article.date }} - By {{ article.author }}</p>
+            <p class="sub-title mt-15">
+              {{ article.date }} - By {{ article.author }}
+            </p>
           </div>
         </div>
       </div>
@@ -24,7 +29,9 @@
             <div v-html="article.content"></div>
 
             <!-- 分享區域 -->
-            <div class="info-area flex mt-20 pb-20 pt-20 bord-thin-top bord-thin-bottom">
+            <div
+              class="info-area flex mt-20 pb-20 pt-20 bord-thin-top bord-thin-bottom"
+            >
               <div>
                 <div class="tags flex">
                   <div class="valign">
@@ -44,7 +51,9 @@
                     <a :href="shareUrls.facebook" target="_blank"
                       ><i class="fab fa-facebook-f"></i
                     ></a>
-                    <a :href="shareUrls.twitter" target="_blank"><i class="fab fa-x"></i></a>
+                    <a :href="shareUrls.twitter" target="_blank"
+                      ><i class="fab fa-x"></i
+                    ></a>
                   </div>
                 </div>
               </div>
@@ -69,7 +78,10 @@
                     <i class="fas fa-angle-left"></i>
                     上一篇
                   </span>
-                  <h6 class="fw-500 fz-16" style="text-shadow: 2px 2px 2px #000">
+                  <h6
+                    class="fw-500 fz-16"
+                    style="text-shadow: 2px 2px 2px #000"
+                  >
                     {{ prevArticle.title }}
                   </h6>
                 </router-link>
@@ -90,7 +102,10 @@
                   >
                     下一篇 <i class="fas fa-angle-right"></i>
                   </span>
-                  <h6 class="fw-500 fz-16" style="text-shadow: 2px 2px 2px #000">
+                  <h6
+                    class="fw-500 fz-16"
+                    style="text-shadow: 2px 2px 2px #000"
+                  >
                     {{ nextArticle.title }}
                   </h6>
                 </router-link>
@@ -114,100 +129,102 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { articles } from '@/data/articleData.js'
-import { useImageCache } from '@/composables/useImageCache'
-import { useHead } from '@vueuse/head'
-import { enableImageLightbox } from '@/composables/useLightBox.js'
-import { useScroll } from '@vueuse/core'
-import { BASE_TITLE } from '@/router/index.js'
+import { ref, computed, onMounted, onUnmounted, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { articles } from "@data/articleData.js";
+import { useImageCache } from "@composables/useImageCache";
+import { useHead } from "@vueuse/head";
+import { enableImageLightbox } from "@composables/useLightBox.js";
+import { useScroll } from "@vueuse/core";
+// import { BASE_TITLE } from '@/router/index.js'
+const BASE_TITLE = "HOEDES｜荷馬桑 Homer Shie";
 
-const route = useRoute()
-const router = useRouter()
-const { preloadImages, loadImage, startCacheCleanup, stopCacheCleanup } = useImageCache()
+const route = useRoute();
+const router = useRouter();
+const { preloadImages, loadImage, startCacheCleanup, stopCacheCleanup } =
+  useImageCache();
 
 // 使用 useScroll 來計算閱讀進度
-const { y } = useScroll(window)
+const { y } = useScroll(window);
 const progress = computed(() => {
-  const scrollTop = y.value
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight
-  return docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
-})
+  const scrollTop = y.value;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  return docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+});
 
-const article = ref(null)
-const articleIds = Object.keys(articles)
+const article = ref(null);
+const articleIds = Object.keys(articles);
 
 // 計算上一篇和下一篇文章
 const prevArticle = computed(() => {
-  if (!article.value) return null
-  const currentIndex = articleIds.indexOf(article.value.id)
-  if (currentIndex === -1) return null
-  const prevIndex = currentIndex - 1
-  return prevIndex >= 0 ? articles[articleIds[prevIndex]] : null
-})
+  if (!article.value) return null;
+  const currentIndex = articleIds.indexOf(article.value.id);
+  if (currentIndex === -1) return null;
+  const prevIndex = currentIndex - 1;
+  return prevIndex >= 0 ? articles[articleIds[prevIndex]] : null;
+});
 
 const nextArticle = computed(() => {
-  if (!article.value) return null
-  const currentIndex = articleIds.indexOf(article.value.id)
-  if (currentIndex === -1) return null
-  const nextIndex = currentIndex + 1
-  return nextIndex < articleIds.length ? articles[articleIds[nextIndex]] : null
-})
+  if (!article.value) return null;
+  const currentIndex = articleIds.indexOf(article.value.id);
+  if (currentIndex === -1) return null;
+  const nextIndex = currentIndex + 1;
+  return nextIndex < articleIds.length ? articles[articleIds[nextIndex]] : null;
+});
 
 // 分享連結
 const shareUrls = computed(() => {
-  if (!article.value) return {}
+  if (!article.value) return {};
   // 取原始完整 URL
-  const fullPath = router.currentRoute.value.fullPath
-  const currentUrl = `${window.location.origin}${fullPath}`
-  const url = encodeURIComponent(currentUrl)
-  const title = encodeURIComponent(article.value.title)
+  const fullPath = router.currentRoute.value.fullPath;
+  const currentUrl = `${window.location.origin}${fullPath}`;
+  const url = encodeURIComponent(currentUrl);
+  const title = encodeURIComponent(article.value.title);
 
   return {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`,
     twitter: `https://twitter.com/intent/tweet?url=${url}&text=${title}`,
-  }
-})
+  };
+});
 
 // 更新頁面標題的函數
 const updatePageTitle = () => {
   if (article.value && article.value.title) {
-    document.title = `${article.value.title}|${BASE_TITLE}`
+    document.title = `${article.value.title}|${BASE_TITLE}`;
   } else {
-    document.title = `文章詳情|${BASE_TITLE}`
+    document.title = `文章詳情|${BASE_TITLE}`;
   }
-}
+};
 
 // 載入文章
 function loadArticle() {
-  const articleId = route.params.id
+  const articleId = route.params.id;
   if (articles[articleId]) {
-    article.value = articles[articleId]
+    article.value = articles[articleId];
     // 更新頁面標題
-    updatePageTitle()
+    updatePageTitle();
     // 更新 SEO meta 標籤
     if (article.value.seo) {
-      updateMetaTags(article.value.seo)
+      updateMetaTags(article.value.seo);
     }
   } else {
-    article.value = null
-    document.title = `文章不存在|${BASE_TITLE}`
+    article.value = null;
+    document.title = `文章不存在|${BASE_TITLE}`;
   }
 }
 
 // 更新 meta 標籤
 function updateMetaTags(seo) {
   // 更新 description
-  const descMeta = document.querySelector('meta[name="description"]')
+  const descMeta = document.querySelector('meta[name="description"]');
   if (descMeta) {
-    descMeta.setAttribute('content', seo.description)
+    descMeta.setAttribute("content", seo.description);
   }
 
   // 更新 keywords
-  const keywordsMeta = document.querySelector('meta[name="keywords"]')
+  const keywordsMeta = document.querySelector('meta[name="keywords"]');
   if (keywordsMeta) {
-    keywordsMeta.setAttribute('content', seo.keywords)
+    keywordsMeta.setAttribute("content", seo.keywords);
   }
 }
 
@@ -215,62 +232,64 @@ function updateMetaTags(seo) {
 watch(
   () => route.params.id,
   () => {
-    loadArticle()
+    loadArticle();
   }
-)
+);
 
-watch(article, async a => {
-  if (!a) return
+watch(article, async (a) => {
+  if (!a) return;
 
   // 更新頁面標題
-  updatePageTitle()
+  updatePageTitle();
 
   // 更新 useHead
   useHead({
     title: `${a.title}|${BASE_TITLE}`,
     meta: [
-      { name: 'description', content: a.seo.description },
-      { name: 'keywords', content: a.seo.keywords },
-      { property: 'og:title', content: a.title },
-      { property: 'og:description', content: a.seo.description },
-      { property: 'og:image', content: a.image },
-      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: "description", content: a.seo.description },
+      { name: "keywords", content: a.seo.keywords },
+      { property: "og:title", content: a.title },
+      { property: "og:description", content: a.seo.description },
+      { property: "og:image", content: a.image },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
-  })
+  });
 
   // 收集所有文章內圖片 URL
-  const urls = Array.from(document.querySelectorAll('.cont .image img')).map(img => img.src)
+  const urls = Array.from(document.querySelectorAll(".cont .image img")).map(
+    (img) => img.src
+  );
 
   // 預載入圖片
   if (urls.length > 0) {
-    await preloadImages(urls)
+    await preloadImages(urls);
   }
 
   // 轉換所有文章內圖片為WebP格式並使用快取
-  const imageElements = document.querySelectorAll('.cont .image img')
+  const imageElements = document.querySelectorAll(".cont .image img");
   for (const img of imageElements) {
-    const originalSrc = img.src
+    const originalSrc = img.src;
     try {
-      const cachedUrl = await loadImage(originalSrc)
-      img.src = cachedUrl
+      const cachedUrl = await loadImage(originalSrc);
+      img.src = cachedUrl;
     } catch {
       // 如果快取載入失敗，使用原始圖片
-      img.src = originalSrc
+      img.src = originalSrc;
     }
   }
 
   // 圖片載完後才開 lightbox
-  enableImageLightbox()
-})
+  enableImageLightbox();
+});
 
 onMounted(() => {
-  loadArticle()
-  startCacheCleanup()
-})
+  loadArticle();
+  startCacheCleanup();
+});
 
 onUnmounted(() => {
-  stopCacheCleanup()
-})
+  stopCacheCleanup();
+});
 </script>
 
 <style lang="scss">
@@ -331,7 +350,7 @@ article {
       font-weight: normal;
       line-height: 1.6;
       &:before {
-        content: '•';
+        content: "•";
         color: var(--maincolor);
         margin-right: 10px;
       }
@@ -350,7 +369,7 @@ article {
 
       &::before {
         counter-increment: li; // 每個 li 自動 +1
-        content: counter(li) '.'; // 顯示目前計數
+        content: counter(li) "."; // 顯示目前計數
         color: var(--maincolor);
         margin-right: 10px;
       }

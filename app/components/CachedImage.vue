@@ -1,6 +1,6 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue'
-import { useImageCache } from '@/composables/useImageCache'
+import { ref, onMounted, watch } from "vue";
+import { useImageCache } from "@composables/useImageCache";
 
 const props = defineProps({
   src: {
@@ -9,49 +9,49 @@ const props = defineProps({
   },
   alt: {
     type: String,
-    default: '',
+    default: "",
   },
   width: {
     type: [String, Number],
-    default: 'auto',
+    default: "auto",
   },
   height: {
     type: [String, Number],
-    default: 'auto',
+    default: "auto",
   },
   loading: {
     type: String,
-    default: 'lazy',
+    default: "lazy",
   },
-})
+});
 
-const emit = defineEmits(['load', 'error'])
+const emit = defineEmits(["load", "error"]);
 
-const { loadImage, isLoading, error } = useImageCache()
-const imageUrl = ref('')
+const { loadImage, isLoading, error } = useImageCache();
+const imageUrl = ref("");
 
 // 載入圖片
 const loadImageData = async () => {
   try {
-    imageUrl.value = await loadImage(props.src)
-    emit('load')
+    imageUrl.value = await loadImage(props.src);
+    emit("load");
   } catch (err) {
-    emit('error', err)
+    emit("error", err);
   }
-}
+};
 
 // 監聽 src 變化
 watch(
   () => props.src,
   () => {
-    loadImageData()
+    loadImageData();
   }
-)
+);
 
 // 元件掛載時載入圖片
 onMounted(() => {
-  loadImageData()
-})
+  loadImageData();
+});
 </script>
 
 <template>

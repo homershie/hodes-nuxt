@@ -3,7 +3,10 @@
     ref="imageRef"
     :data-src="src"
     :alt="alt"
-    :class="['optimized-image', { loaded: isLoaded, loading: isVisible && !isLoaded }]"
+    :class="[
+      'optimized-image',
+      { loaded: isLoaded, loading: isVisible && !isLoaded },
+    ]"
     :style="{
       aspectRatio: aspectRatio,
       backgroundColor: placeholderColor,
@@ -14,9 +17,9 @@
 </template>
 
 <script setup>
-import { onMounted, watch } from 'vue'
-import { useLazyImage } from '@/composables/useLazyImage.js'
-import { usePerformanceMonitor } from '@/composables/usePerformanceMonitor.js'
+import { onMounted, watch } from "vue";
+import { useLazyImage } from "@composables/useLazyImage.js";
+import { usePerformanceMonitor } from "@composables/usePerformanceMonitor.js";
 
 const props = defineProps({
   src: {
@@ -25,62 +28,63 @@ const props = defineProps({
   },
   alt: {
     type: String,
-    default: '',
+    default: "",
   },
   aspectRatio: {
     type: String,
-    default: 'auto',
+    default: "auto",
   },
   placeholderColor: {
     type: String,
-    default: '#f0f0f0',
+    default: "#f0f0f0",
   },
   priority: {
     type: String,
-    default: 'normal', // high, normal, low
+    default: "normal", // high, normal, low
   },
   preload: {
     type: Boolean,
     default: false,
   },
-})
+});
 
-const emit = defineEmits(['load', 'error'])
+const emit = defineEmits(["load", "error"]);
 
-const { imageRef, isLoaded, isVisible, loadImage } = useLazyImage()
-const { recordImageLoadStart, recordImageLoadComplete } = usePerformanceMonitor()
+const { imageRef, isLoaded, isVisible, loadImage } = useLazyImage();
+const { recordImageLoadStart, recordImageLoadComplete } =
+  usePerformanceMonitor();
 
 // 處理載入完成
-const handleLoad = event => {
-  recordImageLoadComplete()
-  emit('load', event)
-}
+const handleLoad = (event) => {
+  recordImageLoadComplete();
+  emit("load", event);
+};
 
 // 處理載入錯誤
-const handleError = event => {
-  recordImageLoadComplete()
-  emit('error', event)
-}
+const handleError = (event) => {
+  recordImageLoadComplete();
+  emit("error", event);
+};
 
 // 監聽可見性變化
-watch(isVisible, visible => {
+watch(isVisible, (visible) => {
   if (visible) {
-    recordImageLoadStart()
+    recordImageLoadStart();
     // 當圖片可見時，立即載入
-    loadImage()
+    loadImage();
   }
-})
+});
 
 // 如果設定為預載入或高優先級，立即載入
 onMounted(() => {
-  if (props.preload || props.priority === 'high') {
+  if (props.preload || props.priority === "high") {
     // 設定實際的 src 而不是 data-src
     if (imageRef.value) {
-      imageRef.value.src = props.src
-      recordImageLoadStart()
+      imageRef.value.src = props.src;
+      recordImageLoadStart();
     }
   }
-})
+});
 </script>
 
 <style scoped>
@@ -106,7 +110,7 @@ onMounted(() => {
 
 /* 載入動畫 */
 .optimized-image.loading::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;

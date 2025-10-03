@@ -23,13 +23,19 @@
                 <div>
                   <span class="icon-img-50 mr-40">
                     <img
-                      :src="getWebpImage('https://images.homershie.com/assets/imgs/serv-img/1.png')"
+                      :src="
+                        getWebpImage(
+                          'https://images.homershie.com/assets/imgs/serv-img/1.png'
+                        )
+                      "
                       alt="平面設計"
                     />
                   </span>
                 </div>
                 <div>
-                  <span class="opacity-7 fz-13 mb-5">{{ getProjectCount('平面設計') }}+ 專案</span>
+                  <span class="opacity-7 fz-13 mb-5"
+                    >{{ getProjectCount("平面設計") }}+ 專案</span
+                  >
                   <h5 class="fz-20">平面設計</h5>
                 </div>
               </div>
@@ -46,13 +52,19 @@
                 <div>
                   <span class="icon-img-50 mr-40">
                     <img
-                      :src="getWebpImage('https://images.homershie.com/assets/imgs/serv-img/2.png')"
+                      :src="
+                        getWebpImage(
+                          'https://images.homershie.com/assets/imgs/serv-img/2.png'
+                        )
+                      "
                       alt="動態設計"
                     />
                   </span>
                 </div>
                 <div>
-                  <span class="opacity-7 fz-13 mb-5">{{ getProjectCount('動畫') }}+ 專案</span>
+                  <span class="opacity-7 fz-13 mb-5"
+                    >{{ getProjectCount("動畫") }}+ 專案</span
+                  >
                   <h5 class="fz-20">動態設計</h5>
                 </div>
               </div>
@@ -69,13 +81,19 @@
                 <div>
                   <span class="icon-img-50 mr-40">
                     <img
-                      :src="getWebpImage('https://images.homershie.com/assets/imgs/serv-img/3.png')"
+                      :src="
+                        getWebpImage(
+                          'https://images.homershie.com/assets/imgs/serv-img/3.png'
+                        )
+                      "
                       alt="插畫創作"
                     />
                   </span>
                 </div>
                 <div>
-                  <span class="opacity-7 fz-13 mb-5">{{ getProjectCount('插畫') }}+ 專案</span>
+                  <span class="opacity-7 fz-13 mb-5"
+                    >{{ getProjectCount("插畫") }}+ 專案</span
+                  >
                   <h5 class="fz-20">插畫創作</h5>
                 </div>
               </div>
@@ -92,13 +110,19 @@
                 <div>
                   <span class="icon-img-50 mr-40">
                     <img
-                      :src="getWebpImage('https://images.homershie.com/assets/imgs/serv-img/4.png')"
+                      :src="
+                        getWebpImage(
+                          'https://images.homershie.com/assets/imgs/serv-img/4.png'
+                        )
+                      "
                       alt="3D動畫"
                     />
                   </span>
                 </div>
                 <div>
-                  <span class="opacity-7 fz-13 mb-5">{{ getProjectCount('3D') }}+ 專案</span>
+                  <span class="opacity-7 fz-13 mb-5"
+                    >{{ getProjectCount("3D") }}+ 專案</span
+                  >
                   <h5 class="fz-20">3D</h5>
                 </div>
               </div>
@@ -115,13 +139,19 @@
                 <div>
                   <span class="icon-img-50 mr-40">
                     <img
-                      :src="getWebpImage('https://images.homershie.com/assets/imgs/serv-img/5.png')"
+                      :src="
+                        getWebpImage(
+                          'https://images.homershie.com/assets/imgs/serv-img/5.png'
+                        )
+                      "
                       alt="品牌設計"
                     />
                   </span>
                 </div>
                 <div>
-                  <span class="opacity-7 fz-13 mb-5">{{ getProjectCount('品牌設計') }}+ 專案</span>
+                  <span class="opacity-7 fz-13 mb-5"
+                    >{{ getProjectCount("品牌設計") }}+ 專案</span
+                  >
                   <h5 class="fz-20">品牌設計</h5>
                 </div>
               </div>
@@ -139,13 +169,19 @@
                 <div>
                   <span class="icon-img-50 mr-40">
                     <img
-                      :src="getWebpImage('https://images.homershie.com/assets/imgs/serv-img/6.png')"
+                      :src="
+                        getWebpImage(
+                          'https://images.homershie.com/assets/imgs/serv-img/6.png'
+                        )
+                      "
                       alt="UI設計"
                     />
                   </span>
                 </div>
                 <div>
-                  <span class="opacity-7 fz-13 mb-5">{{ getProjectCount('網頁設計') }}+ 專案</span>
+                  <span class="opacity-7 fz-13 mb-5"
+                    >{{ getProjectCount("網頁設計") }}+ 專案</span
+                  >
                   <h5 class="fz-20">網頁前端設計</h5>
                 </div>
               </div>
@@ -169,7 +205,10 @@
           <div class="col-lg-8 text-center">
             <div class="d-inline-block">
               <div class="sub-title-icon d-flex align-items-center">
-                <font-awesome-icon :icon="['fas', 'sticky-note']" class="icon" />
+                <font-awesome-icon
+                  :icon="['fas', 'sticky-note']"
+                  class="icon"
+                />
                 <h6>合作方案</h6>
               </div>
             </div>
@@ -266,7 +305,9 @@
     <div class="container with-pad">
       <div class="text-center">
         <h6>
-          超過 <span class="main-color">{{ totalProjectCount }}+ 專案</span> 的成功合作經驗
+          超過
+          <span class="main-color">{{ totalProjectCount }}+ 專案</span>
+          的成功合作經驗
         </h6>
       </div>
       <div class="row">
@@ -274,7 +315,11 @@
           <div class="item">
             <div class="img w-25">
               <img
-                :src="getWebpImage('https://images.homershie.com/assets/imgs/brands/garmin.png')"
+                :src="
+                  getWebpImage(
+                    'https://images.homershie.com/assets/imgs/brands/garmin.png'
+                  )
+                "
                 style="filter: brightness(0.5)"
                 alt="garmin-logo"
               />
@@ -289,36 +334,36 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
-import { portfolio } from '@/data/portfolioData.js'
-import { useImageFormat } from '@/composables/useImageFormat.js'
+import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
+import { portfolio } from "@data/portfolioData.js";
+import { useImageFormat } from "@composables/useImageFormat.js";
 
-const router = useRouter()
-const portfolioData = ref(portfolio)
-const { toWebP } = useImageFormat()
+const router = useRouter();
+const portfolioData = ref(portfolio);
+const { toWebP } = useImageFormat();
 
 // 將圖片路徑轉換為WebP格式
-const getWebpImage = imagePath => {
-  return toWebP(imagePath)
-}
+const getWebpImage = (imagePath) => {
+  return toWebP(imagePath);
+};
 
 // 計算總專案數量
-const totalProjectCount = computed(() => portfolioData.value.length)
+const totalProjectCount = computed(() => portfolioData.value.length);
 
 // 根據類別計算專案數量
-const getProjectCount = targetCategory => {
-  if (!portfolioData.value.length) return 0
-  return portfolioData.value.filter(project => {
+const getProjectCount = (targetCategory) => {
+  if (!portfolioData.value.length) return 0;
+  return portfolioData.value.filter((project) => {
     if (Array.isArray(project.category)) {
-      return project.category.includes(targetCategory)
+      return project.category.includes(targetCategory);
     }
-    return project.category === targetCategory
-  }).length
-}
+    return project.category === targetCategory;
+  }).length;
+};
 
 function scrollToContact() {
   // 導航到聯絡頁面並滾動到表單區域
-  router.push('/contact#contact-form')
+  router.push("/contact#contact-form");
 }
 </script>

@@ -266,8 +266,8 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { useTimeoutFn } from "@vueuse/core";
-import { useImagePreloader } from "@/composables/useImagePreloader.js";
-import { useImageFormat } from "@/composables/useImageFormat.js";
+import { useImagePreloader } from "@composables/useImagePreloader.js";
+import { useImageFormat } from "@composables/useImageFormat.js";
 
 // 設定頁面標題範例
 const { setPageTitle } = usePageTitle();

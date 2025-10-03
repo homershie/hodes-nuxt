@@ -263,9 +263,9 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from "vue";
-import { portfolio } from "@/data/portfolioData.js";
-import { useImagePreloader } from "@/composables/useImagePreloader.js";
-import { useImageFormat } from "@/composables/useImageFormat.js";
+import { portfolio } from "@data/portfolioData.js";
+import { useImagePreloader } from "@composables/useImagePreloader.js";
+import { useImageFormat } from "@composables/useImageFormat.js";
 
 const { preloadImages, loadingProgress, isPreloading } = useImagePreloader();
 const { toWebP } = useImageFormat();
