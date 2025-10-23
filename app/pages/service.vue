@@ -8,7 +8,7 @@
             <div class="col-lg-8 text-center">
               <div class="d-inline-block">
                 <div class="sub-title-icon d-flex align-items-center">
-                  <font-awesome-icon :icon="['fas', 'bell']" class="icon" />
+                  <Icon name="mdi:bell" class="icon" />
                   <h6>我的服務</h6>
                 </div>
               </div>
@@ -188,7 +188,7 @@
             <div class="col-lg-8 text-center">
               <div class="d-inline-block">
                 <div class="sub-title-icon d-flex align-items-center">
-                  <font-awesome-icon :icon="['fas', 'sticky-note']" class="icon" />
+                  <Icon name="mdi:note-text" class="icon" />
                   <h6>合作方案</h6>
                 </div>
               </div>

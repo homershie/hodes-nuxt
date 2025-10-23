@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxt/eslint',
     '@nuxt/image',
+    '@nuxt/icon',
     '@nuxt/ui',
     'nuxt-gtag',
     '@vueuse/nuxt',

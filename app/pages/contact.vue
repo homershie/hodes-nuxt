@@ -35,7 +35,7 @@
           <div class="info full-width md-mb80">
             <div class="item mb-30 d-flex align-items-center">
               <div class="mr-15">
-                <font-awesome-icon :icon="['far', 'envelope']" class="icon main-color" />
+                <Icon name="mdi:email-outline" class="icon main-color" />
               </div>
               <div class="mr-10">
                 <h6 class="opacity-7">Email</h6>
@@ -48,7 +48,7 @@
             </div>
             <div class="item d-flex align-items-center">
               <div class="mr-15">
-                <font-awesome-icon :icon="['far', 'map']" class="icon main-color" />
+                <Icon name="mdi:map-marker-outline" class="icon main-color" />
               </div>
               <div class="mr-10">
                 <h6 class="opacity-7">Address</h6>

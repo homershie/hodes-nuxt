@@ -117,7 +117,7 @@
                     <div class="col-sm-6">
                       <div class="item d-flex align-items-center sm-mb30">
                         <div class="mr-15">
-                          <font-awesome-icon :icon="['far', 'envelope']" class="icon main-color" />
+                          <Icon name="mdi:email-outline" class="icon main-color" />
                         </div>
                         <div>
                           <span class="opacity-7 mb-5">電子信箱</span>
@@ -142,7 +142,7 @@
           <div class="row justify-content-center">
             <div class="col-lg-6 text-center">
               <div class="sub-title-icon d-flex align-items-center mx-auto">
-                <font-awesome-icon :icon="['fas', 'dumbbell']" class="icon" />
+                <Icon name="mdi:dumbbell" class="icon" />
                 <h6>我的技能</h6>
               </div>
               <h3>優勢</h3>
@@ -187,7 +187,7 @@
             <div class="col-lg-6 text-center">
               <div class="d-inline-block">
                 <div class="sub-title-icon d-flex align-items-center">
-                  <font-awesome-icon :icon="['fas', 'file-alt']" class="icon" />
+                  <Icon name="mdi:file-document-outline" class="icon" />
                   <h6>我的簡歷</h6>
                 </div>
               </div>
