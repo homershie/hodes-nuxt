@@ -61,7 +61,7 @@
                   <div class="valign">
                     <div class="img">
                       <router-link :to="`/article/${post.id}`">
-                        <img :src="toWebP(post.thumbnail)" :alt="post.title" />
+                        <img :src="post.thumbnail.replace(/\.(jpg|png)$/, '.webp')" :alt="post.title" />
                       </router-link>
                     </div>
                   </div>
@@ -155,7 +155,7 @@
                   <div class="valign">
                     <div class="img">
                       <router-link :to="`/article/${post.id}`">
-                        <img :src="toWebP(post.thumbnail)" :alt="post.title" />
+                        <img :src="post.thumbnail.replace(/\.(jpg|png)$/, '.webp')" :alt="post.title" />
                       </router-link>
                     </div>
                   </div>
@@ -193,12 +193,10 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { articles } from '@data/articleData.js'
-import { useImageFormat } from '@composables/useImageFormat.js'
 import { useImageCache } from '@composables/useImageCache'
 
 const searchQuery = ref('')
 const selectedCategory = ref('all')
-const { toWebP } = useImageFormat()
 const { preloadImages, loadImage, startCacheCleanup, stopCacheCleanup } = useImageCache()
 const cachedImageUrl = ref({})
 
@@ -262,7 +260,7 @@ const loadCachedImage = async url => {
     return cachedUrl
   } catch {
     // 如果快取載入失敗，使用 WebP 格式
-    const webpUrl = toWebP(url)
+    const webpUrl = url.replace(/\.(jpg|png)$/, '.webp')
     cachedImageUrl.value[url] = webpUrl
     return webpUrl
   }

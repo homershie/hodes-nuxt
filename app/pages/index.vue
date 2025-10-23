@@ -124,7 +124,7 @@
               <div class="author-img">
                 <div class="img">
                   <img
-                    :src="toWebP('/assets/imgs/header/profile.jpg')"
+                    src="https://r2bucket.homershie.com/assets/imgs/header/profile.webp"
                     alt="荷馬桑 Homer Shie 個人照片"
                     loading="lazy"
                   />
@@ -251,10 +251,8 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { portfolio } from '@data/portfolioData.js'
 import { useImagePreloader } from '@composables/useImagePreloader.js'
-import { useImageFormat } from '@composables/useImageFormat.js'
 
 const { preloadImages, loadingProgress, isPreloading } = useImagePreloader()
-const { toWebP } = useImageFormat()
 
 // headline 輪播文字
 const headlineWords = [
@@ -280,21 +278,19 @@ onMounted(() => {
     currentWordIndex.value = (currentWordIndex.value + 1) % headlineWords.length
   }, 2000)
 
-  // 收集首頁所有圖片URL
+  // 收集首頁所有圖片URL（已改用 WebP 格式）
   const imageUrls = [
     // 主視覺圖片
-    'https://r2bucket.homershie.com/assets/imgs/hero/1.jpg',
+    'https://r2bucket.homershie.com/assets/imgs/hero/1.webp',
     // 個人照片
-    'https://r2bucket.homershie.com/assets/imgs/header/profile.jpg',
+    'https://r2bucket.homershie.com/assets/imgs/header/profile.webp',
     // 作品集縮圖
-    ...portfolio.slice(0, 6).map(work => work.image),
+    ...portfolio.slice(0, 6).map(work => work.image.replace(/\.(jpg|png)$/, '.webp')),
     // 其他首頁圖片
-    'https://r2bucket.homershie.com/assets/imgs/about/1.jpg',
-    'https://r2bucket.homershie.com/assets/imgs/about/2.jpg',
-    'https://r2bucket.homershie.com/assets/imgs/about/3.jpg',
-  ]
-    .filter(Boolean)
-    .map(url => toWebP(url))
+    'https://r2bucket.homershie.com/assets/imgs/about/1.webp',
+    'https://r2bucket.homershie.com/assets/imgs/about/2.webp',
+    'https://r2bucket.homershie.com/assets/imgs/about/3.webp',
+  ].filter(Boolean)
 
   // 預載入圖片
   preloadImages(imageUrls)

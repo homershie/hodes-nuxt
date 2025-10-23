@@ -316,15 +316,13 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { portfolio } from '@data/portfolioData.js'
-import { useImageFormat } from '@composables/useImageFormat.js'
 
 const router = useRouter()
 const portfolioData = ref(portfolio)
-const { toWebP } = useImageFormat()
 
 // 將圖片路徑轉換為WebP格式
 const getWebpImage = imagePath => {
-  return toWebP(imagePath)
+  return imagePath.replace(/\.(jpg|png)$/, '.webp')
 }
 
 // 計算總專案數量

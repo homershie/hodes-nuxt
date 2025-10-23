@@ -101,12 +101,12 @@ const BASE_TITLE = 'HOEDES｜荷馬桑 Homer Shie'
 const route = useRoute()
 const project = ref(null)
 const { getWorkById } = usePortfolio()
-const { toWebP, getBestImagePath } = useImageFormat()
+const { getBestImagePath } = useImageFormat()
 const { preloadImages, loadingProgress, isPreloading } = useImagePreloader()
 
 // 獲取WebP格式的圖片路徑
 const webpMainImage = computed(() => {
-  return project.value?.mainImage ? toWebP(project.value.mainImage) : ''
+  return project.value?.mainImage ? project.value.mainImage.replace(/\.(jpg|png)$/, '.webp') : ''
 })
 
 // 獲取WebP格式的畫廊圖片
@@ -114,7 +114,7 @@ const webpGallery = computed(() => {
   if (!project.value?.gallery || !Array.isArray(project.value.gallery)) {
     return []
   }
-  return project.value.gallery.map(img => (img ? toWebP(img) : null))
+  return project.value.gallery.map(img => (img ? img.replace(/\.(jpg|png)$/, '.webp') : null))
 })
 
 // 格式化描述文字，將 \n 轉換為 <br>

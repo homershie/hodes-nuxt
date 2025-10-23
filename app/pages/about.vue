@@ -16,31 +16,31 @@
             <div class="profile-img">
               <div class="img">
                 <img
-                  :src="toWebP('https://images.homershie.com/assets/imgs/header/profile.jpg')"
+                  src="https://images.homershie.com/assets/imgs/header/profile.webp"
                   alt="荷馬桑個人照片"
                 />
               </div>
               <span class="icon">
                 <img
-                  :src="toWebP('https://images.homershie.com/assets/imgs/header/icon1.png')"
+                  src="https://images.homershie.com/assets/imgs/header/icon1.webp"
                   alt=""
                 />
               </span>
               <span class="icon">
                 <img
-                  :src="toWebP('https://images.homershie.com/assets/imgs/header/icon2.png')"
+                  src="https://images.homershie.com/assets/imgs/header/icon2.webp"
                   alt=""
                 />
               </span>
               <span class="icon">
                 <img
-                  :src="toWebP('https://images.homershie.com/assets/imgs/header/icon3.png')"
+                  src="https://images.homershie.com/assets/imgs/header/icon3.webp"
                   alt=""
                 />
               </span>
               <span class="icon">
                 <img
-                  :src="toWebP('https://images.homershie.com/assets/imgs/header/icon4.png')"
+                  src="https://images.homershie.com/assets/imgs/header/icon4.webp"
                   alt=""
                 />
               </span>
@@ -229,7 +229,6 @@
 import { onMounted, ref } from 'vue'
 import { useTimeoutFn } from '@vueuse/core'
 import { useImagePreloader } from '@composables/useImagePreloader.js'
-import { useImageFormat } from '@composables/useImageFormat.js'
 
 // 設定頁面標題範例
 const { setPageTitle } = usePageTitle()
@@ -240,7 +239,6 @@ useSeoMeta({
 })
 
 const { preloadImages, loadingProgress, isPreloading } = useImagePreloader()
-const { toWebP } = useImageFormat()
 
 // 響應式資料
 const animatedSkills = ref(false)
@@ -346,20 +344,18 @@ const addExperience = newExperience => {
 }
 
 onMounted(async () => {
-  // 收集所有圖片URL
+  // 收集所有圖片URL（已改用 WebP 格式）
   const imageUrls = [
     // 個人照片
-    'https://images.homershie.com/assets/imgs/header/profile.jpg',
+    'https://images.homershie.com/assets/imgs/header/profile.webp',
     // 圖示
-    'https://images.homershie.com/assets/imgs/header/icon1.png',
-    'https://images.homershie.com/assets/imgs/header/icon2.png',
-    'https://images.homershie.com/assets/imgs/header/icon3.png',
-    'https://images.homershie.com/assets/imgs/header/icon4.png',
+    'https://images.homershie.com/assets/imgs/header/icon1.webp',
+    'https://images.homershie.com/assets/imgs/header/icon2.webp',
+    'https://images.homershie.com/assets/imgs/header/icon3.webp',
+    'https://images.homershie.com/assets/imgs/header/icon4.webp',
     // 技能圖示
-    ...skills.value.map(skill => skill.icon),
-  ]
-    .filter(Boolean)
-    .map(url => toWebP(url))
+    ...skills.value.map(skill => skill.icon.replace(/\.(jpg|png)$/, '.webp')),
+  ].filter(Boolean)
 
   // 預載入圖片
   await preloadImages(imageUrls)
