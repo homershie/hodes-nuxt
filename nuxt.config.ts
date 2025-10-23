@@ -26,7 +26,6 @@ export default defineNuxtConfig({
     'nuxt-gtag',
     '@vueuse/nuxt',
     '@pinia/nuxt',
-    '@nuxtjs/axios',
   ],
 
   gtag: {

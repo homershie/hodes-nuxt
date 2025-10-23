@@ -43,6 +43,7 @@ const router = useRouter()
 
 const { y } = useScroll(window)
 const progress = computed(() => {
+  if (!import.meta.client) return 0
   const scrollTop = y.value
   const docHeight = document.documentElement.scrollHeight - window.innerHeight
   return docHeight > 0 ? (scrollTop / docHeight) * 100 : 0

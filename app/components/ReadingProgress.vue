@@ -12,6 +12,7 @@ const { y } = useScroll(window)
 const shouldShowProgress = ref(false)
 
 const progress = computed(() => {
+  if (!import.meta.client) return 0
   const scrollTop = y.value
   const docHeight = document.documentElement.scrollHeight - window.innerHeight
   return docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
@@ -19,6 +20,7 @@ const progress = computed(() => {
 
 // 檢查頁面是否足夠長以及滾動位置
 const checkProgressVisibility = () => {
+  if (!import.meta.client) return
   const docHeight = document.documentElement.scrollHeight
   const windowHeight = window.innerHeight
   const scrollTop = y.value

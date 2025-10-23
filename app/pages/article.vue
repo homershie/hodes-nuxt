@@ -131,6 +131,7 @@ const { preloadImages, loadImage, startCacheCleanup, stopCacheCleanup } = useIma
 // 使用 useScroll 來計算閱讀進度
 const { y } = useScroll(window)
 const progress = computed(() => {
+  if (!import.meta.client) return 0
   const scrollTop = y.value
   const docHeight = document.documentElement.scrollHeight - window.innerHeight
   return docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
@@ -158,7 +159,7 @@ const nextArticle = computed(() => {
 
 // 分享連結
 const shareUrls = computed(() => {
-  if (!article.value) return {}
+  if (!article.value || !import.meta.client) return {}
   // 取原始完整 URL
   const fullPath = router.currentRoute.value.fullPath
   const currentUrl = `${window.location.origin}${fullPath}`

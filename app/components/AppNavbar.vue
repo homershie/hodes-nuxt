@@ -122,7 +122,7 @@ import gsap from 'gsap'
 
 const route = useRoute()
 const isMenuOpen = ref(false)
-const isDesktop = ref(window.innerWidth > 991)
+const isDesktop = ref(false) // 初始化為 false，避免 SSR 錯誤
 const bgRef = ref(null)
 const isScrolled = ref(false)
 const { y } = useScroll(window)
@@ -138,13 +138,17 @@ const toggleMenu = () => {
 
 // 使用 VueUse 的 useEventListener 替代原生事件監聽
 useEventListener(window, 'resize', () => {
-  isDesktop.value = window.innerWidth > 991
-  if (isDesktop.value) isMenuOpen.value = false
+  if (import.meta.client) {
+    isDesktop.value = window.innerWidth > 991
+    if (isDesktop.value) isMenuOpen.value = false
+  }
 })
 
 onMounted(() => {
-  // 初始化
-  isDesktop.value = window.innerWidth > 991
+  // 初始化 - 只在客戶端執行
+  if (import.meta.client) {
+    isDesktop.value = window.innerWidth > 991
+  }
 })
 
 // 當打開手機版選單時做 GSAP 動畫
