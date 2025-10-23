@@ -15,7 +15,7 @@
                       </div>
                       <div class="text-center mt-30">
                         <a
-                          href="https://images.homershie.com/assets/resume/Homer_Shie_Resume.pdf"
+                          href="https://r2bucket.homershie.com/assets/resume/Homer_Shie_Resume.pdf"
                           target="_blank"
                         >
                           <svg

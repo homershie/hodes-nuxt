@@ -16,33 +16,21 @@
             <div class="profile-img">
               <div class="img">
                 <img
-                  src="https://images.homershie.com/assets/imgs/header/profile.webp"
+                  src="https://r2bucket.homershie.com/assets/imgs/header/profile.webp"
                   alt="荷馬桑個人照片"
                 />
               </div>
               <span class="icon">
-                <img
-                  src="https://images.homershie.com/assets/imgs/header/icon1.webp"
-                  alt=""
-                />
+                <img src="https://r2bucket.homershie.com/assets/imgs/header/icon1.webp" alt="" />
               </span>
               <span class="icon">
-                <img
-                  src="https://images.homershie.com/assets/imgs/header/icon2.webp"
-                  alt=""
-                />
+                <img src="https://r2bucket.homershie.com/assets/imgs/header/icon2.webp" alt="" />
               </span>
               <span class="icon">
-                <img
-                  src="https://images.homershie.com/assets/imgs/header/icon3.webp"
-                  alt=""
-                />
+                <img src="https://r2bucket.homershie.com/assets/imgs/header/icon3.webp" alt="" />
               </span>
               <span class="icon">
-                <img
-                  src="https://images.homershie.com/assets/imgs/header/icon4.webp"
-                  alt=""
-                />
+                <img src="https://r2bucket.homershie.com/assets/imgs/header/icon4.webp" alt="" />
               </span>
             </div>
           </div>
@@ -229,6 +217,7 @@
 import { onMounted, ref } from 'vue'
 import { useTimeoutFn } from '@vueuse/core'
 import { useImagePreloader } from '@composables/useImagePreloader.js'
+import { usePageTitle } from '@composables/usePageTitle.js'
 
 // 設定頁面標題範例
 const { setPageTitle } = usePageTitle()
@@ -249,37 +238,37 @@ const skills = ref([
     id: 1,
     name: '平面設計',
     percentage: 95,
-    icon: 'https://images.homershie.com/assets/imgs/resume/s1.png',
+    icon: 'https://r2bucket.homershie.com/assets/imgs/resume/s1.png',
   },
   {
     id: 2,
     name: '插畫',
     percentage: 85,
-    icon: 'https://images.homershie.com/assets/imgs/resume/s2.png',
+    icon: 'https://r2bucket.homershie.com/assets/imgs/resume/s2.png',
   },
   {
     id: 3,
     name: '動態設計',
     percentage: 80,
-    icon: 'https://images.homershie.com/assets/imgs/resume/s3.png',
+    icon: 'https://r2bucket.homershie.com/assets/imgs/resume/s3.png',
   },
   {
     id: 4,
     name: '3D動畫',
     percentage: 72,
-    icon: 'https://images.homershie.com/assets/imgs/resume/s4.png',
+    icon: 'https://r2bucket.homershie.com/assets/imgs/resume/s4.png',
   },
   {
     id: 5,
     name: 'UI設計',
     percentage: 65,
-    icon: 'https://images.homershie.com/assets/imgs/resume/s5.png',
+    icon: 'https://r2bucket.homershie.com/assets/imgs/resume/s5.png',
   },
   {
     id: 6,
     name: '網頁開發',
     percentage: 60,
-    icon: 'https://images.homershie.com/assets/imgs/resume/s6.png',
+    icon: 'https://r2bucket.homershie.com/assets/imgs/resume/s6.png',
   },
 ])
 
@@ -347,12 +336,12 @@ onMounted(async () => {
   // 收集所有圖片URL（已改用 WebP 格式）
   const imageUrls = [
     // 個人照片
-    'https://images.homershie.com/assets/imgs/header/profile.webp',
+    'https://r2bucket.homershie.com/assets/imgs/header/profile.webp',
     // 圖示
-    'https://images.homershie.com/assets/imgs/header/icon1.webp',
-    'https://images.homershie.com/assets/imgs/header/icon2.webp',
-    'https://images.homershie.com/assets/imgs/header/icon3.webp',
-    'https://images.homershie.com/assets/imgs/header/icon4.webp',
+    'https://r2bucket.homershie.com/assets/imgs/header/icon1.webp',
+    'https://r2bucket.homershie.com/assets/imgs/header/icon2.webp',
+    'https://r2bucket.homershie.com/assets/imgs/header/icon3.webp',
+    'https://r2bucket.homershie.com/assets/imgs/header/icon4.webp',
     // 技能圖示
     ...skills.value.map(skill => skill.icon.replace(/\.(jpg|png)$/, '.webp')),
   ].filter(Boolean)
