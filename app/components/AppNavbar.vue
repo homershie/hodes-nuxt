@@ -205,15 +205,6 @@ watch(
     height: 100%;
     display: flex;
     align-items: center;
-
-    /* 手機版隱藏，桌面版顯示 */
-    display: none;
-    @media (min-width: 992px) {
-      display: flex;
-    }
-    &.open {
-      display: flex;
-    }
   }
 
   /* social 樣式 */
@@ -380,8 +371,8 @@ watch(
   }
 }
 
-/* 手機版響應式樣式 */
-@media (max-width: 991px) {
+/* 手機版響應式樣式 - 對應原版 @media screen and (max-width: 992px) */
+@media screen and (max-width: 992px) {
   .navbar {
     .bg {
       position: absolute;
@@ -393,6 +384,11 @@ watch(
       background: #0c0c0c;
       padding: 20px 30px;
       border: 1px solid rgba(255, 255, 255, 0.2);
+
+      /* 當選單打開時顯示 */
+      &.open {
+        display: flex;
+      }
     }
 
     .social {

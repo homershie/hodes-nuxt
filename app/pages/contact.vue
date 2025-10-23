@@ -243,12 +243,18 @@ const { value: email, handleBlur: emailBlur } = useField('email')
 const { value: subject, handleBlur: subjectBlur } = useField('subject')
 const { value: message, handleBlur: messageBlur } = useField('message')
 
-// 使用 reCAPTCHA
-const { executeRecaptcha, recaptchaLoaded } = useReCaptcha()
+// 使用 reCAPTCHA - 只在 client-side 執行
+let executeRecaptcha = null
+let recaptchaLoaded = null
 
 // 初始化
 onMounted(() => {
   initFormStartTime()
+
+  // 只在 client-side 初始化 reCAPTCHA
+  const recaptcha = useReCaptcha()
+  executeRecaptcha = recaptcha?.executeRecaptcha
+  recaptchaLoaded = recaptcha?.recaptchaLoaded
 })
 
 // 提交表單
@@ -280,9 +286,11 @@ const submitForm = handleSubmit(async formValues => {
   formMessage.value = ''
 
   try {
-    // 獲取 reCAPTCHA token
-    await recaptchaLoaded()
-    recaptchaToken.value = await executeRecaptcha('contact')
+    // 獲取 reCAPTCHA token (只在 client-side 且函數已載入時)
+    if (recaptchaLoaded && executeRecaptcha) {
+      await recaptchaLoaded()
+      recaptchaToken.value = await executeRecaptcha('contact')
+    }
 
     // 提交表單
     const res = await fetch('https://portfolio-backend-pky9.onrender.com/api/send-email', {

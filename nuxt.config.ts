@@ -103,6 +103,48 @@ export default defineNuxtConfig({
           href: 'https://r2bucket.homershie.com/assets/imgs/favicon_homer.png',
         },
         { rel: 'canonical', href: 'https://homershie.com' },
+        // Bootstrap CSS
+        {
+          rel: 'stylesheet',
+          href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css',
+        },
+        // Font Awesome
+        {
+          rel: 'stylesheet',
+          href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+        },
+        // PE Icon 7 Stroke
+        {
+          rel: 'stylesheet',
+          href: 'https://cdn.jsdelivr.net/npm/pe-icon-7-stroke@1.2.0/css/pe-icon-7-stroke.min.css',
+        },
+        // Swiper
+        {
+          rel: 'stylesheet',
+          href: 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css',
+        },
+      ],
+      script: [
+        // GSAP
+        {
+          src: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js',
+          defer: true,
+        },
+        // Popper.js
+        {
+          src: 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js',
+          defer: true,
+        },
+        // Bootstrap JS
+        {
+          src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js',
+          defer: true,
+        },
+        // Swiper JS
+        {
+          src: 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js',
+          defer: true,
+        },
       ],
     },
   },
