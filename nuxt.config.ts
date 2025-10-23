@@ -16,7 +16,11 @@ export default defineNuxtConfig({
   },
 
   // 全局 CSS 設定
-  css: ['@/assets/style.css', '@/assets/scss/style.scss'],
+  css: [
+    '@fortawesome/fontawesome-svg-core/styles.css',
+    '@/assets/style.css',
+    '@/assets/scss/style.scss',
+  ],
 
   modules: [
     '@nuxt/content',
@@ -30,6 +34,18 @@ export default defineNuxtConfig({
 
   gtag: {
     id: 'G-8YSG21XKMM',
+  },
+
+  // Vite 配置
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          // 抑制 @import 棄用警告
+          silenceDeprecations: ['import'],
+        },
+      },
+    },
   },
 
   // 全域 SEO 設定

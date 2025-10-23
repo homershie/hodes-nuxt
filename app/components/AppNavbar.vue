@@ -16,11 +16,7 @@
         </div>
 
         <div class="col-lg-6 order3">
-          <div
-            ref="bgRef"
-            class="bg"
-            :class="{ open: isMenuOpen }"
-          >
+          <div ref="bgRef" class="bg" :class="{ open: isMenuOpen }">
             <!-- navbar links -->
             <div class="full-width">
               <ul class="navbar-nav text-center">
