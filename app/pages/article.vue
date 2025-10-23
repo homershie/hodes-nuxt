@@ -106,7 +106,7 @@
   <section v-else class="section-padding">
     <div class="container text-center">
       <h2>文章不存在</h2>
-      <router-link to="/blogs" class="butn butn-md butn-bord radius-30 mt-30">
+      <router-link to="/blog" class="butn butn-md butn-bord radius-30 mt-30">
         <span>回到部落格</span>
       </router-link>
     </div>

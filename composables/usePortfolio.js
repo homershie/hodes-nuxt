@@ -1,5 +1,5 @@
 import { ref, computed } from 'vue'
-import { portfolio } from '@/data/portfolioData.js'
+import { portfolio } from '@data/portfolioData.js'
 import { useImageFormat } from './useImageFormat.js'
 
 // 直接使用 portfolioData.js 的靜態資料

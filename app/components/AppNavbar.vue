@@ -36,7 +36,7 @@
                   </NuxtLink>
                 </li>
                 <li class="nav-item">
-                  <NuxtLink class="nav-link" to="/services">
+                  <NuxtLink class="nav-link" to="/service">
                     <span class="rolling-text">服務</span>
                   </NuxtLink>
                 </li>
@@ -46,7 +46,7 @@
                   </NuxtLink>
                 </li>
                 <li class="nav-item">
-                  <NuxtLink class="nav-link" to="/blogs">
+                  <NuxtLink class="nav-link" to="/blog">
                     <span class="rolling-text">部落格</span>
                   </NuxtLink>
                 </li>

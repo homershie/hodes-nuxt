@@ -54,7 +54,7 @@
                   <div class="item-down box-shadwo d-flex align-items-center">
                     <div>
                       <div class="circle-item d-flex align-items-center justify-content-center">
-                        <router-link to="/services">
+                        <router-link to="/service">
                           <svg
                             class="arrow-right"
                             xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@
                       </div>
                     </div>
                     <h6 class="ml-15">
-                      <router-link to="/services">我的服務</router-link>
+                      <router-link to="/service">我的服務</router-link>
                     </h6>
                   </div>
                 </div>
