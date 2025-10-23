@@ -17,7 +17,6 @@
 
         <div class="col-lg-6 order3">
           <div
-            v-show="isMenuOpen || isDesktop"
             ref="bgRef"
             class="bg"
             :class="{ open: isMenuOpen }"
@@ -110,19 +109,18 @@
   </nav>
 
   <teleport to="body">
-    <div v-show="isMenuOpen && !isDesktop" class="overlay"></div>
+    <div v-show="isMenuOpen" class="overlay"></div>
   </teleport>
 </template>
 
 <script setup>
-import { ref, watch, nextTick, onMounted } from 'vue'
+import { ref, watch, nextTick } from 'vue'
 // useRoute 由 Nuxt 自動 import
-import { useScroll, useEventListener } from '@vueuse/core'
+import { useScroll } from '@vueuse/core'
 import gsap from 'gsap'
 
 const route = useRoute()
 const isMenuOpen = ref(false)
-const isDesktop = ref(false) // 初始化為 false，避免 SSR 錯誤
 const bgRef = ref(null)
 const isScrolled = ref(false)
 const { y } = useScroll(window)
@@ -136,50 +134,38 @@ const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
 }
 
-// 使用 VueUse 的 useEventListener 替代原生事件監聽
-useEventListener(window, 'resize', () => {
-  if (import.meta.client) {
-    isDesktop.value = window.innerWidth > 991
-    if (isDesktop.value) isMenuOpen.value = false
-  }
-})
-
-onMounted(() => {
-  // 初始化 - 只在客戶端執行
-  if (import.meta.client) {
-    isDesktop.value = window.innerWidth > 991
-  }
-})
-
 // 當打開手機版選單時做 GSAP 動畫
 watch(isMenuOpen, async open => {
-  if (open && !isDesktop.value) {
+  if (open) {
     await nextTick()
-    gsap.fromTo(
-      bgRef.value,
-      { y: -100, autoAlpha: 0, filter: 'blur(50px)' },
-      {
-        y: 0,
-        autoAlpha: 1,
-        filter: 'blur(0px)',
-        duration: 0.5,
-        ease: 'power2.out',
-      }
-    )
+    // 只在手機版執行動畫（透過 CSS 媒體查詢判斷）
+    if (bgRef.value) {
+      gsap.fromTo(
+        bgRef.value,
+        { y: -100, autoAlpha: 0, filter: 'blur(50px)' },
+        {
+          y: 0,
+          autoAlpha: 1,
+          filter: 'blur(0px)',
+          duration: 0.5,
+          ease: 'power2.out',
+        }
+      )
+    }
   }
 })
 
-// 路由變換自動收合
+// 路由變換自動收合選單
 watch(
   () => route.path,
   () => {
-    if (!isDesktop.value) isMenuOpen.value = false
+    isMenuOpen.value = false
   }
 )
 </script>
 
 <style lang="scss" scoped>
-/* 遮罩層 */
+/* 遮罩層 - 只在手機版顯示 */
 .overlay {
   position: fixed;
   inset: 0;
@@ -188,6 +174,11 @@ watch(
   z-index: 9;
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
+
+  /* 桌面版隱藏遮罩層 */
+  @media (min-width: 992px) {
+    display: none !important;
+  }
 }
 
 /* 整合 style.css 中的 navbar 相關 CSS */
