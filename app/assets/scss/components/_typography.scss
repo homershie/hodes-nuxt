@@ -13,20 +13,20 @@ body {
   color: #fff;
   background-color: #0c0c0c;
   font-size: 14px;
-  font-family: 'Poppins', sans-serif;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 400;
   overflow-x: hidden !important;
   position: relative;
 
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('/assets/imgs/patterns/noise1.png');
+    background-image: url("/assets/imgs/patterns/noise1.png");
     background-size: auto;
     background-repeat: repeat;
     border-radius: 30px 0 0 30px;
@@ -147,7 +147,7 @@ p {
   line-height: 1.75;
   font-size: 15px;
   font-weight: 300;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #ddd;
   margin: 0;
 }
@@ -217,5 +217,5 @@ img {
 }
 
 .numb {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
 }

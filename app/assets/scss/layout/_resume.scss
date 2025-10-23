@@ -8,7 +8,7 @@
       position: relative;
 
       &:before {
-        content: '';
+        content: "";
         position: absolute;
         bottom: -35px;
         left: calc(50% - 5px);
@@ -20,7 +20,7 @@
       }
 
       &:after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: -30px;
         left: -50%;
@@ -59,7 +59,7 @@
     position: relative;
 
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       left: -5px;
       top: 10px;

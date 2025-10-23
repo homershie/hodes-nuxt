@@ -72,7 +72,7 @@ export function useImagePreloader() {
 
         await Promise.all(batchPromises)
       }
-    } catch (error) {
+    } catch {
       // 靜默處理錯誤
     } finally {
       isPreloading.value = false

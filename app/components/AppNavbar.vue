@@ -1,20 +1,17 @@
 <template>
-  <nav
-    class="navbar navbar-chang navbar-expand-lg"
-    :class="{ 'nav-scroll': isScrolled }"
-  >
+  <nav class="navbar navbar-chang navbar-expand-lg" :class="{ 'nav-scroll': isScrolled }">
     <div class="container position-re">
       <div class="row">
         <div class="col-lg-3 col-6 order1">
           <div class="bord">
             <!-- Logo -->
-            <router-link class="logo icon-img-120" to="/">
+            <NuxtLink class="logo icon-img-120" to="/">
               <img
                 src="https://r2bucket.homershie.com/assets/imgs/logo-light.png"
                 alt="荷馬桑 Homer Shie - 視覺設計師標誌"
                 loading="eager"
               />
-            </router-link>
+            </NuxtLink>
           </div>
         </div>
 
@@ -29,34 +26,34 @@
             <div class="full-width">
               <ul class="navbar-nav text-center">
                 <li class="nav-item">
-                  <router-link class="nav-link" to="/">
+                  <NuxtLink class="nav-link" to="/">
                     <span class="rolling-text">首頁</span>
-                  </router-link>
+                  </NuxtLink>
                 </li>
                 <li class="nav-item">
-                  <router-link class="nav-link" to="/about">
+                  <NuxtLink class="nav-link" to="/about">
                     <span class="rolling-text">關於</span>
-                  </router-link>
+                  </NuxtLink>
                 </li>
                 <li class="nav-item">
-                  <router-link class="nav-link" to="/services">
+                  <NuxtLink class="nav-link" to="/services">
                     <span class="rolling-text">服務</span>
-                  </router-link>
+                  </NuxtLink>
                 </li>
                 <li class="nav-item">
-                  <router-link class="nav-link" to="/portfolio">
+                  <NuxtLink class="nav-link" to="/portfolio">
                     <span class="rolling-text">作品</span>
-                  </router-link>
+                  </NuxtLink>
                 </li>
                 <li class="nav-item">
-                  <router-link class="nav-link" to="/blogs">
+                  <NuxtLink class="nav-link" to="/blogs">
                     <span class="rolling-text">部落格</span>
-                  </router-link>
+                  </NuxtLink>
                 </li>
                 <li class="nav-item">
-                  <router-link class="nav-link" to="/contact">
+                  <NuxtLink class="nav-link" to="/contact">
                     <span class="rolling-text">聯絡我</span>
-                  </router-link>
+                  </NuxtLink>
                 </li>
               </ul>
             </div>
@@ -118,63 +115,63 @@
 </template>
 
 <script setup>
-import { ref, watch, nextTick, onMounted } from "vue";
-import { useRoute } from "vue-router";
-import { useScroll, useEventListener } from "@vueuse/core";
-import gsap from "gsap";
+import { ref, watch, nextTick, onMounted } from 'vue'
+// useRoute 由 Nuxt 自動 import
+import { useScroll, useEventListener } from '@vueuse/core'
+import gsap from 'gsap'
 
-const route = useRoute();
-const isMenuOpen = ref(false);
-const isDesktop = ref(window.innerWidth > 991);
-const bgRef = ref(null);
-const isScrolled = ref(false);
-const { y } = useScroll(window);
+const route = useRoute()
+const isMenuOpen = ref(false)
+const isDesktop = ref(window.innerWidth > 991)
+const bgRef = ref(null)
+const isScrolled = ref(false)
+const { y } = useScroll(window)
 
 // 監聽滾動，控制 navbar 樣式 (與原版 JS 保持一致：300px)
-watch(y, (scrollY) => {
-  isScrolled.value = scrollY > 300;
-});
+watch(y, scrollY => {
+  isScrolled.value = scrollY > 300
+})
 
 const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value;
-};
+  isMenuOpen.value = !isMenuOpen.value
+}
 
 // 使用 VueUse 的 useEventListener 替代原生事件監聽
-useEventListener(window, "resize", () => {
-  isDesktop.value = window.innerWidth > 991;
-  if (isDesktop.value) isMenuOpen.value = false;
-});
+useEventListener(window, 'resize', () => {
+  isDesktop.value = window.innerWidth > 991
+  if (isDesktop.value) isMenuOpen.value = false
+})
 
 onMounted(() => {
   // 初始化
-  isDesktop.value = window.innerWidth > 991;
-});
+  isDesktop.value = window.innerWidth > 991
+})
 
 // 當打開手機版選單時做 GSAP 動畫
-watch(isMenuOpen, async (open) => {
+watch(isMenuOpen, async open => {
   if (open && !isDesktop.value) {
-    await nextTick();
+    await nextTick()
     gsap.fromTo(
       bgRef.value,
-      { y: -100, autoAlpha: 0, filter: "blur(50px)" },
+      { y: -100, autoAlpha: 0, filter: 'blur(50px)' },
       {
         y: 0,
         autoAlpha: 1,
-        filter: "blur(0px)",
+        filter: 'blur(0px)',
         duration: 0.5,
-        ease: "power2.out",
+        ease: 'power2.out',
       }
-    );
+    )
   }
-});
+})
 
 // 路由變換自動收合
 watch(
   () => route.path,
   () => {
-    if (!isDesktop.value) isMenuOpen.value = false;
+    if (!isDesktop.value) isMenuOpen.value = false
   }
-);
+)
 </script>
 
 <style lang="scss" scoped>
@@ -336,7 +333,7 @@ watch(
       }
 
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         bottom: -5px;
         left: 0;

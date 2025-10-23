@@ -1,15 +1,15 @@
 export const articles = {
-  "pop-art": {
-    id: "pop-art",
-    date: "2018-08-27",
-    title: "波普藝術－漫畫是藝術嗎？",
-    category: "GraphicStyle",
-    categoryName: "視覺風格大全",
+  'pop-art': {
+    id: 'pop-art',
+    date: '2018-08-27',
+    title: '波普藝術－漫畫是藝術嗎？',
+    category: 'GraphicStyle',
+    categoryName: '視覺風格大全',
     excerpt:
-      "早在第一次世界大戰期間產生的達達主義思潮，杜象（Henri-Robert-Marcel Duchamp）就用《噴泉》，連鎖店購買的小便斗，使用現成物、日常生活用品試圖傳統藝術拉下崇高的殿堂，提問什麼是藝術？",
-    image: "https://r2bucket.homershie.com/assets/imgs/blog/pop-art.jpg",
-    thumbnail: "https://r2bucket.homershie.com/assets/imgs/blog/pop-art.jpg",
-    author: "Homer Shie",
+      '早在第一次世界大戰期間產生的達達主義思潮，杜象（Henri-Robert-Marcel Duchamp）就用《噴泉》，連鎖店購買的小便斗，使用現成物、日常生活用品試圖傳統藝術拉下崇高的殿堂，提問什麼是藝術？',
+    image: 'https://r2bucket.homershie.com/assets/imgs/blog/pop-art.jpg',
+    thumbnail: 'https://r2bucket.homershie.com/assets/imgs/blog/pop-art.jpg',
+    author: 'Homer Shie',
     content: `
 <article>
   <!-- 首圖 -->
@@ -318,22 +318,21 @@ export const articles = {
     `,
     seo: {
       description:
-        "既定印象停留在20世紀中葉的上述作品中，高明度高彩度色彩的對比色，黑邊、網點、拼貼畫、誇張的造型、視覺感強烈。但是都稱做流行藝術了，怎麼可能沒有與時俱進，所以個人認為普普藝術廣義上是以流行文化為手法的創作風格，近代的日本藝術家：村上隆、草間彌生、高野綾（タカノ綾）等以動漫、斑點、大眾文化作為藝術形式的手法，都可以被歸類在波普藝術家。",
-      keywords:
-        "波普藝術,Pop Art,漫畫,藝術,視覺設計,Roy Lichtenstein,Andy Warhol",
+        '既定印象停留在20世紀中葉的上述作品中，高明度高彩度色彩的對比色，黑邊、網點、拼貼畫、誇張的造型、視覺感強烈。但是都稱做流行藝術了，怎麼可能沒有與時俱進，所以個人認為普普藝術廣義上是以流行文化為手法的創作風格，近代的日本藝術家：村上隆、草間彌生、高野綾（タカノ綾）等以動漫、斑點、大眾文化作為藝術形式的手法，都可以被歸類在波普藝術家。',
+      keywords: '波普藝術,Pop Art,漫畫,藝術,視覺設計,Roy Lichtenstein,Andy Warhol',
     },
   },
   mbe: {
-    id: "mbe",
-    date: "2018-09-04",
-    title: "MBE風格－MBE是什麼，可以吃嗎？",
-    category: "GraphicStyle",
-    categoryName: "視覺風格大全",
+    id: 'mbe',
+    date: '2018-09-04',
+    title: 'MBE風格－MBE是什麼，可以吃嗎？',
+    category: 'GraphicStyle',
+    categoryName: '視覺風格大全',
     excerpt:
-      "這幾年的設計風格漸漸走向扁平化、單一化、抽象化，其中可能包含了文化因素、社會因素等等深層的原因，要論說其原因不是三言兩語就可以帶過，所以我將自己推測，加上部分照記憶引用大學時馮老師在上課時介紹的設計史與設計趨勢，簡單歸納出以下2點，因為沒有統計數據佐證所以可以當作參考就好：...",
-    image: "https://r2bucket.homershie.com/assets/imgs/blog/mbe.jpg",
-    thumbnail: "https://r2bucket.homershie.com/assets/imgs/blog/mbe.jpg",
-    author: "Homer Shie",
+      '這幾年的設計風格漸漸走向扁平化、單一化、抽象化，其中可能包含了文化因素、社會因素等等深層的原因，要論說其原因不是三言兩語就可以帶過，所以我將自己推測，加上部分照記憶引用大學時馮老師在上課時介紹的設計史與設計趨勢，簡單歸納出以下2點，因為沒有統計數據佐證所以可以當作參考就好：...',
+    image: 'https://r2bucket.homershie.com/assets/imgs/blog/mbe.jpg',
+    thumbnail: 'https://r2bucket.homershie.com/assets/imgs/blog/mbe.jpg',
+    author: 'Homer Shie',
     content: `
 <article>
   <!-- 首圖 -->
@@ -475,22 +474,22 @@ export const articles = {
     `,
     seo: {
       description:
-        "MBE是什麼？ · 扁平設計，無立體感 · 又圓又粗又黑的破碎黑線 · 幾何形狀的有機變形 · 高明度高彩度的配色 · 往旁邊歪了一點的填色 · 不用漸層上色 · Q版 ...",
+        'MBE是什麼？ · 扁平設計，無立體感 · 又圓又粗又黑的破碎黑線 · 幾何形狀的有機變形 · 高明度高彩度的配色 · 往旁邊歪了一點的填色 · 不用漸層上色 · Q版 ...',
       keywords:
-        "視覺風格,設計,藝術,插畫,平面設計,工業40,輕現代F,latDesign,扁平設計,graphicdesign,商業,share,Vector,visualstyle,Animation,大數據,現代,介紹,教學,design,向量,分享,後現代,MBE",
+        '視覺風格,設計,藝術,插畫,平面設計,工業40,輕現代F,latDesign,扁平設計,graphicdesign,商業,share,Vector,visualstyle,Animation,大數據,現代,介紹,教學,design,向量,分享,後現代,MBE',
     },
   },
-  "pixel-art": {
-    id: "pixel-art",
-    date: "2018-09-21",
-    title: "像素風格－遊戲人生我逍遙",
-    category: "GraphicStyle",
-    categoryName: "視覺風格大全",
+  'pixel-art': {
+    id: 'pixel-art',
+    date: '2018-09-21',
+    title: '像素風格－遊戲人生我逍遙',
+    category: 'GraphicStyle',
+    categoryName: '視覺風格大全',
     excerpt:
-      "什麼是像素風格？ 像素風格起源於電子遊戲，早期的作品有像小精靈Pac-Man (1980)、太空侵略者Space Invaders (1978)等等知名的遊戲，早期的電腦跟電子遊戲機沒有辦法像現代的電腦一樣動輒1080p或是4k，於是像素藝術家通過從有限數量的像素創作圖像，找到解決方案，讓遊戲畫面能夠在有限的像素下呈現出更好的畫面，這些像素藝術家也被稱為像素藝術家（Pixel Artist）。",
-    image: "https://r2bucket.homershie.com/assets/imgs/blog/pixel-art.jpg",
-    thumbnail: "https://r2bucket.homershie.com/assets/imgs/blog/pixel-art.jpg",
-    author: "Homer Shie",
+      '什麼是像素風格？ 像素風格起源於電子遊戲，早期的作品有像小精靈Pac-Man (1980)、太空侵略者Space Invaders (1978)等等知名的遊戲，早期的電腦跟電子遊戲機沒有辦法像現代的電腦一樣動輒1080p或是4k，於是像素藝術家通過從有限數量的像素創作圖像，找到解決方案，讓遊戲畫面能夠在有限的像素下呈現出更好的畫面，這些像素藝術家也被稱為像素藝術家（Pixel Artist）。',
+    image: 'https://r2bucket.homershie.com/assets/imgs/blog/pixel-art.jpg',
+    thumbnail: 'https://r2bucket.homershie.com/assets/imgs/blog/pixel-art.jpg',
+    author: 'Homer Shie',
     content: `
 <article>
   <!-- 首圖 -->
@@ -846,22 +845,22 @@ export const articles = {
 `,
     seo: {
       description:
-        "像素風格雖然復古，但卻不過時，近年還有藝術家以像素風格作為表現手法，而近年視覺工作者在3D引擎上使用像素風格的作品也不在少數。EBoy從1998年來一直熱衷於像素藝術，並且創作了許多像素風格的作品，像是《Pixel City》、《Pixel Forest》等等，這些作品都可以在他們的網站上找到。",
+        '像素風格雖然復古，但卻不過時，近年還有藝術家以像素風格作為表現手法，而近年視覺工作者在3D引擎上使用像素風格的作品也不在少數。EBoy從1998年來一直熱衷於像素藝術，並且創作了許多像素風格的作品，像是《Pixel City》、《Pixel Forest》等等，這些作品都可以在他們的網站上找到。',
       keywords:
-        "視覺風格,設計,藝術,插畫,FlatDesign,artist,Taiwan,台灣,扁平化設計,JooJaebum,pixelart,電動,像素風格,JamesSvard,AdamFlynn,kaipixelart,極簡,kai,Lowpoly,三爺,minimalist,Ano塗鴉阿諾,遊戲,電玩,8bit,EBoy,videogame,藝術家,Jeff",
+        '視覺風格,設計,藝術,插畫,FlatDesign,artist,Taiwan,台灣,扁平化設計,JooJaebum,pixelart,電動,像素風格,JamesSvard,AdamFlynn,kaipixelart,極簡,kai,Lowpoly,三爺,minimalist,Ano塗鴉阿諾,遊戲,電玩,8bit,EBoy,videogame,藝術家,Jeff',
     },
   },
   vaporwave: {
-    id: "vaporwave",
-    date: "2019-11-01",
-    title: "蒸氣波－我們的現在是都是過去的未來",
-    category: "GraphicStyle",
-    categoryName: "視覺風格大全",
+    id: 'vaporwave',
+    date: '2019-11-01',
+    title: '蒸氣波－我們的現在是都是過去的未來',
+    category: 'GraphicStyle',
+    categoryName: '視覺風格大全',
     excerpt:
-      "​「對酒當歌，人生幾何！譬如朝露，去日苦多。」 有些專家說我們這代二十幾歲的人是Z世代、90後、數位原生世代。有些人對未來感到迷茫，找不到生活的重心，對什麼事情都提不起勁；有些人看到房子、車子的價格對現實感到挫折無力。於是我們專注在享受當下，領到薪水馬上吃一頓千元的大餐...",
-    image: "https://r2bucket.homershie.com/assets/imgs/blog/vaporwave.jpg",
-    thumbnail: "https://r2bucket.homershie.com/assets/imgs/blog/vaporwave.jpg",
-    author: "Homer Shie",
+      '​「對酒當歌，人生幾何！譬如朝露，去日苦多。」 有些專家說我們這代二十幾歲的人是Z世代、90後、數位原生世代。有些人對未來感到迷茫，找不到生活的重心，對什麼事情都提不起勁；有些人看到房子、車子的價格對現實感到挫折無力。於是我們專注在享受當下，領到薪水馬上吃一頓千元的大餐...',
+    image: 'https://r2bucket.homershie.com/assets/imgs/blog/vaporwave.jpg',
+    thumbnail: 'https://r2bucket.homershie.com/assets/imgs/blog/vaporwave.jpg',
+    author: 'Homer Shie',
     content: `
 <article>
   <!-- 首圖 -->
@@ -1239,25 +1238,23 @@ export const articles = {
 `,
     seo: {
       description:
-        "，鏘鏘的視覺風格在年輕人中很快就流行起來。給人的感覺是復古未來的(Retro-futurism)、隨興的、爵士的、低保真(Lo-Fi)、迷幻的、超現實的、反烏托邦的、蒸氣波(Vaporwave)、賽博龐克(Cyberpunk)等風格。這些風格在視覺上都很有趣，並且能夠讓人感受到一種懷舊的感覺。",
+        '，鏘鏘的視覺風格在年輕人中很快就流行起來。給人的感覺是復古未來的(Retro-futurism)、隨興的、爵士的、低保真(Lo-Fi)、迷幻的、超現實的、反烏托邦的、蒸氣波(Vaporwave)、賽博龐克(Cyberpunk)等風格。這些風格在視覺上都很有趣，並且能夠讓人感受到一種懷舊的感覺。',
       keywords:
-        "視覺風格,設計,藝術,插畫,artist,Taiwan,台灣,Trap,Tumblr,PopArt,Glitch,Art,Chill,PixelArt,普普藝術,Vaporwave,Retro,futurism,故障藝術,賽博龐克,Cyberpunk,復古未來,像素藝術,超現實主義,反烏托邦,蒸氣波,LoFi,Surrealism,陷阱,蒸氣,音樂,低保真,EDM",
+        '視覺風格,設計,藝術,插畫,artist,Taiwan,台灣,Trap,Tumblr,PopArt,Glitch,Art,Chill,PixelArt,普普藝術,Vaporwave,Retro,futurism,故障藝術,賽博龐克,Cyberpunk,復古未來,像素藝術,超現實主義,反烏托邦,蒸氣波,LoFi,Surrealism,陷阱,蒸氣,音樂,低保真,EDM',
     },
   },
-  "modern-design-intro": {
-    id: "modern-design-intro",
-    date: "2020-09-25",
+  'modern-design-intro': {
+    id: 'modern-design-intro',
+    date: '2020-09-25',
     title:
-      "設計流派導覽－當代、現代、後現代、超現代、元現代，哪個才是現在？像素風格－遊戲人生我逍遙",
-    category: "WorldVision",
-    categoryName: "世界視界",
+      '設計流派導覽－當代、現代、後現代、超現代、元現代，哪個才是現在？像素風格－遊戲人生我逍遙',
+    category: 'WorldVision',
+    categoryName: '世界視界',
     excerpt:
-      "常常被各種「現代」搞的烏煙瘴氣？這個系列主要幫助大家釐清各種「現代」運動對視覺傳達領域所帶來的明顯影響，以及瞭解正在萌芽的新時代文化思潮－元現代主義，讓大家不只是認識視覺設計歷史，還能實實在在的把歷史活用在你的專案。",
-    image:
-      "https://r2bucket.homershie.com/assets/imgs/blog/modern-design-intro.jpg",
-    thumbnail:
-      "https://r2bucket.homershie.com/assets/imgs/blog/modern-design-intro.jpg",
-    author: "Homer Shie",
+      '常常被各種「現代」搞的烏煙瘴氣？這個系列主要幫助大家釐清各種「現代」運動對視覺傳達領域所帶來的明顯影響，以及瞭解正在萌芽的新時代文化思潮－元現代主義，讓大家不只是認識視覺設計歷史，還能實實在在的把歷史活用在你的專案。',
+    image: 'https://r2bucket.homershie.com/assets/imgs/blog/modern-design-intro.jpg',
+    thumbnail: 'https://r2bucket.homershie.com/assets/imgs/blog/modern-design-intro.jpg',
+    author: 'Homer Shie',
     content: `
 <article>
   <figure class="image">
@@ -1770,23 +1767,22 @@ export const articles = {
 `,
     seo: {
       description:
-        "本篇導覽把視覺風格化繁為簡，避開繁瑣的歷史脈絡和各類分支，簡單歸納成四大流派，傳統時代、現代、後現代、元現代，著重在用簡單的描述介紹各個流派的個性 ...本篇導覽把視覺風格化繁為簡，避開繁瑣的歷史脈絡和各類分支，簡單歸納成四大流派，傳統時代、現代、後現代、元現代，著重在用簡單的描述介紹各個流派的個性，並且介紹各個流派的代表人物、代表作品、代表風格，讓大家能夠快速的了解這些流派的特色，並且能夠在實際的專案中運用這些流派的特色。",
+        '本篇導覽把視覺風格化繁為簡，避開繁瑣的歷史脈絡和各類分支，簡單歸納成四大流派，傳統時代、現代、後現代、元現代，著重在用簡單的描述介紹各個流派的個性 ...本篇導覽把視覺風格化繁為簡，避開繁瑣的歷史脈絡和各類分支，簡單歸納成四大流派，傳統時代、現代、後現代、元現代，著重在用簡單的描述介紹各個流派的個性，並且介紹各個流派的代表人物、代表作品、代表風格，讓大家能夠快速的了解這些流派的特色，並且能夠在實際的專案中運用這些流派的特色。',
       keywords:
-        "視覺風格,平面設計,工業40,輕現代,世界視界,平面設計史,現代主義,後現代主義,元現代主義,新現代主義,晚期現代主義,再現代主義,後後現代主義,超現代主義,變現代,數位現代主義,設計思潮",
+        '視覺風格,平面設計,工業40,輕現代,世界視界,平面設計史,現代主義,後現代主義,元現代主義,新現代主義,晚期現代主義,再現代主義,後後現代主義,超現代主義,變現代,數位現代主義,設計思潮',
     },
   },
-  "art-nouveau": {
-    id: "art-nouveau",
-    date: "2020-11-04",
-    title: "新藝術運動－少女的力量",
-    category: "GraphicStyle",
-    categoryName: "視覺風格大全",
+  'art-nouveau': {
+    id: 'art-nouveau',
+    date: '2020-11-04',
+    title: '新藝術運動－少女的力量',
+    category: 'GraphicStyle',
+    categoryName: '視覺風格大全',
     excerpt:
-      "少女、花朵和植物不管何時都是藝術家和設計師們喜愛的元素，新藝術運動可以被視作開山始祖，但在一百多年前則是受人唾棄的商業藝術、應用美術。究竟新藝術運動如何翻身一躍變成世界範圍的美術運動，直到今天還能在庫洛魔法使的牌組等等流行文化一探新藝術的身影，就讓我們繼續看下去🕵️‍♀️",
-    image: "https://r2bucket.homershie.com/assets/imgs/blog/art-nouveau.jpg",
-    thumbnail:
-      "https://r2bucket.homershie.com/assets/imgs/blog/art-nouveau.jpg",
-    author: "Homer Shie",
+      '少女、花朵和植物不管何時都是藝術家和設計師們喜愛的元素，新藝術運動可以被視作開山始祖，但在一百多年前則是受人唾棄的商業藝術、應用美術。究竟新藝術運動如何翻身一躍變成世界範圍的美術運動，直到今天還能在庫洛魔法使的牌組等等流行文化一探新藝術的身影，就讓我們繼續看下去🕵️‍♀️',
+    image: 'https://r2bucket.homershie.com/assets/imgs/blog/art-nouveau.jpg',
+    thumbnail: 'https://r2bucket.homershie.com/assets/imgs/blog/art-nouveau.jpg',
+    author: 'Homer Shie',
     content: `
 <article>
   <figure class="image">
@@ -2400,10 +2396,10 @@ export const articles = {
 `,
     seo: {
       description:
-        "新藝術運動（Art Nouveau）則是延續這個時代浪潮下的視覺風格。在歐洲不同國家有不同稱呼：德國Jugendstil、奧地利Sezessionstil、意大利Stile Floreale",
+        '新藝術運動（Art Nouveau）則是延續這個時代浪潮下的視覺風格。在歐洲不同國家有不同稱呼：德國Jugendstil、奧地利Sezessionstil、意大利Stile Floreale',
       keywords:
-        "視覺風格, 設計, 藝術, 插畫, 平面設計, 荷馬桑, homershie, 設計史, 藝術史, 藝術運動, 視覺, 工業革命, 美術工藝運動, 新藝術運動, 裝飾藝術, 嬉皮, 迷幻藝術, 迷幻搖滾, 古典, 復古, 唯美, 浪漫, 慕夏, 高更, 羅特列克, 切雷, 少女, 庫洛魔法使, 魔法少女, 少女漫畫",
+        '視覺風格, 設計, 藝術, 插畫, 平面設計, 荷馬桑, homershie, 設計史, 藝術史, 藝術運動, 視覺, 工業革命, 美術工藝運動, 新藝術運動, 裝飾藝術, 嬉皮, 迷幻藝術, 迷幻搖滾, 古典, 復古, 唯美, 浪漫, 慕夏, 高更, 羅特列克, 切雷, 少女, 庫洛魔法使, 魔法少女, 少女漫畫',
     },
   },
   // 其他文章...
-};
+}

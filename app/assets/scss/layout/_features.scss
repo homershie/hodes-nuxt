@@ -16,7 +16,7 @@
     padding-left: 15px;
 
     &:before {
-      content: '';
+      content: "";
       width: 4px;
       height: 4px;
       border-radius: 50%;
@@ -83,7 +83,7 @@
         position: relative;
 
         &:after {
-          content: '';
+          content: "";
           width: 6px;
           height: 6px;
           border-radius: 50%;
@@ -102,7 +102,7 @@
     .title {
       .ico {
         &:after {
-          content: '';
+          content: "";
           position: absolute;
           top: 50%;
           left: 50%;

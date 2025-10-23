@@ -16,51 +16,31 @@
             <div class="profile-img">
               <div class="img">
                 <img
-                  :src="
-                    toWebP(
-                      'https://images.homershie.com/assets/imgs/header/profile.jpg'
-                    )
-                  "
+                  :src="toWebP('https://images.homershie.com/assets/imgs/header/profile.jpg')"
                   alt="荷馬桑個人照片"
                 />
               </div>
               <span class="icon">
                 <img
-                  :src="
-                    toWebP(
-                      'https://images.homershie.com/assets/imgs/header/icon1.png'
-                    )
-                  "
+                  :src="toWebP('https://images.homershie.com/assets/imgs/header/icon1.png')"
                   alt=""
                 />
               </span>
               <span class="icon">
                 <img
-                  :src="
-                    toWebP(
-                      'https://images.homershie.com/assets/imgs/header/icon2.png'
-                    )
-                  "
+                  :src="toWebP('https://images.homershie.com/assets/imgs/header/icon2.png')"
                   alt=""
                 />
               </span>
               <span class="icon">
                 <img
-                  :src="
-                    toWebP(
-                      'https://images.homershie.com/assets/imgs/header/icon3.png'
-                    )
-                  "
+                  :src="toWebP('https://images.homershie.com/assets/imgs/header/icon3.png')"
                   alt=""
                 />
               </span>
               <span class="icon">
                 <img
-                  :src="
-                    toWebP(
-                      'https://images.homershie.com/assets/imgs/header/icon4.png'
-                    )
-                  "
+                  :src="toWebP('https://images.homershie.com/assets/imgs/header/icon4.png')"
                   alt=""
                 />
               </span>
@@ -137,10 +117,7 @@
                     <div class="col-sm-6">
                       <div class="item d-flex align-items-center sm-mb30">
                         <div class="mr-15">
-                          <font-awesome-icon
-                            :icon="['far', 'envelope']"
-                            class="icon main-color"
-                          />
+                          <font-awesome-icon :icon="['far', 'envelope']" class="icon main-color" />
                         </div>
                         <div>
                           <span class="opacity-7 mb-5">電子信箱</span>
@@ -174,11 +151,7 @@
         </div>
         <div class="row">
           <!-- 使用 v-for 重構技能列表 -->
-          <div
-            v-for="skill in skills"
-            :key="skill.id"
-            class="col-lg-4 col-md-6"
-          >
+          <div v-for="skill in skills" :key="skill.id" class="col-lg-4 col-md-6">
             <div class="item mb-30">
               <div class="d-flex align-items-center mb-30">
                 <div class="mr-30">
@@ -224,12 +197,7 @@
         </div>
 
         <div>
-          <div
-            class="resume-swiper"
-            data-carousel="swiper"
-            data-space="50"
-            data-speed="1000"
-          >
+          <div class="resume-swiper" data-carousel="swiper" data-space="50" data-speed="1000">
             <div
               id="content-carousel-container-unq-resume"
               class="swiper-container"
@@ -237,19 +205,13 @@
             >
               <div class="swiper-wrapper">
                 <!-- 使用 v-for 重構履歷列表 -->
-                <div
-                  v-for="experience in experiences"
-                  :key="experience.id"
-                  class="swiper-slide"
-                >
+                <div v-for="experience in experiences" :key="experience.id" class="swiper-slide">
                   <div class="item text-center">
                     <h6 class="main-color date fz-15 mb-60">
                       {{ experience.period }}
                     </h6>
                     <h5>{{ experience.title }}</h5>
-                    <span class="opacity-8 fw-500 mt-10"
-                      >[ {{ experience.company }} ]</span
-                    >
+                    <span class="opacity-8 fw-500 mt-10">[ {{ experience.company }} ]</span>
                     <p class="fz-13 mt-15">{{ experience.description }}</p>
                   </div>
                 </div>
@@ -264,158 +226,158 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
-import { useTimeoutFn } from "@vueuse/core";
-import { useImagePreloader } from "@composables/useImagePreloader.js";
-import { useImageFormat } from "@composables/useImageFormat.js";
+import { onMounted, ref } from 'vue'
+import { useTimeoutFn } from '@vueuse/core'
+import { useImagePreloader } from '@composables/useImagePreloader.js'
+import { useImageFormat } from '@composables/useImageFormat.js'
 
 // 設定頁面標題範例
-const { setPageTitle } = usePageTitle();
-setPageTitle("關於我");
+const { setPageTitle } = usePageTitle()
+setPageTitle('關於我')
 useSeoMeta({
   description:
-    "了解荷馬桑 Homer Shie 的背景、技能和經歷，以及各式各樣擅長的工具，展示專業的視覺設計師和動態設計師必備的技能。",
-});
+    '了解荷馬桑 Homer Shie 的背景、技能和經歷，以及各式各樣擅長的工具，展示專業的視覺設計師和動態設計師必備的技能。',
+})
 
-const { preloadImages, loadingProgress, isPreloading } = useImagePreloader();
-const { toWebP } = useImageFormat();
+const { preloadImages, loadingProgress, isPreloading } = useImagePreloader()
+const { toWebP } = useImageFormat()
 
 // 響應式資料
-const animatedSkills = ref(false);
+const animatedSkills = ref(false)
 
 // 技能資料
 const skills = ref([
   {
     id: 1,
-    name: "平面設計",
+    name: '平面設計',
     percentage: 95,
-    icon: "https://images.homershie.com/assets/imgs/resume/s1.png",
+    icon: 'https://images.homershie.com/assets/imgs/resume/s1.png',
   },
   {
     id: 2,
-    name: "插畫",
+    name: '插畫',
     percentage: 85,
-    icon: "https://images.homershie.com/assets/imgs/resume/s2.png",
+    icon: 'https://images.homershie.com/assets/imgs/resume/s2.png',
   },
   {
     id: 3,
-    name: "動態設計",
+    name: '動態設計',
     percentage: 80,
-    icon: "https://images.homershie.com/assets/imgs/resume/s3.png",
+    icon: 'https://images.homershie.com/assets/imgs/resume/s3.png',
   },
   {
     id: 4,
-    name: "3D動畫",
+    name: '3D動畫',
     percentage: 72,
-    icon: "https://images.homershie.com/assets/imgs/resume/s4.png",
+    icon: 'https://images.homershie.com/assets/imgs/resume/s4.png',
   },
   {
     id: 5,
-    name: "UI設計",
+    name: 'UI設計',
     percentage: 65,
-    icon: "https://images.homershie.com/assets/imgs/resume/s5.png",
+    icon: 'https://images.homershie.com/assets/imgs/resume/s5.png',
   },
   {
     id: 6,
-    name: "網頁開發",
+    name: '網頁開發',
     percentage: 60,
-    icon: "https://images.homershie.com/assets/imgs/resume/s6.png",
+    icon: 'https://images.homershie.com/assets/imgs/resume/s6.png',
   },
-]);
+])
 
 // 工作經驗資料
 const experiences = ref([
   {
     id: 1,
-    period: "2025 - 現在",
-    title: "前端工程師學生",
-    company: "職訓局北分署",
+    period: '2025 - 現在',
+    title: '前端工程師學生',
+    company: '職訓局北分署',
     description:
-      "因應2024年年底前公司業務縮減，於2025年報名職訓局北分署的前端設計課程，系統性學習 HTML、CSS、JavaScript、Vue.js 等技術。課程中也實作 LINE Bot 專案，深入體驗應用層開發流程。期望結合過往設計專長與新習得的開發技能，轉型為能獨立製作互動產品的前端工程師。",
+      '因應2024年年底前公司業務縮減，於2025年報名職訓局北分署的前端設計課程，系統性學習 HTML、CSS、JavaScript、Vue.js 等技術。課程中也實作 LINE Bot 專案，深入體驗應用層開發流程。期望結合過往設計專長與新習得的開發技能，轉型為能獨立製作互動產品的前端工程師。',
   },
   {
     id: 2,
-    period: "2019 - 現在",
-    title: "視覺&動態設計師",
-    company: "接案暫停中",
+    period: '2019 - 現在',
+    title: '視覺&動態設計師',
+    company: '接案暫停中',
     description:
-      "自2019年起全職自由接案，與 Garmin 等品牌合作智慧手錶錶面設計，專精視覺整合與動畫製作。服務內容涵蓋品牌形象、平面設計、行銷素材、動態視覺與影片剪輯。平時持續學習 3D、UI、網頁建置等技術，拓展跨領域創作能力與實踐經驗。",
+      '自2019年起全職自由接案，與 Garmin 等品牌合作智慧手錶錶面設計，專精視覺整合與動畫製作。服務內容涵蓋品牌形象、平面設計、行銷素材、動態視覺與影片剪輯。平時持續學習 3D、UI、網頁建置等技術，拓展跨領域創作能力與實踐經驗。',
   },
   {
     id: 3,
-    period: "2023 - 2025",
-    title: "兼職資深美術編輯",
-    company: "問禮有限公司",
+    period: '2023 - 2025',
+    title: '兼職資深美術編輯',
+    company: '問禮有限公司',
     description:
-      "為穩定收入轉任兼職設計職，參與兒童英文教材出版專案。負責插圖繪製、教材排版、包裝設計與品牌視覺整合。兼顧專案品質與時效，並於此期間積極準備轉職前端工程師，朝設計與開發整合的方向前進。",
+      '為穩定收入轉任兼職設計職，參與兒童英文教材出版專案。負責插圖繪製、教材排版、包裝設計與品牌視覺整合。兼顧專案品質與時效，並於此期間積極準備轉職前端工程師，朝設計與開發整合的方向前進。',
   },
   {
     id: 4,
-    period: "2018 - 2019",
-    title: "視覺設計師",
-    company: "臺灣娜珂黛肌有限公司",
+    period: '2018 - 2019',
+    title: '視覺設計師',
+    company: '臺灣娜珂黛肌有限公司',
     description:
-      "我負責薑類保健品的產品視覺與網站素材設計，專注於品牌定位與行銷轉換。協助行銷團隊優化網站視覺與用戶體驗，提升品牌識別與商品曝光。該經驗讓我深入理解設計與商業目標之間的整合策略。",
+      '我負責薑類保健品的產品視覺與網站素材設計，專注於品牌定位與行銷轉換。協助行銷團隊優化網站視覺與用戶體驗，提升品牌識別與商品曝光。該經驗讓我深入理解設計與商業目標之間的整合策略。',
   },
   {
     id: 5,
-    period: "2013 - 2017",
-    title: "應用美術學系",
-    company: "天主教輔仁大學",
+    period: '2013 - 2017',
+    title: '應用美術學系',
+    company: '天主教輔仁大學',
     description:
-      "主修視覺設計與美術應用，專注於概念發想、圖像溝通與使用者導向設計。課堂外積極參與接案與工作，提前累積業界經驗，奠定視覺創作與創新思維的堅實基礎，為日後的職涯發展鋪路。",
+      '主修視覺設計與美術應用，專注於概念發想、圖像溝通與使用者導向設計。課堂外積極參與接案與工作，提前累積業界經驗，奠定視覺創作與創新思維的堅實基礎，為日後的職涯發展鋪路。',
   },
-]);
+])
 
 // 新增技能的方法
-const addSkill = (newSkill) => {
+const addSkill = newSkill => {
   skills.value.push({
     id: skills.value.length + 1,
     ...newSkill,
-  });
-};
+  })
+}
 
 // 新增經驗的方法
-const addExperience = (newExperience) => {
+const addExperience = newExperience => {
   experiences.value.unshift({
     id: experiences.value.length + 1,
     ...newExperience,
-  });
-};
+  })
+}
 
 onMounted(async () => {
   // 收集所有圖片URL
   const imageUrls = [
     // 個人照片
-    "https://images.homershie.com/assets/imgs/header/profile.jpg",
+    'https://images.homershie.com/assets/imgs/header/profile.jpg',
     // 圖示
-    "https://images.homershie.com/assets/imgs/header/icon1.png",
-    "https://images.homershie.com/assets/imgs/header/icon2.png",
-    "https://images.homershie.com/assets/imgs/header/icon3.png",
-    "https://images.homershie.com/assets/imgs/header/icon4.png",
+    'https://images.homershie.com/assets/imgs/header/icon1.png',
+    'https://images.homershie.com/assets/imgs/header/icon2.png',
+    'https://images.homershie.com/assets/imgs/header/icon3.png',
+    'https://images.homershie.com/assets/imgs/header/icon4.png',
     // 技能圖示
-    ...skills.value.map((skill) => skill.icon),
+    ...skills.value.map(skill => skill.icon),
   ]
     .filter(Boolean)
-    .map((url) => toWebP(url));
+    .map(url => toWebP(url))
 
   // 預載入圖片
-  await preloadImages(imageUrls);
+  await preloadImages(imageUrls)
 
   // 啟動技能動畫 - 使用 VueUse 的 useTimeoutFn 替代 setTimeout
   useTimeoutFn(() => {
-    animatedSkills.value = true;
-  }, 500);
+    animatedSkills.value = true
+  }, 500)
 
-  new window.Swiper(".resume-swiper .swiper-container", {
+  new window.Swiper('.resume-swiper .swiper-container', {
     spaceBetween: 50,
     speed: 1000,
     loop: false,
     pagination: {
-      el: ".resume-swiper .swiper-pagination",
+      el: '.resume-swiper .swiper-pagination',
       clickable: true,
       dynamicBullets: false, // 不要用動態分頁
-      type: "bullets", // 預設就是 bullets
+      type: 'bullets', // 預設就是 bullets
     },
     breakpoints: {
       0: {
@@ -428,13 +390,13 @@ onMounted(async () => {
         slidesPerView: 3,
       },
     },
-  });
-});
+  })
+})
 // 導出方法供其他組件使用
 defineExpose({
   addSkill,
   addExperience,
-});
+})
 </script>
 
 <style lang="scss" scoped>

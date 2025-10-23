@@ -200,7 +200,7 @@ export function useImageCache() {
         const blob = await response.blob()
         await saveImageToCache(url, blob)
         return URL.createObjectURL(blob)
-      } catch (err) {
+      } catch {
         // 預載入圖片失敗，靜默處理
         return null
       }

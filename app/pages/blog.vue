@@ -1,334 +1,295 @@
 <template>
-  <!-- ==================== Start Blogs ==================== -->
-  <section class="blog section-padding">
-    <div class="container with-pad">
-      <div class="sec-head mb-80">
-        <div class="row justify-content-center">
-          <div class="col-lg-8 text-center">
-            <div class="d-inline-block">
-              <div class="sub-title-icon d-flex align-items-center">
-                <span class="icon fas fa-sticky-note"></span>
-                <h6>部落格</h6>
+  <div>
+    <!-- ==================== Start Blogs ==================== -->
+    <section class="blog section-padding">
+      <div class="container with-pad">
+        <div class="sec-head mb-80">
+          <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+              <div class="d-inline-block">
+                <div class="sub-title-icon d-flex align-items-center">
+                  <span class="icon fas fa-sticky-note"></span>
+                  <h6>部落格</h6>
+                </div>
               </div>
+              <h3>開啟你的視界</h3>
             </div>
-            <h3>開啟你的視界</h3>
           </div>
         </div>
-      </div>
 
-      <!-- 小螢幕設備上顯示在頂部的側邊欄內容 -->
-      <div class="row mb-50 d-lg-none">
-        <div class="col-12">
-          <div class="sidebar">
-            <div class="search-box">
-              <input
-                v-model="searchQuery"
-                type="text"
-                placeholder="搜尋文章"
-                @input="filterPosts"
-              />
-              <span class="icon pe-7s-search"></span>
-            </div>
-            <div class="widget catogry">
-              <h6 class="title-widget">分類</h6>
-              <ul class="rest">
-                <li>
-                  <span>
-                    <a href="#0" @click.prevent="filterByCategory('all')">
-                      全部文章
-                    </a>
-                  </span>
-                  <span class="ml-auto">{{ allPosts.length }}</span>
-                </li>
-                <li>
-                  <span>
-                    <a
-                      href="#0"
-                      @click.prevent="filterByCategory('GraphicStyle')"
-                    >
-                      視覺風格大全
-                    </a>
-                  </span>
-                  <span class="ml-auto">{{
-                    getPostCountByCategory("GraphicStyle")
-                  }}</span>
-                </li>
-                <li>
-                  <span>
-                    <a
-                      href="#0"
-                      @click.prevent="filterByCategory('WorldVision')"
-                    >
-                      世界視界
-                    </a>
-                  </span>
-                  <span class="ml-auto">{{
-                    getPostCountByCategory("WorldVision")
-                  }}</span>
-                </li>
-              </ul>
-            </div>
-            <div class="widget last-post-thum">
-              <h6 class="title-widget">最新文章</h6>
-              <div v-for="post in latestPosts" :key="post.id" class="item">
-                <div class="valign">
-                  <div class="img">
-                    <router-link :to="`/article/${post.id}`">
-                      <img :src="toWebP(post.thumbnail)" :alt="post.title" />
-                    </router-link>
+        <!-- 小螢幕設備上顯示在頂部的側邊欄內容 -->
+        <div class="row mb-50 d-lg-none">
+          <div class="col-12">
+            <div class="sidebar">
+              <div class="search-box">
+                <input
+                  v-model="searchQuery"
+                  type="text"
+                  placeholder="搜尋文章"
+                  @input="filterPosts"
+                />
+                <span class="icon pe-7s-search"></span>
+              </div>
+              <div class="widget catogry">
+                <h6 class="title-widget">分類</h6>
+                <ul class="rest">
+                  <li>
+                    <span>
+                      <a href="#0" @click.prevent="filterByCategory('all')"> 全部文章 </a>
+                    </span>
+                    <span class="ml-auto">{{ allPosts.length }}</span>
+                  </li>
+                  <li>
+                    <span>
+                      <a href="#0" @click.prevent="filterByCategory('GraphicStyle')">
+                        視覺風格大全
+                      </a>
+                    </span>
+                    <span class="ml-auto">{{ getPostCountByCategory('GraphicStyle') }}</span>
+                  </li>
+                  <li>
+                    <span>
+                      <a href="#0" @click.prevent="filterByCategory('WorldVision')"> 世界視界 </a>
+                    </span>
+                    <span class="ml-auto">{{ getPostCountByCategory('WorldVision') }}</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="widget last-post-thum">
+                <h6 class="title-widget">最新文章</h6>
+                <div v-for="post in latestPosts" :key="post.id" class="item">
+                  <div class="valign">
+                    <div class="img">
+                      <router-link :to="`/article/${post.id}`">
+                        <img :src="toWebP(post.thumbnail)" :alt="post.title" />
+                      </router-link>
+                    </div>
+                  </div>
+                  <div class="cont">
+                    <h6>
+                      <router-link :to="`/article/${post.id}`">
+                        {{ post.title }}
+                      </router-link>
+                    </h6>
+                    <span>
+                      <router-link :to="`/article/${post.id}`">
+                        {{ toLocalString(post.date) }}
+                      </router-link>
+                    </span>
                   </div>
                 </div>
-                <div class="cont">
-                  <h6>
-                    <router-link :to="`/article/${post.id}`">
-                      {{ post.title }}
-                    </router-link>
-                  </h6>
-                  <span>
-                    <router-link :to="`/article/${post.id}`">
-                      {{ toLocalString(post.date) }}
-                    </router-link>
-                  </span>
-                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="row lg-marg justify-content-center">
-        <div class="col-lg-7">
-          <div class="md-mb80">
-            <div
-              v-for="post in filteredPosts"
-              :key="post.id"
-              class="item pb-50 mb-50 bord-thin-bottom blog-post"
-              :data-category="post.category"
-            >
-              <router-link :to="`/article/${post.id}`">
-                <div class="img">
-                  <img
-                    :src="cachedImageUrl[post.image] || post.image"
-                    :alt="post.title"
-                  />
-                </div>
-              </router-link>
-              <div class="cont mt-30">
-                <span class="date mb-10">{{ toLocalString(post.date) }}</span>
-                <h4 class="mb-15 post-title">
-                  <router-link :to="`/article/${post.id}`">
-                    {{ post.title }}
-                  </router-link>
-                </h4>
-                <p>{{ post.excerpt }}</p>
-                <router-link
-                  :to="`/article/${post.id}`"
-                  class="mt-15 read-more"
-                >
-                  閱讀更多 <i class="fas fa-arrow-right ml-10"></i>
+        <div class="row lg-marg justify-content-center">
+          <div class="col-lg-7">
+            <div class="md-mb80">
+              <div
+                v-for="post in filteredPosts"
+                :key="post.id"
+                class="item pb-50 mb-50 bord-thin-bottom blog-post"
+                :data-category="post.category"
+              >
+                <router-link :to="`/article/${post.id}`">
+                  <div class="img">
+                    <img :src="cachedImageUrl[post.image] || post.image" :alt="post.title" />
+                  </div>
                 </router-link>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 d-none d-lg-block">
-          <div class="sidebar">
-            <div class="search-box">
-              <input
-                v-model="searchQuery"
-                type="text"
-                placeholder="搜尋文章"
-                @input="filterPosts"
-              />
-              <span class="icon pe-7s-search"></span>
-            </div>
-            <div class="widget catogry">
-              <h6 class="title-widget">分類</h6>
-              <ul class="rest">
-                <li>
-                  <span>
-                    <a href="#0" @click.prevent="filterByCategory('all')">
-                      全部文章
-                    </a>
-                  </span>
-                  <span class="ml-auto">{{ allPosts.length }}</span>
-                </li>
-                <li>
-                  <span>
-                    <a
-                      href="#0"
-                      @click.prevent="filterByCategory('GraphicStyle')"
-                    >
-                      視覺風格大全
-                    </a>
-                  </span>
-                  <span class="ml-auto">{{
-                    getPostCountByCategory("GraphicStyle")
-                  }}</span>
-                </li>
-                <li>
-                  <span>
-                    <a
-                      href="#0"
-                      @click.prevent="filterByCategory('WorldVision')"
-                    >
-                      世界視界
-                    </a>
-                  </span>
-                  <span class="ml-auto">{{
-                    getPostCountByCategory("WorldVision")
-                  }}</span>
-                </li>
-              </ul>
-            </div>
-            <div class="widget last-post-thum">
-              <h6 class="title-widget">最新文章</h6>
-              <div v-for="post in latestPosts" :key="post.id" class="item">
-                <div class="valign">
-                  <div class="img">
-                    <router-link :to="`/article/${post.id}`">
-                      <img :src="toWebP(post.thumbnail)" :alt="post.title" />
-                    </router-link>
-                  </div>
-                </div>
-                <div class="cont">
-                  <h6>
+                <div class="cont mt-30">
+                  <span class="date mb-10">{{ toLocalString(post.date) }}</span>
+                  <h4 class="mb-15 post-title">
                     <router-link :to="`/article/${post.id}`">
                       {{ post.title }}
                     </router-link>
-                  </h6>
-                  <span>
-                    <router-link :to="`/article/${post.id}`">
-                      {{ toLocalString(post.date) }}
-                    </router-link>
-                  </span>
+                  </h4>
+                  <p>{{ post.excerpt }}</p>
+                  <router-link :to="`/article/${post.id}`" class="mt-15 read-more">
+                    閱讀更多 <i class="fas fa-arrow-right ml-10"></i>
+                  </router-link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 d-none d-lg-block">
+            <div class="sidebar">
+              <div class="search-box">
+                <input
+                  v-model="searchQuery"
+                  type="text"
+                  placeholder="搜尋文章"
+                  @input="filterPosts"
+                />
+                <span class="icon pe-7s-search"></span>
+              </div>
+              <div class="widget catogry">
+                <h6 class="title-widget">分類</h6>
+                <ul class="rest">
+                  <li>
+                    <span>
+                      <a href="#0" @click.prevent="filterByCategory('all')"> 全部文章 </a>
+                    </span>
+                    <span class="ml-auto">{{ allPosts.length }}</span>
+                  </li>
+                  <li>
+                    <span>
+                      <a href="#0" @click.prevent="filterByCategory('GraphicStyle')">
+                        視覺風格大全
+                      </a>
+                    </span>
+                    <span class="ml-auto">{{ getPostCountByCategory('GraphicStyle') }}</span>
+                  </li>
+                  <li>
+                    <span>
+                      <a href="#0" @click.prevent="filterByCategory('WorldVision')"> 世界視界 </a>
+                    </span>
+                    <span class="ml-auto">{{ getPostCountByCategory('WorldVision') }}</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="widget last-post-thum">
+                <h6 class="title-widget">最新文章</h6>
+                <div v-for="post in latestPosts" :key="post.id" class="item">
+                  <div class="valign">
+                    <div class="img">
+                      <router-link :to="`/article/${post.id}`">
+                        <img :src="toWebP(post.thumbnail)" :alt="post.title" />
+                      </router-link>
+                    </div>
+                  </div>
+                  <div class="cont">
+                    <h6>
+                      <router-link :to="`/article/${post.id}`">
+                        {{ post.title }}
+                      </router-link>
+                    </h6>
+                    <span>
+                      <router-link :to="`/article/${post.id}`">
+                        {{ toLocalString(post.date) }}
+                      </router-link>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- ==================== End Blogs ==================== -->
+    </section>
+    <!-- ==================== End Blogs ==================== -->
 
-  <!-- 載入進度顯示 -->
-  <div v-if="isPreloading" class="loading-progress">
-    <div class="progress-bar">
-      <div class="progress" :style="{ width: `${loadingProgress}%` }"></div>
+    <!-- 載入進度顯示 -->
+    <div v-if="isPreloading" class="loading-progress">
+      <div class="progress-bar">
+        <div class="progress" :style="{ width: `${loadingProgress}%` }"></div>
+      </div>
+      <div class="progress-text">載入中... {{ loadingProgress }}%</div>
     </div>
-    <div class="progress-text">載入中... {{ loadingProgress }}%</div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from "vue";
-import { articles } from "@data/articleData.js";
-import { useImageFormat } from "@composables/useImageFormat.js";
-import { useImageCache } from "@composables/useImageCache";
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { articles } from '@data/articleData.js'
+import { useImageFormat } from '@composables/useImageFormat.js'
+import { useImageCache } from '@composables/useImageCache'
 
-const searchQuery = ref("");
-const selectedCategory = ref("all");
-const { toWebP } = useImageFormat();
-const { preloadImages, loadImage, startCacheCleanup, stopCacheCleanup } =
-  useImageCache();
-const cachedImageUrl = ref({});
+const searchQuery = ref('')
+const selectedCategory = ref('all')
+const { toWebP } = useImageFormat()
+const { preloadImages, loadImage, startCacheCleanup, stopCacheCleanup } = useImageCache()
+const cachedImageUrl = ref({})
 
 // 將 articles 轉換為陣列格式
-const allPosts = ref(
-  Object.values(articles).sort((a, b) => new Date(b.date) - new Date(a.date))
-);
+const allPosts = ref(Object.values(articles).sort((a, b) => new Date(b.date) - new Date(a.date)))
 
 // 計算過濾後的文章列表
 const filteredPosts = computed(() => {
-  let posts = allPosts.value;
+  let posts = allPosts.value
 
   // 根據搜尋關鍵字過濾
   if (searchQuery.value) {
-    const query = searchQuery.value.toLowerCase();
+    const query = searchQuery.value.toLowerCase()
     posts = posts.filter(
-      (post) =>
-        post.title.toLowerCase().includes(query) ||
-        post.excerpt.toLowerCase().includes(query)
-    );
+      post => post.title.toLowerCase().includes(query) || post.excerpt.toLowerCase().includes(query)
+    )
   }
 
   // 根據分類過濾
-  if (selectedCategory.value !== "all") {
-    posts = posts.filter((post) => post.category === selectedCategory.value);
+  if (selectedCategory.value !== 'all') {
+    posts = posts.filter(post => post.category === selectedCategory.value)
   }
 
-  return posts;
-});
+  return posts
+})
 
 // 計算最新文章列表
 const latestPosts = computed(() => {
-  return [...allPosts.value]
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 3);
-});
+  return [...allPosts.value].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3)
+})
 
 // 根據分類獲取文章數量
-const getPostCountByCategory = (category) => {
-  return allPosts.value.filter((post) => post.category === category).length;
-};
+const getPostCountByCategory = category => {
+  return allPosts.value.filter(post => post.category === category).length
+}
 
 // 過濾文章
 const filterPosts = () => {
   // 搜尋功能已通過 computed 屬性實現
-};
+}
 
 // 根據分類過濾
-const filterByCategory = (category) => {
-  selectedCategory.value = category;
-};
+const filterByCategory = category => {
+  selectedCategory.value = category
+}
 
 // 格式化日期
-const toLocalString = (date) => {
-  return new Date(date).toLocaleDateString("zh-TW", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-};
+const toLocalString = date => {
+  return new Date(date).toLocaleDateString('zh-TW', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+}
 
 // 載入圖片並使用快取
-const loadCachedImage = async (url) => {
+const loadCachedImage = async url => {
   try {
-    const cachedUrl = await loadImage(url);
-    cachedImageUrl.value[url] = cachedUrl;
-    return cachedUrl;
+    const cachedUrl = await loadImage(url)
+    cachedImageUrl.value[url] = cachedUrl
+    return cachedUrl
   } catch {
     // 如果快取載入失敗，使用 WebP 格式
-    const webpUrl = toWebP(url);
-    cachedImageUrl.value[url] = webpUrl;
-    return webpUrl;
+    const webpUrl = toWebP(url)
+    cachedImageUrl.value[url] = webpUrl
+    return webpUrl
   }
-};
+}
 
 onMounted(async () => {
   // 收集所有文章圖片URL
   const imageUrls = allPosts.value
-    .map((post) => [post.image, post.thumbnail])
+    .map(post => [post.image, post.thumbnail])
     .flat()
-    .filter(Boolean);
+    .filter(Boolean)
 
   // 預載入圖片
-  await preloadImages(imageUrls);
+  await preloadImages(imageUrls)
 
   // 初始化快取清理
-  startCacheCleanup();
+  startCacheCleanup()
 
   // 預載入所有圖片到快取
   for (const url of imageUrls) {
-    await loadCachedImage(url);
+    await loadCachedImage(url)
   }
-});
+})
 
 onUnmounted(() => {
-  stopCacheCleanup();
-});
+  stopCacheCleanup()
+})
 </script>
 
 <style scoped>
@@ -343,7 +304,7 @@ onUnmounted(() => {
 }
 
 .read-more:hover ::after {
-  content: "";
+  content: '';
   display: block;
   width: 88px;
   height: 2px;

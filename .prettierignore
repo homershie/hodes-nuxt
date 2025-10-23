@@ -1,0 +1,47 @@
+# 依賴文件
+node_modules/
+.nuxt/
+.output/
+dist/
+.nitro/
+
+# 構建文件
+*.min.js
+*.min.css
+
+# 日誌文件
+*.log
+
+# 環境文件
+.env
+.env.*
+
+# 鎖定文件
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# 其他
+.DS_Store
+Thumbs.db
+
+# 圖片和媒體文件
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.svg
+*.ico
+*.webp
+*.mp4
+*.webm
+
+# 文檔文件
+*.md
+*.txt
+*.pdf
+
+# 配置文件（某些不需要格式化）
+wrangler.toml
+vite.config.ts
+vitest.config.ts

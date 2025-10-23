@@ -46,43 +46,43 @@
 **********************************************/
 
 // utility
-@import 'utility/variables.scss';
-@import 'utility/mixin.scss';
-@import 'utility/animation.scss';
-@import 'utility/theme-dark.scss';
+@import "utility/variables.scss";
+@import "utility/mixin.scss";
+@import "utility/animation.scss";
+@import "utility/theme-dark.scss";
 
 // components
-@import 'components/typography.scss';
-@import 'components/buttons.scss';
-@import 'components/cursor.scss';
-@import 'components/extra.scss';
-@import 'components/preloader.scss';
-@import 'components/overlay.scss';
-@import 'components/menu.scss';
-@import 'components/modal.scss';
-@import 'components/title.scss';
+@import "components/typography.scss";
+@import "components/buttons.scss";
+@import "components/cursor.scss";
+@import "components/extra.scss";
+@import "components/preloader.scss";
+@import "components/overlay.scss";
+@import "components/menu.scss";
+@import "components/modal.scss";
+@import "components/title.scss";
 
 // layout
-@import 'layout/about.scss';
-@import 'layout/blog.scss';
-@import 'layout/brand.scss';
-@import 'layout/resume.scss';
-@import 'layout/counter.scss';
-@import 'layout/features.scss';
-@import 'layout/header.scss';
-@import 'layout/hero.scss';
-@import 'layout/portfolio.scss';
-@import 'layout/price.scss';
-@import 'layout/process.scss';
-@import 'layout/services.scss';
-@import 'layout/slider.scss';
-@import 'layout/team.scss';
-@import 'layout/testimonials.scss';
-@import 'layout/contact.scss';
-@import 'layout/footer.scss';
+@import "layout/about.scss";
+@import "layout/blog.scss";
+@import "layout/brand.scss";
+@import "layout/resume.scss";
+@import "layout/counter.scss";
+@import "layout/features.scss";
+@import "layout/header.scss";
+@import "layout/hero.scss";
+@import "layout/portfolio.scss";
+@import "layout/price.scss";
+@import "layout/process.scss";
+@import "layout/services.scss";
+@import "layout/slider.scss";
+@import "layout/team.scss";
+@import "layout/testimonials.scss";
+@import "layout/contact.scss";
+@import "layout/footer.scss";
 
 // helper
-@import 'components/helper.scss';
+@import "components/helper.scss";
 
 // responsive
-@import 'utility/responsive.scss';
+@import "utility/responsive.scss";

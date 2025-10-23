@@ -73,7 +73,7 @@
     position: relative;
 
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       top: -1px;
       right: -1px;
@@ -262,7 +262,7 @@
       position: relative;
 
       &:before {
-        content: '“';
+        content: "“";
         position: absolute;
         top: 80px;
         left: -100px;
@@ -293,7 +293,7 @@
       position: relative;
 
       &:before {
-        content: '';
+        content: "";
         width: 5px;
         height: 5px;
         border-radius: 50%;
@@ -379,7 +379,7 @@
       z-index: 2;
 
       &:after {
-        content: '';
+        content: "";
         background: $main_bg;
         position: absolute;
         top: 0;
@@ -486,7 +486,7 @@
     }
 
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
