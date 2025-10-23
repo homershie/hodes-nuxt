@@ -298,15 +298,15 @@ onMounted(() => {
   // 收集首頁所有圖片URL
   const imageUrls = [
     // 主視覺圖片
-    "https://images.homershie.com/assets/imgs/hero/1.jpg",
+    "https://r2bucket.homershie.com/assets/imgs/hero/1.jpg",
     // 個人照片
-    "https://images.homershie.com/assets/imgs/header/profile.jpg",
+    "https://r2bucket.homershie.com/assets/imgs/header/profile.jpg",
     // 作品集縮圖
     ...portfolio.slice(0, 6).map((work) => work.image),
     // 其他首頁圖片
-    "https://images.homershie.com/assets/imgs/about/1.jpg",
-    "https://images.homershie.com/assets/imgs/about/2.jpg",
-    "https://images.homershie.com/assets/imgs/about/3.jpg",
+    "https://r2bucket.homershie.com/assets/imgs/about/1.jpg",
+    "https://r2bucket.homershie.com/assets/imgs/about/2.jpg",
+    "https://r2bucket.homershie.com/assets/imgs/about/3.jpg",
   ]
     .filter(Boolean)
     .map((url) => toWebP(url));

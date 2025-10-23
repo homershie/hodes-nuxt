@@ -1,5 +1,8 @@
 <template>
-  <nav class="navbar navbar-chang navbar-expand-lg" :class="{ 'nav-scroll': isScrolled }">
+  <nav
+    class="navbar navbar-chang navbar-expand-lg"
+    :class="{ 'nav-scroll': isScrolled }"
+  >
     <div class="container position-re">
       <div class="row">
         <div class="col-lg-3 col-6 order1">
@@ -7,7 +10,7 @@
             <!-- Logo -->
             <router-link class="logo icon-img-120" to="/">
               <img
-                src="https://images.homershie.com/assets/imgs/logo-light.png"
+                src="https://r2bucket.homershie.com/assets/imgs/logo-light.png"
                 alt="荷馬桑 Homer Shie - 視覺設計師標誌"
                 loading="eager"
               />
@@ -115,57 +118,63 @@
 </template>
 
 <script setup>
-import { ref, watch, nextTick, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
-import { useScroll, useEventListener } from '@vueuse/core'
-import gsap from 'gsap'
+import { ref, watch, nextTick, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import { useScroll, useEventListener } from "@vueuse/core";
+import gsap from "gsap";
 
-const route = useRoute()
-const isMenuOpen = ref(false)
-const isDesktop = ref(window.innerWidth > 991)
-const bgRef = ref(null)
-const isScrolled = ref(false)
-const { y } = useScroll(window)
+const route = useRoute();
+const isMenuOpen = ref(false);
+const isDesktop = ref(window.innerWidth > 991);
+const bgRef = ref(null);
+const isScrolled = ref(false);
+const { y } = useScroll(window);
 
 // 監聽滾動，控制 navbar 樣式 (與原版 JS 保持一致：300px)
-watch(y, scrollY => {
-  isScrolled.value = scrollY > 300
-})
+watch(y, (scrollY) => {
+  isScrolled.value = scrollY > 300;
+});
 
 const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value
-}
+  isMenuOpen.value = !isMenuOpen.value;
+};
 
 // 使用 VueUse 的 useEventListener 替代原生事件監聽
-useEventListener(window, 'resize', () => {
-  isDesktop.value = window.innerWidth > 991
-  if (isDesktop.value) isMenuOpen.value = false
-})
+useEventListener(window, "resize", () => {
+  isDesktop.value = window.innerWidth > 991;
+  if (isDesktop.value) isMenuOpen.value = false;
+});
 
 onMounted(() => {
   // 初始化
-  isDesktop.value = window.innerWidth > 991
-})
+  isDesktop.value = window.innerWidth > 991;
+});
 
 // 當打開手機版選單時做 GSAP 動畫
-watch(isMenuOpen, async open => {
+watch(isMenuOpen, async (open) => {
   if (open && !isDesktop.value) {
-    await nextTick()
+    await nextTick();
     gsap.fromTo(
       bgRef.value,
-      { y: -100, autoAlpha: 0, filter: 'blur(50px)' },
-      { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.5, ease: 'power2.out' }
-    )
+      { y: -100, autoAlpha: 0, filter: "blur(50px)" },
+      {
+        y: 0,
+        autoAlpha: 1,
+        filter: "blur(0px)",
+        duration: 0.5,
+        ease: "power2.out",
+      }
+    );
   }
-})
+});
 
 // 路由變換自動收合
 watch(
   () => route.path,
   () => {
-    if (!isDesktop.value) isMenuOpen.value = false
+    if (!isDesktop.value) isMenuOpen.value = false;
   }
-)
+);
 </script>
 
 <style lang="scss" scoped>
@@ -327,7 +336,7 @@ watch(
       }
 
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: -5px;
         left: 0;

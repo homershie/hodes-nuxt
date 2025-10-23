@@ -25,7 +25,7 @@
                     <img
                       :src="
                         getWebpImage(
-                          'https://images.homershie.com/assets/imgs/serv-img/1.png'
+                          'https://r2bucket.homershie.com/assets/imgs/serv-img/1.png'
                         )
                       "
                       alt="平面設計"
@@ -54,7 +54,7 @@
                     <img
                       :src="
                         getWebpImage(
-                          'https://images.homershie.com/assets/imgs/serv-img/2.png'
+                          'https://r2bucket.homershie.com/assets/imgs/serv-img/2.png'
                         )
                       "
                       alt="動態設計"
@@ -83,7 +83,7 @@
                     <img
                       :src="
                         getWebpImage(
-                          'https://images.homershie.com/assets/imgs/serv-img/3.png'
+                          'https://r2bucket.homershie.com/assets/imgs/serv-img/3.png'
                         )
                       "
                       alt="插畫創作"
@@ -112,7 +112,7 @@
                     <img
                       :src="
                         getWebpImage(
-                          'https://images.homershie.com/assets/imgs/serv-img/4.png'
+                          'https://r2bucket.homershie.com/assets/imgs/serv-img/4.png'
                         )
                       "
                       alt="3D動畫"
@@ -141,7 +141,7 @@
                     <img
                       :src="
                         getWebpImage(
-                          'https://images.homershie.com/assets/imgs/serv-img/5.png'
+                          'https://r2bucket.homershie.com/assets/imgs/serv-img/5.png'
                         )
                       "
                       alt="品牌設計"
@@ -171,7 +171,7 @@
                     <img
                       :src="
                         getWebpImage(
-                          'https://images.homershie.com/assets/imgs/serv-img/6.png'
+                          'https://r2bucket.homershie.com/assets/imgs/serv-img/6.png'
                         )
                       "
                       alt="UI設計"
@@ -317,7 +317,7 @@
               <img
                 :src="
                   getWebpImage(
-                    'https://images.homershie.com/assets/imgs/brands/garmin.png'
+                    'https://r2bucket.homershie.com/assets/imgs/brands/garmin.png'
                   )
                 "
                 style="filter: brightness(0.5)"

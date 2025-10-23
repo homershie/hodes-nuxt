@@ -63,7 +63,7 @@ export default defineNuxtConfig({
         {
           property: "og:image",
           content:
-            "https://images.homershie.com/assets/imgs/thumbnail/og-image.jpg",
+            "https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg",
         },
         { property: "og:url", content: "https://homershie.com" },
         { property: "og:type", content: "website" },
@@ -83,13 +83,13 @@ export default defineNuxtConfig({
         {
           name: "twitter:image",
           content:
-            "https://images.homershie.com/assets/imgs/thumbnail/twitter-card.jpg",
+            "https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg",
         },
       ],
       link: [
         {
           rel: "icon",
-          href: "https://images.homershie.com/assets/imgs/favicon_homer.png",
+          href: "https://r2bucket.homershie.com/assets/imgs/favicon_homer.png",
         },
         { rel: "canonical", href: "https://homershie.com" },
       ],
