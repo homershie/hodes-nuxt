@@ -7,6 +7,11 @@
     width: 100%;
     position: relative;
     filter: grayscale(100%);
+    transition: filter 1s;
+
+    &:hover {
+      filter: grayscale(0%);
+    }
 
     iframe {
       position: absolute;

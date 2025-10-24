@@ -74,6 +74,11 @@
         border-radius: 30px;
         margin-bottom: 15px;
         transition: all 0.4s;
+
+        &:hover {
+          background: var(--maincolor);
+          color: #1d1d1d;
+        }
       }
 
       h6 {
@@ -106,11 +111,6 @@
       }
 
       .cont {
-        .tag {
-          background: var(--maincolor);
-          color: #1d1d1d;
-        }
-
         .arrow {
           svg {
             stroke: var(--maincolor);

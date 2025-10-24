@@ -29,7 +29,7 @@ export default defineNuxtConfig({
   },
 
   // 全局 CSS 設定
-  css: ['@/assets/style.css', '@/assets/scss/style.scss'],
+  css: ['@/assets/scss/style.scss'],
 
   modules: [
     '@nuxt/content',
