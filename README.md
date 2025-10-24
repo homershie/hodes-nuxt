@@ -8,7 +8,7 @@
 - **響應式設計**: 支援各種裝置和螢幕尺寸
 - **作品展示**: 互動式作品集與燈箱效果
 - **部落格系統**: 文章展示和分類功能
-- **聯絡表單**: 整合後端 API 的聯絡功能
+- **聯絡表單**: 整合 Resend Email API + reCAPTCHA v3 驗證
 - **動畫效果**: GSAP 動畫增強使用者體驗
 - **SEO 優化**: 良好的搜尋引擎優化
 - **內容管理**: Nuxt Content 模組支援
@@ -18,6 +18,9 @@
 - **框架**: Nuxt 3
 - **前端**: Vue 3 + TypeScript
 - **樣式**: SCSS + Nuxt UI
+- **後端**: Nuxt Server Routes + Resend Email API
+- **表單驗證**: vee-validate + yup
+- **安全性**: Google reCAPTCHA v3
 - **圖片優化**: Nuxt Image
 - **內容管理**: Nuxt Content
 - **程式碼品質**: ESLint
@@ -29,6 +32,23 @@
 - npm >= 9.0.0
 
 ## 🔧 專案設定
+
+### 環境變數設定
+
+在開始之前，請先設定環境變數：
+
+```bash
+# 複製環境變數範例檔
+cp .env.example .env
+```
+
+然後填入必要的 API keys：
+- `NUXT_PUBLIC_RECAPTCHA_SITE_KEY` - Google reCAPTCHA Site Key
+- `RECAPTCHA_SECRET_KEY` - Google reCAPTCHA Secret Key
+- `RESEND_API_KEY` - Resend Email API Key
+- `TO_EMAIL` - 收件人 Email
+
+詳細設定步驟請參考 [Email 設定指南](./docs/SETUP_EMAIL.md)
 
 ### 安裝依賴
 
@@ -131,6 +151,12 @@ app/
 │   └── ...
 └── app.vue          # 根元件
 
+server/              # Server API
+├── api/             # API 路由
+│   └── send-email.post.ts  # Email 發送端點
+└── utils/           # Server 工具函數
+    └── recaptcha.ts # reCAPTCHA 驗證
+
 composables/         # Vue 組合式函數
 ├── useCustomCursor.js
 ├── useFormValidation.js
@@ -143,25 +169,33 @@ composables/         # Vue 組合式函數
 ├── usePortfolio.js
 └── useTextFade.js
 
-data/               # 資料檔案
+plugins/             # Nuxt Plugins
+└── recaptcha.client.ts  # reCAPTCHA plugin
+
+data/                # 資料檔案
 ├── articleData.js
 └── portfolioData.js
 
-public/             # 公開靜態檔案
-├── images/         # 圖片資源
-├── resume/         # 履歷檔案
-├── _headers        # 部署標頭
-├── _redirects      # 重導向規則
-└── robots.txt      # 搜尋引擎規則
+docs/                # 專案文件
+├── README.md        # 文件索引
+├── SETUP_EMAIL.md   # Email 設定指南
+└── SERVER_API.md    # Server API 文件
+
+public/              # 公開靜態檔案
+├── images/          # 圖片資源
+├── resume/          # 履歷檔案
+├── _headers         # 部署標頭
+├── _redirects       # 重導向規則
+└── robots.txt       # 搜尋引擎規則
 ```
 
 ## 🔄 待辦事項
 
 ### 高優先級
 
-- [ ] **設定 default layout**: 建立完整的預設佈局檔案，包含導航列、頁尾等共用元件
-- [ ] **更新各個頁面符合 Nuxt.js 格式**: 將現有頁面從 Vue Router 格式轉換為 Nuxt.js 的檔案路由格式
-- [ ] **引入後端 API**: 整合 `portfolio_backend/index.js` 的聯絡表單功能到 Nuxt.js 專案中
+- [x] **設定 default layout**: 建立完整的預設佈局檔案，包含導航列、頁尾等共用元件
+- [x] **更新各個頁面符合 Nuxt.js 格式**: 將現有頁面從 Vue Router 格式轉換為 Nuxt.js 的檔案路由格式
+- [x] **引入後端 API**: 整合 `portfolio_backend/index.js` 的聯絡表單功能到 Nuxt.js 專案中 ✅
 
 ### 中優先級
 
@@ -216,9 +250,17 @@ Private - 個人作品集專案
 - GitHub Issues
 - Email: [homerxworkshop@gmail.com]
 
-## 📚 相關資源
+## 📚 專案文件
+
+- **[docs/README.md](./docs/README.md)** - 文件索引
+- **[docs/SETUP_EMAIL.md](./docs/SETUP_EMAIL.md)** - Email 功能完整設定指南
+- **[docs/SERVER_API.md](./docs/SERVER_API.md)** - Server API 技術文件
+
+## 📚 外部資源
 
 - [Nuxt 3 官方文件](https://nuxt.com/docs/getting-started/introduction)
 - [Vue 3 官方文件](https://vuejs.org/guide/)
 - [Nuxt UI 文件](https://ui.nuxt.com/)
 - [Nuxt Content 文件](https://content.nuxt.com/)
+- [Resend 文件](https://resend.com/docs)
+- [reCAPTCHA v3 文件](https://developers.google.com/recaptcha/docs/v3)

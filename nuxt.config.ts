@@ -5,6 +5,19 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
+  // Runtime Config
+  runtimeConfig: {
+    // Private keys (只在 server-side 可用)
+    recaptchaSecretKey: process.env.RECAPTCHA_SECRET_KEY,
+    resendApiKey: process.env.RESEND_API_KEY,
+    toEmail: process.env.TO_EMAIL,
+
+    // Public keys (可在 client-side 使用)
+    public: {
+      recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY,
+    },
+  },
+
   // 路徑別名設定
   alias: {
     '@data': fileURLToPath(new URL('./data', import.meta.url)),

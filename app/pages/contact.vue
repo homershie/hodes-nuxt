@@ -292,8 +292,8 @@ const submitForm = handleSubmit(async formValues => {
       recaptchaToken.value = await executeRecaptcha('contact')
     }
 
-    // 提交表單
-    const res = await fetch('https://portfolio-backend-pky9.onrender.com/api/send-email', {
+    // 提交表單 (使用 Nuxt 內部 API)
+    const res = await fetch('/api/send-email', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
