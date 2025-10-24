@@ -24,24 +24,12 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useCustomCursor } from '@composables/useCustomCursor'
-import { useHoverAnimation } from '@composables/useHoverAnimation'
 import { useImageCache } from '@composables/useImageCache'
 
 const showLoader = ref(true)
-const { handleCursorHover } = useCustomCursor()
-const { handleHoverAnimation } = useHoverAnimation()
 const { startCacheCleanup, stopCacheCleanup } = useImageCache()
 
 onMounted(() => {
-  // 初始化游標懸停效果
-  const cursorElements = document.querySelectorAll('a, .cursor-pointer')
-  handleCursorHover(cursorElements)
-
-  // 初始化滑鼠移動動畫效果
-  const hoverElements = document.querySelectorAll('.hover-this')
-  handleHoverAnimation(hoverElements)
-
   // 初始化快取清理
   startCacheCleanup()
 })
