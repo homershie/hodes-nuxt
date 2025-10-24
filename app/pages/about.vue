@@ -185,28 +185,18 @@
         </div>
 
         <div>
-          <div class="resume-swiper" data-carousel="swiper" data-space="50" data-speed="1000">
-            <div
-              id="content-carousel-container-unq-resume"
-              class="swiper-container"
-              data-swiper="container"
-            >
-              <div class="swiper-wrapper">
-                <!-- 使用 v-for 重構履歷列表 -->
-                <div v-for="experience in experiences" :key="experience.id" class="swiper-slide">
-                  <div class="item text-center">
-                    <h6 class="main-color date fz-15 mb-60">
-                      {{ experience.period }}
-                    </h6>
-                    <h5>{{ experience.title }}</h5>
-                    <span class="opacity-8 fw-500 mt-10">[ {{ experience.company }} ]</span>
-                    <p class="fz-13 mt-15">{{ experience.description }}</p>
-                  </div>
-                </div>
+          <AppSwiper variant="resume-swiper" :space-between="50" :speed="1000">
+            <div v-for="experience in experiences" :key="experience.id" class="swiper-slide">
+              <div class="item text-center">
+                <h6 class="main-color date fz-15 mb-60">
+                  {{ experience.period }}
+                </h6>
+                <h5>{{ experience.title }}</h5>
+                <span class="opacity-8 fw-500 mt-10">[ {{ experience.company }} ]</span>
+                <p class="fz-13 mt-15">{{ experience.description }}</p>
               </div>
-              <div class="swiper-pagination"></div>
             </div>
-          </div>
+          </AppSwiper>
         </div>
       </div>
     </section>
@@ -353,29 +343,6 @@ onMounted(async () => {
   useTimeoutFn(() => {
     animatedSkills.value = true
   }, 500)
-
-  new window.Swiper('.resume-swiper .swiper-container', {
-    spaceBetween: 50,
-    speed: 1000,
-    loop: false,
-    pagination: {
-      el: '.resume-swiper .swiper-pagination',
-      clickable: true,
-      dynamicBullets: false, // 不要用動態分頁
-      type: 'bullets', // 預設就是 bullets
-    },
-    breakpoints: {
-      0: {
-        slidesPerView: 1,
-      },
-      768: {
-        slidesPerView: 2,
-      },
-      1200: {
-        slidesPerView: 3,
-      },
-    },
-  })
 })
 // 導出方法供其他組件使用
 defineExpose({

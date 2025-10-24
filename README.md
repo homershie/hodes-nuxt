@@ -137,8 +137,7 @@ bun run generate
 ```
 app/
 ├── assets/          # 靜態資源
-│   ├── scss/        # SCSS 樣式檔案
-│   └── scripts.js   # 公用腳本
+│   └── scss/        # SCSS 樣式檔案
 ├── components/      # Vue 元件
 ├── layouts/         # 佈局檔案
 │   └── default.vue  # 預設佈局
