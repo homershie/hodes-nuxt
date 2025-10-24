@@ -61,7 +61,7 @@
                   backgroundSize: 'cover',
                 }"
               >
-                <router-link :to="`/article/${prevArticle.id}`">
+                <NuxtLink :to="`/article/${prevArticle.id}`">
                   <span
                     class="fz-12 text-u ls1 main-color mb-15"
                     style="text-shadow: 2px 2px 2px #000"
@@ -72,7 +72,7 @@
                   <h6 class="fw-500 fz-16" style="text-shadow: 2px 2px 2px #000">
                     {{ prevArticle.title }}
                   </h6>
-                </router-link>
+                </NuxtLink>
               </div>
               <div
                 v-if="nextArticle"
@@ -83,7 +83,7 @@
                   backgroundSize: 'cover',
                 }"
               >
-                <router-link :to="`/article/${nextArticle.id}`">
+                <NuxtLink :to="`/article/${nextArticle.id}`">
                   <span
                     class="fz-12 text-u ls1 main-color mb-15"
                     style="text-shadow: 2px 2px 2px #000"
@@ -93,7 +93,7 @@
                   <h6 class="fw-500 fz-16" style="text-shadow: 2px 2px 2px #000">
                     {{ nextArticle.title }}
                   </h6>
-                </router-link>
+                </NuxtLink>
               </div>
             </div>
           </div>
@@ -106,22 +106,22 @@
   <section v-else class="section-padding">
     <div class="container text-center">
       <h2>文章不存在</h2>
-      <router-link to="/blog" class="butn butn-md butn-bord radius-30 mt-30">
+      <NuxtLink to="/blog" class="butn butn-md butn-bord radius-30 mt-30">
         <span>回到部落格</span>
-      </router-link>
+      </NuxtLink>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { articles } from '@data/articleData.js'
 import { useImageCache } from '@composables/useImageCache'
-import { useHead } from '@vueuse/head'
+import { useHead } from '#app'
 import { enableImageLightbox } from '@composables/useLightBox.js'
 import { useScroll } from '@vueuse/core'
-// import { BASE_TITLE } from '@/router/index.js'
+
 const BASE_TITLE = 'HOEDES｜荷馬桑 Homer Shie'
 
 const route = useRoute()
@@ -174,10 +174,12 @@ const shareUrls = computed(() => {
 
 // 更新頁面標題的函數
 const updatePageTitle = () => {
-  if (article.value && article.value.title) {
-    document.title = `${article.value.title}|${BASE_TITLE}`
-  } else {
-    document.title = `文章詳情|${BASE_TITLE}`
+  if (import.meta.client) {
+    if (article.value && article.value.title) {
+      document.title = `${article.value.title}|${BASE_TITLE}`
+    } else {
+      document.title = `文章詳情|${BASE_TITLE}`
+    }
   }
 }
 
@@ -194,12 +196,16 @@ function loadArticle() {
     }
   } else {
     article.value = null
-    document.title = `文章不存在|${BASE_TITLE}`
+    if (import.meta.client) {
+      document.title = `文章不存在|${BASE_TITLE}`
+    }
   }
 }
 
 // 更新 meta 標籤
 function updateMetaTags(seo) {
+  if (!import.meta.client) return
+
   // 更新 description
   const descMeta = document.querySelector('meta[name="description"]')
   if (descMeta) {
@@ -222,7 +228,7 @@ watch(
 )
 
 watch(article, async a => {
-  if (!a) return
+  if (!a || !import.meta.client) return
 
   // 更新頁面標題
   updatePageTitle()
@@ -239,6 +245,9 @@ watch(article, async a => {
       { name: 'twitter:card', content: 'summary_large_image' },
     ],
   })
+
+  // 等待下一個tick確保DOM已渲染
+  await nextTick()
 
   // 收集所有文章內圖片 URL
   const urls = Array.from(document.querySelectorAll('.cont .image img')).map(img => img.src)
@@ -267,11 +276,15 @@ watch(article, async a => {
 
 onMounted(() => {
   loadArticle()
-  startCacheCleanup()
+  if (import.meta.client) {
+    startCacheCleanup()
+  }
 })
 
 onUnmounted(() => {
-  stopCacheCleanup()
+  if (import.meta.client) {
+    stopCacheCleanup()
+  }
 })
 </script>
 
@@ -340,7 +353,7 @@ article {
     }
   }
   ol {
-    counter-reset: li; // ← 在 ol 上先把 li 歸零
+    counter-reset: li;
     padding-left: 20px;
     margin: 40px 0;
 
@@ -351,8 +364,8 @@ article {
       line-height: 1.6;
 
       &::before {
-        counter-increment: li; // 每個 li 自動 +1
-        content: counter(li) '.'; // 顯示目前計數
+        counter-increment: li;
+        content: counter(li) '.';
         color: var(--maincolor);
         margin-right: 10px;
       }
@@ -392,14 +405,14 @@ article {
   .image {
     position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1; // 讓每個格子都是正方形
+    aspect-ratio: 1 / 1;
     margin: 0;
     overflow: hidden;
 
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover; // 填滿且裁切
+      object-fit: cover;
       border-radius: 5px;
       display: block;
     }
@@ -434,7 +447,7 @@ article {
 }
 .cont .image-gallery-3 {
   @extend .image-gallery;
-  grid-template-columns: repeat(3, 1fr); // 覆蓋欄數
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .image-masonry {

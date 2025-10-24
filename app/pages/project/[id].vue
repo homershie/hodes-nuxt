@@ -95,7 +95,7 @@ import { useImageFormat } from '@composables/useImageFormat.js'
 import { useImagePreloader } from '@composables/useImagePreloader.js'
 import Preloader from '@components/PreLoader.vue'
 import { enableImageLightbox } from '@composables/useLightBox.js'
-// import { BASE_TITLE } from '@/router/index.js'
+
 const BASE_TITLE = 'HOEDES｜荷馬桑 Homer Shie'
 
 const route = useRoute()
@@ -136,10 +136,12 @@ const formatDate = dateString => {
 
 // 更新頁面標題的函數
 const updatePageTitle = () => {
-  if (project.value && project.value.title) {
-    document.title = `${project.value.title}|${BASE_TITLE}`
-  } else {
-    document.title = `專案詳情|${BASE_TITLE}`
+  if (import.meta.client) {
+    if (project.value && project.value.title) {
+      document.title = `${project.value.title}|${BASE_TITLE}`
+    } else {
+      document.title = `專案詳情|${BASE_TITLE}`
+    }
   }
 }
 
@@ -150,7 +152,7 @@ watch(
     // 更新頁面標題
     updatePageTitle()
 
-    if (newProject) {
+    if (newProject && import.meta.client) {
       // 收集主圖與 gallery 圖片
       const images = []
       if (newProject.mainImage) images.push(newProject.mainImage)
@@ -195,9 +197,11 @@ onMounted(() => {
   const projectId = route.params.id
   project.value = getWorkById(projectId)
 
-  // 確保 gallery 是陣列
-  if (!project.value.gallery || !Array.isArray(project.value.gallery)) {
-    project.value.gallery = []
+  if (project.value) {
+    // 確保 gallery 是陣列
+    if (!project.value.gallery || !Array.isArray(project.value.gallery)) {
+      project.value.gallery = []
+    }
   }
 })
 </script>
