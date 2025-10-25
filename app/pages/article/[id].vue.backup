@@ -13,17 +13,15 @@
               >
             </div>
             <h1 class="fz-40 mt-30">{{ article.title }}</h1>
-            <p class="sub-title mt-15">{{ formatDate(article.date) }} - By {{ article.author }}</p>
+            <p class="sub-title mt-15">{{ article.date }} - By {{ article.author }}</p>
           </div>
         </div>
       </div>
-
       <div class="row justify-content-center">
         <div class="col-lg-9">
           <div class="cont">
-            <!-- 直接渲染 HTML 內容，繞過 MDC 解析器 -->
             <!-- eslint-disable-next-line vue/no-v-html -->
-            <div class="article-content" v-html="articleContent"></div>
+            <div v-html="article.content"></div>
 
             <!-- 分享區域 -->
             <div class="info-area flex mt-20 pb-20 pt-20 bord-thin-top bord-thin-bottom">
@@ -43,12 +41,10 @@
                     <span>Share :</span>
                   </div>
                   <div>
-                    <a :href="shareUrls.facebook" target="_blank">
-                      <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a :href="shareUrls.twitter" target="_blank">
-                      <i class="fab fa-x"></i>
-                    </a>
+                    <a :href="shareUrls.facebook" target="_blank"
+                      ><i class="fab fa-facebook-f"></i
+                    ></a>
+                    <a :href="shareUrls.twitter" target="_blank"><i class="fab fa-x"></i></a>
                   </div>
                 </div>
               </div>
@@ -110,7 +106,7 @@
   <section v-else class="section-padding">
     <div class="container text-center">
       <h2>文章不存在</h2>
-      <NuxtLink to="/blog/page/1" class="butn butn-md butn-bord radius-30 mt-30">
+      <NuxtLink to="/blog" class="butn butn-md butn-bord radius-30 mt-30">
         <span>回到部落格</span>
       </NuxtLink>
     </div>
@@ -118,40 +114,19 @@
 </template>
 
 <script setup>
-import { computed, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useScroll } from '@vueuse/core'
+import { articles } from '@data/articleData.js'
+import { useImageCache } from '@composables/useImageCache'
+import { useHead } from '#app'
 import { enableImageLightbox } from '@composables/useLightBox.js'
+import { useScroll } from '@vueuse/core'
+
+const BASE_TITLE = 'HOEDES｜荷馬桑 Homer Shie'
 
 const route = useRoute()
 const router = useRouter()
-const articleId = route.params.id
-
-// 從 Nuxt Content 查詢文章
-// 使用 without() 跳過 body 的 MDC 解析，只獲取 frontmatter 和原始內容
-const { data: article } = await useAsyncData(`article-${articleId}`, () =>
-  queryContent('articles', articleId).findOne()
-).catch(() => ({ data: ref(null) }))
-
-// 查詢所有文章以計算上一篇/下一篇
-const { data: allArticles } = await useAsyncData('all-articles', () =>
-  queryContent('articles').sort({ date: -1 }).find()
-)
-
-// 404 處理
-if (!article.value) {
-  throw createError({
-    statusCode: 404,
-    message: '文章不存在',
-  })
-}
-
-// 提取文章的 HTML 內容（跳過 frontmatter，直接使用 body）
-const articleContent = computed(() => {
-  if (!article.value) return ''
-  // Nuxt Content 將 Markdown 的 body 部分存在 body 或 _rawContent 中
-  return article.value.body || article.value._rawContent || ''
-})
+const { preloadImages, loadImage, startCacheCleanup, stopCacheCleanup } = useImageCache()
 
 // 使用 useScroll 來計算閱讀進度
 const { y } = useScroll(window)
@@ -162,25 +137,32 @@ const progress = computed(() => {
   return docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
 })
 
+const article = ref(null)
+const articleIds = Object.keys(articles)
+
 // 計算上一篇和下一篇文章
 const prevArticle = computed(() => {
-  if (!article.value || !allArticles.value) return null
-  const currentIndex = allArticles.value.findIndex(a => a.id === article.value.id)
-  if (currentIndex === -1 || currentIndex === 0) return null
-  return allArticles.value[currentIndex - 1]
+  if (!article.value) return null
+  const currentIndex = articleIds.indexOf(article.value.id)
+  if (currentIndex === -1) return null
+  const prevIndex = currentIndex - 1
+  return prevIndex >= 0 ? articles[articleIds[prevIndex]] : null
 })
 
 const nextArticle = computed(() => {
-  if (!article.value || !allArticles.value) return null
-  const currentIndex = allArticles.value.findIndex(a => a.id === article.value.id)
-  if (currentIndex === -1 || currentIndex === allArticles.value.length - 1) return null
-  return allArticles.value[currentIndex + 1]
+  if (!article.value) return null
+  const currentIndex = articleIds.indexOf(article.value.id)
+  if (currentIndex === -1) return null
+  const nextIndex = currentIndex + 1
+  return nextIndex < articleIds.length ? articles[articleIds[nextIndex]] : null
 })
 
 // 分享連結
 const shareUrls = computed(() => {
   if (!article.value || !import.meta.client) return {}
-  const currentUrl = window.location.href
+  // 取原始完整 URL
+  const fullPath = router.currentRoute.value.fullPath
+  const currentUrl = `${window.location.origin}${fullPath}`
   const url = encodeURIComponent(currentUrl)
   const title = encodeURIComponent(article.value.title)
 
@@ -190,43 +172,124 @@ const shareUrls = computed(() => {
   }
 })
 
-// 日期格式化
-function formatDate(dateString) {
-  const date = new Date(dateString)
-  return date.toLocaleDateString('zh-TW', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+// 更新頁面標題的函數
+const updatePageTitle = () => {
+  if (import.meta.client) {
+    if (article.value && article.value.title) {
+      document.title = `${article.value.title}|${BASE_TITLE}`
+    } else {
+      document.title = `文章詳情|${BASE_TITLE}`
+    }
+  }
 }
 
-// SEO Meta
-useHead({
-  title: `${article.value.title} | HODES`,
-  meta: [
-    { name: 'description', content: article.value.excerpt },
-    { property: 'og:title', content: article.value.title },
-    { property: 'og:description', content: article.value.excerpt },
-    { property: 'og:image', content: article.value.image },
-    { property: 'og:url', content: `https://homershie.com/article/${articleId}` },
-    { property: 'article:published_time', content: article.value.date },
-    { property: 'article:author', content: article.value.author },
-  ],
-  link: [{ rel: 'canonical', href: `https://homershie.com/article/${articleId}` }],
+// 載入文章
+function loadArticle() {
+  const articleId = route.params.id
+  if (articles[articleId]) {
+    article.value = articles[articleId]
+    // 更新頁面標題
+    updatePageTitle()
+    // 更新 SEO meta 標籤
+    if (article.value.seo) {
+      updateMetaTags(article.value.seo)
+    }
+  } else {
+    article.value = null
+    if (import.meta.client) {
+      document.title = `文章不存在|${BASE_TITLE}`
+    }
+  }
+}
+
+// 更新 meta 標籤
+function updateMetaTags(seo) {
+  if (!import.meta.client) return
+
+  // 更新 description
+  const descMeta = document.querySelector('meta[name="description"]')
+  if (descMeta) {
+    descMeta.setAttribute('content', seo.description)
+  }
+
+  // 更新 keywords
+  const keywordsMeta = document.querySelector('meta[name="keywords"]')
+  if (keywordsMeta) {
+    keywordsMeta.setAttribute('content', seo.keywords)
+  }
+}
+
+// 監聽路由變化
+watch(
+  () => route.params.id,
+  () => {
+    loadArticle()
+  }
+)
+
+watch(article, async a => {
+  if (!a || !import.meta.client) return
+
+  // 更新頁面標題
+  updatePageTitle()
+
+  // 更新 useHead
+  useHead({
+    title: `${a.title}|${BASE_TITLE}`,
+    meta: [
+      { name: 'description', content: a.seo.description },
+      { name: 'keywords', content: a.seo.keywords },
+      { property: 'og:title', content: a.title },
+      { property: 'og:description', content: a.seo.description },
+      { property: 'og:image', content: a.image },
+      { name: 'twitter:card', content: 'summary_large_image' },
+    ],
+  })
+
+  // 等待下一個tick確保DOM已渲染
+  await nextTick()
+
+  // 收集所有文章內圖片 URL
+  const urls = Array.from(document.querySelectorAll('.cont .image img')).map(img => img.src)
+
+  // 預載入圖片
+  if (urls.length > 0) {
+    await preloadImages(urls)
+  }
+
+  // 轉換所有文章內圖片為WebP格式並使用快取
+  const imageElements = document.querySelectorAll('.cont .image img')
+  for (const img of imageElements) {
+    const originalSrc = img.src
+    try {
+      const cachedUrl = await loadImage(originalSrc)
+      img.src = cachedUrl
+    } catch {
+      // 如果快取載入失敗，使用原始圖片
+      img.src = originalSrc
+    }
+  }
+
+  // 圖片載完後才開 lightbox
+  enableImageLightbox()
 })
 
-// 在掛載後啟用 lightbox
-onMounted(async () => {
+onMounted(() => {
+  loadArticle()
   if (import.meta.client) {
-    await nextTick()
-    enableImageLightbox()
+    startCacheCleanup()
+  }
+})
+
+onUnmounted(() => {
+  if (import.meta.client) {
+    stopCacheCleanup()
   }
 })
 </script>
 
 <style lang="scss">
-/* 文章內容樣式 */
-.article-content :deep(article) {
+article {
   a {
     text-decoration: underline;
     &:hover {
@@ -234,18 +297,15 @@ onMounted(async () => {
       color: var(--maincolor);
     }
   }
-
   .image {
     margin: 60px 0;
   }
-
   figcaption {
     text-align: center;
     margin: 20px 0;
     font-size: 0.9rem;
     color: #aaa;
   }
-
   img {
     width: 50%;
     height: auto;
@@ -253,13 +313,11 @@ onMounted(async () => {
     margin: 0 auto;
     border-radius: 5px;
   }
-
   h2 {
     font-size: 2rem;
     margin: 40px 0 20px 0;
     color: var(--maincolor);
   }
-
   h3 {
     font-size: 1.5rem;
     margin: 40px 0 20px 0;
@@ -268,20 +326,17 @@ onMounted(async () => {
     text-decoration-thickness: 2px;
     text-underline-offset: 10px;
   }
-
   p {
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 10px;
     font-weight: normal;
   }
-
   hr {
     margin-top: 40px;
     border: none;
     border-top: 1px solid #eee;
   }
-
   ul {
     padding-left: 20px;
     margin: 40px 0;
@@ -297,7 +352,6 @@ onMounted(async () => {
       }
     }
   }
-
   ol {
     counter-reset: li;
     padding-left: 20px;
@@ -317,7 +371,6 @@ onMounted(async () => {
       }
     }
   }
-
   blockquote {
     margin: 40px 0;
     padding-left: 20px;
@@ -392,7 +445,6 @@ onMounted(async () => {
     }
   }
 }
-
 .cont .image-gallery-3 {
   @extend .image-gallery;
   grid-template-columns: repeat(3, 1fr);
@@ -464,7 +516,7 @@ onMounted(async () => {
 }
 
 @media screen and (max-width: 768px) {
-  .article-content :deep(article) {
+  article {
     h2 {
       font-size: 1.8rem;
     }

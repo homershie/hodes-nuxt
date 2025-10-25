@@ -52,6 +52,50 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
   ],
 
+  // 實驗性功能
+  experimental: {
+    componentIslands: true, // 元件孤島
+    payloadExtraction: true, // Payload 提取
+  },
+
+  // Nitro 預渲染設定
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/', '/about', '/service', '/contact', '/portfolio'],
+    },
+  },
+
+  // 路由規則
+  routeRules: {
+    // 首頁 - 靜態生成
+    '/': { prerender: true },
+
+    // Blog 分頁 - 靜態生成
+    '/blog/page/**': { prerender: true },
+
+    // Portfolio - 混合式 (SSG + 客戶端動態)
+    '/portfolio': {
+      prerender: true,
+      swr: 3600, // 1小時 Stale-While-Revalidate
+    },
+
+    // 文章詳情 - 靜態生成
+    '/article/**': {
+      prerender: true,
+      swr: 86400, // 24小時
+    },
+
+    // 作品詳情 - 靜態生成
+    '/project/**': {
+      prerender: true,
+      swr: 86400,
+    },
+
+    // API 路由 - 伺服器端
+    '/api/**': { cors: true },
+  },
+
   gtag: {
     id: 'G-8YSG21XKMM',
   },
@@ -86,6 +130,18 @@ export default defineNuxtConfig({
         scss: {
           // 抑制 @import 棄用警告
           silenceDeprecations: ['import'],
+        },
+      },
+    },
+    build: {
+      // 程式碼分割策略
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // 將大型第三方庫單獨打包
+            swiper: ['swiper'],
+            masonry: ['masonry-layout'],
+          },
         },
       },
     },
