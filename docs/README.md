@@ -13,6 +13,13 @@
   - 部署說明
   - 常見問題解答
 
+- **[SEO_SETUP.md](./SEO_SETUP.md)** - SEO 優化設定指南
+  - @nuxtjs/seo 套件配置
+  - Robots.txt 設定
+  - Sitemap.xml 自動生成
+  - Open Graph 和 Schema.org 設定
+  - SEO 最佳實踐
+
 ### 🔧 技術文件
 
 - **[SERVER_API.md](./SERVER_API.md)** - Server API 技術文件
@@ -27,6 +34,7 @@
 docs/
 ├── README.md           # 本檔案 - 文件索引
 ├── SETUP_EMAIL.md      # Email 功能設定指南
+├── SEO_SETUP.md        # SEO 優化設定指南
 └── SERVER_API.md       # Server API 技術文件
 ```
 
@@ -38,6 +46,7 @@ docs/
 - [Resend 文件](https://resend.com/docs)
 - [Google reCAPTCHA v3](https://developers.google.com/recaptcha/docs/v3)
 - [vee-validate 文件](https://vee-validate.logaretm.com/v4/)
+- [Nuxt SEO 官方文件](https://nuxtseo.com/)
 
 ### 相關文件
 
@@ -49,7 +58,8 @@ docs/
 ### 新手開發者
 
 1. 先閱讀 [SETUP_EMAIL.md](./SETUP_EMAIL.md) 了解如何設定 Email 功能
-2. 參考 [SERVER_API.md](./SERVER_API.md) 了解 API 的技術細節
+2. 閱讀 [SEO_SETUP.md](./SEO_SETUP.md) 了解 SEO 優化配置
+3. 參考 [SERVER_API.md](./SERVER_API.md) 了解 API 的技術細節
 
 ### 維護者
 
@@ -75,4 +85,4 @@ docs/
 
 ---
 
-**最後更新**: 2024-10-25
+**最後更新**: 2025-10-25

@@ -5,6 +5,15 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
+  // Site Config for SEO
+  site: {
+    url: 'https://homershie.com',
+    name: 'HODES | 荷馬桑 Homer Shie 的個人網站',
+    description:
+      'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫以及動畫，有興趣可以隨意逛逛，歡迎和我連絡！',
+    defaultLocale: 'zh-Hant-TW',
+  },
+
   // Runtime Config
   runtimeConfig: {
     // Private keys (只在 server-side 可用)
@@ -40,10 +49,34 @@ export default defineNuxtConfig({
     'nuxt-gtag',
     '@vueuse/nuxt',
     '@pinia/nuxt',
+    '@nuxtjs/seo',
   ],
 
   gtag: {
     id: 'G-8YSG21XKMM',
+  },
+
+  // Robots 配置
+  robots: {
+    // 生產環境允許所有爬蟲索引
+    allow: '/',
+    // 指向 sitemap
+    sitemap: 'https://homershie.com/sitemap.xml',
+    // 開發環境禁止索引
+    disallow: process.env.NODE_ENV !== 'production' ? '/' : [],
+  },
+
+  // Sitemap 配置
+  sitemap: {
+    // 自動從頁面路由生成
+    autoLastmod: true,
+    // 排除不需要的頁面
+    exclude: ['/admin/**', '/api/**'],
+    // URL 設定
+    urls: async () => {
+      // 可以在這裡添加動態路由
+      return []
+    },
   },
 
   // Vite 配置

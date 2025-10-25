@@ -23,6 +23,7 @@
 - **安全性**: Google reCAPTCHA v3
 - **圖片優化**: Nuxt Image
 - **內容管理**: Nuxt Content
+- **SEO 優化**: @nuxtjs/seo (包含 Robots、Sitemap、OG Image、Schema.org)
 - **程式碼品質**: ESLint
 - **分析工具**: Google Analytics (gtag)
 
@@ -198,7 +199,12 @@ public/              # 公開靜態檔案
 
 ### 中優先級
 
-- [ ] **SEO 優化**: 完善各頁面的 meta 標籤和結構化資料
+- [x] **SEO 優化**: 完善各頁面的 meta 標籤和結構化資料 ✅
+  - 已整合 @nuxtjs/seo 套件
+  - 自動生成 sitemap.xml
+  - 自動生成 robots.txt
+  - 支援 Open Graph 圖片生成
+  - 支援 Schema.org 結構化資料
 - [ ] **效能優化**: 實作圖片延遲載入和程式碼分割
 - [ ] **PWA 支援**: 加入離線使用和安裝功能
 - [ ] **測試覆蓋**: 建立單元測試和整合測試
