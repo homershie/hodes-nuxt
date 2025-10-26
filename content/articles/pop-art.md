@@ -20,11 +20,7 @@ author: Homer Shie
       loading="lazy"
     />
     <figcaption>
-      《Sweet Dreams, Baby!》 Roy Lichtenstein，<a
-        href="https://www.moma.org/collection/works/65792?artist_id=3542&locale=zh&page=1&sov_referrer=artist"
-        target="_blank"
-        >MoMA</a
-      >
+      《Sweet Dreams, Baby!》 Roy Lichtenstein，<a href="https://www.moma.org/collection/works/65792?artist_id=3542&locale=zh&page=1&sov_referrer=artist" target="_blank">MoMA</a>
     </figcaption>
   </figure>
 
@@ -41,11 +37,7 @@ author: Homer Shie
       loading="lazy"
     />
     <figcaption>
-      《Fountain》 Marcel Duchamp，<a
-        href="https://en.wikipedia.org/wiki/Fountain_(Duchamp)"
-        target="_blank"
-        >Wiki</a
-      >
+      《Fountain》 Marcel Duchamp，<a href="https://en.wikipedia.org/wiki/Fountain_(Duchamp)" target="_blank">Wiki</a>
     </figcaption>
   </figure>
 
@@ -64,7 +56,7 @@ author: Homer Shie
   <div class="image-gallery">
   <figure class="image">
     <img
-      src="https://r2bucket.homershie.com/assets/imgs/blog/Pop_Art/Campbells_Soup_Cans_MOMA_reduced_80%.jpg"
+      src="https://r2bucket.homershie.com/assets/imgs/blog/Pop_Art/Campbells_Soup_Cans_MOMA_reduced_80%25.jpg"
       alt="Campbells Soup Cans by Andy Warhol"
       loading="lazy"
     />
@@ -91,11 +83,7 @@ author: Homer Shie
       <figcaption>
         《Just what is it that makes today's homes so different, so appealing?》 Richard Hamilton
         from
-        <a
-          href="https://en.wikipedia.org/wiki/Just_what_is_it_that_makes_today%27s_homes_so_different,_so_appealing%3F"
-          target="_blank"
-          >Wiki</a
-        >,
+        <a href="https://en.wikipedia.org/wiki/Just_what_is_it_that_makes_today%27s_homes_so_different,_so_appealing%3F" target="_blank">Wiki</a>,
       </figcaption>
     </figure>
     <figure class="image">
@@ -106,9 +94,7 @@ author: Homer Shie
       />
       <figcaption>
         《Oh, Jeff…I Love You, Too…But..》by Roy Lichtenstein, from
-        <a href="https://en.wikipedia.org/wiki/Oh,_Jeff...I_Love_You,_Too...But..." target="_blank"
-          >Wiki</a
-        >.
+        <a href="https://en.wikipedia.org/wiki/Oh,_Jeff...I_Love_You,_Too...But..." target="_blank">Wiki</a>.
       </figcaption>
     </figure>
   </div>
@@ -144,10 +130,7 @@ author: Homer Shie
   <h2>其他的波普藝術</h2>
 
   <div class="image-masonry">
-    <a
-      href="http://www.magdiellopez.com/dailyposters/9vlb5wnb5jujk9v21kljo9yz0fnc3r"
-      target="_blank"
-    >
+    <a href="http://www.magdiellopez.com/dailyposters/9vlb5wnb5jujk9v21kljo9yz0fnc3r" target="_blank">
       <figure class="image">
         <img
           src="https://r2bucket.homershie.com/assets/imgs/blog/Pop_Art/f193c8be9057dba3b88f25d1ac18439c.jpg"
@@ -189,10 +172,7 @@ author: Homer Shie
         <figcaption>Utomaru-illustration</figcaption>
       </figure>
     </a>
-    <a
-      href="https://blog.spoongraphics.co.uk/articles/fun-magazine-cover-doodle-art-by-ana-strumpf-hattie-stewart"
-      target="_blank"
-    >
+    <a href="https://blog.spoongraphics.co.uk/articles/fun-magazine-cover-doodle-art-by-ana-strumpf-hattie-stewart" target="_blank">
       <figure class="image">
         <img
           src="https://r2bucket.homershie.com/assets/imgs/blog/Pop_Art/b9197a8dcd92ad277eab026b419ee5e9.jpg"
@@ -202,10 +182,7 @@ author: Homer Shie
         <figcaption>Fun Magazine Cover Doodle Art</figcaption>
       </figure>
     </a>
-    <a
-      href="https://i.pinimg.com/originals/18/fc/0c/18fc0c154cef98f75f48ba77c7699971.png"
-      target="_blank"
-    >
+    <a href="https://i.pinimg.com/originals/18/fc/0c/18fc0c154cef98f75f48ba77c7699971.png" target="_blank">
       <figure class="image">
         <img
           src="https://r2bucket.homershie.com/assets/imgs/blog/Pop_Art/18fc0c154cef98f75f48ba77c7699971.jpg"
@@ -297,9 +274,7 @@ author: Homer Shie
     <strong
       >轉載請標明出處並告知，我會很感謝你注重智慧財產😉<br />如果有錯誤的訊息或是不同的見解和研究可以到下面留言或</strong
     >
-    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"
-      ><strong>Instagram</strong></a
-    >
+    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"><strong>Instagram</strong></a>
     <strong>找我！</strong>
   </p>
 
@@ -307,9 +282,7 @@ author: Homer Shie
     Please indicate the source and inform me if you want to reprint, I will thank you for your
     apperciate to intellectual property.<br />
     If there are any mistakes of advice, you can reply or find me on my
-    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"
-      >Instagram</a
-    >.
+    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank">Instagram</a>.
   </p>
 </article>
 

@@ -68,11 +68,7 @@ author: Homer Shie
   <h2>新時代的像素</h2>
 
   <p>
-    像素風格雖然復古，但卻不過時，近年還有藝術家以像素風格作為表現手法，而近年視覺工作者在3D引擎上使用像素風格的作品也不在少數。<a
-      href="https://www.eboy.com/?srsltid=AfmBOorb33bG5s-1iiAHHBfb3QvWGcYAlxmqBLqbQ001eZWV3yUIjJkD"
-      target="_blank"
-      >EBoy</a
-    >從1998年來一直熱忠於像素風格，是一家專門創作像素風格的平面設計公司。他們的客戶包括Nike, Paul
+    像素風格雖然復古，但卻不過時，近年還有藝術家以像素風格作為表現手法，而近年視覺工作者在3D引擎上使用像素風格的作品也不在少數。<a href="https://www.eboy.com/?srsltid=AfmBOorb33bG5s-1iiAHHBfb3QvWGcYAlxmqBLqbQ001eZWV3yUIjJkD" target="_blank">EBoy</a>從1998年來一直熱忠於像素風格，是一家專門創作像素風格的平面設計公司。他們的客戶包括Nike, Paul
     Smith, Playstation, Kidrobot等等，證明了像素藝術的受歡迎程度和吸引力。eBoy的Kai
     Verschamer解釋說，像素藝術永遠不會過時，因為它是如此基本和令人愉快的工作：
   </p>
@@ -333,9 +329,7 @@ author: Homer Shie
 
   <h2>參考資料</h2>
   <p>
-    <a href="http://idesigni.co.uk/blog/past-present-future-pixel-art/" target="_blank"
-      >《The Past, Present and Future of Pixel Art》</a
-    >
+    <a href="http://idesigni.co.uk/blog/past-present-future-pixel-art/" target="_blank">《The Past, Present and Future of Pixel Art》</a>
     <br />
     <a href="https://en.wikipedia.org/wiki/Pixel_art" target="_blank">《Wiki: Pixel art》</a>
   </p>
@@ -347,9 +341,7 @@ author: Homer Shie
     <strong
       >轉載請標明出處並告知，我會很感謝你注重智慧財產😉<br />如果有錯誤的訊息或是不同的見解和研究可以到下面留言或</strong
     >
-    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"
-      ><strong>Instagram</strong></a
-    >
+    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"><strong>Instagram</strong></a>
     <strong>找我！</strong>
   </p>
 
@@ -357,8 +349,6 @@ author: Homer Shie
     Please indicate the source and inform me if you want to reprint, I will thank you for your
     apperciate to intellectual property.<br />
     If there are any mistakes of advice, you can reply or find me on my
-    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"
-      >Instagram</a
-    >.
+    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank">Instagram</a>.
   </p>
 </article>

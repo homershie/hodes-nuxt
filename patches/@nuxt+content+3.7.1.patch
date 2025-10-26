@@ -1,0 +1,20 @@
+diff --git a/node_modules/@nuxt/content/node_modules/@nuxtjs/mdc/dist/runtime/parser/utils/props.js b/node_modules/@nuxt/content/node_modules/@nuxtjs/mdc/dist/runtime/parser/utils/props.js
+index 1234567..abcdefg 100644
+--- a/node_modules/@nuxt/content/node_modules/@nuxtjs/mdc/dist/runtime/parser/utils/props.js
++++ b/node_modules/@nuxt/content/node_modules/@nuxtjs/mdc/dist/runtime/parser/utils/props.js
+@@ -16,7 +16,14 @@ export const unsafeLinkPrefix = [
+   "data:text/xml"
+ ];
+ function isAnchorLinkAllowed(value) {
+-  const decodedUrl = decodeURIComponent(value);
++  let decodedUrl;
++  try {
++    decodedUrl = decodeURIComponent(value);
++  } catch {
++    // 如果無法解碼，使用原始值
++    console.warn(`[MDC] Cannot decode URI component: ${value}`);
++    decodedUrl = value;
++  }
+   const urlSanitized = decodedUrl.replace(/&#x([0-9a-f]+);?/gi, "").replace(/&#(\d+);?/g, "").replace(/&[a-z]+;?/gi, "");
+   try {
+     const url = new URL(urlSanitized, "http://example.com");

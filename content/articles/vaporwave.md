@@ -48,10 +48,7 @@ author: Homer Shie
   <figure class="image">
     <img src="https://r2bucket.homershie.com/assets/imgs/blog/Vapowave/03.jpg" alt="You can’t afford love" loading="lazy" />
     <figcaption>
-      <a
-        href="https://www.instagram.com/p/Bw67tICDpcK/?utm_source=ig_web_options_share_sheet"
-        target="_blank"
-      >
+      <a href="https://www.instagram.com/p/Bw67tICDpcK/?utm_source=ig_web_options_share_sheet" target="_blank">
         《You can’t afford love》
       </a>
     </figcaption>
@@ -63,8 +60,7 @@ author: Homer Shie
   <figure class="image">
     <img src="https://r2bucket.homershie.com/assets/imgs/blog/Vapowave/04.jpg" alt="Vaporwave by unknown" loading="lazy" />
     <figcaption>
-      <a href="https://aesthetik133.tumblr.com/post/179603317992" target="_blank"
-        >Vaporwave by unknown
+      <a href="https://aesthetik133.tumblr.com/post/179603317992" target="_blank">Vaporwave by unknown
       </a>
     </figcaption>
   </figure>
@@ -77,10 +73,7 @@ author: Homer Shie
   <figure class="image">
     <img src="https://r2bucket.homershie.com/assets/imgs/blog/Vapowave/05.png" alt="Crying folders" loading="lazy" />
     <figcaption>
-      <a
-        href="https://itguidesandnews.tumblr.com/post/169732604704/crying-folders-itguidesandnewstumblrcom"
-        target="_blank"
-      >
+      <a href="https://itguidesandnews.tumblr.com/post/169732604704/crying-folders-itguidesandnewstumblrcom" target="_blank">
         《Crying folders》
       </a>
     </figcaption>
@@ -92,10 +85,7 @@ author: Homer Shie
   <figure class="image">
     <img src="https://r2bucket.homershie.com/assets/imgs/blog/Vapowave/06.jpg" alt="There’s a disconnect" loading="lazy" />
     <figcaption>
-      <a
-        href="https://www.tumblr.com/gothravendarkholme/167167720159/namelessbutnoah-theres-a-disconnect"
-        target="_blank"
-      >《There’s a disconnect》
+      <a href="https://www.tumblr.com/gothravendarkholme/167167720159/namelessbutnoah-theres-a-disconnect" target="_blank">《There’s a disconnect》
       </a>
     </figcaption>
   </figure>
@@ -161,8 +151,7 @@ author: Homer Shie
     <img src="https://r2bucket.homershie.com/assets/imgs/blog/Vapowave/11.gif" alt="Loop Aesthetics" loading="lazy" />
     <figcaption>
       <a href="https://giphy.com/gifs/seapunk-vaporwave-webpunk-3oBUVMNuHNSuY" target="_blank">
-        《Loop Aesthetics》</a
-      >
+        《Loop Aesthetics》</a>
     </figcaption>
   </figure>
 
@@ -179,10 +168,7 @@ author: Homer Shie
         <figcaption>圖文不符-能自動駕駛的AI智慧車</figcaption>
       </figure>
     </a>
-    <a
-      href="https://richartevent.com.tw/fa-shiau-tsai/?utm_source=youtube&utm_medium=click&utm_campaign=fa_shiau_tsai_201911&utm_content=fa_shiau_tsai_201911_30s_ad"
-      target="_blank"
-    >
+    <a href="https://richartevent.com.tw/fa-shiau-tsai/?utm_source=youtube&utm_medium=click&utm_campaign=fa_shiau_tsai_201911&utm_content=fa_shiau_tsai_201911_30s_ad" target="_blank">
       <figure class="image">
         <img src="https://r2bucket.homershie.com/assets/imgs/blog/Vapowave/richard.png" alt="Richard發小財" loading="lazy" />
         <figcaption>Richard 發小財- 影片及網頁設計</figcaption>
@@ -276,10 +262,7 @@ author: Homer Shie
         <figcaption>Remorses • Dreams • Expectations</figcaption>
       </figure>
     </a>
-    <a
-      href="https://www.behance.net/gallery/47020993/Sistemas-de-identidad-Espacio-Cultural-de-la-ciencia"
-      target="_blank"
-    >
+    <a href="https://www.behance.net/gallery/47020993/Sistemas-de-identidad-Espacio-Cultural-de-la-ciencia" target="_blank">
       <figure class="image">
         <img
           src="https://r2bucket.homershie.com/assets/imgs/blog/Vapowave/27.jpg"
@@ -342,24 +325,7 @@ author: Homer Shie
 
   <h2>參考資料</h2>
   <p>
-    <a href="https://en.wikipedia.org/wiki/Vaporwave" target="_blank">維基百科</a
-    >、<a href="https://flipermag.com/2015/09/10/vaporwave/" target="_blank">FLIPER</a>、<a
-      href="https://medium.com/@derekmhopper/meditations-on-vaporwave-e7ba576adaf3"
-      target="_blank"
-      >Meditations on Vaporwave</a
-    >、<a href="https://daily.bandcamp.com/2016/09/16/vaporwave-iconography-column/" target="_blank"
-      >bandcamp</a
-    >、<a href="https://zhuanlan.zhihu.com/p/67275811" target="_blank"
-      >什麼是蒸氣波的設計風格？ 為什麼流行？</a
-    >、<a href="https://zhuanlan.zhihu.com/p/38458080" target="_blank"
-      >Vaporwave/蒸氣波 蒸得到底是什麼</a
-    >、<a href="https://www.zhihu.com/question/45911422" target="_blank"
-      >什麼是蒸氣波（Vaporwave）？</a
-    >、<a href="https://www.reddit.com/" target="_blank">Reddit</a>、<a
-      href="https://www.wazaiii.com/articles?id=787"
-      target="_blank"
-      >WAZAIII</a
-    >
+    <a href="https://en.wikipedia.org/wiki/Vaporwave" target="_blank">維基百科</a>、<a href="https://flipermag.com/2015/09/10/vaporwave/" target="_blank">FLIPER</a>、<a href="https://medium.com/@derekmhopper/meditations-on-vaporwave-e7ba576adaf3" target="_blank">Meditations on Vaporwave</a>、<a href="https://daily.bandcamp.com/2016/09/16/vaporwave-iconography-column/" target="_blank">bandcamp</a>、<a href="https://zhuanlan.zhihu.com/p/67275811" target="_blank">什麼是蒸氣波的設計風格？ 為什麼流行？</a>、<a href="https://zhuanlan.zhihu.com/p/38458080" target="_blank">Vaporwave/蒸氣波 蒸得到底是什麼</a>、<a href="https://www.zhihu.com/question/45911422" target="_blank">什麼是蒸氣波（Vaporwave）？</a>、<a href="https://www.reddit.com/" target="_blank">Reddit</a>、<a href="https://www.wazaiii.com/articles?id=787" target="_blank">WAZAIII</a>
   </p>
 
   <p><strong>🤙有其他擅長這風格的像素風格創作者也可以通知我把你擺上來唷！</strong></p>
@@ -369,9 +335,7 @@ author: Homer Shie
     <strong
       >轉載請標明出處並告知，我會很感謝你注重智慧財產😉<br />如果有錯誤的訊息或是不同的見解和研究可以到下面留言或</strong
     >
-    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"
-      ><strong>Instagram</strong></a
-    >
+    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"><strong>Instagram</strong></a>
     <strong>找我！</strong>
   </p>
 
@@ -379,8 +343,6 @@ author: Homer Shie
     Please indicate the source and inform me if you want to reprint, I will thank you for your
     apperciate to intellectual property.<br />
     If there are any mistakes of advice, you can reply or find me on my
-    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"
-      >Instagram</a
-    >.
+    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank">Instagram</a>.
   </p>
 </article>

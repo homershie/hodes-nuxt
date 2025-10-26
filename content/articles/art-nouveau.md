@@ -79,11 +79,7 @@ author: Homer Shie
         loading="lazy"
       />
       <figcaption>
-        <a
-          href="https://en.wikipedia.org/wiki/Henri_de_Toulouse-Lautrec"
-          target="_blank"
-          >朗讀狀的依薇特·吉爾貝 by 羅特列克, 1894</a
-        >
+        <a href="https://en.wikipedia.org/wiki/Henri_de_Toulouse-Lautrec" target="_blank">朗讀狀的依薇特·吉爾貝 by 羅特列克, 1894</a>
       </figcaption>
     </figure>
     <figure class="image">
@@ -93,11 +89,7 @@ author: Homer Shie
         loading="lazy"
       />
       <figcaption>
-        <a
-          href="https://en.wikipedia.org/wiki/Paul_Gauguin"
-          target="_blank"
-          >黃色的基督 by 高更, 1889</a
-        >
+        <a href="https://en.wikipedia.org/wiki/Paul_Gauguin" target="_blank">黃色的基督 by 高更, 1889</a>
       </figcaption>
     </figure>
     <figure class="image">
@@ -107,11 +99,7 @@ author: Homer Shie
         loading="lazy"
       />
       <figcaption>
-        <a
-          href="https://en.wikipedia.org/wiki/Utamaro"
-          target="_blank"
-          >寬政三美人 by 喜多川歌麿</a
-        >
+        <a href="https://en.wikipedia.org/wiki/Utamaro" target="_blank">寬政三美人 by 喜多川歌麿</a>
       </figcaption>
     </figure>
     <figure class="image">
@@ -121,11 +109,7 @@ author: Homer Shie
         loading="lazy"
       />
       <figcaption>
-        <a
-          href="https://en.wikipedia.org/wiki/Book_of_Kells"
-          target="_blank"
-          >凱爾經</a
-        >
+        <a href="https://en.wikipedia.org/wiki/Book_of_Kells" target="_blank">凱爾經</a>
       </figcaption>
     </figure>
   </div>
@@ -148,10 +132,7 @@ author: Homer Shie
         <figcaption>Aubrey Beardsley, 1893–4</figcaption>
       </figure>
     </a>
-    <a
-      href="https://en.wikipedia.org/wiki/Eug%C3%A8ne_Grasset"
-      target="_blank"
-    >
+    <a href="https://en.wikipedia.org/wiki/Eug%C3%A8ne_Grasset" target="_blank">
       <figure class="image">
         <img
           src="https://r2bucket.homershie.com/assets/imgs/blog/Art_Nouveau/800px-Eugene_Grasset,_poster_for_Grafton_Galleries,_1893.jpg"
@@ -161,10 +142,7 @@ author: Homer Shie
         <figcaption>Eugène Grasset, 1893</figcaption>
       </figure>
     </a>
-    <a
-      href="https://commons.wikimedia.org/wiki/File:Otto_Eckmann_-_Jugend_Nr._14,_1896.jpg"
-      target="_blank"
-    >
+    <a href="https://commons.wikimedia.org/wiki/File:Otto_Eckmann_-_Jugend_Nr._14,_1896.jpg" target="_blank">
       <figure class="image">
         <img
           src="https://r2bucket.homershie.com/assets/imgs/blog/Art_Nouveau/426px-Otto_Eckmann_-_Jugend_Nr._14,_1896.jpg"
@@ -174,10 +152,7 @@ author: Homer Shie
         <figcaption>德國Jugend雜誌封面, 1896</figcaption>
       </figure>
     </a>
-    <a
-      href="https://en.wikipedia.org/wiki/Henri_de_Toulouse-Lautrec"
-      target="_blank"
-    >
+    <a href="https://en.wikipedia.org/wiki/Henri_de_Toulouse-Lautrec" target="_blank">
       <figure class="image">
         <img
           src="https://r2bucket.homershie.com/assets/imgs/blog/Art_Nouveau/Lautrec_moulin_rouge%2C_la_goulue_%28poster%29_1891.jpg"
@@ -197,10 +172,7 @@ author: Homer Shie
         <figcaption>Will H. Bradley, 1894</figcaption>
       </figure>
     </a>
-    <a
-      href="https://en.wikipedia.org/wiki/Alphonse_Mucha"
-      target="_blank"
-    >
+    <a href="https://en.wikipedia.org/wiki/Alphonse_Mucha" target="_blank">
       <figure class="image">
         <img
           src="https://r2bucket.homershie.com/assets/imgs/blog/Art_Nouveau/800px-Alfons_Mucha_-_1898_-_Dance.jpg"
@@ -210,10 +182,7 @@ author: Homer Shie
         <figcaption>穆夏, 1898</figcaption>
       </figure>
     </a>
-    <a
-      href="https://en.wikipedia.org/wiki/Les_Ma%C3%AEtres_de_l%27Affiche"
-      target="_blank"
-    >
+    <a href="https://en.wikipedia.org/wiki/Les_Ma%C3%AEtres_de_l%27Affiche" target="_blank">
       <figure class="image">
         <img
           src="https://r2bucket.homershie.com/assets/imgs/blog/Art_Nouveau/Jules_Chéret-Fete_des_Fleurs.jpg"
@@ -223,10 +192,7 @@ author: Homer Shie
         <figcaption>切雷 aka. 現代海報之父</figcaption>
       </figure>
     </a>
-    <a
-      href="https://en.wikipedia.org/wiki/Art_Nouveau"
-      target="_blank"
-    >
+    <a href="https://en.wikipedia.org/wiki/Art_Nouveau" target="_blank">
       <figure class="image">
         <img
           src="https://r2bucket.homershie.com/assets/imgs/blog/Art_Nouveau/800px-Kolo_Moser_-_Mädchenkopf_-_1899.jpg"
@@ -289,9 +255,7 @@ author: Homer Shie
         loading="lazy"
       />
       <figcaption>
-        <a href="https://www.wes-wilson.com/bill-graham-presents.html" target="_blank"
-          >Wes Wilson－海報, 1967</a
-        >
+        <a href="https://www.wes-wilson.com/bill-graham-presents.html" target="_blank">Wes Wilson－海報, 1967</a>
       </figcaption>
     </figure>
     <figure class="image">
@@ -301,9 +265,7 @@ author: Homer Shie
         loading="lazy"
       />
       <figcaption>
-        <a href="https://www.wes-wilson.com/bill-graham-presents.html" target="_blank"
-          >Wes Wilson－海報, 1967</a
-        >
+        <a href="https://www.wes-wilson.com/bill-graham-presents.html" target="_blank">Wes Wilson－海報, 1967</a>
       </figcaption>
     </figure>
     <figure class="image">
@@ -314,8 +276,7 @@ author: Homer Shie
         loading="lazy"
       />
       <figcaption>
-        <a href="https://www.moma.org/artists/4117-victor-moscoso" target="_blank"
-          >Victor Moscoso－海報, 1967
+        <a href="https://www.moma.org/artists/4117-victor-moscoso" target="_blank">Victor Moscoso－海報, 1967
         </a>
       </figcaption>
     </figure>
@@ -336,11 +297,7 @@ author: Homer Shie
         loading="lazy"
       />
       <figcaption>
-        <a
-          href="https://www.etsy.com/listing/173076260/pink-floyd-1960s-art-nouveau-concert?utm_source=OpenGraph&utm_medium=PageTools&utm_campaign=Share&epik=dj0yJnU9SXduSkJUR0Qwbklvc29mM0dHb3RDOV84eGJqdmg4SHkmcD0wJm49ZEhFVHlzWk82bG9lOUVobUZTRE9aZyZ0PUFBQUFBRi1nZWZV"
-          target="_blank"
-          >Pink Floyd樂團海報</a
-        >
+        <a href="https://www.etsy.com/listing/173076260/pink-floyd-1960s-art-nouveau-concert?utm_source=OpenGraph&utm_medium=PageTools&utm_campaign=Share&epik=dj0yJnU9SXduSkJUR0Qwbklvc29mM0dHb3RDOV84eGJqdmg4SHkmcD0wJm49ZEhFVHlzWk82bG9lOUVobUZTRE9aZyZ0PUFBQUFBRi1nZWZV" target="_blank">Pink Floyd樂團海報</a>
       </figcaption>
     </figure>
     <figure class="image">
@@ -350,11 +307,7 @@ author: Homer Shie
         loading="lazy"
       />
       <figcaption>
-        <a
-          href="https://www.etsy.com/listing/821302485/?ga_order=most_relevant&ga_search_type=all&ga_view_type=gallery&ga_search_query=fleetwood+mac+poster&ref=sr_gallery-1-3&pro=1"
-          target="_blank"
-          >Fleetwood Mac樂團海報</a
-        >
+        <a href="https://www.etsy.com/listing/821302485/?ga_order=most_relevant&ga_search_type=all&ga_view_type=gallery&ga_search_query=fleetwood+mac+poster&ref=sr_gallery-1-3&pro=1" target="_blank">Fleetwood Mac樂團海報</a>
       </figcaption>
     </figure>
   </div>
@@ -371,8 +324,7 @@ author: Homer Shie
     />
     <figcaption>
       <a href="https://talk.ltn.com.tw/article/breakingnews/1521576" target="_blank">
-        Romantic 乙女 Style by 高橋真琴</a
-      >
+        Romantic 乙女 Style by 高橋真琴</a>
     </figcaption>
   </figure>
 
@@ -410,10 +362,7 @@ author: Homer Shie
         <figcaption>生活蘇格蘭紅茶－包裝設計2 by 心融</figcaption>
       </figure>
     </a>
-    <a
-      href="https://www.deviantart.com/neo2009/art/Nokia-L-Amour-Ad-Concept-77229117"
-      target="_blank"
-    >
+    <a href="https://www.deviantart.com/neo2009/art/Nokia-L-Amour-Ad-Concept-77229117" target="_blank">
       <figure class="image">
         <img
           src="https://r2bucket.homershie.com/assets/imgs/blog/Art_Nouveau/d19zad9-dfa6762a-a72a-405e-85e8-f11072927283.jpg"
@@ -501,10 +450,7 @@ author: Homer Shie
         <figcaption>吉普力系列插畫2 by TAKUMI</figcaption>
       </figure>
     </a>
-    <a
-      href="https://www.behance.net/gallery/16663633/Pixel-art-%28masterpiece-series%29?tracking_source=search_projects_recommended%7Cmucha"
-      target="_blank"
-    >
+    <a href="https://www.behance.net/gallery/16663633/Pixel-art-%28masterpiece-series%29?tracking_source=search_projects_recommended%7Cmucha" target="_blank">
       <figure class="image">
         <img
           src="https://r2bucket.homershie.com/assets/imgs/blog/Art_Nouveau/cc550216663633.562af947e8364.jpg"
@@ -514,10 +460,7 @@ author: Homer Shie
         <figcaption>Mucha x Pixel Art</figcaption>
       </figure>
     </a>
-    <a
-      href="https://www.behance.net/gallery/87835469/Microsoft-x-Surface?tracking_source=search_projects_recommended%7Cline+plant+illustration"
-      target="_blank"
-    >
+    <a href="https://www.behance.net/gallery/87835469/Microsoft-x-Surface?tracking_source=search_projects_recommended%7Cline+plant+illustration" target="_blank">
       <figure class="image">
         <img
           src="https://r2bucket.homershie.com/assets/imgs/blog/Art_Nouveau/d35ff587835469.5dc4007143250.jpg"
@@ -527,10 +470,7 @@ author: Homer Shie
         <figcaption>Microsoft x Surface</figcaption>
       </figure>
     </a>
-    <a
-      href="https://www.behance.net/gallery/88168751/Samsung-Mercedes-Bazan?tracking_source=search_projects_recommended%7Cabstract+plant"
-      target="_blank"
-    >
+    <a href="https://www.behance.net/gallery/88168751/Samsung-Mercedes-Bazan?tracking_source=search_projects_recommended%7Cabstract+plant" target="_blank">
       <figure class="image">
         <img
           src="https://r2bucket.homershie.com/assets/imgs/blog/Art_Nouveau/a4224088168751.5dcdcd41d7f95.jpg"
@@ -545,59 +485,7 @@ author: Homer Shie
   <h2>參考資料</h2>
   <p>
     <a href="https://en.wikipedia.org/wiki/Art_Nouveau" target="_blank">Jugendstil(Wiki)</a>、
-    <a href="https://en.wikipedia.org/wiki/Exposition_Universelle_%281900%29" target="_blank"
-      >1900年世界博覽會(Wiki)</a
-    >、<a href="https://en.wikipedia.org/wiki/Jules_Ch%C3%A9ret" target="_blank"
-      >朱爾斯·切雷(Wiki)</a
-    >、<a href="https://en.wikipedia.org/wiki/Alphonse_Mucha" target="_blank">阿爾豐斯·慕夏(Wiki)</a
-    >、<a href="https://en.wikipedia.org/wiki/Gisbert_Combaz" target="_blank"
-      >Gisbert Combaz(Wiki)</a
-    >、<a href="https://en.wikipedia.org/wiki/Aubrey_Beardsley" target="_blank"
-      >奧伯利·比亞茲萊(Wiki)</a
-    >、<a href="http://www.artnet.com/artists/albert-klingner/" target="_blank">Albert Klingner</a
-    >、<a href="https://en.wikipedia.org/wiki/Antoni_Gaud%C3%AD" target="_blank"
-      >安東尼·高第(Wiki)</a
-    >、<a href="https://en.wikipedia.org/wiki/Paul_Gauguin" target="_blank">保羅·高更(Wiki)</a>、<a
-      href="https://en.wikipedia.org/wiki/Henri_de_Toulouse-Lautrec"
-      target="_blank"
-      >羅特列克(Wiki)</a
-    >、<a href="https://en.wikipedia.org/wiki/Bill_Graham_%28promoter%29" target="_blank"
-      >Bill Graham(Wiki)</a
-    >、<a href="https://en.wikipedia.org/wiki/Wes_Wilson" target="_blank">Wes Wilson(Wiki)</a>、<a
-      href="https://en.wikipedia.org/wiki/Book_of_Kells"
-      target="_blank"
-      >凱爾經(Wiki)</a
-    >、<a href="https://en.wikipedia.org/wiki/Henry_van_de_Velde" target="_blank"
-      >亨利·范·德費爾德(Wiki)</a
-    >、<a href="https://artemperor.tw/knowledge/53" target="_blank">非池中-新藝術運動</a>、<a
-      href="https://www.luoow.com/dc_hk/104683123"
-      target="_blank"
-      >你可知日本漫畫也曾抄襲？</a
-    >、<a
-      href="https://thepolysh.com/blog/2016/05/15/the-art-nouveau-poster-by-alain-weill/"
-      target="_blank"
-      >INSPIRATION｜《THE ART NOUVEAU POSTER》，新藝術海報的黃金年代</a
-    >、<a href="https://hippie.wikia.org/wiki/Art_Nouveau_and_hippie_art" target="_blank"
-      >Art Nouveau and hippie art</a
-    >、<a href="https://www.britannica.com/art/Art-Nouveau" target="_blank">Art Nouveau</a>、<a
-      href="https://gallerease.com/en/magazine/articles/the-difference-between-art-nouveau-art-deco__6ae04a6d3cbf"
-      target="_blank"
-      >The difference between Art Nouveau and Art Deco explained!</a
-    >、<a
-      href="https://www.hunker.com/13725336/difference-between-arts-and-crafts-and-art-nouveau"
-      target="_blank"
-      >Arts and Crafts vs. Art Nouveau: Two Iconic Styles, One Major Difference</a
-    >、<a
-      href="https://canvas.saatchiart.com/lifestyle/inspiration/art-deco-art-nouveau-arts-and-crafts-whats-the-difference"
-      target="_blank"
-      >Art Deco, Art Nouveau, Arts and Crafts: What’s the Difference?</a
-    >、<a href="https://www.gq.com.tw/life/content-38834" target="_blank"
-      >為什麼這麼多人嚮往60年代─一本書告訴你關鍵事件</a
-    >、<a
-      href="http://www.openculture.com/2019/11/how-art-nouveau-inspired-the-psychedelic-designs-of-the-1960s.html"
-      target="_blank"
-      >How Art Nouveau Inspired the Psychedelic Designs of the 1960s</a
-    >
+    <a href="https://en.wikipedia.org/wiki/Exposition_Universelle_%281900%29" target="_blank">1900年世界博覽會(Wiki)</a>、<a href="https://en.wikipedia.org/wiki/Jules_Ch%C3%A9ret" target="_blank">朱爾斯·切雷(Wiki)</a>、<a href="https://en.wikipedia.org/wiki/Alphonse_Mucha" target="_blank">阿爾豐斯·慕夏(Wiki)</a>、<a href="https://en.wikipedia.org/wiki/Gisbert_Combaz" target="_blank">Gisbert Combaz(Wiki)</a>、<a href="https://en.wikipedia.org/wiki/Aubrey_Beardsley" target="_blank">奧伯利·比亞茲萊(Wiki)</a>、<a href="http://www.artnet.com/artists/albert-klingner/" target="_blank">Albert Klingner</a>、<a href="https://en.wikipedia.org/wiki/Antoni_Gaud%C3%AD" target="_blank">安東尼·高第(Wiki)</a>、<a href="https://en.wikipedia.org/wiki/Paul_Gauguin" target="_blank">保羅·高更(Wiki)</a>、<a href="https://en.wikipedia.org/wiki/Henri_de_Toulouse-Lautrec" target="_blank">羅特列克(Wiki)</a>、<a href="https://en.wikipedia.org/wiki/Bill_Graham_%28promoter%29" target="_blank">Bill Graham(Wiki)</a>、<a href="https://en.wikipedia.org/wiki/Wes_Wilson" target="_blank">Wes Wilson(Wiki)</a>、<a href="https://en.wikipedia.org/wiki/Book_of_Kells" target="_blank">凱爾經(Wiki)</a>、<a href="https://en.wikipedia.org/wiki/Henry_van_de_Velde" target="_blank">亨利·范·德費爾德(Wiki)</a>、<a href="https://artemperor.tw/knowledge/53" target="_blank">非池中-新藝術運動</a>、<a href="https://www.luoow.com/dc_hk/104683123" target="_blank">你可知日本漫畫也曾抄襲？</a>、<a href="https://thepolysh.com/blog/2016/05/15/the-art-nouveau-poster-by-alain-weill/" target="_blank">INSPIRATION｜《THE ART NOUVEAU POSTER》，新藝術海報的黃金年代</a>、<a href="https://hippie.wikia.org/wiki/Art_Nouveau_and_hippie_art" target="_blank">Art Nouveau and hippie art</a>、<a href="https://www.britannica.com/art/Art-Nouveau" target="_blank">Art Nouveau</a>、<a href="https://gallerease.com/en/magazine/articles/the-difference-between-art-nouveau-art-deco__6ae04a6d3cbf" target="_blank">The difference between Art Nouveau and Art Deco explained!</a>、<a href="https://www.hunker.com/13725336/difference-between-arts-and-crafts-and-art-nouveau" target="_blank">Arts and Crafts vs. Art Nouveau: Two Iconic Styles, One Major Difference</a>、<a href="https://canvas.saatchiart.com/lifestyle/inspiration/art-deco-art-nouveau-arts-and-crafts-whats-the-difference" target="_blank">Art Deco, Art Nouveau, Arts and Crafts: What’s the Difference?</a>、<a href="https://www.gq.com.tw/life/content-38834" target="_blank">為什麼這麼多人嚮往60年代─一本書告訴你關鍵事件</a>、<a href="http://www.openculture.com/2019/11/how-art-nouveau-inspired-the-psychedelic-designs-of-the-1960s.html" target="_blank">How Art Nouveau Inspired the Psychedelic Designs of the 1960s</a>
   </p>
 
   <hr />
@@ -605,9 +493,7 @@ author: Homer Shie
     <strong
       >轉載請標明出處並告知，我會很感謝你注重智慧財產😉<br />如果有錯誤的訊息或是不同的見解和研究可以到下面留言或</strong
     >
-    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"
-      ><strong>Instagram</strong></a
-    >
+    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"><strong>Instagram</strong></a>
     <strong>找我！</strong>
   </p>
 
@@ -615,8 +501,6 @@ author: Homer Shie
     Please indicate the source and inform me if you want to reprint, I will thank you for your
     apperciate to intellectual property.<br />
     If there are any mistakes of advice, you can reply or find me on my
-    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"
-      >Instagram</a
-    >.
+    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank">Instagram</a>.
   </p>
 </article>

@@ -120,11 +120,7 @@ author: Homer Shie
 
   <h2>參考資料</h2>
   <p>
-    <a target="_blank" href="https://read01.com/zh-tw/dd7ymo.html#.Xb_oXpozaUl"> 壹讀</a>、<a
-      target="_blank"
-      href="http://www.sucaijishi.com/2016/worth_0805/150.html"
-      >素材集市</a
-    >、<a target="_blank" href="https://dribbble.com/Madebyelvis">MBE Dribble</a>
+    <a target="_blank" href="https://read01.com/zh-tw/dd7ymo.html#.Xb_oXpozaUl"> 壹讀</a>、<a target="_blank" href="http://www.sucaijishi.com/2016/worth_0805/150.html">素材集市</a>、<a target="_blank" href="https://dribbble.com/Madebyelvis">MBE Dribble</a>
   </p>
 
   <hr />
@@ -132,9 +128,7 @@ author: Homer Shie
     <strong
       >轉載請標明出處並告知，我會很感謝你注重智慧財產😉<br />如果有錯誤的訊息或是不同的見解和研究可以到下面留言或</strong
     >
-    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"
-      ><strong>Instagram</strong></a
-    >
+    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"><strong>Instagram</strong></a>
     <strong>找我！</strong>
   </p>
 
@@ -142,9 +136,7 @@ author: Homer Shie
     Please indicate the source and inform me if you want to reprint, I will thank you for your
     apperciate to intellectual property.<br />
     If there are any mistakes of advice, you can reply or find me on my
-    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"
-      >Instagram</a
-    >.
+    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank">Instagram</a>.
   </p>
 </article>
 

@@ -20,22 +20,10 @@ author: Homer Shie
       loading="lazy"
     />
     <figcaption>
-      1.<a
-        href="https://www.apartmenttherapy.com/art-deco-vs-art-nouveau-whats-the-difference-227508"
-        target="_blank"
-        >傳統時代</a
-      >
-      2.<a
-        href="https://www.mpweekly.com/culture/%e7%94%b0%e4%b8%ad%e4%b8%80%e5%85%89-%e5%b9%b3%e9%9d%a2%e8%a8%ad%e8%a8%88-%e7%84%a1%e5%8d%b0%e8%89%af%e5%93%81-125298"
-        target="_blank"
-        >現代主義</a
-      >
+      1.<a href="https://www.apartmenttherapy.com/art-deco-vs-art-nouveau-whats-the-difference-227508" target="_blank">傳統時代</a>
+      2.<a href="https://www.mpweekly.com/culture/%e7%94%b0%e4%b8%ad%e4%b8%80%e5%85%89-%e5%b9%b3%e9%9d%a2%e8%a8%ad%e8%a8%88-%e7%84%a1%e5%8d%b0%e8%89%af%e5%93%81-125298" target="_blank">現代主義</a>
       3.<a href="https://en.wikipedia.org/wiki/You_Are_Not_Yourself" target="_blank">後現代主義</a>
-      4.<a
-        href="https://www.behance.net/gallery/65400943/Team-Patata?tracking_source=search_projects_recommended%7C3d+women"
-        target="_blank"
-        >元現代主義</a
-      >
+      4.<a href="https://www.behance.net/gallery/65400943/Team-Patata?tracking_source=search_projects_recommended%7C3d+women" target="_blank">元現代主義</a>
     </figcaption>
   </figure>
 
@@ -66,19 +54,9 @@ author: Homer Shie
       loading="lazy"
     />
     <figcaption>
-      1.<a href="http://www.sheaff-ephemera.com/list/gaslight_style.html" target="_blank"
-        >維多利亞風格海報</a
-      >
-      2.<a
-        href="https://www.trc-leiden.nl/trc-needles/organisations-and-movements/artistic-movements/arts-and-crafts-movement"
-        target="_blank"
-        >美術工藝運動海報</a
-      >
-      3.<a
-        href="https://www.apartmenttherapy.com/art-deco-vs-art-nouveau-whats-the-difference-227508"
-        target="_blank"
-        >新藝術運動海報</a
-      >
+      1.<a href="http://www.sheaff-ephemera.com/list/gaslight_style.html" target="_blank">維多利亞風格海報</a>
+      2.<a href="https://www.trc-leiden.nl/trc-needles/organisations-and-movements/artistic-movements/arts-and-crafts-movement" target="_blank">美術工藝運動海報</a>
+      3.<a href="https://www.apartmenttherapy.com/art-deco-vs-art-nouveau-whats-the-difference-227508" target="_blank">新藝術運動海報</a>
     </figcaption>
   </figure>
   <p>
@@ -105,15 +83,9 @@ author: Homer Shie
       loading="lazy"
     />
     <figcaption>
-      1.<a href="https://china20.weebly.com/252092651925209233803681621160.html" target="_blank"
-        >政宣海報－批林批孔運動</a
-      >
+      1.<a href="https://china20.weebly.com/252092651925209233803681621160.html" target="_blank">政宣海報－批林批孔運動</a>
       2.<a href="https://www.widewalls.ch/magazine/50s-posters" target="_blank">美國媚俗風格海報</a>
-      3.<a
-        href="https://hokkfabrica.com/long-read-women-and-flower-case-image-in-30s/"
-        target="_blank"
-        >老上海海報</a
-      >
+      3.<a href="https://hokkfabrica.com/long-read-women-and-flower-case-image-in-30s/" target="_blank">老上海海報</a>
     </figcaption>
   </figure>
 
@@ -125,23 +97,11 @@ author: Homer Shie
       loading="lazy"
     />
     <figcaption>
-      4.<a
-        href="https://www.facebook.com/twoldillustration/photos/a.1678534932384040/1787427728161426/?type=1&amp;theater="
-        target="_blank"
-        >台灣5.60年代的朝晚牙粉紙包裝</a
-      >
+      4.<a href="https://www.facebook.com/twoldillustration/photos/a.1678534932384040/1787427728161426/?type=1&amp;theater=" target="_blank">台灣5.60年代的朝晚牙粉紙包裝</a>
       5.
-      <a
-        href="http://www.taichung-life.com.tw/index.php"
-        target="_blank"
-        >寄藥包</a
-      >
+      <a href="http://www.taichung-life.com.tw/index.php" target="_blank">寄藥包</a>
       6.
-      <a
-        href="https://www.facebook.com/twoldillustration/photos/a.1678534932384040/1796685593902306/?type=3&amp;theater="
-        target="_blank"
-        >餅乾鐵盒上蓋</a
-      >
+      <a href="https://www.facebook.com/twoldillustration/photos/a.1678534932384040/1796685593902306/?type=3&amp;theater=" target="_blank">餅乾鐵盒上蓋</a>
     </figcaption>
   </figure>
 <hr />
@@ -160,16 +120,8 @@ author: Homer Shie
       loading="lazy"
     />
     <figcaption>
-      1.<a
-        href="https://en.wikipedia.org/wiki/Modern_Style_(British_Art_Nouveau_style)"
-        target="_blank"
-        >英國新藝術風格</a
-      >
-      2.<a href="https://en.wikipedia.org/wiki/Art_Deco" target="_blank">裝飾風藝術</a> 3.<a
-        href="https://manhattanarts.com/what-is-cubism/"
-        target="_blank"
-        >立體主義</a
-      >
+      1.<a href="https://en.wikipedia.org/wiki/Modern_Style_(British_Art_Nouveau_style)" target="_blank">英國新藝術風格</a>
+      2.<a href="https://en.wikipedia.org/wiki/Art_Deco" target="_blank">裝飾風藝術</a> 3.<a href="https://manhattanarts.com/what-is-cubism/" target="_blank">立體主義</a>
     </figcaption>
   </figure>
 
@@ -181,19 +133,9 @@ author: Homer Shie
       loading="lazy"
     />
     <figcaption>
-      4.<a
-        href="https://www.apollo-magazine.com/what-is-dada-and-how-much-is-it-worth/"
-        target="_blank"
-        >達達主義</a
-      >
-      5.<a
-        href="https://legomenon.com/time-and-motion-in-art-futurist-paintings-of-movement.html"
-        target="_blank"
-        >未來主義</a
-      >
-      6.<a href="https://mymodernmet.com/what-is-surrealism-definition/" target="_blank"
-        >超現實主義</a
-      >
+      4.<a href="https://www.apollo-magazine.com/what-is-dada-and-how-much-is-it-worth/" target="_blank">達達主義</a>
+      5.<a href="https://legomenon.com/time-and-motion-in-art-futurist-paintings-of-movement.html" target="_blank">未來主義</a>
+      6.<a href="https://mymodernmet.com/what-is-surrealism-definition/" target="_blank">超現實主義</a>
     </figcaption>
   </figure>
 
@@ -219,16 +161,8 @@ author: Homer Shie
       loading="lazy"
     />
     <figcaption>
-      1.<a href="https://www.wikiwand.com/en/El_Lissitzky" target="_blank">俄國構成主義</a> 2.<a
-        href="https://leightonestick.wordpress.com/2015/11/15/de-stijl-1917-1931/"
-        target="_blank"
-        >荷蘭風格派</a
-      >
-      3.<a
-        href="https://www.europeanheritagetimes.eu/2019/08/09/the-new-bauhaus-museum-in-weimar-a-conversational-retrospective/"
-        target="_blank"
-        >德國包浩斯風格</a
-      >
+      1.<a href="https://www.wikiwand.com/en/El_Lissitzky" target="_blank">俄國構成主義</a> 2.<a href="https://leightonestick.wordpress.com/2015/11/15/de-stijl-1917-1931/" target="_blank">荷蘭風格派</a>
+      3.<a href="https://www.europeanheritagetimes.eu/2019/08/09/the-new-bauhaus-museum-in-weimar-a-conversational-retrospective/" target="_blank">德國包浩斯風格</a>
     </figcaption>
   </figure>
 
@@ -240,15 +174,9 @@ author: Homer Shie
       loading="lazy"
     />
     <figcaption>
-      4.<a href="http://flyergoodness.blogspot.com/search?q=swiss+style" target="_blank"
-        >瑞士國際主義</a
-      >
-      5.<a href="https://twitter.com/magalleriabath/status/934086037462241281" target="_blank"
-        >功能主義</a
-      >
-      6.<a href="https://www.artsy.net/artwork/ellsworth-kelly-red-slash-blue" target="_blank"
-        >極簡主義</a
-      >
+      4.<a href="http://flyergoodness.blogspot.com/search?q=swiss+style" target="_blank">瑞士國際主義</a>
+      5.<a href="https://twitter.com/magalleriabath/status/934086037462241281" target="_blank">功能主義</a>
+      6.<a href="https://www.artsy.net/artwork/ellsworth-kelly-red-slash-blue" target="_blank">極簡主義</a>
     </figcaption>
   </figure>
 
@@ -266,19 +194,9 @@ author: Homer Shie
       loading="lazy"
     />
     <figcaption>
-      1.<a
-        href="https://photos.com/featured/surprised-woman-with-omg-text-mcmillan-digital-art.html"
-        target="_blank"
-        >普普藝術</a
-      >
-      2.<a href="https://www.behance.net/gallery/4166175/Graphic-Deconstruction-1" target="_blank"
-        >解構主義</a
-      >
-      3.<a
-        href="https://www.amazon.com/Composition-Notebook-College-Mandelbrot-Fractals/dp/1719829101"
-        target="_blank"
-        >分形藝術</a
-      >
+      1.<a href="https://photos.com/featured/surprised-woman-with-omg-text-mcmillan-digital-art.html" target="_blank">普普藝術</a>
+      2.<a href="https://www.behance.net/gallery/4166175/Graphic-Deconstruction-1" target="_blank">解構主義</a>
+      3.<a href="https://www.amazon.com/Composition-Notebook-College-Mandelbrot-Fractals/dp/1719829101" target="_blank">分形藝術</a>
     </figcaption>
   </figure>
   <figure class="image">
@@ -290,14 +208,8 @@ author: Homer Shie
     />
     <figcaption>
       4.<a href="https://www.widewalls.ch/magazine/psychedelic-art" target="_blank">迷幻藝術</a>
-      5.<a
-        href="https://cindygoesbeyond.wordpress.com/2016/03/18/surrender-78-mad-max-fury-road/"
-        target="_blank"
-        >垃圾風格</a
-      >
-      6.<a href="https://bashooka.com/photoshop/synthwave-flyer-design-templates/" target="_blank"
-        >蒸氣波</a
-      >
+      5.<a href="https://cindygoesbeyond.wordpress.com/2016/03/18/surrender-78-mad-max-fury-road/" target="_blank">垃圾風格</a>
+      6.<a href="https://bashooka.com/photoshop/synthwave-flyer-design-templates/" target="_blank">蒸氣波</a>
     </figcaption>
   </figure>
   <figure class="image">
@@ -308,16 +220,8 @@ author: Homer Shie
       loading="lazy"
     />
     <figcaption>
-      7.<a href="https://www.behance.net/gallery/28177177/Glitch" target="_blank">故障藝術</a> 8.<a
-        href="https://www.amazon.com/Trends-International-Poster-Roses-22-375/dp/B071WCY1LQ"
-        target="_blank"
-        >槍與玫瑰海報</a
-      >
-      9.<a
-        href="https://www.artsy.net/article/artsy-editorial-6-iconic-works-banksy"
-        target="_blank"
-        >塗鴉藝術</a
-      >
+      7.<a href="https://www.behance.net/gallery/28177177/Glitch" target="_blank">故障藝術</a> 8.<a href="https://www.amazon.com/Trends-International-Poster-Roses-22-375/dp/B071WCY1LQ" target="_blank">槍與玫瑰海報</a>
+      9.<a href="https://www.artsy.net/article/artsy-editorial-6-iconic-works-banksy" target="_blank">塗鴉藝術</a>
     </figcaption>
   </figure>
 
@@ -369,18 +273,10 @@ author: Homer Shie
       loading="lazy"
     />
     <figcaption>
-      1.<a
-        href="https://imagedj.pixnet.net/blog/post/185757867-%E8%A8%AD%E8%A8%88%E6%9C%9D%E8%81%96%EF%BD%9C%E9%8C%AF%E8%A6%BA%E8%A8%AD%E8%A8%88%E7%9A%84%E9%AD%94%E6%B3%95%E5%B8%AB%EF%BC%8D%E7%A6%8F%E7%94%B0%E7%B9%81%E9%9B%84-"
-        target="_blank"
-        >福田繁雄(晚期現代風格)</a
-      >
+      1.<a href="https://imagedj.pixnet.net/blog/post/185757867-%E8%A8%AD%E8%A8%88%E6%9C%9D%E8%81%96%EF%BD%9C%E9%8C%AF%E8%A6%BA%E8%A8%AD%E8%A8%88%E7%9A%84%E9%AD%94%E6%B3%95%E5%B8%AB%EF%BC%8D%E7%A6%8F%E7%94%B0%E7%B9%81%E9%9B%84-" target="_blank">福田繁雄(晚期現代風格)</a>
       2.
       <a href="https://www.paulrand.design/" target="_blank">Paul Rand (晚期現代風格)</a>
-      3.<a
-        href="https://www.shutterstock.com/zh-Hant/blog/memphis-style-design-trend-explained"
-        target="_blank"
-        >曼菲斯風格</a
-      >
+      3.<a href="https://www.shutterstock.com/zh-Hant/blog/memphis-style-design-trend-explained" target="_blank">曼菲斯風格</a>
     </figcaption>
   </figure>
   <p>
@@ -406,16 +302,8 @@ author: Homer Shie
       loading="lazy"
     />
     <figcaption>
-      1.<a href="http://adam-flynn.com/work/glitched.html" target="_blank">像素風格</a> 2.<a
-        href="https://www.behance.net/gallery/23869083/City-Life-Isometric-Cityscape"
-        target="_blank"
-        >等距風格</a
-      >
-      3.<a
-        href="https://www.dandad.org/awards/professional/2018/posters/26940/jardins-de-metis-2017/"
-        target="_blank"
-        >扁平設計</a
-      >
+      1.<a href="http://adam-flynn.com/work/glitched.html" target="_blank">像素風格</a> 2.<a href="https://www.behance.net/gallery/23869083/City-Life-Isometric-Cityscape" target="_blank">等距風格</a>
+      3.<a href="https://www.dandad.org/awards/professional/2018/posters/26940/jardins-de-metis-2017/" target="_blank">扁平設計</a>
     </figcaption>
   </figure>
   <figure class="image">
@@ -426,19 +314,9 @@ author: Homer Shie
       loading="lazy"
     />
     <figcaption>
-      4.<a href="https://www.behance.net/gallery/71586415/Framed-Artwork-Series" target="_blank"
-        >扁平化三維</a
-      >
-      5.<a
-        href="https://www.behance.net/gallery/88111483/OCCUPATIONS-01-Print-Concepts?tracking_source=search_projects_recommended%7Claser+gradient"
-        target="_blank"
-        >雷射漸層</a
-      >
-      6.<a
-        href="https://www.behance.net/gallery/65968373/Stick-Your-Tongue-Out?tracking_source=search_projects_recommended%7Cillustration+texture"
-        target="_blank"
-        >扁平紋理插畫</a
-      >
+      4.<a href="https://www.behance.net/gallery/71586415/Framed-Artwork-Series" target="_blank">扁平化三維</a>
+      5.<a href="https://www.behance.net/gallery/88111483/OCCUPATIONS-01-Print-Concepts?tracking_source=search_projects_recommended%7Claser+gradient" target="_blank">雷射漸層</a>
+      6.<a href="https://www.behance.net/gallery/65968373/Stick-Your-Tongue-Out?tracking_source=search_projects_recommended%7Cillustration+texture" target="_blank">扁平紋理插畫</a>
     </figcaption>
   </figure>
   <figure class="image">
@@ -449,11 +327,7 @@ author: Homer Shie
       loading="lazy"
     />
     <figcaption>
-      7.<a
-        href="https://www.behance.net/gallery/101769783/Logo-Animation-Collection?tracking_source=search_projects_recommended%7Cmotion+logo"
-        target="_blank"
-        >動態商標</a
-      >
+      7.<a href="https://www.behance.net/gallery/101769783/Logo-Animation-Collection?tracking_source=search_projects_recommended%7Cmotion+logo" target="_blank">動態商標</a>
     </figcaption>
   </figure>
 
@@ -482,29 +356,14 @@ author: Homer Shie
 
   <h2>參考資料</h2>
   <p>
-    <a href="https://www.zcool.com.cn/article/ZNTk1Mzg0.html?switchPage=on" target="_blank"
-      >現代平面設計簡史</a
-    >、<a
-      href="https://www.onlinedesignteacher.com/2016/05/graphic-design-styles.html"
-      target="_blank"
-      >Graphic Design Styles</a
-    >、<a href="http://www.designhistory.org/index.html" target="_blank">Graphic Design History</a
-    >、<a
-      href="https://thesideview.co/journal/mapping-metamodernism-for-collective-intelligence/"
-      target="_blank"
-      >Mapping Metamodernism for Collective Intelligence</a
-    >、<a href="https://en.wikipedia.org/wiki/Criticism_of_postmodernism" target="_blank"
-      >Criticism of postmodernism(Wiki)</a
-    >
+    <a href="https://www.zcool.com.cn/article/ZNTk1Mzg0.html?switchPage=on" target="_blank">現代平面設計簡史</a>、<a href="https://www.onlinedesignteacher.com/2016/05/graphic-design-styles.html" target="_blank">Graphic Design Styles</a>、<a href="http://www.designhistory.org/index.html" target="_blank">Graphic Design History</a>、<a href="https://thesideview.co/journal/mapping-metamodernism-for-collective-intelligence/" target="_blank">Mapping Metamodernism for Collective Intelligence</a>、<a href="https://en.wikipedia.org/wiki/Criticism_of_postmodernism" target="_blank">Criticism of postmodernism(Wiki)</a>
   </p>
   <hr />
   <p>
     <strong
       >轉載請標明出處並告知，我會很感謝你注重智慧財產😉<br />如果有錯誤的訊息或是不同的見解和研究可以到下面留言或</strong
     >
-    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"
-      ><strong>Instagram</strong></a
-    >
+    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"><strong>Instagram</strong></a>
     <strong>找我！</strong>
   </p>
 
@@ -512,9 +371,7 @@ author: Homer Shie
     Please indicate the source and inform me if you want to reprint, I will thank you for your
     apperciate to intellectual property.<br />
     If there are any mistakes of advice, you can reply or find me on my
-    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank"
-      >Instagram</a
-    >.
+    <a href="https://www.instagram.com/homer_create/" rel="noopener ugc nofollow" target="_blank">Instagram</a>.
   </p>
 </article>
 

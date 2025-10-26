@@ -1,9 +1,17 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { fileURLToPath } from 'node:url'
+import contentLinkSanitize from './modules/content-link-sanitize'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+
+  // Nuxt Content 配置
+  content: {
+    markdown: {
+      anchorLinks: { depth: 0 }, // 關閉自動標題錨點
+    },
+  },
 
   // Site Config for SEO
   site: {
@@ -42,6 +50,7 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/content',
+    contentLinkSanitize, // 清理 Markdown 中的問題連結
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/icon',

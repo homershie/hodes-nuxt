@@ -128,10 +128,9 @@ const router = useRouter()
 const articleId = route.params.id
 
 // 從 Nuxt Content 查詢文章
-// 使用 without() 跳過 body 的 MDC 解析，只獲取 frontmatter 和原始內容
 const { data: article } = await useAsyncData(`article-${articleId}`, () =>
   queryContent('articles', articleId).findOne()
-).catch(() => ({ data: ref(null) }))
+)
 
 // 查詢所有文章以計算上一篇/下一篇
 const { data: allArticles } = await useAsyncData('all-articles', () =>
@@ -145,13 +144,6 @@ if (!article.value) {
     message: '文章不存在',
   })
 }
-
-// 提取文章的 HTML 內容（跳過 frontmatter，直接使用 body）
-const articleContent = computed(() => {
-  if (!article.value) return ''
-  // Nuxt Content 將 Markdown 的 body 部分存在 body 或 _rawContent 中
-  return article.value.body || article.value._rawContent || ''
-})
 
 // 使用 useScroll 來計算閱讀進度
 const { y } = useScroll(window)
