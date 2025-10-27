@@ -1,14 +1,16 @@
 <template>
-  <div class="skeleton-grid">
-    <div
-      v-for="i in count"
-      :key="i"
-      class="skeleton-item"
-      :style="{ animationDelay: `${i * 0.1}s` }"
-    >
-      <div class="skeleton-image"></div>
-      <div class="skeleton-title"></div>
-      <div class="skeleton-category"></div>
+  <div class="skeleton-container">
+    <div class="row">
+      <div
+        v-for="i in count"
+        :key="i"
+        class="col-lg-4 skeleton-item"
+        :style="{ animationDelay: `${i * 0.1}s` }"
+      >
+        <div class="skeleton-image"></div>
+        <div class="skeleton-title"></div>
+        <div class="skeleton-category"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -23,14 +25,13 @@ defineProps({
 </script>
 
 <style scoped>
-.skeleton-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+.skeleton-container {
+  width: 100%;
 }
 
 .skeleton-item {
   animation: pulse 1.5s ease-in-out infinite;
+  margin-bottom: 2rem;
 }
 
 .skeleton-image {
@@ -95,10 +96,20 @@ defineProps({
   }
 }
 
-/* 響應式 */
+/* 響應式：平板和手機顯示為單欄 */
+@media (max-width: 991px) {
+  .skeleton-item {
+    margin-bottom: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
-  .skeleton-grid {
-    grid-template-columns: 1fr;
+  .skeleton-item {
+    margin-bottom: 1rem;
+  }
+
+  .skeleton-image {
+    height: 200px;
   }
 }
 </style>

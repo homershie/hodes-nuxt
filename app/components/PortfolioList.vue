@@ -48,13 +48,26 @@
             </div>
           </div>
         </div>
+
+        <!-- Loading Skeleton (在瀑布流內部) -->
+        <template v-if="isLoadingMore">
+          <div
+            v-for="i in itemsPerPage"
+            :key="`skeleton-${i}`"
+            class="col-lg-4 items skeleton-item"
+          >
+            <div class="skeleton-image"></div>
+            <div class="skeleton-title"></div>
+            <div class="skeleton-category"></div>
+          </div>
+        </template>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Masonry from 'masonry-layout'
@@ -68,6 +81,14 @@ const props = defineProps({
     type: Array,
     required: true,
   },
+  isLoadingMore: {
+    type: Boolean,
+    default: false,
+  },
+  itemsPerPage: {
+    type: Number,
+    default: 15,
+  },
 })
 
 const emit = defineEmits(['view-details'])
@@ -76,10 +97,8 @@ function viewDetails(work) {
   emit('view-details', work)
 }
 
-const displayedWorks = ref([])
-const sortedWorks = computed(() => {
-  return [...props.works].sort((a, b) => b.id - a.id)
-})
+// 直接使用傳入的 works，父組件已經處理了排序
+const displayedWorks = computed(() => props.works)
 
 const { preloadImages, loadingProgress, isPreloading } = useImagePreloader()
 
@@ -159,15 +178,32 @@ const setupAnimationsForNewItems = (specificItems = null) => {
   })
 }
 
-onMounted(async () => {
-  // 直接加載所有作品
-  displayedWorks.value = sortedWorks.value
+// 監聽 works 變化，更新 Masonry 布局
+watch(
+  () => props.works,
+  async (newWorks, oldWorks) => {
+    if (newWorks.length > (oldWorks?.length || 0)) {
+      // 有新作品加入
+      await nextTick()
+      await waitForDomUpdate()
 
-  // 收集所有需要預載入的圖片URL
-  const imageUrls = displayedWorks.value
-    .map(work => [work.image, ...(work.gallery || [])])
-    .flat()
-    .filter(Boolean)
+      if (masonryInstance) {
+        // 重新載入所有項目
+        masonryInstance.reloadItems()
+        masonryInstance.layout()
+      }
+
+      // 為新項目設置動畫
+      const allItems = document.querySelectorAll('.items')
+      setupAnimationsForNewItems(allItems)
+    }
+  },
+  { deep: false }
+)
+
+onMounted(async () => {
+  // 只收集主要圖片 URL（不包含 gallery），減少載入時間
+  const imageUrls = displayedWorks.value.map(work => work.image || work.mainImage).filter(Boolean)
 
   // 預載入圖片
   await preloadImages(imageUrls)
@@ -254,5 +290,61 @@ onUnmounted(() => {
 .progress-text {
   color: #fff;
   font-size: 14px;
+}
+
+/* Skeleton 樣式 */
+.skeleton-item {
+  animation: pulse 1.5s ease-in-out infinite;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 0;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.skeleton-title {
+  width: 70%;
+  height: 20px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-category {
+  width: 40%;
+  height: 16px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 </style>

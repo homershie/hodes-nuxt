@@ -39,13 +39,10 @@
       <div class="portfolio-list">
         <PortfolioList
           :works="displayedWorks"
+          :is-loading-more="isLoading"
+          :items-per-page="ITEMS_PER_PAGE"
           @view-details="handleViewDetails"
         />
-      </div>
-
-      <!-- Loading Skeleton -->
-      <div v-if="isLoading" class="loading-skeleton">
-        <PortfolioSkeleton :count="ITEMS_PER_PAGE" />
       </div>
 
       <!-- 載入更多觸發點 -->
@@ -64,7 +61,6 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useScroll, useIntersectionObserver } from '@vueuse/core'
 import PortfolioList from '@components/PortfolioList.vue'
-import PortfolioSkeleton from '@components/PortfolioSkeleton.vue'
 import { usePortfolio } from '@composables/usePortfolio.js'
 import { useImageCache } from '@composables/useImageCache'
 
@@ -92,16 +88,20 @@ const progress = computed(() => {
   return docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
 })
 
-// 篩選後的作品
+// 篩選後的作品（按 id 從大到小排序）
 const filteredWorks = computed(() => {
+  let works = []
   if (selectedCategory.value === 'all') {
-    return portfolioData.value
+    works = portfolioData.value
+  } else {
+    works = portfolioData.value.filter(work =>
+      Array.isArray(work.category)
+        ? work.category.includes(selectedCategory.value)
+        : work.category === selectedCategory.value
+    )
   }
-  return portfolioData.value.filter(work =>
-    Array.isArray(work.category)
-      ? work.category.includes(selectedCategory.value)
-      : work.category === selectedCategory.value
-  )
+  // 按 id 從大到小排序，讓最新的作品排在前面
+  return [...works].sort((a, b) => b.id - a.id)
 })
 
 // 已顯示的作品
@@ -171,24 +171,30 @@ function getCategoryName(category) {
 
 // 監聽滾動，距底部 500px 時觸發
 onMounted(() => {
-  // 從 URL 初始化狀態
-  const pageQuery = parseInt(route.query.page) || 1
+  // 從 URL 初始化狀態（只讀取 category，page 總是從 1 開始）
   const categoryQuery = route.query.category || 'all'
 
-  currentPage.value = pageQuery
+  currentPage.value = 1
   selectedCategory.value = categoryQuery
+
+  // 清理 URL 中的 page 參數（如果存在）
+  if (route.query.page) {
+    router.replace({
+      query: categoryQuery !== 'all' ? { category: categoryQuery } : {}
+    })
+  }
 
   // 設定 Intersection Observer
   if (loadMoreTrigger.value) {
     useIntersectionObserver(
       loadMoreTrigger,
       ([{ isIntersecting }]) => {
-        if (isIntersecting) {
+        if (isIntersecting && hasMore.value && !isLoading.value) {
           loadMore()
         }
       },
       {
-        rootMargin: `${LOAD_MORE_THRESHOLD}px` // 提前 500px 觸發
+        rootMargin: `0px 0px ${LOAD_MORE_THRESHOLD}px 0px` // 提前 500px 觸發
       }
     )
   }
@@ -273,10 +279,6 @@ useHead({
 
 .load-more-trigger {
   height: 1px;
-  margin-top: 2rem;
-}
-
-.loading-skeleton {
   margin-top: 2rem;
 }
 
