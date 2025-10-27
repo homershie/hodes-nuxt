@@ -42,6 +42,7 @@
           :is-loading-more="isLoading"
           :items-per-page="ITEMS_PER_PAGE"
           @view-details="handleViewDetails"
+          @tag-click="handleTagClick"
         />
       </div>
 
@@ -159,6 +160,16 @@ function handleCategoryChange(category) {
 // 查看詳情
 function handleViewDetails(work) {
   router.push(`/project/${work.id}`)
+}
+
+// 處理 tag 點擊
+function handleTagClick(tag) {
+  // 如果點擊的 tag 就是當前選中的分類，則切換回全部
+  if (selectedCategory.value === tag) {
+    handleCategoryChange('all')
+  } else {
+    handleCategoryChange(tag)
+  }
 }
 
 // 分類名稱

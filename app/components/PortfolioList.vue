@@ -25,9 +25,14 @@
             <div class="cont d-flex align-items-center">
               <div>
                 <h6>{{ work.title }}</h6>
-                <span v-for="(tag, tagIndex) in work.category" :key="tagIndex" class="tag">{{
-                  tag
-                }}</span>
+                <span
+                  v-for="(tag, tagIndex) in work.category"
+                  :key="tagIndex"
+                  class="tag clickable-tag"
+                  @click.stop="handleTagClick(tag)"
+                >
+                  {{ tag }}
+                </span>
               </div>
               <div class="ml-auto">
                 <div class="arrow">
@@ -91,10 +96,14 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['view-details'])
+const emit = defineEmits(['view-details', 'tag-click'])
 
 function viewDetails(work) {
   emit('view-details', work)
+}
+
+function handleTagClick(tag) {
+  emit('tag-click', tag)
 }
 
 // 直接使用傳入的 works，父組件已經處理了排序
@@ -478,5 +487,35 @@ onUnmounted(() => {
   50% {
     opacity: 0.7;
   }
+}
+
+/* Tag 點擊樣式 */
+.tag {
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-bottom: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: var(--color-font);
+  transition: all 0.3s ease;
+}
+
+.clickable-tag {
+  cursor: pointer;
+  user-select: none;
+}
+
+.clickable-tag:hover {
+  background: var(--maincolor);
+  color: black;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.clickable-tag:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 </style>
