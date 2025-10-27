@@ -55,6 +55,7 @@
             v-for="i in itemsPerPage"
             :key="`skeleton-${i}`"
             class="col-lg-4 items skeleton-item"
+            :class="{ 'skeleton-loading': isLoadingMore }"
           >
             <div class="skeleton-image"></div>
             <div class="skeleton-title"></div>
@@ -142,21 +143,28 @@ const setupAnimationsForNewItems = (specificItems = null) => {
   const items = specificItems || document.querySelectorAll('.items')
   const itemsToAnimate = Array.isArray(items) ? items : Array.from(items)
 
-  // 僅為未動畫的項目設定初始狀態
+  // 僅為未動畫的項目設定初始狀態（跳過 skeleton）
   itemsToAnimate.forEach(item => {
-    if (!item.classList.contains('animated')) {
-      gsap.set(item, { opacity: 0, y: 50 })
+    if (!item.classList.contains('animated') && !item.classList.contains('skeleton-item')) {
+      // 如果項目已經隱藏，保持隱藏狀態
+      const isHidden = item.style.visibility === 'hidden'
+      if (!isHidden) {
+        gsap.set(item, { opacity: 0, y: 50 })
+      }
     }
   })
 
-  // 使用 VueUse 的 useIntersectionObserver
+  // 使用 VueUse 的 useIntersectionObserver（跳過 skeleton）
   itemsToAnimate.forEach(item => {
-    if (!item.classList.contains('animated')) {
+    if (!item.classList.contains('animated') && !item.classList.contains('skeleton-item')) {
       const { stop } = useIntersectionObserver(
         item,
         ([{ isIntersecting, target }]) => {
           if (isIntersecting && !target.classList.contains('animated')) {
             target.classList.add('animated')
+
+            // 確保項目可見
+            target.style.visibility = 'visible'
 
             gsap.to(target, {
               opacity: 1,
@@ -190,6 +198,22 @@ watch(
     if (newWorks.length > (oldWorks?.length || 0)) {
       // 有新作品加入
       await nextTick()
+
+      // 先隱藏所有新項目，避免閃爍
+      const allItems = document.querySelectorAll('.items')
+      const newItems = Array.from(allItems).slice(oldWorks?.length || 0)
+
+      // 為新項目添加 CSS 類別來控制顯示
+      newItems.forEach(item => {
+        // 跳過 skeleton 項目
+        if (!item.classList.contains('skeleton-item')) {
+          item.classList.add('new-item')
+          item.style.opacity = '0'
+          item.style.visibility = 'hidden'
+        }
+      })
+
+      // 等待 DOM 更新
       await waitForDomUpdate()
 
       if (masonryInstance) {
@@ -198,12 +222,69 @@ watch(
         masonryInstance.layout()
       }
 
-      // 為新項目設置動畫
-      const allItems = document.querySelectorAll('.items')
-      setupAnimationsForNewItems(allItems)
+      // 延遲顯示新項目，確保布局完成
+      await new Promise(resolve => setTimeout(resolve, 100))
+
+      // 顯示新項目並設置動畫（跳過 skeleton）
+      newItems.forEach(item => {
+        if (!item.classList.contains('skeleton-item')) {
+          item.classList.remove('new-item')
+          item.classList.add('ready')
+          item.style.visibility = 'visible'
+          item.style.opacity = '1'
+        }
+      })
+
+      // 為新項目設置動畫（跳過 skeleton）
+      const nonSkeletonItems = newItems.filter(item => !item.classList.contains('skeleton-item'))
+      setupAnimationsForNewItems(nonSkeletonItems)
     }
   },
   { deep: false }
+)
+
+// 監聽 skeleton 載入狀態
+watch(
+  () => props.isLoadingMore,
+  async isLoading => {
+    if (isLoading) {
+      // 開始載入時，先等待 DOM 更新
+      await nextTick()
+
+      // 立即隱藏所有 skeleton 項目，避免閃爍
+      const skeletonItems = document.querySelectorAll('.skeleton-item')
+      skeletonItems.forEach(item => {
+        item.classList.add('skeleton-hidden')
+        item.style.opacity = '0'
+        item.style.visibility = 'hidden'
+      })
+
+      // 等待短暫延遲
+      await waitForDomUpdate()
+
+      if (masonryInstance) {
+        masonryInstance.reloadItems()
+        masonryInstance.layout()
+      }
+
+      // 延遲顯示 skeleton 項目，確保布局完成
+      await new Promise(resolve => setTimeout(resolve, 150))
+
+      // 顯示 skeleton 項目
+      skeletonItems.forEach(item => {
+        item.classList.remove('skeleton-hidden')
+        item.classList.add('skeleton-visible')
+        item.style.opacity = '1'
+        item.style.visibility = 'visible'
+      })
+    } else {
+      // 載入完成時，移除所有 skeleton 相關類別
+      const skeletonItems = document.querySelectorAll('.skeleton-item')
+      skeletonItems.forEach(item => {
+        item.classList.remove('skeleton-hidden', 'skeleton-visible')
+      })
+    }
+  }
 )
 
 onMounted(async () => {
@@ -257,6 +338,23 @@ onUnmounted(() => {
 /* 禁用所有元素的動畫，避免初始加載時的閃爍 */
 .items {
   will-change: transform, opacity;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* 新載入的項目初始狀態 */
+.items.new-item {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+}
+
+/* 確保項目在正確位置後才顯示 */
+.items.ready {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 @keyframes fadeIn {
@@ -306,6 +404,32 @@ onUnmounted(() => {
   margin-bottom: 2rem;
   position: relative;
   z-index: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+/* 確保 skeleton 在載入時正確定位 */
+.skeleton-item.skeleton-loading {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+/* Skeleton 隱藏狀態 */
+.skeleton-item.skeleton-hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(20px);
+}
+
+/* Skeleton 顯示狀態 */
+.skeleton-item.skeleton-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0);
 }
 
 .skeleton-image {
