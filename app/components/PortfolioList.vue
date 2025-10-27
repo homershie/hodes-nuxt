@@ -19,7 +19,21 @@
         >
           <div class="item">
             <div class="img">
-              <img :src="work.image" :alt="work.title" class="radius-5 w-100" />
+              <img
+                :src="work.image"
+                :alt="work.title"
+                class="radius-5 w-100"
+                loading="lazy"
+                :width="work.imageDimensions?.width || 400"
+                :height="work.imageDimensions?.height || 300"
+                :style="{
+                  objectFit: 'cover',
+                  aspectRatio: work.imageDimensions
+                    ? `${work.imageDimensions.width}/${work.imageDimensions.height}`
+                    : '4/3',
+                }"
+                @load="handleImageLoad"
+              />
               <a href="#0" class="link" @click.prevent="viewDetails(work)"></a>
             </div>
             <div class="cont d-flex align-items-center">
@@ -108,17 +122,22 @@ function handleTagClick(tag) {
   emit('tag-click', tag)
 }
 
+// 處理圖片載入完成
+function handleImageLoad(event) {
+  event.target.classList.add('loaded')
+}
+
 // 直接使用傳入的 works，父組件已經處理了排序
 const displayedWorks = computed(() => props.works)
 
-const { preloadImages, loadingProgress, isPreloading } = useImagePreloader()
+const { loadingProgress, isPreloading } = useImagePreloader()
 
 let masonryInstance = null
 
 // 初始化 Masonry
 const initMasonry = async () => {
   // 只在客戶端執行
-  if (!import.meta.client) return
+  if (!import.meta.client || typeof document === 'undefined') return
 
   const container = document.querySelector('.gallery')
   if (!container) return
@@ -148,60 +167,11 @@ const waitForDomUpdate = () => {
   })
 }
 
-// 等待所有圖片載入完成
-const waitForImagesToLoad = () => {
-  return new Promise(resolve => {
-    const images = document.querySelectorAll('.gallery .img img')
-    if (images.length === 0) {
-      resolve()
-      return
-    }
-
-    let loadedCount = 0
-    const totalImages = images.length
-
-    const checkComplete = () => {
-      loadedCount++
-      if (loadedCount === totalImages) {
-        // 額外等待一小段時間確保布局穩定，並強制圖片重新渲染
-        setTimeout(() => {
-          // 觸發瀏覽器重新計算布局
-          images.forEach(img => {
-            if (img.naturalWidth === 0) {
-              // 如果圖片未成功載入，設定一個最小高度
-              img.style.minHeight = '200px'
-            }
-          })
-          resolve()
-        }, 100)
-      }
-    }
-
-    images.forEach(img => {
-      if (img.complete && img.naturalWidth > 0) {
-        checkComplete()
-      } else {
-        img.addEventListener('load', checkComplete, { once: true })
-        img.addEventListener('error', () => {
-          // 圖片載入失敗時設定預設高度
-          img.style.minHeight = '200px'
-          checkComplete()
-        })
-      }
-    })
-
-    // 設定超時，避免無限等待
-    setTimeout(() => {
-      if (loadedCount < totalImages) {
-        // 靜默處理超時情況
-        resolve()
-      }
-    }, 5000)
-  })
-}
-
 // 為新項目設置動畫
 const setupAnimationsForNewItems = (specificItems = null) => {
+  // 只在客戶端執行
+  if (!import.meta.client || typeof document === 'undefined') return
+
   // 選擇要設置動畫的項目
   const items = specificItems || document.querySelectorAll('.items')
   const itemsToAnimate = Array.isArray(items) ? items : Array.from(items)
@@ -258,52 +228,42 @@ const setupAnimationsForNewItems = (specificItems = null) => {
 watch(
   () => props.works,
   async (newWorks, oldWorks) => {
+    // 只在客戶端執行
+    if (!import.meta.client || typeof document === 'undefined') return
+
     // 有新作品加入或分類切換
     if (newWorks.length !== (oldWorks?.length || 0) || newWorks.length === 0) {
       await nextTick()
 
-      // 先隱藏所有項目，避免閃爍
       const allItems = document.querySelectorAll('.items')
-
-      // 如果有舊作品，先隱藏它們
-      if (oldWorks && oldWorks.length > 0) {
-        const oldItems = Array.from(allItems).slice(0, oldWorks.length)
-        oldItems.forEach(item => {
-          if (!item.classList.contains('skeleton-item')) {
-            item.style.opacity = '0'
-            item.style.visibility = 'hidden'
-          }
-        })
-      }
 
       // 如果是分類切換（數量不同或清空），需要重新初始化
       if (newWorks.length === 0 || (oldWorks && oldWorks.length !== newWorks.length)) {
-        // 等待圖片載入完成
-        await waitForImagesToLoad()
+        // 先隱藏整個容器，避免重排閃爍
+        const gallery = document.querySelector('.gallery')
+        if (gallery) {
+          gallery.style.opacity = '0'
+        }
 
-        // 等待內容渲染完成
-        await new Promise(resolve => setTimeout(resolve, 100))
+        // 等待 DOM 更新
+        await waitForDomUpdate()
 
         if (masonryInstance) {
           masonryInstance.reloadItems()
           masonryInstance.layout()
         }
 
-        // 顯示所有項目
-        const newItems = Array.from(allItems).filter(
-          item => !item.classList.contains('skeleton-item')
-        )
-
-        newItems.forEach(item => {
-          item.style.visibility = 'visible'
-          item.style.opacity = '1'
-        })
-
-        // 再次等待布局穩定後重新計算
-        await new Promise(resolve => setTimeout(resolve, 50))
+        // 等待布局穩定
+        await new Promise(resolve => setTimeout(resolve, 100))
 
         if (masonryInstance) {
           masonryInstance.layout()
+        }
+
+        // 一次性顯示整個容器
+        if (gallery) {
+          gallery.style.transition = 'opacity 0.3s ease'
+          gallery.style.opacity = '1'
         }
 
         // 為所有項目重新設置動畫
@@ -311,13 +271,12 @@ watch(
         return
       }
 
-      // 有新作品加入
+      // 有新作品加入（Load More）
       if (newWorks.length > (oldWorks?.length || 0)) {
         const newItems = Array.from(allItems).slice(oldWorks?.length || 0)
 
         // 為新項目添加 CSS 類別來控制顯示
         newItems.forEach(item => {
-          // 跳過 skeleton 項目
           if (!item.classList.contains('skeleton-item')) {
             item.classList.add('new-item')
             item.style.opacity = '0'
@@ -325,11 +284,10 @@ watch(
           }
         })
 
-        // 等待圖片載入完成
-        await waitForImagesToLoad()
+        // 等待 DOM 更新
+        await waitForDomUpdate()
 
         if (masonryInstance) {
-          // 重新載入所有項目
           masonryInstance.reloadItems()
           masonryInstance.layout()
         }
@@ -337,7 +295,7 @@ watch(
         // 延遲顯示新項目，確保布局完成
         await new Promise(resolve => setTimeout(resolve, 100))
 
-        // 顯示新項目並設置動畫（跳過 skeleton）
+        // 顯示新項目
         newItems.forEach(item => {
           if (!item.classList.contains('skeleton-item')) {
             item.classList.remove('new-item')
@@ -347,7 +305,7 @@ watch(
           }
         })
 
-        // 為新項目設置動畫（跳過 skeleton）
+        // 為新項目設置動畫
         const nonSkeletonItems = newItems.filter(item => !item.classList.contains('skeleton-item'))
         setupAnimationsForNewItems(nonSkeletonItems)
       }
@@ -360,6 +318,9 @@ watch(
 watch(
   () => props.isLoadingMore,
   async isLoading => {
+    // 只在客戶端執行
+    if (!import.meta.client || typeof document === 'undefined') return
+
     if (isLoading) {
       // 開始載入時，先等待 DOM 更新
       await nextTick()
@@ -417,23 +378,9 @@ onMounted(async () => {
   // 等待 DOM 更新
   await waitForDomUpdate()
 
-  // 等待圖片載入完成
-  await waitForImagesToLoad()
-
-  // 再次等待 DOM 更新
-  await waitForDomUpdate()
-
-  // 初始化 Masonry 和動畫
+  // 初始化 Masonry 和動畫（NuxtImg 自動處理 aspect-ratio，無需等待圖片載入）
   await initMasonry()
   setupAnimationsForNewItems()
-
-  // 只收集主要圖片 URL（不包含 gallery），減少載入時間
-  const imageUrls = displayedWorks.value.map(work => work.image || work.mainImage).filter(Boolean)
-
-  // 在背景預載入圖片（不阻塞界面）
-  preloadImages(imageUrls).catch(() => {
-    // 靜默處理錯誤
-  })
 
   // 使用 VueUse 的 useEventListener 監聽窗口大小改變
   useEventListener(window, 'resize', () => {
@@ -458,24 +405,31 @@ onUnmounted(() => {
 .img {
   position: relative;
   overflow: hidden;
-  min-height: 200px;
   background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
   background-size: 200% 100%;
+  animation: shimmer 2s infinite;
 }
 
 .img img {
   width: 100%;
-  height: auto;
-  min-height: 200px;
+  height: 100%;
   object-fit: cover;
   transition: opacity 0.6s ease;
   display: block;
-  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
-  background-size: 200% 100%;
 }
 
 .img img[src=''] {
   display: none;
+}
+
+/* 圖片載入動畫 */
+.img img {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.img img.loaded {
+  opacity: 1;
 }
 
 /* 禁用所有元素的動畫，避免初始加載時的閃爍 */

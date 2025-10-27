@@ -3,7 +3,7 @@ import { portfolio } from '@data/portfolioData.js'
 
 export default defineSitemapEventHandler(async () => {
   // 生成作品路由
-  const projectUrls = portfolio.map((work) =>
+  const projectUrls = portfolio.map(work =>
     asSitemapUrl({
       loc: `/project/${work.id}`,
       lastmod: work.date || new Date().toISOString(),

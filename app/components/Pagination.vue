@@ -3,11 +3,7 @@
     <ul class="pagination">
       <!-- 上一頁 -->
       <li class="page-item" :class="{ disabled: currentPage === 1 }">
-        <NuxtLink
-          v-if="currentPage > 1"
-          :to="`${baseUrl}/${currentPage - 1}`"
-          class="page-link"
-        >
+        <NuxtLink v-if="currentPage > 1" :to="`${baseUrl}/${currentPage - 1}`" class="page-link">
           <i class="fas fa-chevron-left"></i>
           <span class="ml-2">上一頁</span>
         </NuxtLink>
@@ -24,11 +20,7 @@
         class="page-item"
         :class="{ active: page === currentPage }"
       >
-        <NuxtLink
-          v-if="page !== '...'"
-          :to="`${baseUrl}/${page}`"
-          class="page-link"
-        >
+        <NuxtLink v-if="page !== '...'" :to="`${baseUrl}/${page}`" class="page-link">
           {{ page }}
         </NuxtLink>
         <span v-else class="page-link dots">...</span>
@@ -59,16 +51,16 @@ import { computed } from 'vue'
 const props = defineProps({
   currentPage: {
     type: Number,
-    required: true
+    required: true,
   },
   totalPages: {
     type: Number,
-    required: true
+    required: true,
   },
   baseUrl: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 })
 
 /**

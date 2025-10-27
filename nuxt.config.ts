@@ -50,7 +50,6 @@ export default defineNuxtConfig({
     '@nuxt/content',
     contentLinkSanitize, // 清理 Markdown 中的問題連結
     '@nuxt/eslint',
-    '@nuxt/image',
     '@nuxt/icon',
     '@nuxt/ui',
     'nuxt-gtag',

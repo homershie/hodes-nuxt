@@ -1,6 +1,6 @@
 import { VueReCaptcha } from 'vue-recaptcha-v3'
 
-export default defineNuxtPlugin((nuxtApp) => {
+export default defineNuxtPlugin(nuxtApp => {
   const config = useRuntimeConfig()
 
   // 只在 client-side 載入 reCAPTCHA

@@ -1,0 +1,632 @@
+{
+  "work_0001.webp": {
+    "width": 2048,
+    "height": 1422,
+    "aspectRatio": 1.44,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0001.webp"
+  },
+  "work_0002.webp": {
+    "width": 623,
+    "height": 960,
+    "aspectRatio": 0.65,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0002.webp"
+  },
+  "work_0003.webp": {
+    "width": 653,
+    "height": 960,
+    "aspectRatio": 0.68,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0003.webp"
+  },
+  "work_0004.webp": {
+    "width": 2893,
+    "height": 4092,
+    "aspectRatio": 0.71,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0004.webp"
+  },
+  "work_0005.webp": {
+    "width": 2893,
+    "height": 4092,
+    "aspectRatio": 0.71,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0005.webp"
+  },
+  "work_0006.webp": {
+    "width": 679,
+    "height": 480,
+    "aspectRatio": 1.41,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0006.webp"
+  },
+  "work_0007.webp": {
+    "width": 1024,
+    "height": 589,
+    "aspectRatio": 1.74,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0007.webp"
+  },
+  "work_0008.webp": {
+    "width": 3508,
+    "height": 2480,
+    "aspectRatio": 1.41,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0008.webp"
+  },
+  "work_0009.webp": {
+    "width": 2480,
+    "height": 3508,
+    "aspectRatio": 0.71,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0009.webp"
+  },
+  "work_0010.webp": {
+    "width": 800,
+    "height": 450,
+    "aspectRatio": 1.78,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0010.webp"
+  },
+  "work_0011.webp": {
+    "width": 800,
+    "height": 450,
+    "aspectRatio": 1.78,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0011.webp"
+  },
+  "work_0012.webp": {
+    "width": 800,
+    "height": 520,
+    "aspectRatio": 1.54,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0012.webp"
+  },
+  "work_0013.webp": {
+    "width": 718,
+    "height": 539,
+    "aspectRatio": 1.33,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0013.webp"
+  },
+  "work_0014.webp": {
+    "width": 1014,
+    "height": 1014,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0014.webp"
+  },
+  "work_0015.webp": {
+    "width": 1001,
+    "height": 1001,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0015.webp"
+  },
+  "work_0016.webp": {
+    "width": 9071,
+    "height": 12402,
+    "aspectRatio": 0.73,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0016.webp"
+  },
+  "work_0017.webp": {
+    "width": 4500,
+    "height": 4500,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0017.webp"
+  },
+  "work_0018.webp": {
+    "width": 1426,
+    "height": 802,
+    "aspectRatio": 1.78,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0018.webp"
+  },
+  "work_0019.webp": {
+    "width": 1080,
+    "height": 1080,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0019.webp"
+  },
+  "work_0020.webp": {
+    "width": 1000,
+    "height": 1001,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0020.webp"
+  },
+  "work_0021.webp": {
+    "width": 1000,
+    "height": 1000,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0021.webp"
+  },
+  "work_0022.gif": {
+    "width": 1500,
+    "height": 1500,
+    "aspectRatio": 1,
+    "format": "gif",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0022.gif"
+  },
+  "work_0023.webp": {
+    "width": 420,
+    "height": 421,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0023.webp"
+  },
+  "work_0024.webp": {
+    "width": 1500,
+    "height": 1500,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0024.webp"
+  },
+  "work_0025.webp": {
+    "width": 1500,
+    "height": 1500,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0025.webp"
+  },
+  "work_0026.webp": {
+    "width": 1500,
+    "height": 2000,
+    "aspectRatio": 0.75,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0026.webp"
+  },
+  "work_0027.webp": {
+    "width": 1900,
+    "height": 1900,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0027.webp"
+  },
+  "work_0028.webp": {
+    "width": 4167,
+    "height": 4167,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0028.webp"
+  },
+  "work_0029.webp": {
+    "width": 2000,
+    "height": 2000,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0029.webp"
+  },
+  "work_0030.webp": {
+    "width": 2000,
+    "height": 2000,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0030.webp"
+  },
+  "work_0031.webp": {
+    "width": 1800,
+    "height": 2400,
+    "aspectRatio": 0.75,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0031.webp"
+  },
+  "work_0032.webp": {
+    "width": 2000,
+    "height": 2000,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0032.webp"
+  },
+  "work_0033.webp": {
+    "width": 1800,
+    "height": 2400,
+    "aspectRatio": 0.75,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0033.webp"
+  },
+  "work_0034.webp": {
+    "width": 3508,
+    "height": 2480,
+    "aspectRatio": 1.41,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0034.webp"
+  },
+  "work_0035.webp": {
+    "width": 1390,
+    "height": 782,
+    "aspectRatio": 1.78,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0035.webp"
+  },
+  "work_0036.gif": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "gif",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0036.gif"
+  },
+  "work_0037.gif": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "gif",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0037.gif"
+  },
+  "work_0038.webp": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0038.webp"
+  },
+  "work_0039.gif": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "gif",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0039.gif"
+  },
+  "work_0040.webp": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0040.webp"
+  },
+  "work_0041.webp": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0041.webp"
+  },
+  "work_0042.webp": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0042.webp"
+  },
+  "work_0043.gif": {
+    "width": 400,
+    "height": 400,
+    "aspectRatio": 1,
+    "format": "gif",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0043.gif"
+  },
+  "work_0044.webp": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0044.webp"
+  },
+  "work_0045.webp": {
+    "width": 801,
+    "height": 801,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0045.webp"
+  },
+  "work_0046.webp": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0046.webp"
+  },
+  "work_0047.webp": {
+    "width": 1920,
+    "height": 1080,
+    "aspectRatio": 1.78,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0047.webp"
+  },
+  "work_0048.webp": {
+    "width": 2000,
+    "height": 2000,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0048.webp"
+  },
+  "work_0049.webp": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0049.webp"
+  },
+  "work_0050.webp": {
+    "width": 800,
+    "height": 600,
+    "aspectRatio": 1.33,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0050.webp"
+  },
+  "work_0051.webp": {
+    "width": 800,
+    "height": 571,
+    "aspectRatio": 1.4,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0051.webp"
+  },
+  "work_0052.webp": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0052.webp"
+  },
+  "work_0053.webp": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0053.webp"
+  },
+  "work_0054.webp": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0054.webp"
+  },
+  "work_0055.webp": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0055.webp"
+  },
+  "work_0056.webp": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0056.webp"
+  },
+  "work_0057.webp": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0057.webp"
+  },
+  "work_0058.webp": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0058.webp"
+  },
+  "work_0059.gif": {
+    "width": 600,
+    "height": 600,
+    "aspectRatio": 1,
+    "format": "gif",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0059.gif"
+  },
+  "work_0060.webp": {
+    "width": 1000,
+    "height": 1000,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0060.webp"
+  },
+  "work_0061.webp": {
+    "width": 1000,
+    "height": 1000,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0061.webp"
+  },
+  "work_0062.webp": {
+    "width": 1000,
+    "height": 1000,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0062.webp"
+  },
+  "work_0063.webp": {
+    "width": 2000,
+    "height": 2000,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0063.webp"
+  },
+  "work_0064.webp": {
+    "width": 1000,
+    "height": 1000,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0064.webp"
+  },
+  "work_0065.webp": {
+    "width": 1000,
+    "height": 1000,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0065.webp"
+  },
+  "work_0066.webp": {
+    "width": 1000,
+    "height": 1000,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0066.webp"
+  },
+  "work_0067.webp": {
+    "width": 1000,
+    "height": 1000,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0067.webp"
+  },
+  "work_0068.webp": {
+    "width": 600,
+    "height": 600,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0068.webp"
+  },
+  "work_0069.webp": {
+    "width": 720,
+    "height": 720,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0069.webp"
+  },
+  "work_0070.gif": {
+    "width": 720,
+    "height": 720,
+    "aspectRatio": 1,
+    "format": "gif",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0070.gif"
+  },
+  "work_0071.webp": {
+    "width": 720,
+    "height": 720,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0071.webp"
+  },
+  "work_0072.gif": {
+    "width": 600,
+    "height": 539,
+    "aspectRatio": 1.11,
+    "format": "gif",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0072.gif"
+  },
+  "work_0073.gif": {
+    "width": 600,
+    "height": 600,
+    "aspectRatio": 1,
+    "format": "gif",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0073.gif"
+  },
+  "work_0074.gif": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "gif",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0074.gif"
+  },
+  "work_0075.webp": {
+    "width": 1920,
+    "height": 1080,
+    "aspectRatio": 1.78,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0075.webp"
+  },
+  "work_0076.webp": {
+    "width": 600,
+    "height": 675,
+    "aspectRatio": 0.89,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0076.webp"
+  },
+  "work_0077.webp": {
+    "width": 800,
+    "height": 800,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0077.webp"
+  },
+  "work_0078.gif": {
+    "width": 560,
+    "height": 560,
+    "aspectRatio": 1,
+    "format": "gif",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0078.gif"
+  },
+  "work_0079.gif": {
+    "width": 600,
+    "height": 600,
+    "aspectRatio": 1,
+    "format": "gif",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0079.gif"
+  },
+  "work_0080.webp": {
+    "width": 1200,
+    "height": 1200,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0080.webp"
+  },
+  "work_0081.webp": {
+    "width": 1440,
+    "height": 1440,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0081.webp"
+  },
+  "work_0082.gif": {
+    "width": 454,
+    "height": 454,
+    "aspectRatio": 1,
+    "format": "gif",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0082.gif"
+  },
+  "work_0083.webp": {
+    "width": 416,
+    "height": 416,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0083.webp"
+  },
+  "work_0084.webp": {
+    "width": 416,
+    "height": 416,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0084.webp"
+  },
+  "work_0085.webp": {
+    "width": 416,
+    "height": 416,
+    "aspectRatio": 1,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0085.webp"
+  },
+  "work_0086.gif": {
+    "width": 320,
+    "height": 360,
+    "aspectRatio": 0.89,
+    "format": "gif",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0086.gif"
+  },
+  "work_0087.webp": {
+    "width": 1920,
+    "height": 911,
+    "aspectRatio": 2.11,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0087.webp"
+  },
+  "work_0088.webp": {
+    "width": 1920,
+    "height": 911,
+    "aspectRatio": 2.11,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0088.webp"
+  },
+  "work_0089.webp": {
+    "width": 1920,
+    "height": 911,
+    "aspectRatio": 2.11,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0089.webp"
+  },
+  "work_0090.webp": {
+    "width": 1920,
+    "height": 911,
+    "aspectRatio": 2.11,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0090.webp"
+  }
+}

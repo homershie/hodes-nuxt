@@ -42,11 +42,7 @@
               >
                 <NuxtLink :to="`/article/${post.id}`">
                   <div class="img">
-                    <OptimizedImage
-                      :src="post.image"
-                      :alt="post.title"
-                      priority="normal"
-                    />
+                    <OptimizedImage :src="post.image" :alt="post.title" priority="normal" />
                   </div>
                 </NuxtLink>
                 <div class="cont mt-30">
@@ -99,9 +95,7 @@ const currentPage = computed(() => parseInt(route.params.page) || 1)
 
 // 從 Nuxt Content 查詢所有文章
 const { data: allArticles } = await useAsyncData('articles', () =>
-  queryContent('articles')
-    .sort({ date: -1 })
-    .find()
+  queryContent('articles').sort({ date: -1 }).find()
 )
 
 const allPosts = computed(() => allArticles.value || [])
@@ -116,9 +110,8 @@ const filteredPosts = computed(() => {
   // 搜尋過濾
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase()
-    posts = posts.filter(post =>
-      post.title.toLowerCase().includes(query) ||
-      post.excerpt.toLowerCase().includes(query)
+    posts = posts.filter(
+      post => post.title.toLowerCase().includes(query) || post.excerpt.toLowerCase().includes(query)
     )
   }
 
@@ -132,9 +125,7 @@ const filteredPosts = computed(() => {
 
 // 分頁邏輯
 const POSTS_PER_PAGE = 10
-const totalPages = computed(() =>
-  Math.ceil(filteredPosts.value.length / POSTS_PER_PAGE)
-)
+const totalPages = computed(() => Math.ceil(filteredPosts.value.length / POSTS_PER_PAGE))
 
 const paginatedPosts = computed(() => {
   const start = (currentPage.value - 1) * POSTS_PER_PAGE
@@ -143,9 +134,7 @@ const paginatedPosts = computed(() => {
 })
 
 // 最新文章 (側邊欄)
-const latestPosts = computed(() =>
-  allPosts.value.slice(0, 3)
-)
+const latestPosts = computed(() => allPosts.value.slice(0, 3))
 
 // 處理搜尋
 function handleSearch(query) {
@@ -171,7 +160,7 @@ function formatDate(dateString) {
   return date.toLocaleDateString('zh-TW', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
   })
 }
 
@@ -202,16 +191,14 @@ useHead({
     { property: 'og:description', content: pageDescription },
     { property: 'og:url', content: `https://homershie.com/blog/page/${currentPage.value}` },
   ],
-  link: [
-    { rel: 'canonical', href: `https://homershie.com/blog/page/${currentPage.value}` },
-  ]
+  link: [{ rel: 'canonical', href: `https://homershie.com/blog/page/${currentPage.value}` }],
 })
 
 // 404 處理
 if (currentPage.value > totalPages.value && totalPages.value > 0) {
   throw createError({
     statusCode: 404,
-    message: '頁面不存在'
+    message: '頁面不存在',
   })
 }
 </script>

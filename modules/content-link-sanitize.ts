@@ -3,13 +3,13 @@ import { defineNuxtModule } from '@nuxt/kit'
 export default defineNuxtModule({
   meta: {
     name: 'content-link-sanitize',
-    configKey: 'contentLinkSanitize'
+    configKey: 'contentLinkSanitize',
   },
   setup(_, nuxt) {
     // 嘗試使用 modules:done hook，在所有模組加載後註冊
     nuxt.hooks.hook('modules:done', () => {
       // 註冊 content:file:beforeParse hook
-      nuxt.hooks.hook('content:file:beforeParse', (file) => {
+      nuxt.hooks.hook('content:file:beforeParse', file => {
         console.log(`[beforeParse] file:`, JSON.stringify(Object.keys(file || {})))
 
         if (file && file._id) {
@@ -17,9 +17,14 @@ export default defineNuxtModule({
         }
 
         // 嘗試不同的屬性名稱
-        const bodyKey = file?.body !== undefined ? 'body' :
-                       file?.content !== undefined ? 'content' :
-                       file?._content !== undefined ? '_content' : null
+        const bodyKey =
+          file?.body !== undefined
+            ? 'body'
+            : file?.content !== undefined
+              ? 'content'
+              : file?._content !== undefined
+                ? '_content'
+                : null
 
         if (!bodyKey) {
           console.log(`[beforeParse] 找不到 body/content 屬性`)
@@ -34,12 +39,14 @@ export default defineNuxtModule({
           const newLength = file[bodyKey].length
 
           if (originalLength !== newLength) {
-            console.log(`[content-link-sanitize] ✅ 清理了文件: ${file._id} (${originalLength} -> ${newLength} bytes)`)
+            console.log(
+              `[content-link-sanitize] ✅ 清理了文件: ${file._id} (${originalLength} -> ${newLength} bytes)`
+            )
           }
         }
       })
     })
-  }
+  },
 })
 
 function sanitizeContent(s: string): string {

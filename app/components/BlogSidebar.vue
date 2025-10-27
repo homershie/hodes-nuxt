@@ -17,9 +17,7 @@
       <ul class="rest">
         <li>
           <span>
-            <a href="#0" @click.prevent="$emit('update:category', 'all')">
-              全部文章
-            </a>
+            <a href="#0" @click.prevent="$emit('update:category', 'all')"> 全部文章 </a>
           </span>
           <span class="ml-auto">{{ allPosts.length }}</span>
         </li>
@@ -33,9 +31,7 @@
         </li>
         <li>
           <span>
-            <a href="#0" @click.prevent="$emit('update:category', 'WorldVision')">
-              世界視界
-            </a>
+            <a href="#0" @click.prevent="$emit('update:category', 'WorldVision')"> 世界視界 </a>
           </span>
           <span class="ml-auto">{{ getCategoryCount('WorldVision') }}</span>
         </li>
@@ -89,7 +85,7 @@ function formatDate(dateString) {
   return date.toLocaleDateString('zh-TW', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
   })
 }
 </script>

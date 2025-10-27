@@ -75,7 +75,8 @@ export function useWebsiteSchema() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'HODES',
-    description: 'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫以及動畫',
+    description:
+      'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫以及動畫',
     url: 'https://homershie.com',
     inLanguage: 'zh-TW',
     publisher: {

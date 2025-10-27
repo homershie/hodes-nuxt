@@ -42,7 +42,7 @@ export async function useRawArticle(articleId) {
 
       return {
         ...frontmatter,
-        body
+        body,
       }
     } catch (e) {
       console.error('Error reading article:', e)

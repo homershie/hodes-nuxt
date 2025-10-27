@@ -18,7 +18,15 @@ const props = defineProps({
     type: String,
     default: '',
     validator: value =>
-      ['', 'resume-swiper', 'resume-swiper2', 'testim-swiper', 'testim-swiper2', 'swiper4', 'swiper5'].includes(value),
+      [
+        '',
+        'resume-swiper',
+        'resume-swiper2',
+        'testim-swiper',
+        'testim-swiper2',
+        'swiper4',
+        'swiper5',
+      ].includes(value),
   },
   // Swiper 配置
   slidesPerView: {
