@@ -25,7 +25,8 @@
           v-for="category in categories"
           :key="category"
           class="filter-btn"
-          :class="{ active: selectedCategory === category }"
+          :class="{ active: selectedCategory === category, disabled: isCategoryChanging }"
+          :disabled="isCategoryChanging"
           @click="handleCategoryChange(category)"
         >
           {{ getCategoryName(category) }}
@@ -78,6 +79,7 @@ const LOAD_MORE_THRESHOLD = 500 // 距底部 500px 觸發載入
 const selectedCategory = ref('all')
 const currentPage = ref(1)
 const isLoading = ref(false)
+const isCategoryChanging = ref(false)
 const loadMoreTrigger = ref(null)
 
 // 閱讀進度
@@ -145,7 +147,12 @@ async function loadMore() {
 }
 
 // 分類切換
-function handleCategoryChange(category) {
+async function handleCategoryChange(category) {
+  // 防止重複切換
+  if (isCategoryChanging.value) return
+  if (selectedCategory.value === category) return
+
+  isCategoryChanging.value = true
   selectedCategory.value = category
   currentPage.value = 1
 
@@ -155,6 +162,10 @@ function handleCategoryChange(category) {
   // 更新 URL
   const query = category === 'all' ? { page: 1 } : { category, page: 1 }
   router.replace({ query })
+
+  // 等待一小段時間讓布局穩定
+  await new Promise(resolve => setTimeout(resolve, 100))
+  isCategoryChanging.value = false
 }
 
 // 查看詳情
@@ -277,11 +288,16 @@ useHead({
   font-size: 0.8rem;
 }
 
-.filter-btn:hover,
-.filter-btn.active {
+.filter-btn:hover:not(:disabled),
+.filter-btn.active:not(:disabled) {
   background: var(--maincolor);
   color: black;
   border-color: var(--maincolor);
+}
+
+.filter-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .load-more-trigger {
