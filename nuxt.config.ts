@@ -8,9 +8,7 @@ export default defineNuxtConfig({
 
   // Nuxt Content 配置
   content: {
-    markdown: {
-      anchorLinks: { depth: 0 }, // 關閉自動標題錨點
-    },
+    // Content 模組配置
   },
 
   // Site Config for SEO
@@ -233,6 +231,20 @@ export default defineNuxtConfig({
         {
           rel: 'stylesheet',
           href: 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css',
+        },
+        // Noto Sans TC 備用字體
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.googleapis.com',
+        },
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com',
+          crossorigin: '',
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap',
         },
       ],
       script: [

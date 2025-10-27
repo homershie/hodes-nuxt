@@ -256,20 +256,20 @@ useHead({
 }
 
 .filter-btn {
-  padding: 0.5rem 1.5rem;
-  border: 1px solid #e0e0e0;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid white;
   border-radius: 25px;
-  background: white;
+  background-color: transparent;
   color: var(--color-font);
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
 }
 
 .filter-btn:hover,
 .filter-btn.active {
   background: var(--maincolor);
-  color: white;
+  color: black;
   border-color: var(--maincolor);
 }
 
