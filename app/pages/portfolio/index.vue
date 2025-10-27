@@ -80,7 +80,7 @@ const isLoading = ref(false)
 const loadMoreTrigger = ref(null)
 
 // 閱讀進度
-const { y } = useScroll(window)
+const { y } = useScroll(import.meta.client ? window : undefined)
 const progress = computed(() => {
   if (!import.meta.client) return 0
   const scrollTop = y.value
@@ -152,9 +152,7 @@ function handleCategoryChange(category) {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 
   // 更新 URL
-  const query = category === 'all'
-    ? { page: 1 }
-    : { category, page: 1 }
+  const query = category === 'all' ? { page: 1 } : { category, page: 1 }
   router.replace({ query })
 }
 
@@ -180,7 +178,7 @@ onMounted(() => {
   // 清理 URL 中的 page 參數（如果存在）
   if (route.query.page) {
     router.replace({
-      query: categoryQuery !== 'all' ? { category: categoryQuery } : {}
+      query: categoryQuery !== 'all' ? { category: categoryQuery } : {},
     })
   }
 
@@ -194,7 +192,7 @@ onMounted(() => {
         }
       },
       {
-        rootMargin: `0px 0px ${LOAD_MORE_THRESHOLD}px 0px` // 提前 500px 觸發
+        rootMargin: `0px 0px ${LOAD_MORE_THRESHOLD}px 0px`, // 提前 500px 觸發
       }
     )
   }
@@ -235,9 +233,7 @@ useHead({
     { property: 'og:description', content: pageDescription },
     { property: 'og:url', content: 'https://homershie.com/portfolio' },
   ],
-  link: [
-    { rel: 'canonical', href: 'https://homershie.com/portfolio' },
-  ]
+  link: [{ rel: 'canonical', href: 'https://homershie.com/portfolio' }],
 })
 </script>
 

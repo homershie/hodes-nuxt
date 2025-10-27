@@ -67,10 +67,9 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
+import { computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Masonry from 'masonry-layout'
 import { useImagePreloader } from '@composables/useImagePreloader'
 import { useEventListener, useIntersectionObserver, useTimeoutFn } from '@vueuse/core'
 
@@ -105,13 +104,19 @@ const { preloadImages, loadingProgress, isPreloading } = useImagePreloader()
 let masonryInstance = null
 
 // 初始化 Masonry
-const initMasonry = () => {
+const initMasonry = async () => {
+  // 只在客戶端執行
+  if (!import.meta.client) return
+
   const container = document.querySelector('.gallery')
   if (!container) return
 
   if (masonryInstance) {
     masonryInstance.destroy()
   }
+
+  // 動態載入 masonry-layout
+  const { default: Masonry } = await import('masonry-layout')
 
   masonryInstance = new Masonry(container, {
     itemSelector: '.items',
@@ -202,6 +207,9 @@ watch(
 )
 
 onMounted(async () => {
+  // 只在客戶端執行
+  if (!import.meta.client) return
+
   // 只收集主要圖片 URL（不包含 gallery），減少載入時間
   const imageUrls = displayedWorks.value.map(work => work.image || work.mainImage).filter(Boolean)
 
@@ -212,7 +220,7 @@ onMounted(async () => {
   await waitForDomUpdate()
 
   // 初始化 Masonry 和動畫
-  initMasonry()
+  await initMasonry()
   setupAnimationsForNewItems()
 
   // 使用 VueUse 的 useEventListener 監聽窗口大小改變
