@@ -127,15 +127,29 @@ const route = useRoute()
 const router = useRouter()
 const articleId = route.params.id
 
-// 從 Nuxt Content 查詢文章
-const { data: article } = await useAsyncData(`article-${articleId}`, () =>
-  queryContent('articles', articleId).findOne()
-)
+// 從 Nuxt Content 查詢文章 (使用 v3 API)
+// 注意：v3 中只有一個 'content' collection
+const { data: allArticles } = await useAsyncData('all-articles', () => queryCollection('content').all())
 
-// 查詢所有文章以計算上一篇/下一篇
-const { data: allArticles } = await useAsyncData('all-articles', () =>
-  queryContent('articles').sort({ date: -1 }).find()
-)
+// 找到當前文章
+const article = computed(() => {
+  if (!allArticles.value) return null
+  return allArticles.value.find(a => a.id === articleId)
+})
+
+// 排序文章（按日期降序）
+const sortedArticles = computed(() => {
+  if (!allArticles.value) return []
+  return [...allArticles.value].sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime()
+  })
+})
+
+// 文章內容（Nuxt Content v3 中，body 包含已渲染的 HTML）
+const articleContent = computed(() => {
+  if (!article.value) return ''
+  return article.value.body || ''
+})
 
 // 404 處理
 if (!article.value) {
@@ -156,17 +170,17 @@ const progress = computed(() => {
 
 // 計算上一篇和下一篇文章
 const prevArticle = computed(() => {
-  if (!article.value || !allArticles.value) return null
-  const currentIndex = allArticles.value.findIndex(a => a.id === article.value.id)
+  if (!article.value || !sortedArticles.value) return null
+  const currentIndex = sortedArticles.value.findIndex(a => a.id === article.value.id)
   if (currentIndex === -1 || currentIndex === 0) return null
-  return allArticles.value[currentIndex - 1]
+  return sortedArticles.value[currentIndex - 1]
 })
 
 const nextArticle = computed(() => {
-  if (!article.value || !allArticles.value) return null
-  const currentIndex = allArticles.value.findIndex(a => a.id === article.value.id)
-  if (currentIndex === -1 || currentIndex === allArticles.value.length - 1) return null
-  return allArticles.value[currentIndex + 1]
+  if (!article.value || !sortedArticles.value) return null
+  const currentIndex = sortedArticles.value.findIndex(a => a.id === article.value.id)
+  if (currentIndex === -1 || currentIndex === sortedArticles.value.length - 1) return null
+  return sortedArticles.value[currentIndex + 1]
 })
 
 // 分享連結

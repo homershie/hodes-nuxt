@@ -8,7 +8,9 @@ export default defineNuxtConfig({
 
   // Nuxt Content 配置
   content: {
-    // Content 模組配置
+    markdown: {
+      anchorLinks: false,
+    },
   },
 
   // Site Config for SEO

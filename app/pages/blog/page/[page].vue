@@ -93,12 +93,30 @@ import { ref, computed } from 'vue'
 const route = useRoute()
 const currentPage = computed(() => parseInt(route.params.page) || 1)
 
-// 從 Nuxt Content 查詢所有文章
-const { data: allArticles } = await useAsyncData('articles', () =>
-  queryContent('articles').sort({ date: -1 }).find()
-)
+// 從 Nuxt Content 查詢所有文章 (使用 v3 API)
+// 注意：v3 中只有一個 'content' collection
+const { data: allArticles, error } = await useAsyncData('articles', () => queryCollection('content').all())
 
-const allPosts = computed(() => allArticles.value || [])
+// 調試用：檢查是否有錯誤
+if (error.value) {
+  // eslint-disable-next-line no-console
+  console.error('Error loading articles:', error.value)
+}
+
+// 調試用：檢查文章數量
+if (import.meta.client) {
+  // eslint-disable-next-line no-console
+  console.log('Articles loaded:', allArticles.value?.length || 0)
+}
+
+const allPosts = computed(() => {
+  const posts = (allArticles.value || []).sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime()
+  })
+  // eslint-disable-next-line no-console
+  console.log('All posts:', posts.length)
+  return posts
+})
 
 // 搜尋和篩選
 const searchQuery = ref('')

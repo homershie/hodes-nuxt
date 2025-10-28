@@ -73,7 +73,7 @@ const { preloadImages, startCacheCleanup, stopCacheCleanup } = useImageCache()
 
 // 常數
 const ITEMS_PER_PAGE = 15
-const LOAD_MORE_THRESHOLD = 500 // 距底部 500px 觸發載入
+const LOAD_MORE_THRESHOLD = 1000 // 距底部 500px 觸發載入
 
 // 狀態
 const selectedCategory = ref('all')
