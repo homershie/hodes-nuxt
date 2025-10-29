@@ -15,11 +15,21 @@ export function useImageCache() {
 
   // 處理圖片路徑
   const normalizeImagePath = url => {
+    // 絕對網址直接回傳，避免被誤加前綴
+    if (/^https?:\/\//i.test(url)) return url
     // 移除開頭的 /src
     url = url.replace(/^\/src/, '')
     // 確保路徑以 /assets 開頭
     if (!url.startsWith('/assets')) {
       url = `/assets${url}`
+    }
+    return url
+  }
+
+  // 取得實際要 fetch 的 URL（針對 R2 網域走本機代理以避免 CORS）
+  const getFetchUrl = url => {
+    if (typeof url === 'string' && url.startsWith('https://r2bucket.homershie.com/')) {
+      return `/api/proxy-image?url=${encodeURIComponent(url)}`
     }
     return url
   }
@@ -192,7 +202,7 @@ export function useImageCache() {
 
         // 從網路載入
         const response = await retryOperation(async () => {
-          const res = await fetch(url)
+          const res = await fetch(getFetchUrl(url))
           if (!res.ok) throw new Error(`Failed to load image: ${res.status}`)
           return res
         })
@@ -224,7 +234,7 @@ export function useImageCache() {
 
       // 從網路載入
       const response = await retryOperation(async () => {
-        const res = await fetch(url)
+        const res = await fetch(getFetchUrl(url))
         if (!res.ok) throw new Error(`Failed to load image: ${res.status}`)
         return res
       })
