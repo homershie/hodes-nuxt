@@ -382,6 +382,15 @@ onMounted(async () => {
   await initMasonry()
   setupAnimationsForNewItems()
 
+  // 修補：若圖片在指令綁定前就已載入完成，手動補上 loaded 狀態
+  // 以免初次重新整理時因為 miss 掉 load 事件，造成長時間顯示 skeleton
+  const imgs = document.querySelectorAll('.img img')
+  imgs.forEach(img => {
+    if (img.complete && img.naturalWidth > 0) {
+      img.classList.add('loaded')
+    }
+  })
+
   // 使用 VueUse 的 useEventListener 監聽窗口大小改變
   useEventListener(window, 'resize', () => {
     if (masonryInstance) {
