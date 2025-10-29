@@ -89,3 +89,101 @@ function formatDate(dateString) {
   })
 }
 </script>
+
+<style scoped>
+.search-box {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 15px 50px 15px 20px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+}
+
+.search-box .icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+.sidebar .widget {
+  margin-bottom: 50px;
+}
+
+.title-widget {
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--maincolor);
+}
+
+.catogry ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid #666;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.catogry ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.catogry ul li a:hover {
+  color: var(--maincolor);
+}
+
+.last-post-thum .item {
+  display: flex;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.last-post-thum .item:last-child {
+  border-bottom: none;
+}
+
+.last-post-thum .img {
+  width: 80px;
+  height: 60px;
+  margin-right: 15px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.last-post-thum .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.last-post-thum .cont h6 {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 5px;
+}
+
+.last-post-thum .cont a:hover {
+  text-decoration: underline;
+}
+
+.last-post-thum .cont h6 a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.last-post-thum .cont span a {
+  color: #999;
+  font-size: 12px;
+  text-decoration: none;
+}
+</style>
