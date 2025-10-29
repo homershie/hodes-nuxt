@@ -21,9 +21,10 @@
       <div class="row justify-content-center">
         <div class="col-lg-9">
           <div class="cont">
-            <!-- 直接渲染 HTML 內容，繞過 MDC 解析器 -->
-            <!-- eslint-disable-next-line vue/no-v-html -->
-            <div class="article-content" v-html="articleContent"></div>
+            <!-- 使用 ContentRenderer 渲染 Nuxt Content v3 的 body -->
+            <div class="article-content">
+              <ContentRenderer v-if="article.body" :value="article.body" />
+            </div>
 
             <!-- 分享區域 -->
             <div class="info-area flex mt-20 pb-20 pt-20 bord-thin-top bord-thin-bottom">
@@ -134,21 +135,50 @@ const { data: allArticles } = await useAsyncData('all-articles', () => queryColl
 // 找到當前文章
 const article = computed(() => {
   if (!allArticles.value) return null
-  return allArticles.value.find(a => a.id === articleId)
+
+  // 轉換資料並尋找匹配的文章
+  const articles = allArticles.value
+    .filter(item => item.path && item.path.startsWith('/articles/'))
+    .map(item => {
+      const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || {}
+      return {
+        id: meta.id || item.stem,
+        title: item.title,
+        date: meta.date,
+        category: meta.category,
+        categoryName: meta.categoryName,
+        excerpt: meta.excerpt || '',
+        image: meta.image || meta.thumbnail,
+        thumbnail: meta.thumbnail || meta.image,
+        author: meta.author || 'Homer Shie',
+        body: item.body,
+        path: item.path
+      }
+    })
+
+  return articles.find(a => a.id === articleId)
 })
 
 // 排序文章（按日期降序）
 const sortedArticles = computed(() => {
   if (!allArticles.value) return []
-  return [...allArticles.value].sort((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime()
-  })
-})
 
-// 文章內容（Nuxt Content v3 中，body 包含已渲染的 HTML）
-const articleContent = computed(() => {
-  if (!article.value) return ''
-  return article.value.body || ''
+  // 轉換並排序所有文章
+  return allArticles.value
+    .filter(item => item.path && item.path.startsWith('/articles/'))
+    .map(item => {
+      const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || {}
+      return {
+        id: meta.id || item.stem,
+        title: item.title,
+        date: meta.date,
+        thumbnail: meta.thumbnail || meta.image,
+        path: item.path
+      }
+    })
+    .sort((a, b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime()
+    })
 })
 
 // 404 處理

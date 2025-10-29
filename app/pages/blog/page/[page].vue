@@ -103,19 +103,41 @@ if (error.value) {
   console.error('Error loading articles:', error.value)
 }
 
-// 調試用：檢查文章數量
+// 調試用：檢查文章數量和資料結構
 if (import.meta.client) {
   // eslint-disable-next-line no-console
   console.log('Articles loaded:', allArticles.value?.length || 0)
+  // eslint-disable-next-line no-console
+  console.log('First article data:', allArticles.value?.[0])
 }
 
 const allPosts = computed(() => {
-  const posts = (allArticles.value || []).sort((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime()
-  })
+  // 將資料庫返回的資料轉換為文章格式
+  const articles = (allArticles.value || [])
+    .filter(item => item.path && item.path.startsWith('/articles/'))
+    .map(item => {
+      // 解析 meta JSON 欄位獲取 frontmatter 資料
+      const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || {}
+      return {
+        id: meta.id || item.stem, // 使用 frontmatter 的 id
+        title: item.title,
+        date: meta.date,
+        category: meta.category,
+        categoryName: meta.categoryName,
+        excerpt: meta.excerpt || '',
+        image: meta.image || meta.thumbnail,
+        thumbnail: meta.thumbnail || meta.image,
+        author: meta.author || 'Homer Shie',
+        path: item.path
+      }
+    })
+    .sort((a, b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime()
+    })
+
   // eslint-disable-next-line no-console
-  console.log('All posts:', posts.length)
-  return posts
+  console.log('All posts:', articles.length)
+  return articles
 })
 
 // 搜尋和篩選
