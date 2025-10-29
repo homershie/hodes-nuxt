@@ -88,6 +88,8 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { articles as legacyArticles } from '@data/articleData.js'
+// 不再自動從 body 擷取，僅使用 frontmatter 與舊資料作為回退
 
 // 取得路由參數
 const route = useRoute()
@@ -95,7 +97,9 @@ const currentPage = computed(() => parseInt(route.params.page) || 1)
 
 // 從 Nuxt Content 查詢所有文章 (使用 v3 API)
 // 注意：v3 中只有一個 'content' collection
-const { data: allArticles, error } = await useAsyncData('articles', () => queryCollection('content').all())
+const { data: allArticles, error } = await useAsyncData('articles', () =>
+  queryCollection('content').all()
+)
 
 // 調試用：檢查是否有錯誤
 if (error.value) {
@@ -116,21 +120,37 @@ const allPosts = computed(() => {
   const articles = (allArticles.value || [])
     .filter(item => item.path && item.path.startsWith('/articles/'))
     .map(item => {
-      // 解析 meta JSON 欄位獲取 frontmatter 資料
-      const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || {}
+      // 解析 meta JSON 欄位獲取 frontmatter 資料；若無 meta，嘗試直接使用項目本身（Nuxt Content 會將 frontmatter 提升為頂層欄位）
+      const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || item || {}
       // 從 stem 中提取文章 ID (移除 'articles/' 前綴)
-      const articleId = item.stem ? item.stem.replace(/^articles\//, '') : (meta.id || item.stem)
+      const articleId = item.stem ? item.stem.replace(/^articles\//, '') : meta.id || item.stem
+      // 僅使用 frontmatter 與舊資料的 excerpt，不自動擷取
+      const legacyExcerpt = legacyArticles?.[articleId]?.excerpt || ''
+      const computedExcerpt = meta.excerpt || item.excerpt || legacyExcerpt
+      if (import.meta.client) {
+        // 調試：僅記錄前幾筆，避免噪音
+        if (Math.random() < 0.05) {
+          // eslint-disable-next-line no-console
+          console.log('Excerpt debug:', {
+            id: articleId,
+            hasMetaExcerpt: Boolean(meta.excerpt),
+            hasItemExcerpt: Boolean(item.excerpt),
+            computedExcerptSample: (computedExcerpt || '').slice(0, 60),
+          })
+        }
+      }
       return {
         id: articleId,
         title: item.title,
         date: meta.date,
         category: meta.category,
         categoryName: meta.categoryName,
-        excerpt: meta.excerpt || '',
-        image: meta.image || meta.thumbnail,
-        thumbnail: meta.thumbnail || meta.image,
-        author: meta.author || 'Homer Shie',
-        path: item.path
+        // 優先使用 meta.excerpt，否則回退到 item.excerpt（frontmatter 直出），最後從 body 取前 120 字
+        excerpt: computedExcerpt,
+        image: meta.image || meta.thumbnail || item.image || item.thumbnail,
+        thumbnail: meta.thumbnail || meta.image || item.thumbnail || item.image,
+        author: meta.author || item.author || 'Homer Shie',
+        path: item.path,
       }
     })
     .sort((a, b) => {
@@ -287,6 +307,6 @@ if (currentPage.value > totalPages.value && totalPages.value > 0) {
 .date {
   color: #999;
   font-size: 0.9rem;
-  display: block;
+  display: inline-block;
 }
 </style>

@@ -119,18 +119,51 @@
 </template>
 
 <script setup>
-import { computed, onMounted, onUnmounted, nextTick } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { computed, onMounted, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
+import { articles as legacyArticles } from '@data/articleData.js'
 import { useScroll } from '@vueuse/core'
 import { enableImageLightbox } from '@composables/useLightBox.js'
 
 const route = useRoute()
-const router = useRouter()
 const articleId = route.params.id
 
 // 從 Nuxt Content 查詢文章 (使用 v3 API)
 // 注意：v3 中只有一個 'content' collection
-const { data: allArticles } = await useAsyncData('all-articles', () => queryCollection('content').all())
+const { data: allArticles } = await useAsyncData('all-articles', () =>
+  queryCollection('content').all()
+)
+
+// 工具：從 Content v3 的 body（minimark）擷取第一個段落文字，避開圖片/圖說
+function extractExcerptFromBody(body, maxLen = 120) {
+  if (!body) return ''
+  if (typeof body === 'string') {
+    return body
+      .replace(/<[^>]*>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, maxLen)
+  }
+  const nodes = Array.isArray(body?.value) ? body.value : []
+  function findFirstParagraphText(arr) {
+    for (const node of arr) {
+      if (typeof node === 'string') continue
+      if (Array.isArray(node)) {
+        const [tag, _attrs, ...children] = node
+        if (tag === 'p') {
+          return children
+            .map(child => (typeof child === 'string' ? child : findFirstParagraphText([child])))
+            .join(' ')
+        }
+        const nested = findFirstParagraphText(children)
+        if (nested && nested.trim()) return nested
+      }
+    }
+    return ''
+  }
+  const text = findFirstParagraphText(nodes).replace(/\s+/g, ' ').trim()
+  return text.slice(0, maxLen)
+}
 
 // 找到當前文章
 const article = computed(() => {
@@ -140,21 +173,32 @@ const article = computed(() => {
   const articles = allArticles.value
     .filter(item => item.path && item.path.startsWith('/articles/'))
     .map(item => {
-      const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || {}
+      const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || item || {}
       // 從 stem 中提取文章 ID (移除 'articles/' 前綴)
-      const id = item.stem ? item.stem.replace(/^articles\//, '') : (meta.id || item.stem)
+      const id = item.stem ? item.stem.replace(/^articles\//, '') : meta.id || item.stem
+      const legacyExcerpt = legacyArticles?.[id]?.excerpt || ''
+      const computedExcerpt = meta.excerpt || item.excerpt || legacyExcerpt
+      if (import.meta.client && id === articleId) {
+        // eslint-disable-next-line no-console
+        console.log('Article excerpt debug:', {
+          id,
+          hasMetaExcerpt: Boolean(meta.excerpt),
+          hasItemExcerpt: Boolean(item.excerpt),
+          computedExcerptSample: (computedExcerpt || '').slice(0, 80),
+        })
+      }
       return {
         id,
         title: item.title,
         date: meta.date,
         category: meta.category,
         categoryName: meta.categoryName,
-        excerpt: meta.excerpt || '',
-        image: meta.image || meta.thumbnail,
-        thumbnail: meta.thumbnail || meta.image,
-        author: meta.author || 'Homer Shie',
+        excerpt: computedExcerpt,
+        image: meta.image || meta.thumbnail || item.image || item.thumbnail,
+        thumbnail: meta.thumbnail || meta.image || item.thumbnail || item.image,
+        author: meta.author || item.author || 'Homer Shie',
         body: item.body,
-        path: item.path
+        path: item.path,
       }
     })
 
@@ -171,13 +215,13 @@ const sortedArticles = computed(() => {
     .map(item => {
       const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || {}
       // 從 stem 中提取文章 ID (移除 'articles/' 前綴)
-      const id = item.stem ? item.stem.replace(/^articles\//, '') : (meta.id || item.stem)
+      const id = item.stem ? item.stem.replace(/^articles\//, '') : meta.id || item.stem
       return {
         id,
         title: item.title,
         date: meta.date,
         thumbnail: meta.thumbnail || meta.image,
-        path: item.path
+        path: item.path,
       }
     })
     .sort((a, b) => {

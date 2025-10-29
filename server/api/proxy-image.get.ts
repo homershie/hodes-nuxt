@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { defineEventHandler, getQuery, createError, setHeader } from 'h3'
 
 export default defineEventHandler(async event => {
