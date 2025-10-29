@@ -118,8 +118,10 @@ const allPosts = computed(() => {
     .map(item => {
       // 解析 meta JSON 欄位獲取 frontmatter 資料
       const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || {}
+      // 從 stem 中提取文章 ID (移除 'articles/' 前綴)
+      const articleId = item.stem ? item.stem.replace(/^articles\//, '') : (meta.id || item.stem)
       return {
-        id: meta.id || item.stem, // 使用 frontmatter 的 id
+        id: articleId,
         title: item.title,
         date: meta.date,
         category: meta.category,

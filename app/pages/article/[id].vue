@@ -141,8 +141,10 @@ const article = computed(() => {
     .filter(item => item.path && item.path.startsWith('/articles/'))
     .map(item => {
       const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || {}
+      // 從 stem 中提取文章 ID (移除 'articles/' 前綴)
+      const id = item.stem ? item.stem.replace(/^articles\//, '') : (meta.id || item.stem)
       return {
-        id: meta.id || item.stem,
+        id,
         title: item.title,
         date: meta.date,
         category: meta.category,
@@ -168,8 +170,10 @@ const sortedArticles = computed(() => {
     .filter(item => item.path && item.path.startsWith('/articles/'))
     .map(item => {
       const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || {}
+      // 從 stem 中提取文章 ID (移除 'articles/' 前綴)
+      const id = item.stem ? item.stem.replace(/^articles\//, '') : (meta.id || item.stem)
       return {
-        id: meta.id || item.stem,
+        id,
         title: item.title,
         date: meta.date,
         thumbnail: meta.thumbnail || meta.image,
