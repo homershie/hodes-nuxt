@@ -2,13 +2,12 @@
   <div class="article-img">
     <OptimizedImage :src="src" :alt="alt" />
   </div>
-  
 </template>
 
 <script setup>
 import OptimizedImage from '@components/OptimizedImage.vue'
 
-const props = defineProps({
+defineProps({
   src: { type: String, required: true },
   alt: { type: String, default: '' },
 })
@@ -33,5 +32,3 @@ const props = defineProps({
   }
 }
 </style>
-
-

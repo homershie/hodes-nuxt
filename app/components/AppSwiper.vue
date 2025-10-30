@@ -1,10 +1,10 @@
 <template>
   <div :class="['swiper-wrapper-component', variant]">
-    <div class="swiper-container" :id="containerId">
+    <div :id="containerId" class="swiper-container">
       <div class="swiper-wrapper">
         <slot />
       </div>
-      <div v-if="showPagination" class="swiper-pagination" :id="paginationId"></div>
+      <div v-if="showPagination" :id="paginationId" class="swiper-pagination"></div>
     </div>
   </div>
 </template>

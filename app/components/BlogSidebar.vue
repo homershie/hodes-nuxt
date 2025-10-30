@@ -68,10 +68,22 @@
 
 <script setup>
 const props = defineProps({
-  searchQuery: String,
-  selectedCategory: String,
-  allPosts: Array,
-  latestPosts: Array,
+  searchQuery: {
+    type: String,
+    default: '',
+  },
+  selectedCategory: {
+    type: String,
+    default: '',
+  },
+  allPosts: {
+    type: Array,
+    default: () => [],
+  },
+  latestPosts: {
+    type: Array,
+    default: () => [],
+  },
 })
 
 defineEmits(['update:search', 'update:category'])

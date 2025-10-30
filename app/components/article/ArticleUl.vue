@@ -2,11 +2,9 @@
   <ul class="article-ul">
     <slot />
   </ul>
-  
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style scoped>
 .article-ul {
@@ -29,5 +27,3 @@
   color: var(--maincolor);
 }
 </style>
-
-

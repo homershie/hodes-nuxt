@@ -48,6 +48,10 @@
 <script setup>
 import { computed } from 'vue'
 
+defineOptions({
+  name: 'BlogPagination',
+})
+
 const props = defineProps({
   currentPage: {
     type: Number,

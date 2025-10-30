@@ -13,7 +13,6 @@ export default defineSitemapEventHandler(async () => {
 
   // 添加 Blog 分頁路由
   // 注意：文章本身會由 Nuxt Content 自動處理
-  const POSTS_PER_PAGE = 10
   // 這裡我們假設有一定數量的文章，實際上可以從 content 查詢
   // 但為了避免 #content/server 的問題，我們暫時使用固定值
   const totalBlogPages = 5 // 可以根據實際情況調整

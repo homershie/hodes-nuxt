@@ -2,11 +2,9 @@
   <figcaption class="article-figcaption">
     <slot />
   </figcaption>
-  
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style scoped>
 .article-figcaption {
@@ -16,5 +14,3 @@
   color: #aaa;
 }
 </style>
-
-

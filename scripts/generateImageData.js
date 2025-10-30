@@ -50,58 +50,12 @@ async function downloadAndAnalyzeImage(url) {
 
 /**
  * 掃描圖片目錄並獲取所有圖片的尺寸資訊
+ * 目前未被使用，保留供未來使用
  */
-async function scanImages() {
-  console.log('🔍 開始掃描圖片...')
-
-  const imageData = {}
-  const files = fs.readdirSync(IMAGES_DIR)
-
-  let processedCount = 0
-  const totalFiles = files.filter(file =>
-    SUPPORTED_FORMATS.some(format => file.toLowerCase().endsWith(format))
-  ).length
-
-  console.log(`📁 找到 ${totalFiles} 個圖片檔案`)
-
-  for (const file of files) {
-    const ext = path.extname(file).toLowerCase()
-
-    if (!SUPPORTED_FORMATS.includes(ext)) {
-      continue
-    }
-
-    const filePath = path.join(IMAGES_DIR, file)
-    const fileName = path.basename(file, ext)
-
-    try {
-      // 使用 sharp 獲取圖片資訊
-      const metadata = await sharp(filePath).metadata()
-
-      if (metadata.width && metadata.height) {
-        const aspectRatio = metadata.width / metadata.height
-
-        imageData[file] = {
-          width: metadata.width,
-          height: metadata.height,
-          aspectRatio: Math.round(aspectRatio * 100) / 100, // 保留兩位小數
-          format: metadata.format,
-          size: fs.statSync(filePath).size,
-        }
-
-        processedCount++
-        console.log(`✅ ${file}: ${metadata.width}x${metadata.height} (${aspectRatio.toFixed(2)})`)
-      } else {
-        console.warn(`⚠️  無法獲取 ${file} 的尺寸資訊`)
-      }
-    } catch (error) {
-      console.error(`❌ 處理 ${file} 時發生錯誤:`, error.message)
-    }
-  }
-
-  console.log(`\n📊 處理完成: ${processedCount}/${totalFiles} 個檔案`)
-  return imageData
-}
+// async function scanImages() {
+//   console.log('🔍 開始掃描圖片...')
+//   // ... implementation ...
+// }
 
 /**
  * 從 portfolioData.js 中提取所有圖片 URL 並分析
@@ -110,8 +64,6 @@ async function analyzePortfolioImages() {
   console.log('🔍 分析作品集中的圖片...')
 
   const portfolioDataPath = path.join(__dirname, '../data/portfolioData.js')
-  const content = fs.readFileSync(portfolioDataPath, 'utf8')
-
   // 使用動態 import 來載入 portfolio 資料
   const portfolioModule = await import('../data/portfolioData.js')
   const portfolio = portfolioModule.portfolio

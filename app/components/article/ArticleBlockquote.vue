@@ -2,11 +2,9 @@
   <blockquote class="article-blockquote">
     <slot />
   </blockquote>
-  
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style scoped>
 .article-blockquote {
@@ -22,5 +20,3 @@
   font-weight: bold;
 }
 </style>
-
-

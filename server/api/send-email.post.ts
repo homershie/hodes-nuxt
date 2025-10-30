@@ -101,18 +101,19 @@ export default defineEventHandler(async event => {
       success: true,
       data,
     }
-  } catch (error: any) {
+  } catch (error) {
     console.error('❌ Email 發送失敗:', error)
 
     // 如果已經是 H3Error，直接拋出
-    if (error.statusCode) {
+    if (error && typeof error === 'object' && 'statusCode' in error) {
       throw error
     }
 
     // 其他錯誤
+    const errorMessage = error instanceof Error ? error.message : '發送失敗'
     throw createError({
       statusCode: 500,
-      statusMessage: error.message || '發送失敗',
+      statusMessage: errorMessage,
     })
   }
 })

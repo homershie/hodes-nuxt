@@ -75,42 +75,42 @@ author: Homer Shie
 
   <!-- 圖庫展示 -->
   <div class="image-gallery-3">
-    <figure class="image">
-      <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/mountains.jpg" alt="mountains" loading="lazy" />
-      <figcaption>mountains</figcaption>
-    </figure>
-    <figure class="image">
-      <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/fruit.jpg" alt="fruit" loading="lazy" />
-      <figcaption>fruit</figcaption>
-    </figure>
-    <figure class="image">
-      <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/banarabit.jpg" alt="banarabit" loading="lazy" />
-      <figcaption>banarabit</figcaption>
-    </figure>
-    <figure class="image">
-      <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/mario.jpg" alt="mario" loading="lazy" />
-      <figcaption>Mario</figcaption>
-    </figure>
-    <figure class="image">
-      <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/rocket.jpg" alt="rocket" loading="lazy" />
-      <figcaption>rocket</figcaption>
-    </figure>
-    <figure class="image">
-      <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/searchwhat.jpg" alt="searchwhat" loading="lazy" />
-      <figcaption>searchwhat</figcaption>
-    </figure>
-    <figure class="image">
-      <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/beer.jpg" alt="beer" loading="lazy" />
-      <figcaption>beer</figcaption>
-    </figure>
-    <figure class="image">
-      <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/ghost.jpg" alt="ghost" loading="lazy" />
-      <figcaption>ghost</figcaption>
-    </figure>
-    <figure class="image">
-      <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/ice-cream.jpg" alt="ice-cream" loading="lazy" />
-      <figcaption>ice-cream</figcaption>
-    </figure>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/mountains.jpg" alt="mountains" loading="lazy" />
+  <figcaption>mountains</figcaption>
+  </figure>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/fruit.jpg" alt="fruit" loading="lazy" />
+  <figcaption>fruit</figcaption>
+  </figure>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/banarabit.jpg" alt="banarabit" loading="lazy" />
+  <figcaption>banarabit</figcaption>
+  </figure>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/mario.jpg" alt="mario" loading="lazy" />
+  <figcaption>Mario</figcaption>
+  </figure>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/rocket.jpg" alt="rocket" loading="lazy" />
+  <figcaption>rocket</figcaption>
+  </figure>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/searchwhat.jpg" alt="searchwhat" loading="lazy" />
+  <figcaption>searchwhat</figcaption>
+  </figure>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/beer.jpg" alt="beer" loading="lazy" />
+  <figcaption>beer</figcaption>
+  </figure>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/ghost.jpg" alt="ghost" loading="lazy" />
+  <figcaption>ghost</figcaption>
+  </figure>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/MBE/ice-cream.jpg" alt="ice-cream" loading="lazy" />
+  <figcaption>ice-cream</figcaption>
+  </figure>
   </div>
 
   <h2>總結</h2>

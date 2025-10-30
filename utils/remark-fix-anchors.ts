@@ -1,8 +1,9 @@
 import { visit } from 'unist-util-visit'
+import type { Root, Link } from 'mdast'
 
 export default function remarkFixAnchors() {
-  return (tree: any) => {
-    visit(tree, 'link', (node: any) => {
+  return (tree: Root) => {
+    visit(tree, 'link', (node: Link) => {
       if (typeof node.url !== 'string') return
 
       const url = node.url

@@ -2,11 +2,9 @@
   <h2 class="article-h2">
     <slot />
   </h2>
-  
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style scoped>
 .article-h2 {
@@ -21,4 +19,3 @@
   }
 }
 </style>
-

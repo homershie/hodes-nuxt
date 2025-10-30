@@ -2,7 +2,6 @@
   <div :class="['article-image-gallery', columnsClass]">
     <slot />
   </div>
-  
 </template>
 
 <script setup>
@@ -59,7 +58,9 @@ const columnsClass = computed(() => {
   margin: 0;
   opacity: 0;
   transform: translateY(10px);
-  transition: opacity 0.3s, transform 0.3s;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
   text-align: center;
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
@@ -93,6 +94,3 @@ const columnsClass = computed(() => {
   }
 }
 </style>
-
-
-

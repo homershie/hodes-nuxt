@@ -2,11 +2,9 @@
   <p class="article-p">
     <slot />
   </p>
-  
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style scoped>
 .article-p {
@@ -16,5 +14,3 @@
   font-weight: normal;
 }
 </style>
-
-

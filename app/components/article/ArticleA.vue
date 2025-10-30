@@ -2,12 +2,11 @@
   <a class="article-a" :href="href" target="_self">
     <slot />
   </a>
-  
 </template>
 
 <script setup>
-const props = defineProps({
-  href: { type: String, default: '#' }
+defineProps({
+  href: { type: String, default: '#' },
 })
 </script>
 
@@ -20,5 +19,3 @@ const props = defineProps({
   text-decoration: underline;
 }
 </style>
-
-

@@ -2,11 +2,9 @@
   <ol class="article-ol">
     <slot />
   </ol>
-  
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style scoped>
 .article-ol {
@@ -31,5 +29,3 @@
   color: var(--maincolor);
 }
 </style>
-
-
