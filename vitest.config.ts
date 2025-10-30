@@ -30,7 +30,8 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./', import.meta.url)),
       '@composables': fileURLToPath(new URL('./composables', import.meta.url)),
-      '@data': fileURLToPath(new URL('./data', import.meta.url))
+      '@data': fileURLToPath(new URL('./data', import.meta.url)),
+      '@server': fileURLToPath(new URL('./server', import.meta.url))
     }
   }
 })
