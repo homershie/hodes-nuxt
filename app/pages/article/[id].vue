@@ -21,9 +21,28 @@
       <div class="row justify-content-center">
         <div class="col-lg-9">
           <div class="cont">
-            <!-- 使用 ContentRenderer 渲染 Nuxt Content v3 的 body -->
-            <div class="article-content">
-              <ContentRenderer v-if="article.body" :value="article.body" />
+            <!-- 使用 ContentRenderer 渲染 Nuxt Content，並以自訂元件全面接管標籤 -->
+            <div class="article-typo">
+              <ContentRenderer
+                v-if="article.body"
+                :value="article.body"
+                :components="{
+                  p: ArticleP,
+                  h2: ArticleH2,
+                  h3: ArticleH3,
+                  img: ArticleImg,
+                  figure: ArticleFigure,
+                  figcaption: ArticleFigcaption,
+                  a: ArticleA,
+                  ul: ArticleUl,
+                  ol: ArticleOl,
+                  li: ArticleLi,
+                  blockquote: ArticleBlockquote,
+                  'image-gallery': ArticleImageGallery,
+                  'image-gallery-3': ArticleImageGallery3,
+                  'image-masonry': ArticleImageMasonry,
+                }"
+              />
             </div>
 
             <!-- 分享區域 -->
@@ -124,6 +143,20 @@ import { useRoute } from 'vue-router'
 import { articles as legacyArticles } from '@data/articleData.js'
 import { useScroll } from '@vueuse/core'
 import { enableImageLightbox } from '@composables/useLightBox.js'
+import ArticleH2 from '@components/article/ArticleH2.vue'
+import ArticleH3 from '@components/article/ArticleH3.vue'
+import ArticleP from '@components/article/ArticleP.vue'
+import ArticleImg from '@components/article/ArticleImg.vue'
+import ArticleFigure from '@components/article/ArticleFigure.vue'
+import ArticleFigcaption from '@components/article/ArticleFigcaption.vue'
+import ArticleA from '@components/article/ArticleA.vue'
+import ArticleUl from '@components/article/ArticleUl.vue'
+import ArticleOl from '@components/article/ArticleOl.vue'
+import ArticleLi from '@components/article/ArticleLi.vue'
+import ArticleBlockquote from '@components/article/ArticleBlockquote.vue'
+import ArticleImageGallery from '@components/article/ArticleImageGallery.vue'
+import ArticleImageMasonry from '@components/article/ArticleImageMasonry.vue'
+const ArticleImageGallery3 = ArticleImageGallery
 
 const route = useRoute()
 const articleId = route.params.id
@@ -134,36 +167,7 @@ const { data: allArticles } = await useAsyncData('all-articles', () =>
   queryCollection('content').all()
 )
 
-// 工具：從 Content v3 的 body（minimark）擷取第一個段落文字，避開圖片/圖說
-function extractExcerptFromBody(body, maxLen = 120) {
-  if (!body) return ''
-  if (typeof body === 'string') {
-    return body
-      .replace(/<[^>]*>/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim()
-      .slice(0, maxLen)
-  }
-  const nodes = Array.isArray(body?.value) ? body.value : []
-  function findFirstParagraphText(arr) {
-    for (const node of arr) {
-      if (typeof node === 'string') continue
-      if (Array.isArray(node)) {
-        const [tag, _attrs, ...children] = node
-        if (tag === 'p') {
-          return children
-            .map(child => (typeof child === 'string' ? child : findFirstParagraphText([child])))
-            .join(' ')
-        }
-        const nested = findFirstParagraphText(children)
-        if (nested && nested.trim()) return nested
-      }
-    }
-    return ''
-  }
-  const text = findFirstParagraphText(nodes).replace(/\s+/g, ' ').trim()
-  return text.slice(0, maxLen)
-}
+// （保留位置）
 
 // 找到當前文章
 const article = computed(() => {
@@ -309,113 +313,6 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
-/* 文章內容樣式 */
-.article-content :deep(article) {
-  a {
-    text-decoration: underline;
-    &:hover {
-      text-decoration: underline;
-      color: var(--maincolor);
-    }
-  }
-
-  .image {
-    margin: 60px 0;
-  }
-
-  figcaption {
-    text-align: center;
-    margin: 20px 0;
-    font-size: 0.9rem;
-    color: #aaa;
-  }
-
-  img {
-    width: 50%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border-radius: 5px;
-  }
-
-  h2 {
-    font-size: 2rem;
-    margin: 40px 0 20px 0;
-    color: var(--maincolor);
-  }
-
-  h3 {
-    font-size: 1.5rem;
-    margin: 40px 0 20px 0;
-    text-decoration: underline;
-    text-decoration-color: var(--maincolor);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 10px;
-  }
-
-  p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 10px;
-    font-weight: normal;
-  }
-
-  hr {
-    margin-top: 40px;
-    border: none;
-    border-top: 1px solid #eee;
-  }
-
-  ul {
-    padding-left: 20px;
-    margin: 40px 0;
-    li {
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-      font-weight: normal;
-      line-height: 1.6;
-      &:before {
-        content: '•';
-        color: var(--maincolor);
-        margin-right: 10px;
-      }
-    }
-  }
-
-  ol {
-    counter-reset: li;
-    padding-left: 20px;
-    margin: 40px 0;
-
-    li {
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-      font-weight: normal;
-      line-height: 1.6;
-
-      &::before {
-        counter-increment: li;
-        content: counter(li) '.';
-        color: var(--maincolor);
-        margin-right: 10px;
-      }
-    }
-  }
-
-  blockquote {
-    margin: 40px 0;
-    padding-left: 20px;
-    border-left: 4px solid var(--maincolor);
-    font-style: italic;
-    color: #555;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    em {
-      font-weight: bold;
-    }
-  }
-}
-
 .cont .image-gallery .artist {
   grid-column: 1 / -1;
   justify-self: center;
@@ -423,7 +320,6 @@ onMounted(async () => {
   font-size: 0.9rem;
   margin: 0 auto;
 }
-
 .cont .image-gallery {
   width: 95%;
   margin: 0 auto;
@@ -548,17 +444,6 @@ onMounted(async () => {
 }
 
 @media screen and (max-width: 768px) {
-  .article-content :deep(article) {
-    h2 {
-      font-size: 1.8rem;
-    }
-    h3 {
-      font-size: 1.4rem;
-    }
-    img {
-      width: 100%;
-    }
-  }
   .image-masonry {
     column-count: 1;
   }
