@@ -60,13 +60,11 @@ author: Homer Shie
       alt="Campbells Soup Cans by Andy Warhol"
       loading="lazy"
     />
-
     <figcaption>
       《Campbells Soup Cans》 Andy Warhol, from
       <a href="https://en.wikipedia.org/wiki/Campbell%27s_Soup_Cans" target="_blank">Wiki</a>
     </figcaption>
   </figure>
-    </figure>
     <figure class="image">
       <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pop_Art/file1.jpg" alt="Monroe in Warhol style" loading="lazy" />
       <figcaption>

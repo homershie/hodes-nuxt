@@ -19,6 +19,7 @@ const props = defineProps({
   width: 50%;
   margin: 0 auto;
 }
+
 .article-img :deep(img) {
   display: block;
   width: 100%;

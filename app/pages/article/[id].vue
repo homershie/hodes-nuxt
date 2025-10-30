@@ -303,16 +303,51 @@ useHead({
   link: [{ rel: 'canonical', href: `https://homershie.com/article/${articleId}` }],
 })
 
-// 在掛載後啟用 lightbox
+// 在掛載後啟用 lightbox 並調整 gallery 圖片方向
 onMounted(async () => {
   if (import.meta.client) {
     await nextTick()
     enableImageLightbox()
+
+    // 自動判斷 gallery 中圖片的方向並設定樣式
+    const galleries = document.querySelectorAll('.image-gallery, .image-gallery-3')
+    galleries.forEach(gallery => {
+      const images = gallery.querySelectorAll('.image img')
+      images.forEach(img => {
+        // 確保圖片已載入
+        if (img.complete) {
+          adjustImageOrientation(img)
+        } else {
+          img.addEventListener('load', () => adjustImageOrientation(img))
+        }
+      })
+    })
   }
 })
+
+// 根據圖片寬高比調整樣式
+function adjustImageOrientation(img) {
+  const aspectRatio = img.naturalWidth / img.naturalHeight
+
+  // 如果是高圖（寬高比 < 1），使用 height: 100%
+  // 如果是寬圖或正方形（寬高比 >= 1），使用 width: 100%
+  if (aspectRatio < 1) {
+    img.classList.add('portrait')
+  } else {
+    img.classList.remove('portrait')
+  }
+}
 </script>
 
 <style lang="scss">
+/* 覆蓋 gallery/masonry 中的 ArticleImg 寬度 */
+.cont .image-gallery .article-img,
+.cont .image-gallery-3 .article-img,
+.cont .image-masonry .article-img {
+  width: 100% !important;
+  margin: 0 !important;
+}
+
 .cont .image-gallery .artist {
   grid-column: 1 / -1;
   justify-self: center;
@@ -335,13 +370,27 @@ onMounted(async () => {
     aspect-ratio: 1 / 1;
     margin: 0;
     overflow: hidden;
+    border-radius: 5px;
 
     img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 5px;
       display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+
+      /* 預設寬圖：填滿高度，寬度自適應 */
+      height: 100%;
+      width: auto;
+      min-width: 100%;
+
+      /* 高圖時會被 JS 動態設定為：填滿寬度，高度自適應 */
+      &.portrait {
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+      }
     }
 
     figcaption {

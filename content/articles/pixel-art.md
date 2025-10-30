@@ -93,70 +93,55 @@ author: Homer Shie
 
   <!-- 圖庫展示 -->
   <div class="image-gallery">
-    <figure class="image">
-      <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/Mucha.jpg" alt="Mucha" loading="lazy" />
-
-      <figcaption>Mucha</figcaption>
-    </figure>
-    <figure class="image">
-      <img
-        src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/The-starry-night.jpg"
-        alt="The-starry-night"
-        loading="lazy"
-      />
-      <figcaption>The starry night</figcaption>
-    </figure>
-    <figure class="image">
-      <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/vin-gogh.jpg" alt="Vin Gogh" loading="lazy" />
-      <figcaption>Vin Gogh</figcaption>
-    </figure>
-    <figure class="image">
-      <img
-        src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/Jaebum-copy-of-George-seurat.jpg"
-        alt="Jaebum copy of George seurat"
-        loading="lazy"
-      />
-      <figcaption>Jaebum copy of George seurat</figcaption>
-    </figure>
-    <p class="text-center artist">
-      <a href="https://www.behance.net/joojaebum" target="_blank">Joo Jaebum</a>
-    </p>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/Mucha.jpg" alt="Mucha" loading="lazy" />
+  <figcaption>Mucha</figcaption>
+  </figure>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/The-starry-night.jpg" alt="The-starry-night" loading="lazy" />
+  <figcaption>The starry night</figcaption>
+  </figure>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/vin-gogh.jpg" alt="Vin Gogh" loading="lazy" />
+  <figcaption>Vin Gogh</figcaption>
+  </figure>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/Jaebum-copy-of-George-seurat.jpg" alt="Jaebum copy of George seurat" loading="lazy" />
+  <figcaption>Jaebum copy of George seurat</figcaption>
+  </figure>
+  <p class="text-center artist">
+  <a href="https://www.behance.net/joojaebum" target="_blank">Joo Jaebum</a>
+  </p>
   </div>
 
   <!-- 圖庫展示 -->
   <div class="image-gallery">
-    <figure class="image">
-      <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/pixel_7_web.jpg" alt="pixel_7_web" loading="lazy" />
-
-      <figcaption>pixel 7</figcaption>
-    </figure>
-    <figure class="image">
-      <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/pixel_5_web.jpg" alt="pixel_5_web" loading="lazy" />
-      <figcaption>pixel 5</figcaption>
-    </figure>
-    <p class="text-center artist">
-      <a href="https://www.behance.net/aflynn" target="_blank">Adam Flynn</a>
-    </p>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/pixel_7_web.jpg" alt="pixel_7_web" loading="lazy" />
+  <figcaption>pixel 7</figcaption>
+  </figure>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/pixel_5_web.jpg" alt="pixel_5_web" loading="lazy" />
+  <figcaption>pixel 5</figcaption>
+  </figure>
+  <p class="text-center artist">
+  <a href="https://www.behance.net/aflynn" target="_blank">Adam Flynn</a>
+  </p>
   </div>
 
   <!-- 圖庫展示 -->
   <div class="image-gallery">
-    <figure class="image">
-      <img
-        src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/Svard-self-portrait.jpg"
-        alt="Svard-self-portrait"
-        loading="lazy"
-      />
-
-      <figcaption>Svard self portrait</figcaption>
-    </figure>
-    <figure class="image">
-      <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/Wacek-by-Js.jpg" loading="lazy" />
-      <figcaption>Wacek by Js</figcaption>
-    </figure>
-    <p class="text-center artist">
-      <a href="https://www.behance.net/james_svard" target="_blank">James Svärd</a>
-    </p>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/Svard-self-portrait.jpg" alt="Svard-self-portrait" loading="lazy" />
+  <figcaption>Svard self portrait</figcaption>
+  </figure>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/Wacek-by-Js.jpg" loading="lazy" />
+  <figcaption>Wacek by Js</figcaption>
+  </figure>
+  <p class="text-center artist">
+  <a href="https://www.behance.net/james_svard" target="_blank">James Svärd</a>
+  </p>
   </div>
 
   <h3>台灣</h3>
@@ -168,7 +153,6 @@ author: Homer Shie
         alt="Kamen-Rider-EX-AID"
         loading="lazy"
       />
-
       <figcaption>Kamen Rider EX-AID</figcaption>
     </figure>
     <figure class="image">
@@ -204,7 +188,6 @@ author: Homer Shie
   <div class="image-gallery">
     <figure class="image">
       <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/photo.jpg" alt="中秋拜拜" loading="lazy" />
-
       <figcaption>中秋拜拜</figcaption>
     </figure>
     <figure class="image">
@@ -265,25 +248,17 @@ author: Homer Shie
 
   <!-- 圖庫展示 -->
   <div class="image-gallery">
-    <figure class="image">
-      <img
-        src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/21149929_1559297130758725_1565544402944185110_n.jpg"
-        alt="doodle"
-        loading="lazy"
-      />
-      <figcaption>doodle</figcaption>
-    </figure>
-    <figure class="image">
-      <img
-        src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/11234866_969179516437159_7734001953992364884_n.jpg"
-        alt="doodle_workflow"
-        loading="lazy"
-      />
-      <figcaption>doodle_workflow</figcaption>
-    </figure>
-    <p class="text-center artist">
-      <a href="https://www.instagram.com/ano9s/" target="_blank">ANO塗鴉阿諾</a>
-    </p>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/21149929_1559297130758725_1565544402944185110_n.jpg" alt="doodle" loading="lazy" />
+  <figcaption>doodle</figcaption>
+  </figure>
+  <figure class="image">
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/11234866_969179516437159_7734001953992364884_n.jpg" alt="doodle_workflow" loading="lazy" />
+  <figcaption>doodle_workflow</figcaption>
+  </figure>
+  <p class="text-center artist">
+  <a href="https://www.instagram.com/ano9s/" target="_blank">ANO塗鴉阿諾</a>
+  </p>
   </div>
 
   <h2>其他視覺應用</h2>
