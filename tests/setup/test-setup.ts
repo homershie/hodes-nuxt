@@ -5,11 +5,15 @@
  */
 
 import { vi } from 'vitest'
+import { reactive } from 'vue'
 import 'fake-indexeddb/auto'
 
 // Mock Nuxt 全域函數（#imports）
 vi.mock('#imports', async () => {
   const actual = await vi.importActual('#imports')
+  // 提供可變更的 route 模擬物件，供元件測試使用
+  const routeObj = (globalThis as any).__testRoute || reactive({ path: '/' })
+  ;(globalThis as any).__testRoute = routeObj
   return {
     ...actual,
     useRuntimeConfig: vi.fn(() => ({
@@ -17,11 +21,24 @@ vi.mock('#imports', async () => {
       resendApiKey: 'test-resend-api-key',
       toEmail: 'test@example.com',
     })),
+    useRoute: vi.fn(() => routeObj),
     defineEventHandler: vi.fn(),
     createError: vi.fn((options: { statusMessage: string }) => new Error(options.statusMessage)),
     getRequestHeader: vi.fn(),
     readBody: vi.fn(),
   }
+})
+
+// 由於測試環境不會啟用 Nuxt 自動引入，補上全域方法供 SFC 直接呼叫
+;(globalThis as any).useRoute = () => ((globalThis as any).__testRoute ||= reactive({ path: '/' }))
+;(globalThis as any).defineEventHandler = (fn: any) => fn
+;(globalThis as any).createError = (options: { statusCode?: number; statusMessage: string }) => options
+;(globalThis as any).getRequestHeader = () => '127.0.0.1'
+;(globalThis as any).readBody = async () => ({})
+;(globalThis as any).useRuntimeConfig = () => ({
+  recaptchaSecretKey: 'test-secret-key',
+  resendApiKey: 'test-resend-api-key',
+  toEmail: 'test@example.com',
 })
 
 // Mock gsap 與其外掛，避免在 JSDOM 進行真實動畫

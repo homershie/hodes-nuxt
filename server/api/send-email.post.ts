@@ -1,33 +1,8 @@
 import { Resend } from 'resend'
 import { verifyRecaptcha } from '../utils/recaptcha'
+import { checkRateLimit } from '../utils/rate-limit'
 
-// 簡單的 rate limiting (使用記憶體存儲)
-const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
-
-/**
- * 檢查 rate limit
- * 限制同一 IP 在 15 分鐘內最多請求 5 次
- */
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now()
-  const limit = rateLimitMap.get(ip)
-
-  if (!limit || now > limit.resetTime) {
-    // 重置或建立新的限制
-    rateLimitMap.set(ip, {
-      count: 1,
-      resetTime: now + 15 * 60 * 1000, // 15 分鐘
-    })
-    return true
-  }
-
-  if (limit.count >= 5) {
-    return false
-  }
-
-  limit.count++
-  return true
-}
+// rate limit 檢查移至 server/utils/rate-limit.ts 共用
 
 export default defineEventHandler(async event => {
   try {
