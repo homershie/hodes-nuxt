@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { nextTick } from 'vue'
+import { defineComponent, h, nextTick } from 'vue'
+import { mount } from '@vue/test-utils'
 import { useLazyImage } from '@/composables/useLazyImage'
 
 describe('useLazyImage', () => {
@@ -7,34 +8,42 @@ describe('useLazyImage', () => {
     vi.resetAllMocks()
   })
 
-  it('IntersectionObserver 觸發後標記可見並在載入後設置已載入', async () => {
-    const observeMock = vi.fn()
+  it('IntersectionObserver 觸發後標記可見，手動呼叫 loadImage 後載入完成', async () => {
+    let ioCallback: any
+    const observeMock = vi.fn((el: Element) => {
+      setTimeout(() => ioCallback?.([{ isIntersecting: true, target: el }]), 0)
+    })
     const disconnectMock = vi.fn()
+
     ;(globalThis as any).window = globalThis as any
     ;(window as any).IntersectionObserver = vi.fn((cb: any) => {
-      // 立刻觸發可見
-      setTimeout(() => cb([{ isIntersecting: true, target: imgEl }]), 0)
+      ioCallback = cb
       return { observe: observeMock, disconnect: disconnectMock }
     })
 
-    const { imageRef, isLoaded, isVisible } = useLazyImage()
-    const imgEl = document.createElement('img')
-    imgEl.setAttribute('data-src', '/x.png')
-    // 模擬載入
-    setTimeout(() => {
-      imgEl.onload && imgEl.onload(new Event('load'))
-    }, 0)
-    imageRef.value = imgEl as any
+    const Comp = defineComponent({
+      setup() {
+        const { imageRef, isLoaded, isVisible, loadImage } = useLazyImage()
+        return { imageRef, isLoaded, isVisible, loadImage }
+      },
+      render() {
+        return h('img', { ref: 'imageRef', 'data-src': '/x.png' })
+      },
+    })
 
-    // 掛載鉤子會在 composable 呼叫時註冊，我們只需等待微任務
+    const wrapper = mount(Comp)
+    const imgEl = wrapper.find('img').element as HTMLImageElement
+
     await new Promise(r => setTimeout(r, 0))
     await nextTick()
 
-    expect(isVisible.value).toBe(true)
-    // 模擬把 src 指派會觸發 load handler，isLoaded 應該變 true
-    imgEl.src = '/x.png'
-    await new Promise(r => setTimeout(r, 0))
-    expect(isLoaded.value).toBe(true)
+    expect((wrapper.vm as any).isVisible).toBe(true)
+
+    ;(wrapper.vm as any).loadImage()
+    imgEl.onload && imgEl.onload(new Event('load'))
+    await nextTick()
+
+    expect((wrapper.vm as any).isLoaded).toBe(true)
   })
 })
 
