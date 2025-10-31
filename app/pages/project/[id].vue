@@ -235,13 +235,30 @@ const formatCategory = categories => {
   return categories
 }
 
-onMounted(() => {
-  const projectId = route.params.id
-  project.value = getWorkById(projectId)
+// 在服務端和客戶端都執行數據獲取
+const projectId = computed(() => route.params.id as string)
 
-  if (project.value) {
-    // 確保 gallery 是陣列
-    if (!project.value.gallery || !Array.isArray(project.value.gallery)) {
+// 使用 computed 而不是 onMounted，確保 SSG 時也能獲取數據
+project.value = getWorkById(projectId.value)
+
+if (project.value) {
+  // 確保 gallery 是陣列
+  if (!project.value.gallery || !Array.isArray(project.value.gallery)) {
+    project.value.gallery = []
+  }
+} else if (import.meta.server) {
+  // 在服務端如果找不到專案，拋出 404
+  throw createError({
+    statusCode: 404,
+    message: '專案不存在',
+  })
+}
+
+onMounted(() => {
+  // 客戶端如果需要重新獲取數據（例如路由變化）
+  if (!project.value) {
+    project.value = getWorkById(projectId.value)
+    if (project.value && (!project.value.gallery || !Array.isArray(project.value.gallery))) {
       project.value.gallery = []
     }
   }

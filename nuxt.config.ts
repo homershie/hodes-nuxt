@@ -86,7 +86,7 @@ export default defineNuxtConfig({
   // 實驗性功能
   experimental: {
     componentIslands: true, // 元件孤島
-    payloadExtraction: true, // Payload 提取
+    payloadExtraction: true, // 啟用 Payload 提取（SSG 必需）
   },
 
   // Nitro 預渲染設定
@@ -100,23 +100,13 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: true,
-      routes: [
-        '/',
-        '/about',
-        '/service',
-        '/contact',
-        '/portfolio',
-        '/blog/page/1',
-        '/article/art-nouveau',
-        '/article/mbe',
-        '/article/modern-design-intro',
-        '/article/pixel-art',
-        '/article/pop-art',
-        '/article/vaporwave',
-      ],
+      // 不在這裡硬編碼路由，讓 prerender hook 動態生成
+      routes: ['/'],
       autoSubfolderIndex: false,
       // 確保在預渲染時正確處理錯誤
       failOnError: false,
+      // 增加並發數以加快預渲染
+      concurrency: 10,
     },
     // Cloudflare Pages 相容性設定
     cloudflare: {
@@ -140,26 +130,30 @@ export default defineNuxtConfig({
     // 首頁 - 靜態生成
     '/': { prerender: true },
 
+    // 靜態頁面
+    '/about': { prerender: true },
+    '/service': { prerender: true },
+    '/contact': { prerender: true },
+    '/portfolio': { prerender: true },
+
     // Blog 分頁 - 靜態生成
+    '/blog': { redirect: '/blog/page/1' },
     '/blog/page/**': { prerender: true },
 
-    // Portfolio - 靜態生成
-    '/portfolio': {
+    // 文章詳情 - 靜態生成（SSR + Prerender）
+    '/article/**': { 
+      ssr: true,
       prerender: true,
     },
 
-    // 文章詳情 - 靜態生成
-    '/article/**': {
+    // 作品詳情 - 靜態生成（SSR + Prerender）
+    '/project/**': { 
+      ssr: true,
       prerender: true,
     },
 
-    // 作品詳情 - 靜態生成
-    '/project/**': {
-      prerender: true,
-    },
-
-    // API 路由 - 對於 Cloudflare Pages，不需要特殊的 routeRule
-    // API 會自動轉換為 Cloudflare Functions
+    // API 路由
+    '/api/**': { cors: true },
   },
 
   gtag: {

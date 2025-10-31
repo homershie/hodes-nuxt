@@ -162,8 +162,16 @@ const route = useRoute()
 const articleId = route.params.id as string
 
 // 使用 queryCollection API (Nuxt Content v3)
-const { data: allArticles } = await useAsyncData('all-articles', () =>
-  queryCollection('content').all()
+// 使用 server: true 確保在 SSR/SSG 時正確執行
+const { data: allArticles } = await useAsyncData(
+  `article-${articleId}`, 
+  () => queryCollection('content').all(),
+  {
+    // 確保在 SSR/SSG 時執行
+    server: true,
+    // 確保數據被緩存
+    lazy: false,
+  }
 )
 
 // 找到當前文章
