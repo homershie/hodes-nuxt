@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url'
 import contentLinkSanitize from './modules/content-link-sanitize'
 
 export default defineNuxtConfig({
-  compatibilityDate: '2025-11-01',
+  compatibilityDate: '2025-10-30',
   devtools: { enabled: true },
 
   // Nuxt Content 配置
@@ -60,6 +60,12 @@ export default defineNuxtConfig({
 
   // Icon 配置 - 確保生產構建時正確打包所有 icon
   icon: {
+    // 設置 provider 為 'server' 以啟用本地 API 端點
+    provider: 'server',
+    // 配置 serverBundle 確保 SSR 時能正確載入 icon
+    serverBundle: {
+      collections: ['mdi'], // 明確指定要包含的 icon 集合
+    },
     clientBundle: {
       // 自動掃描所有組件並包含使用的 icon
       scan: true,
@@ -80,7 +86,7 @@ export default defineNuxtConfig({
   // 實驗性功能
   experimental: {
     componentIslands: true, // 元件孤島
-    payloadExtraction: true, // Payload 提取
+    payloadExtraction: false, // Payload 提取 (關閉以避免文章路由 payload 404)
   },
 
   // Nitro 預渲染設定
@@ -114,26 +120,23 @@ export default defineNuxtConfig({
     // Blog 分頁 - 靜態生成
     '/blog/page/**': { prerender: true },
 
-    // Portfolio - 混合式 (SSG + 客戶端動態)
+    // Portfolio - 靜態生成
     '/portfolio': {
       prerender: true,
-      swr: 3600, // 1小時 Stale-While-Revalidate
     },
 
     // 文章詳情 - 靜態生成
     '/article/**': {
       prerender: true,
-      swr: 86400, // 24小時
     },
 
     // 作品詳情 - 靜態生成
     '/project/**': {
       prerender: true,
-      swr: 86400,
     },
 
     // API 路由 - 伺服器端
-    '/api/**': { cors: true },
+    '/api/**': { ssr: true },
   },
 
   gtag: {

@@ -26,7 +26,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
+    "preview": "npx wrangler pages dev . --cwd output --compatibility-date=2025-10-30 --ip 0.0.0.0",
     "postinstall": "nuxt prepare && patch-package",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
