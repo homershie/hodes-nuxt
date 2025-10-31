@@ -58,6 +58,25 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
   ],
 
+  // Icon 配置 - 確保生產構建時正確打包所有 icon
+  icon: {
+    clientBundle: {
+      // 自動掃描所有組件並包含使用的 icon
+      scan: true,
+      // 明確指定要包含的 icon（作為備用）
+      icons: [
+        'mdi:bell',
+        'mdi:note-text',
+        'mdi:email-outline',
+        'mdi:dumbbell',
+        'mdi:file-document-outline',
+        'mdi:map-marker-outline',
+      ],
+      // 包含自訂集合
+      includeCustomCollections: true,
+    },
+  },
+
   // 實驗性功能
   experimental: {
     componentIslands: true, // 元件孤島
