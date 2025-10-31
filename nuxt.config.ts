@@ -67,6 +67,12 @@ export default defineNuxtConfig({
   // Nitro 預渲染設定
   nitro: {
     preset: 'cloudflare-pages',
+    // 使用非隱藏目錄，避免 Cloudflare Pages 無法識別的問題
+    output: {
+      dir: 'output',
+      serverDir: 'output/server',
+      publicDir: 'output/public',
+    },
     prerender: {
       crawlLinks: true,
       routes: ['/', '/about', '/service', '/contact', '/portfolio'],
