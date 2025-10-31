@@ -34,7 +34,12 @@
                 }"
                 @load="handleImageLoad"
               />
-              <a href="#0" class="link" @click.prevent="viewDetails(work)"></a>
+              <a
+                href="#0"
+                class="link"
+                :aria-label="`查看 ${work.title} 詳情`"
+                @click.prevent="viewDetails(work)"
+              ></a>
             </div>
             <div class="cont d-flex align-items-center">
               <div class="content-area">
@@ -52,12 +57,17 @@
               </div>
               <div class="ml-auto">
                 <div class="arrow">
-                  <a href="#0" @click.prevent="viewDetails(work)">
+                  <a
+                    href="#0"
+                    :aria-label="`查看 ${work.title} 詳情`"
+                    @click.prevent="viewDetails(work)"
+                  >
                     <svg
                       class="arrow-right"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 34.2 32.3"
                       style="stroke-width: 2"
+                      aria-hidden="true"
                     >
                       <line x1="0" y1="16" x2="33" y2="16"></line>
                       <line x1="17.3" y1="0.7" x2="33.2" y2="16.5"></line>

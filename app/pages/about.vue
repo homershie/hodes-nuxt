@@ -223,14 +223,27 @@ useHead({
   link: [{ rel: 'canonical', href: 'https://homershie.com/about' }],
   meta: [
     { property: 'og:title', content: '關於 | HODES - 荷馬桑 Homer Shie' },
-    { property: 'og:description', content: '了解荷馬桑 Homer Shie 的背景、技能和經歷，以及各式各樣擅長的工具，展示專業的視覺、動態技術的必備技能。' },
-    { property: 'og:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg' },
+    {
+      property: 'og:description',
+      content:
+        '了解荷馬桑 Homer Shie 的背景、技能和經歷，以及各式各樣擅長的工具，展示專業的視覺、動態技術的必備技能。',
+    },
+    {
+      property: 'og:image',
+      content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg',
+    },
     { property: 'og:url', content: 'https://homershie.com/about' },
     { property: 'og:type', content: 'profile' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: '關於 | HODES - 荷馬桑 Homer Shie' },
-    { name: 'twitter:description', content: '了解荷馬桑 Homer Shie 的背景、技能和經歷，展示專業的視覺、動態技術的必備技能。' },
-    { name: 'twitter:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg' },
+    {
+      name: 'twitter:description',
+      content: '了解荷馬桑 Homer Shie 的背景、技能和經歷，展示專業的視覺、動態技術的必備技能。',
+    },
+    {
+      name: 'twitter:image',
+      content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg',
+    },
     { name: 'robots', content: 'index, follow' },
   ],
 })
@@ -284,19 +297,19 @@ const skills = ref([
 const experiences = ref([
   {
     id: 1,
-    period: '2025 - 現在',
-    title: '前端工程師學生',
-    company: '職訓局北分署',
+    period: '2019 - 現在',
+    title: '視覺&動態設計師',
+    company: '接案中',
     description:
-      '因應2024年年底前公司業務縮減，於2025年報名職訓局北分署的前端設計課程，系統性學習 HTML、CSS、JavaScript、Vue.js 等技術。課程中也實作 LINE Bot 專案，深入體驗應用層開發流程。期望結合過往設計專長與新習得的開發技能，轉型為能獨立製作互動產品的前端工程師。',
+      '自2019年起全職自由接案，與 Garmin 等品牌合作智慧手錶錶面設計，專精視覺整合與動畫製作。服務內容涵蓋品牌形象、平面設計、行銷素材、動態視覺與影片剪輯。平時持續學習 3D、UI、網頁建置等技術，拓展跨領域創作能力與實踐經驗。',
   },
   {
     id: 2,
-    period: '2019 - 現在',
-    title: '視覺&動態設計師',
-    company: '接案暫停中',
+    period: '2025 - 2025',
+    title: '前端工程師進修',
+    company: '職訓局北分署',
     description:
-      '自2019年起全職自由接案，與 Garmin 等品牌合作智慧手錶錶面設計，專精視覺整合與動畫製作。服務內容涵蓋品牌形象、平面設計、行銷素材、動態視覺與影片剪輯。平時持續學習 3D、UI、網頁建置等技術，拓展跨領域創作能力與實踐經驗。',
+      '因應2024年年底前公司業務縮減，於2025年報名職訓局北分署的前端設計課程，系統性學習 HTML、CSS、JavaScript、Vue.js 等技術。課程中也實作 LINE Bot 專案，深入體驗應用層開發流程。期望結合過往設計專長與新習得的開發技能，轉型為能獨立製作互動產品的前端工程師。',
   },
   {
     id: 3,

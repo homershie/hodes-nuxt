@@ -15,7 +15,14 @@ export type SendEmailDeps = {
 
 export function createSendEmailHandler(deps: SendEmailDeps) {
   return async function handler(event: any) {
-    const { readBody, getRequestHeader, verifyRecaptcha, ResendCtor, useRuntimeConfig, createError } = deps
+    const {
+      readBody,
+      getRequestHeader,
+      verifyRecaptcha,
+      ResendCtor,
+      useRuntimeConfig,
+      createError,
+    } = deps
 
     try {
       // 獲取 client IP

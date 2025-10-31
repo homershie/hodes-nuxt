@@ -147,7 +147,6 @@ export default defineNuxtConfig({
         output: {
           manualChunks: {
             // 將大型第三方庫單獨打包
-            swiper: ['swiper'],
             masonry: ['masonry-layout'],
           },
         },
