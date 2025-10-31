@@ -148,8 +148,17 @@ export default defineNuxtConfig({
       deployConfig: true,
       nodeCompat: true,
       routes: {
-        include: ['/*'], // 包含所有路徑，API 路由由 Functions 處理
-        exclude: ['/_nuxt/*', '/fonts/*', '/images/*'], // ⭐ API 路由不在 exclude 中，確保由 Functions 處理
+        include: ['/*'],
+        exclude: [
+          '/_nuxt/*',
+          '/fonts/*',
+          '/images/*',
+          '/public/*',
+          '/_fonts/*',
+          '/_headers',
+          '/_redirects',
+          '/_routes.json',
+        ],
       },
     },
     alias: {

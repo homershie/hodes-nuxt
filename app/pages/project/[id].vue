@@ -173,18 +173,19 @@ useHead({
   script: [
     {
       type: 'application/ld+json',
-      children: () => JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'CreativeWork',
-        name: project.value?.title,
-        description: projectDescription.value,
-        image: projectImage.value,
-        creator: {
-          '@type': 'Person',
-          name: 'Homer Shie',
-        },
-        datePublished: project.value?.date,
-      }),
+      children: () =>
+        JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'CreativeWork',
+          name: project.value?.title,
+          description: projectDescription.value,
+          image: projectImage.value,
+          creator: {
+            '@type': 'Person',
+            name: 'Homer Shie',
+          },
+          datePublished: project.value?.date,
+        }),
     },
   ],
 })
@@ -193,7 +194,6 @@ useHead({
 watch(
   () => project.value,
   async newProject => {
-
     if (newProject && import.meta.client) {
       // 收集主圖與 gallery 圖片
       const images = []
