@@ -222,9 +222,20 @@ npm run preview
 
 ### 問題 3: API 路由 404
 
+**症狀：** `GET /api/proxy-image?url=... 404 (Not Found)`
+
 **解決：**
-1. 檢查 `nitro.cloudflare.routes.exclude` 中沒有 `/api/*`
-2. 確認 API 路由文件存在於 `server/api/` 目錄
+1. 在 `routeRules` 中明確設定 API 路由不被預渲染：
+   \`\`\`typescript
+   '/api/**': { 
+     cors: true,
+     ssr: true,
+     prerender: false, // ⭐ 關鍵：API 路由不應該被預渲染
+   },
+   \`\`\`
+2. 檢查 `nitro.cloudflare.routes.exclude` 中**不包含** `/api/**`（API 路由應該由 Functions 處理）
+3. 確認 API 路由文件存在於 `server/api/` 目錄
+4. 重新執行 `npm run generate` 並確認 `output/server/` 目錄中有 API Functions
 
 ---
 
@@ -234,10 +245,35 @@ npm run preview
 - [ ] 所有動態路由都加入到 `nitro.prerender.routes`
 - [ ] 頁面使用 `useAsyncData` 並設定 `server: true`
 - [ ] 路由規則設定了 `ssr: true` 和 `prerender: true`
+- [ ] **API 路由設定了 `prerender: false`** ⭐
 - [ ] 執行 `npm run generate` 成功
 - [ ] 本地預覽測試通過
 - [ ] 所有頁面刷新後內容正常顯示
+- [ ] **API 路由測試通過**（如 `/api/proxy-image`）⭐
 
 ---
 
-**最後更新**: 2025-10-31
+## 📝 API 路由配置補充說明
+
+### API 路由在 SSG 模式下的特殊處理
+
+在 SSG 模式下，API 路由需要特殊配置才能正常工作：
+
+1. **路由規則設定**：
+   - `prerender: false` - 確保 API 路由不被預渲染為靜態文件
+   - `ssr: true` - 確保在服務器端運行
+
+2. **Cloudflare Pages 配置**：
+   - API 路由**不應該**出現在 `nitro.cloudflare.routes.exclude` 中
+   - 這樣 Cloudflare Pages 才會將 API 路由當作 Functions 處理
+
+3. **驗證方法**：
+   \`\`\`bash
+   # 檢查 server Functions 是否生成
+   ls -la output/server/
+   
+   # 本地測試 API 路由
+   curl http://localhost:3000/api/proxy-image?url=https://example.com/image.jpg
+   \`\`\`
+
+**最後更新**: 2025-11-01
