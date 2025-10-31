@@ -162,7 +162,7 @@ const route = useRoute()
 const articleId = route.params.id as string
 
 // 使用 queryCollection API (Nuxt Content v3)
-const { data: allArticles } = await useAsyncData('all-articles', () =>
+const { data: allArticles } = await useAsyncData(`article-${articleId}`, () =>
   queryCollection('content').all()
 )
 

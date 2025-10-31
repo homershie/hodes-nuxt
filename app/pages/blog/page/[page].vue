@@ -97,7 +97,7 @@ const currentPage = computed(() => parseInt(route.params.page) || 1)
 
 // 從 Nuxt Content 查詢所有文章 (使用 v3 API)
 // 注意：v3 中只有一個 'content' collection
-const { data: allArticles, error } = await useAsyncData('articles', () =>
+const { data: allArticles, error } = await useAsyncData(`blog-page-${currentPage.value}`, () =>
   queryCollection('content').all()
 )
 

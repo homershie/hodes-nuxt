@@ -86,7 +86,7 @@ export default defineNuxtConfig({
   // 實驗性功能
   experimental: {
     componentIslands: true, // 元件孤島
-    payloadExtraction: true, // Payload 提取
+    payloadExtraction: false, // 禁用 Payload 提取以避免 404 錯誤
   },
 
   // Nitro 預渲染設定
@@ -140,21 +140,22 @@ export default defineNuxtConfig({
     // 首頁 - 靜態生成
     '/': { prerender: true },
 
-    // Blog 分頁 - 靜態生成
-    '/blog/page/**': { prerender: true },
+    // Blog 分頁 - 靜態生成（使用 ISR 確保動態更新）
+    '/blog': { prerender: true },
+    '/blog/**': { isr: 60 * 60 * 24 }, // 24小時 ISR
 
     // Portfolio - 靜態生成
-    '/portfolio': {
+    '/portfolio': { prerender: true },
+
+    // 文章詳情 - 使用 ISR
+    '/article/**': { 
+      isr: 60 * 60 * 24, // 24小時 ISR
       prerender: true,
     },
 
-    // 文章詳情 - 靜態生成
-    '/article/**': {
-      prerender: true,
-    },
-
-    // 作品詳情 - 靜態生成
-    '/project/**': {
+    // 作品詳情 - 使用 ISR
+    '/project/**': { 
+      isr: 60 * 60 * 24, // 24小時 ISR
       prerender: true,
     },
 
