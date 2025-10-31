@@ -86,7 +86,7 @@ export default defineNuxtConfig({
   // 實驗性功能
   experimental: {
     componentIslands: true, // 元件孤島
-    payloadExtraction: false, // Payload 提取 (關閉以避免文章路由 payload 404)
+    payloadExtraction: true, // Payload 提取
   },
 
   // Nitro 預渲染設定
@@ -100,7 +100,19 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: true,
-      routes: ['/', '/about', '/service', '/contact', '/portfolio'],
+      routes: [
+        '/',
+        '/about',
+        '/service',
+        '/contact',
+        '/portfolio',
+        '/article/art-nouveau',
+        '/article/mbe',
+        '/article/modern-design-intro',
+        '/article/pixel-art',
+        '/article/pop-art',
+        '/article/vaporwave',
+      ],
       autoSubfolderIndex: false,
     },
     // Cloudflare Pages 相容性設定
