@@ -106,6 +106,7 @@ export default defineNuxtConfig({
         '/service',
         '/contact',
         '/portfolio',
+        '/blog/page/1',
         '/article/art-nouveau',
         '/article/mbe',
         '/article/modern-design-intro',
@@ -114,11 +115,17 @@ export default defineNuxtConfig({
         '/article/vaporwave',
       ],
       autoSubfolderIndex: false,
+      // 確保在預渲染時正確處理錯誤
+      failOnError: false,
     },
     // Cloudflare Pages 相容性設定
     cloudflare: {
       deployConfig: true,
       nodeCompat: true,
+      routes: {
+        include: ['/*'],
+        exclude: ['/api/*', '/_nuxt/*', '/fonts/*', '/images/*'],
+      },
     },
     alias: {
       '@react-email/render': 'unenv/runtime/mock/empty',
@@ -151,8 +158,8 @@ export default defineNuxtConfig({
       prerender: true,
     },
 
-    // API 路由 - 伺服器端
-    '/api/**': { ssr: true },
+    // API 路由 - 對於 Cloudflare Pages，不需要特殊的 routeRule
+    // API 會自動轉換為 Cloudflare Functions
   },
 
   gtag: {

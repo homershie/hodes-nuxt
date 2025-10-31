@@ -1,4 +1,4 @@
-import { defineEventHandler, getQuery, createError, setHeader } from 'h3'
+import { defineEventHandler, getQuery, createError, setResponseHeaders } from 'h3'
 
 export default defineEventHandler(async event => {
   const { url } = getQuery(event)
@@ -19,29 +19,38 @@ export default defineEventHandler(async event => {
     throw createError({ statusCode: 403, statusMessage: 'Forbidden host' })
   }
 
-  // 代理請求
-  const res = await fetch(target.toString(), {
-    method: 'GET',
-    // 保留來源快取頭，有助於瀏覽器/中繼快取
-    headers: {
-      // 可依需求轉送 If-None-Match / If-Modified-Since 等條頭
-    },
-  })
+  try {
+    // 代理請求
+    const res = await fetch(target.toString(), {
+      method: 'GET',
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; HomesShie/1.0)',
+      },
+    })
 
-  if (!res.ok) {
-    throw createError({ statusCode: res.status, statusMessage: res.statusText })
+    if (!res.ok) {
+      throw createError({ statusCode: res.status, statusMessage: res.statusText })
+    }
+
+    // 設定回應標頭
+    const contentType = res.headers.get('content-type') || 'application/octet-stream'
+    const cacheControl = res.headers.get('cache-control') || 'public, max-age=31536000, immutable'
+
+    setResponseHeaders(event, {
+      'Content-Type': contentType,
+      'Cache-Control': cacheControl,
+      'Access-Control-Allow-Origin': '*',
+    })
+
+    // 返回 buffer 以確保與 Cloudflare Pages 相容
+    const arrayBuffer = await res.arrayBuffer()
+    return new Uint8Array(arrayBuffer)
+  } catch (error) {
+    // 捕獲並處理任何錯誤
+    console.error('Proxy image error:', error)
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Failed to proxy image',
+    })
   }
-
-  // 設定 CORS 與內容型別
-  const contentType = res.headers.get('content-type') || 'application/octet-stream'
-  const cacheControl = res.headers.get('cache-control') || 'public, max-age=31536000, immutable'
-
-  setHeader(event, 'Content-Type', contentType)
-  setHeader(event, 'Cache-Control', cacheControl)
-  setHeader(event, 'Access-Control-Allow-Origin', '*')
-
-  // 直接串流回客戶端
-  return new Response(res.body, {
-    status: 200,
-  })
 })
