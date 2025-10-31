@@ -52,6 +52,7 @@ const { recordImageLoadStart, recordImageLoadComplete } = usePerformanceMonitor(
 
 // 處理載入完成
 const handleLoad = event => {
+  isLoaded.value = true
   recordImageLoadComplete()
   emit('load', event)
 }
@@ -77,7 +78,13 @@ onMounted(() => {
     // 設定實際的 src 而不是 data-src
     if (imageRef.value) {
       imageRef.value.src = props.src
+      // 移除 data-src，因為已經設定 src
+      imageRef.value.removeAttribute('data-src')
       recordImageLoadStart()
+      // 對於預載入的圖片，也需要檢查是否已經載入完成
+      if (imageRef.value.complete) {
+        isLoaded.value = true
+      }
     }
   }
 })
@@ -89,10 +96,14 @@ onMounted(() => {
   height: auto;
   transition: opacity 0.3s ease;
   opacity: 0;
+  /* 確保圖片在載入過程中不會完全消失 */
+  min-height: 50px;
+  background-color: var(--placeholder-color, #f0f0f0);
 }
 
+/* 當圖片可見但未載入時，顯示低透明度避免完全消失 */
 .optimized-image.loading {
-  opacity: 0.5;
+  opacity: 0.3;
 }
 
 .optimized-image.loaded {

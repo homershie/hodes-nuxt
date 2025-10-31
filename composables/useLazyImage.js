@@ -17,10 +17,21 @@ export function useLazyImage() {
     const src = img.dataset.src || img.getAttribute('data-src')
 
     if (src) {
+      // 如果圖片已經有 src（已經開始載入），則不需要重新設定
+      if (img.src && img.src !== '') return
+      
       img.src = src
       img.onload = () => {
         isLoaded.value = true
         img.removeAttribute('data-src')
+        // 圖片載入完成後才 disconnect observer
+        if (observer) {
+          observer.disconnect()
+        }
+      }
+      img.onerror = () => {
+        // 載入失敗時保留 observer，以便重試
+        console.warn('圖片載入失敗:', src)
       }
     }
   }
@@ -35,15 +46,16 @@ export function useLazyImage() {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               isVisible.value = true
-              // Disconnect observer after first visibility
-              if (observer) {
+              // 只在圖片已載入完成後才 disconnect observer
+              // 這樣如果圖片載入失敗，下次進入視窗時仍可重試
+              if (isLoaded.value && observer) {
                 observer.disconnect()
               }
             }
           })
         },
         {
-          rootMargin: '50px', // Start loading 50px before entering viewport
+          rootMargin: '200px', // 增加預載入距離，提前 200px 開始載入
           threshold: 0.01,
         }
       )
