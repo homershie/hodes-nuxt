@@ -72,6 +72,13 @@ export default defineNuxtConfig({
       crawlLinks: true,
       routes: ['/', '/about', '/service', '/contact', '/portfolio'],
     },
+    // Cloudflare Pages 相容性設定
+    alias: {
+      '@react-email/render': 'unenv/runtime/mock/empty',
+    },
+    unenv: {
+      external: ['@react-email/render'],
+    },
   },
 
   // 路由規則
