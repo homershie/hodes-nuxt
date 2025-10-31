@@ -1,3 +1,7 @@
+// 載入 .env 文件
+import dotenv from 'dotenv'
+dotenv.config()
+
 const requiredEnvVars = [
   'NUXT_PUBLIC_RECAPTCHA_SITE_KEY',
   'RECAPTCHA_SECRET_KEY',
