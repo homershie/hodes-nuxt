@@ -16,9 +16,6 @@
 
     <!-- Footer -->
     <AppFooter />
-
-    <!-- 全域回到頂部按鈕 -->
-    <BackToTop />
   </div>
 </template>
 

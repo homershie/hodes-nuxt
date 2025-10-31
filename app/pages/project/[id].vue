@@ -134,23 +134,65 @@ const formatDate = dateString => {
   })
 }
 
-// 更新頁面標題的函數
-const updatePageTitle = () => {
-  if (import.meta.client) {
-    if (project.value && project.value.title) {
-      document.title = `${project.value.title}|${BASE_TITLE}`
-    } else {
-      document.title = `專案詳情|${BASE_TITLE}`
-    }
-  }
-}
+// SEO Meta 設定
+const projectTitle = computed(() =>
+  project.value?.title ? `${project.value.title} | HODES - 荷馬桑 Homer Shie` : '專案詳情 | HODES'
+)
 
-// 監聽 project 變化，更新標題和預載入圖片
+const projectDescription = computed(() => {
+  if (!project.value?.description) return ''
+  // 取描述的前 150 字作為 meta description
+  return project.value.description.replace(/\n/g, ' ').substring(0, 150) + '...'
+})
+
+const projectImage = computed(() => {
+  // 優先使用 mainImage，若無則使用 gallery 第一張
+  if (project.value?.mainImage) return project.value.mainImage.replace(/\.(jpg|png)$/, '.webp')
+  if (project.value?.gallery && project.value.gallery[0]) {
+    return project.value.gallery[0].replace(/\.(jpg|png)$/, '.webp')
+  }
+  return 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg'
+})
+
+useHead({
+  title: projectTitle,
+  meta: [
+    { name: 'description', content: projectDescription },
+    { property: 'og:title', content: projectTitle },
+    { property: 'og:description', content: projectDescription },
+    { property: 'og:image', content: projectImage },
+    { property: 'og:url', content: () => `https://homershie.com/project/${route.params.id}` },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: projectTitle },
+    { name: 'twitter:description', content: projectDescription },
+    { name: 'twitter:image', content: projectImage },
+    { name: 'robots', content: 'index, follow' },
+  ],
+  link: [{ rel: 'canonical', href: () => `https://homershie.com/project/${route.params.id}` }],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: () => JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'CreativeWork',
+        name: project.value?.title,
+        description: projectDescription.value,
+        image: projectImage.value,
+        creator: {
+          '@type': 'Person',
+          name: 'Homer Shie',
+        },
+        datePublished: project.value?.date,
+      }),
+    },
+  ],
+})
+
+// 監聽 project 變化，預載入圖片
 watch(
   () => project.value,
   async newProject => {
-    // 更新頁面標題
-    updatePageTitle()
 
     if (newProject && import.meta.client) {
       // 收集主圖與 gallery 圖片

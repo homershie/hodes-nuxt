@@ -1,0 +1,26 @@
+/* 字體載入
+-----------------------------------------------------------------*/
+
+@font-face {
+  font-family: "Taipei Sans TC Beta";
+  src: url("/fonts/Taipei-Sans-TC/TaipeiSansTCBeta-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Taipei Sans TC Beta";
+  src: url("/fonts/Taipei-Sans-TC/TaipeiSansTCBeta-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Taipei Sans TC Beta";
+  src: url("/fonts/Taipei-Sans-TC/TaipeiSansTCBeta-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

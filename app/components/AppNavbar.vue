@@ -5,10 +5,10 @@
         <div class="col-lg-3 col-6 order1">
           <div class="bord">
             <!-- Logo -->
-            <NuxtLink class="logo icon-img-120" to="/">
+            <NuxtLink class="logo icon-img-120" to="/" aria-label="回到首頁">
               <img
                 src="https://r2bucket.homershie.com/assets/imgs/logo-light.png"
-                alt="荷馬桑 Homer Shie - 視覺設計師標誌"
+                alt="HODES-LOGO"
                 loading="eager"
               />
             </NuxtLink>

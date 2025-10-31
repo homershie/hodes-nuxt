@@ -13,15 +13,37 @@
               >
             </div>
             <h1 class="fz-40 mt-30">{{ article.title }}</h1>
-            <p class="sub-title mt-15">{{ article.date }} - By {{ article.author }}</p>
+            <p class="sub-title mt-15">{{ formatDate(article.date) }} - By {{ article.author }}</p>
           </div>
         </div>
       </div>
+
       <div class="row justify-content-center">
         <div class="col-lg-9">
           <div class="cont">
-            <!-- eslint-disable-next-line vue/no-v-html -->
-            <div v-html="article.content"></div>
+            <!-- 使用 ContentRenderer 渲染 Nuxt Content，並以自訂元件全面接管標籤 -->
+            <div class="article-typo">
+              <ContentRenderer
+                v-if="article.body"
+                :value="article.body"
+                :components="{
+                  p: ArticleP,
+                  h2: ArticleH2,
+                  h3: ArticleH3,
+                  img: ArticleImg,
+                  figure: ArticleFigure,
+                  figcaption: ArticleFigcaption,
+                  a: ArticleA,
+                  ul: ArticleUl,
+                  ol: ArticleOl,
+                  li: ArticleLi,
+                  blockquote: ArticleBlockquote,
+                  'image-gallery': ArticleImageGallery,
+                  'image-gallery-3': ArticleImageGallery3,
+                  'image-masonry': ArticleImageMasonry,
+                }"
+              />
+            </div>
 
             <!-- 分享區域 -->
             <div class="info-area flex mt-20 pb-20 pt-20 bord-thin-top bord-thin-bottom">
@@ -41,10 +63,12 @@
                     <span>Share :</span>
                   </div>
                   <div>
-                    <a :href="shareUrls.facebook" target="_blank"
-                      ><i class="fab fa-facebook-f"></i
-                    ></a>
-                    <a :href="shareUrls.twitter" target="_blank"><i class="fab fa-x"></i></a>
+                    <a :href="shareUrls.facebook" target="_blank">
+                      <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a :href="shareUrls.twitter" target="_blank">
+                      <i class="fab fa-x"></i>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -106,7 +130,7 @@
   <section v-else class="section-padding">
     <div class="container text-center">
       <h2>文章不存在</h2>
-      <NuxtLink to="/blog" class="butn butn-md butn-bord radius-30 mt-30">
+      <NuxtLink to="/blog/page/1" class="butn butn-md butn-bord radius-30 mt-30">
         <span>回到部落格</span>
       </NuxtLink>
     </div>
@@ -114,19 +138,108 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { articles } from '@data/articleData.js'
-import { useImageCache } from '@composables/useImageCache'
-import { useHead } from '#app'
-import { enableImageLightbox } from '@composables/useLightBox.js'
+import { computed, onMounted, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
+import { articles as legacyArticles } from '@data/articleData.js'
 import { useScroll } from '@vueuse/core'
-
-const BASE_TITLE = 'HOEDES｜荷馬桑 Homer Shie'
+import { enableImageLightbox } from '@composables/useLightBox.js'
+import ArticleH2 from '@components/article/ArticleH2.vue'
+import ArticleH3 from '@components/article/ArticleH3.vue'
+import ArticleP from '@components/article/ArticleP.vue'
+import ArticleImg from '@components/article/ArticleImg.vue'
+import ArticleFigure from '@components/article/ArticleFigure.vue'
+import ArticleFigcaption from '@components/article/ArticleFigcaption.vue'
+import ArticleA from '@components/article/ArticleA.vue'
+import ArticleUl from '@components/article/ArticleUl.vue'
+import ArticleOl from '@components/article/ArticleOl.vue'
+import ArticleLi from '@components/article/ArticleLi.vue'
+import ArticleBlockquote from '@components/article/ArticleBlockquote.vue'
+import ArticleImageGallery from '@components/article/ArticleImageGallery.vue'
+import ArticleImageMasonry from '@components/article/ArticleImageMasonry.vue'
+const ArticleImageGallery3 = ArticleImageGallery
 
 const route = useRoute()
-const router = useRouter()
-const { preloadImages, loadImage, startCacheCleanup, stopCacheCleanup } = useImageCache()
+const articleId = route.params.id
+
+// 從 Nuxt Content 查詢文章 (使用 v3 API)
+// 注意：v3 中只有一個 'content' collection
+const { data: allArticles } = await useAsyncData('all-articles', () =>
+  queryCollection('content').all()
+)
+
+// （保留位置）
+
+// 找到當前文章
+const article = computed(() => {
+  if (!allArticles.value) return null
+
+  // 轉換資料並尋找匹配的文章
+  const articles = allArticles.value
+    .filter(item => item.path && item.path.startsWith('/articles/'))
+    .map(item => {
+      const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || item || {}
+      // 從 stem 中提取文章 ID (移除 'articles/' 前綴)
+      const id = item.stem ? item.stem.replace(/^articles\//, '') : meta.id || item.stem
+      const legacyExcerpt = legacyArticles?.[id]?.excerpt || ''
+      const computedExcerpt = meta.excerpt || item.excerpt || legacyExcerpt
+      if (import.meta.client && id === articleId) {
+        // eslint-disable-next-line no-console
+        console.log('Article excerpt debug:', {
+          id,
+          hasMetaExcerpt: Boolean(meta.excerpt),
+          hasItemExcerpt: Boolean(item.excerpt),
+          computedExcerptSample: (computedExcerpt || '').slice(0, 80),
+        })
+      }
+      return {
+        id,
+        title: item.title,
+        date: meta.date,
+        category: meta.category,
+        categoryName: meta.categoryName,
+        excerpt: computedExcerpt,
+        image: meta.image || meta.thumbnail || item.image || item.thumbnail,
+        thumbnail: meta.thumbnail || meta.image || item.thumbnail || item.image,
+        author: meta.author || item.author || 'Homer Shie',
+        body: item.body,
+        path: item.path,
+      }
+    })
+
+  return articles.find(a => a.id === articleId)
+})
+
+// 排序文章（按日期降序）
+const sortedArticles = computed(() => {
+  if (!allArticles.value) return []
+
+  // 轉換並排序所有文章
+  return allArticles.value
+    .filter(item => item.path && item.path.startsWith('/articles/'))
+    .map(item => {
+      const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || {}
+      // 從 stem 中提取文章 ID (移除 'articles/' 前綴)
+      const id = item.stem ? item.stem.replace(/^articles\//, '') : meta.id || item.stem
+      return {
+        id,
+        title: item.title,
+        date: meta.date,
+        thumbnail: meta.thumbnail || meta.image,
+        path: item.path,
+      }
+    })
+    .sort((a, b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime()
+    })
+})
+
+// 404 處理
+if (!article.value) {
+  throw createError({
+    statusCode: 404,
+    message: '文章不存在',
+  })
+}
 
 // 使用 useScroll 來計算閱讀進度
 const { y } = useScroll(window)
@@ -137,32 +250,25 @@ const progress = computed(() => {
   return docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
 })
 
-const article = ref(null)
-const articleIds = Object.keys(articles)
-
 // 計算上一篇和下一篇文章
 const prevArticle = computed(() => {
-  if (!article.value) return null
-  const currentIndex = articleIds.indexOf(article.value.id)
-  if (currentIndex === -1) return null
-  const prevIndex = currentIndex - 1
-  return prevIndex >= 0 ? articles[articleIds[prevIndex]] : null
+  if (!article.value || !sortedArticles.value) return null
+  const currentIndex = sortedArticles.value.findIndex(a => a.id === article.value.id)
+  if (currentIndex === -1 || currentIndex === 0) return null
+  return sortedArticles.value[currentIndex - 1]
 })
 
 const nextArticle = computed(() => {
-  if (!article.value) return null
-  const currentIndex = articleIds.indexOf(article.value.id)
-  if (currentIndex === -1) return null
-  const nextIndex = currentIndex + 1
-  return nextIndex < articleIds.length ? articles[articleIds[nextIndex]] : null
+  if (!article.value || !sortedArticles.value) return null
+  const currentIndex = sortedArticles.value.findIndex(a => a.id === article.value.id)
+  if (currentIndex === -1 || currentIndex === sortedArticles.value.length - 1) return null
+  return sortedArticles.value[currentIndex + 1]
 })
 
 // 分享連結
 const shareUrls = computed(() => {
   if (!article.value || !import.meta.client) return {}
-  // 取原始完整 URL
-  const fullPath = router.currentRoute.value.fullPath
-  const currentUrl = `${window.location.origin}${fullPath}`
+  const currentUrl = window.location.href
   const url = encodeURIComponent(currentUrl)
   const title = encodeURIComponent(article.value.title)
 
@@ -172,217 +278,112 @@ const shareUrls = computed(() => {
   }
 })
 
-// 更新頁面標題的函數
-const updatePageTitle = () => {
-  if (import.meta.client) {
-    if (article.value && article.value.title) {
-      document.title = `${article.value.title}|${BASE_TITLE}`
-    } else {
-      document.title = `文章詳情|${BASE_TITLE}`
-    }
-  }
-}
-
-// 載入文章
-function loadArticle() {
-  const articleId = route.params.id
-  if (articles[articleId]) {
-    article.value = articles[articleId]
-    // 更新頁面標題
-    updatePageTitle()
-    // 更新 SEO meta 標籤
-    if (article.value.seo) {
-      updateMetaTags(article.value.seo)
-    }
-  } else {
-    article.value = null
-    if (import.meta.client) {
-      document.title = `文章不存在|${BASE_TITLE}`
-    }
-  }
-}
-
-// 更新 meta 標籤
-function updateMetaTags(seo) {
-  if (!import.meta.client) return
-
-  // 更新 description
-  const descMeta = document.querySelector('meta[name="description"]')
-  if (descMeta) {
-    descMeta.setAttribute('content', seo.description)
-  }
-
-  // 更新 keywords
-  const keywordsMeta = document.querySelector('meta[name="keywords"]')
-  if (keywordsMeta) {
-    keywordsMeta.setAttribute('content', seo.keywords)
-  }
-}
-
-// 監聽路由變化
-watch(
-  () => route.params.id,
-  () => {
-    loadArticle()
-  }
-)
-
-watch(article, async a => {
-  if (!a || !import.meta.client) return
-
-  // 更新頁面標題
-  updatePageTitle()
-
-  // 更新 useHead
-  useHead({
-    title: `${a.title}|${BASE_TITLE}`,
-    meta: [
-      { name: 'description', content: a.seo.description },
-      { name: 'keywords', content: a.seo.keywords },
-      { property: 'og:title', content: a.title },
-      { property: 'og:description', content: a.seo.description },
-      { property: 'og:image', content: a.image },
-      { name: 'twitter:card', content: 'summary_large_image' },
-    ],
+// 日期格式化
+function formatDate(dateString) {
+  const date = new Date(dateString)
+  return date.toLocaleDateString('zh-TW', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
   })
+}
 
-  // 等待下一個tick確保DOM已渲染
-  await nextTick()
-
-  // 收集所有文章內圖片 URL
-  const urls = Array.from(document.querySelectorAll('.cont .image img')).map(img => img.src)
-
-  // 預載入圖片
-  if (urls.length > 0) {
-    await preloadImages(urls)
-  }
-
-  // 轉換所有文章內圖片為WebP格式並使用快取
-  const imageElements = document.querySelectorAll('.cont .image img')
-  for (const img of imageElements) {
-    const originalSrc = img.src
-    try {
-      const cachedUrl = await loadImage(originalSrc)
-      img.src = cachedUrl
-    } catch {
-      // 如果快取載入失敗，使用原始圖片
-      img.src = originalSrc
-    }
-  }
-
-  // 圖片載完後才開 lightbox
-  enableImageLightbox()
+// SEO Meta
+useHead({
+  title: `${article.value.title} | HODES`,
+  meta: [
+    { name: 'description', content: article.value.excerpt },
+    { property: 'og:title', content: article.value.title },
+    { property: 'og:description', content: article.value.excerpt },
+    { property: 'og:image', content: article.value.image },
+    { property: 'og:url', content: `https://homershie.com/article/${articleId}` },
+    { property: 'og:type', content: 'article' },
+    { property: 'article:published_time', content: article.value.date },
+    { property: 'article:author', content: article.value.author },
+    // 新增 Twitter Card
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: article.value.title },
+    { name: 'twitter:description', content: article.value.excerpt },
+    { name: 'twitter:image', content: article.value.image },
+    // 新增 robots
+    { name: 'robots', content: 'index, follow' },
+  ],
+  link: [{ rel: 'canonical', href: `https://homershie.com/article/${articleId}` }],
+  // 新增 BlogPosting Schema
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: article.value.title,
+        description: article.value.excerpt,
+        image: article.value.image,
+        datePublished: article.value.date,
+        author: {
+          '@type': 'Person',
+          name: article.value.author || 'Homer Shie',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'HODES',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://r2bucket.homershie.com/assets/imgs/favicon_homer.png',
+          },
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': `https://homershie.com/article/${articleId}`,
+        },
+      }),
+    },
+  ],
 })
 
-onMounted(() => {
-  loadArticle()
+// 在掛載後啟用 lightbox 並調整 gallery 圖片方向
+onMounted(async () => {
   if (import.meta.client) {
-    startCacheCleanup()
+    await nextTick()
+    enableImageLightbox()
+
+    // 自動判斷 gallery 中圖片的方向並設定樣式
+    const galleries = document.querySelectorAll('.image-gallery, .image-gallery-3')
+    galleries.forEach(gallery => {
+      const images = gallery.querySelectorAll('.image img')
+      images.forEach(img => {
+        // 確保圖片已載入
+        if (img.complete) {
+          adjustImageOrientation(img)
+        } else {
+          img.addEventListener('load', () => adjustImageOrientation(img))
+        }
+      })
+    })
   }
 })
 
-onUnmounted(() => {
-  if (import.meta.client) {
-    stopCacheCleanup()
+// 根據圖片寬高比調整樣式
+function adjustImageOrientation(img) {
+  const aspectRatio = img.naturalWidth / img.naturalHeight
+
+  // 如果是高圖（寬高比 < 1），使用 height: 100%
+  // 如果是寬圖或正方形（寬高比 >= 1），使用 width: 100%
+  if (aspectRatio < 1) {
+    img.classList.add('portrait')
+  } else {
+    img.classList.remove('portrait')
   }
-})
+}
 </script>
 
 <style lang="scss">
-article {
-  a {
-    text-decoration: underline;
-    &:hover {
-      text-decoration: underline;
-      color: var(--maincolor);
-    }
-  }
-  .image {
-    margin: 60px 0;
-  }
-  figcaption {
-    text-align: center;
-    margin: 20px 0;
-    font-size: 0.9rem;
-    color: #aaa;
-  }
-  img {
-    width: 50%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border-radius: 5px;
-  }
-  h2 {
-    font-size: 2rem;
-    margin: 40px 0 20px 0;
-    color: var(--maincolor);
-  }
-  h3 {
-    font-size: 1.5rem;
-    margin: 40px 0 20px 0;
-    text-decoration: underline;
-    text-decoration-color: var(--maincolor);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 10px;
-  }
-  p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 10px;
-    font-weight: normal;
-  }
-  hr {
-    margin-top: 40px;
-    border: none;
-    border-top: 1px solid #eee;
-  }
-  ul {
-    padding-left: 20px;
-    margin: 40px 0;
-    li {
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-      font-weight: normal;
-      line-height: 1.6;
-      &:before {
-        content: '•';
-        color: var(--maincolor);
-        margin-right: 10px;
-      }
-    }
-  }
-  ol {
-    counter-reset: li;
-    padding-left: 20px;
-    margin: 40px 0;
-
-    li {
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-      font-weight: normal;
-      line-height: 1.6;
-
-      &::before {
-        counter-increment: li;
-        content: counter(li) '.';
-        color: var(--maincolor);
-        margin-right: 10px;
-      }
-    }
-  }
-  blockquote {
-    margin: 40px 0;
-    padding-left: 20px;
-    border-left: 4px solid var(--maincolor);
-    font-style: italic;
-    color: #555;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    em {
-      font-weight: bold;
-    }
-  }
+/* 覆蓋 gallery/masonry 中的 ArticleImg 寬度 */
+.cont .image-gallery .article-img,
+.cont .image-gallery-3 .article-img,
+.cont .image-masonry .article-img {
+  width: 100% !important;
+  margin: 0 !important;
 }
 
 .cont .image-gallery .artist {
@@ -392,7 +393,6 @@ article {
   font-size: 0.9rem;
   margin: 0 auto;
 }
-
 .cont .image-gallery {
   width: 95%;
   margin: 0 auto;
@@ -408,13 +408,27 @@ article {
     aspect-ratio: 1 / 1;
     margin: 0;
     overflow: hidden;
+    border-radius: 5px;
 
     img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 5px;
       display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+
+      /* 預設寬圖：填滿高度，寬度自適應 */
+      height: 100%;
+      width: auto;
+      min-width: 100%;
+
+      /* 高圖時會被 JS 動態設定為：填滿寬度，高度自適應 */
+      &.portrait {
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+      }
     }
 
     figcaption {
@@ -445,6 +459,7 @@ article {
     }
   }
 }
+
 .cont .image-gallery-3 {
   @extend .image-gallery;
   grid-template-columns: repeat(3, 1fr);
@@ -516,17 +531,6 @@ article {
 }
 
 @media screen and (max-width: 768px) {
-  article {
-    h2 {
-      font-size: 1.8rem;
-    }
-    h3 {
-      font-size: 1.4rem;
-    }
-    img {
-      width: 100%;
-    }
-  }
   .image-masonry {
     column-count: 1;
   }

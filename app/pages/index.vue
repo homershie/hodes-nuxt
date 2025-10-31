@@ -17,6 +17,7 @@
                         <a
                           href="https://r2bucket.homershie.com/assets/resume/Homer_Shie_Resume.pdf"
                           target="_blank"
+                          aria-label="下載履歷"
                         >
                           <svg
                             class="arrow-down"
@@ -27,6 +28,7 @@
                             viewBox="0 0 34.2 32.3"
                             xml:space="preserve"
                             style="stroke-width: 2"
+                            aria-hidden="true"
                           >
                             <line x1="0" y1="16" x2="33" y2="16"></line>
                             <line x1="17.3" y1="0.7" x2="33.2" y2="16.5"></line>
@@ -54,7 +56,7 @@
                   <div class="item-down box-shadwo d-flex align-items-center">
                     <div>
                       <div class="circle-item d-flex align-items-center justify-content-center">
-                        <router-link to="/service">
+                        <router-link to="/service" aria-label="前往我的服務頁面">
                           <svg
                             class="arrow-right"
                             xmlns="http://www.w3.org/2000/svg"
@@ -64,6 +66,7 @@
                             viewBox="0 0 34.2 32.3"
                             xml:space="preserve"
                             style="stroke-width: 2"
+                            aria-hidden="true"
                           >
                             <line x1="0" y1="16" x2="33" y2="16"></line>
                             <line x1="17.3" y1="0.7" x2="33.2" y2="16.5"></line>
@@ -94,8 +97,9 @@
                     class="icon"
                     rel="noopener noreferrer"
                     target="_blank"
+                    aria-label="前往 Instagram"
                   >
-                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
                   </a>
                 </div>
                 <div class="item6 box-shadwo d-flex align-items-center justify-content-center">
@@ -104,8 +108,9 @@
                     class="icon"
                     rel="noopener noreferrer"
                     target="_blank"
+                    aria-label="前往 GitHub"
                   >
-                    <i class="fab fa-github"></i>
+                    <i class="fab fa-github" aria-hidden="true"></i>
                   </a>
                 </div>
                 <div class="item7 box-shadwo d-flex align-items-center justify-content-center">
@@ -114,8 +119,9 @@
                     class="icon"
                     rel="noopener noreferrer"
                     target="_blank"
+                    aria-label="前往 Medium"
                   >
-                    <i class="fab fa-medium"></i>
+                    <i class="fab fa-medium" aria-hidden="true"></i>
                   </a>
                 </div>
               </div>
@@ -169,7 +175,12 @@
                 <router-link to="/contact#contact-form" class="inf-butn">
                   <span>聯絡我</span>
                 </router-link>
-                <a href="/assets/resume/Homer_Shie_Resume.pdf" class="inf-butn" target="_blank">
+                <a
+                  href="https://r2bucket.homershie.com/assets/resume/Homer_Shie_Resume.pdf"
+                  class="inf-butn"
+                  target="_blank"
+                  aria-label="下載履歷"
+                >
                   <span>下載履歷</span>
                 </a>
               </div>
@@ -267,9 +278,49 @@ const headlineWords = [
 const currentWordIndex = ref(0)
 let headlineInterval = null
 
-// 首頁只需要覆蓋標題，其他使用全域設定
+// 首頁完整 SEO 設定
 useSeoMeta({
-  title: 'HOEDES｜荷馬桑 Homer Shie｜設計 ‧ 插畫 ‧ 動畫 ‧ 藝術 | 台北',
+  title: 'HODES - 荷馬桑 Homer Shie | 視覺設計 ‧ 動態設計 ‧ 插畫',
+  description: 'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫、動畫以及網頁設計，有興趣可以隨意逛逛，歡迎和我連絡！',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: 'https://homershie.com/' }],
+  meta: [
+    { property: 'og:title', content: 'HODES - 荷馬桑 Homer Shie | 視覺設計 ‧ 動態設計 ‧ 插畫' },
+    { property: 'og:description', content: 'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫、動畫以及網頁設計，有興趣可以隨意逛逛，歡迎和我連絡！' },
+    { property: 'og:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg' },
+    { property: 'og:url', content: 'https://homershie.com/' },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'HODES - 荷馬桑 Homer Shie | 視覺設計 ‧ 動態設計 ‧ 插畫' },
+    { name: 'twitter:description', content: 'Hi！這裡是荷馬桑 Homer Shie，台灣的自由接案工作者，擅長平面設計、插畫、動畫以及網頁設計' },
+    { name: 'twitter:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg' },
+    { name: 'robots', content: 'index, follow' },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Homer Shie',
+        alternateName: '荷馬桑',
+        url: 'https://homershie.com',
+        image: 'https://r2bucket.homershie.com/assets/imgs/header/profile.webp',
+        jobTitle: '視覺設計師 / 動態設計師',
+        worksFor: {
+          '@type': 'Organization',
+          name: 'HODES',
+        },
+        sameAs: [
+          'https://www.instagram.com/homer_create',
+          'https://github.com/homershie',
+          'https://medium.com/homer-create',
+        ],
+      }),
+    },
+  ],
 })
 
 onMounted(() => {

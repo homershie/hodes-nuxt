@@ -42,7 +42,7 @@ export const articles = {
     />
     <figcaption>
       《Fountain》 Marcel Duchamp，<a
-        href="https://zh.wikipedia.org/wiki/%E5%99%B4%E6%B3%89_(%E6%9D%9C%E8%B1%A1)"
+        href="https://en.wikipedia.org/wiki/Fountain_(Duchamp)"
         target="_blank"
         >Wiki</a
       >
@@ -1193,7 +1193,7 @@ export const articles = {
 
   <h2>參考資料</h2>
   <p>
-    <a href="https://zh.wikipedia.org/wiki/%E8%92%B8%E6%B0%94%E6%B3%A2" target="_blank">維基百科</a
+    <a href="https://en.wikipedia.org/wiki/Vaporwave" target="_blank">維基百科</a
     >、<a href="https://flipermag.com/2015/09/10/vaporwave/" target="_blank">FLIPER</a>、<a
       href="https://medium.com/@derekmhopper/meditations-on-vaporwave-e7ba576adaf3"
       target="_blank"
@@ -1853,7 +1853,7 @@ export const articles = {
       />
       <figcaption>
         <a
-          href="https://zh.wikipedia.org/wiki/%E4%BA%A8%E5%88%A9%C2%B7%E5%BE%B7%C2%B7%E5%9C%9F%E9%AD%AF%E6%96%AF-%E7%BE%85%E7%89%B9%E5%88%97%E5%85%8B#"
+          href="https://en.wikipedia.org/wiki/Henri_de_Toulouse-Lautrec"
           target="_blank"
           >朗讀狀的依薇特·吉爾貝 by 羅特列克, 1894</a
         >
@@ -1867,7 +1867,7 @@ export const articles = {
       />
       <figcaption>
         <a
-          href="https://zh.wikipedia.org/wiki/%E4%BF%9D%E7%BE%85%C2%B7%E9%AB%98%E6%9B%B4#/media/File:The_Yellow_Christ,_Paul_Gauguin.jpg"
+          href="https://en.wikipedia.org/wiki/Paul_Gauguin#/media/File:Gauguin_Il_Cristo_giallo.jpg"
           target="_blank"
           >黃色的基督 by 高更, 1889</a
         >
@@ -1881,7 +1881,7 @@ export const articles = {
       />
       <figcaption>
         <a
-          href="https://zh.wikipedia.org/wiki/%E6%B5%AE%E4%B8%96%E7%B9%AA#/media/File:Utamaro1.jpg"
+          href="https://en.wikipedia.org/wiki/Utamaro#/media/File:Kitagawa_Utamaro_-_Toji_san_bijin_(Three_Beauties_of_the_Present_Day)From_Bijin-ga_(Pictures_of_Beautiful_Women),_published_by_Tsutaya_Juzaburo_-_Google_Art_Project.jpg"
           target="_blank"
           >寬政三美人 by 喜多川歌麿</a
         >
@@ -1895,7 +1895,7 @@ export const articles = {
       />
       <figcaption>
         <a
-          href="https://zh.wikipedia.org/wiki/%E5%87%B1%E7%88%BE%E7%B6%93#/media/File:LindisfarneFol27rIncipitMatt.jpg"
+          href="https://en.wikipedia.org/wiki/Book_of_Kells#/media/File:LindisfarneFol27rIncipitMatt.jpg"
           target="_blank"
           >凱爾經</a
         >

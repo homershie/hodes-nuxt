@@ -1,10 +1,10 @@
 <template>
   <div :class="['swiper-wrapper-component', variant]">
-    <div class="swiper-container" :id="containerId">
+    <div :id="containerId" class="swiper-container">
       <div class="swiper-wrapper">
         <slot />
       </div>
-      <div v-if="showPagination" class="swiper-pagination" :id="paginationId"></div>
+      <div v-if="showPagination" :id="paginationId" class="swiper-pagination"></div>
     </div>
   </div>
 </template>
@@ -18,7 +18,15 @@ const props = defineProps({
     type: String,
     default: '',
     validator: value =>
-      ['', 'resume-swiper', 'resume-swiper2', 'testim-swiper', 'testim-swiper2', 'swiper4', 'swiper5'].includes(value),
+      [
+        '',
+        'resume-swiper',
+        'resume-swiper2',
+        'testim-swiper',
+        'testim-swiper2',
+        'swiper4',
+        'swiper5',
+      ].includes(value),
   },
   // Swiper 配置
   slidesPerView: {

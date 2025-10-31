@@ -1,9 +1,17 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { fileURLToPath } from 'node:url'
+import contentLinkSanitize from './modules/content-link-sanitize'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+
+  // Nuxt Content 配置
+  content: {
+    markdown: {
+      anchorLinks: false,
+    },
+  },
 
   // Site Config for SEO
   site: {
@@ -42,8 +50,8 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/content',
+    contentLinkSanitize, // 清理 Markdown 中的問題連結
     '@nuxt/eslint',
-    '@nuxt/image',
     '@nuxt/icon',
     '@nuxt/ui',
     'nuxt-gtag',
@@ -51,6 +59,50 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/seo',
   ],
+
+  // 實驗性功能
+  experimental: {
+    componentIslands: true, // 元件孤島
+    payloadExtraction: true, // Payload 提取
+  },
+
+  // Nitro 預渲染設定
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/', '/about', '/service', '/contact', '/portfolio'],
+    },
+  },
+
+  // 路由規則
+  routeRules: {
+    // 首頁 - 靜態生成
+    '/': { prerender: true },
+
+    // Blog 分頁 - 靜態生成
+    '/blog/page/**': { prerender: true },
+
+    // Portfolio - 混合式 (SSG + 客戶端動態)
+    '/portfolio': {
+      prerender: true,
+      swr: 3600, // 1小時 Stale-While-Revalidate
+    },
+
+    // 文章詳情 - 靜態生成
+    '/article/**': {
+      prerender: true,
+      swr: 86400, // 24小時
+    },
+
+    // 作品詳情 - 靜態生成
+    '/project/**': {
+      prerender: true,
+      swr: 86400,
+    },
+
+    // API 路由 - 伺服器端
+    '/api/**': { cors: true },
+  },
 
   gtag: {
     id: 'G-8YSG21XKMM',
@@ -89,66 +141,37 @@ export default defineNuxtConfig({
         },
       },
     },
+    build: {
+      // 程式碼分割策略
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // 將大型第三方庫單獨打包
+            masonry: ['masonry-layout'],
+          },
+        },
+      },
+    },
   },
 
-  // 全域 SEO 設定
+  // 全域基礎設定（SEO meta 已移至各頁面個別設定）
   app: {
     head: {
       htmlAttrs: {
         lang: 'zh-Hant-TW',
       },
-      title: 'HOEDES｜荷馬桑 Homer Shie｜設計 ‧ 插畫 ‧ 動畫 ‧ 藝術 | 台北',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          name: 'description',
-          content:
-            'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫以及動畫，有興趣可以隨意逛逛，歡迎和我連絡！',
-        },
         { name: 'keywords', content: '設計,動畫,插畫,藝術,homer shie,作品集' },
         { name: 'author', content: 'Homer Shie' },
-        { name: 'robots', content: 'index, follow' },
-
-        // Open Graph
-        {
-          property: 'og:title',
-          content: 'HOEDES｜荷馬桑 Homer Shie｜設計 ‧ 插畫 ‧ 動畫 ‧ 藝術 | 台北',
-        },
-        {
-          property: 'og:description',
-          content:
-            'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫以及動畫，有興趣可以隨意逛逛，歡迎和我連絡！',
-        },
-        {
-          property: 'og:image',
-          content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg',
-        },
-        { property: 'og:url', content: 'https://homershie.com' },
-        { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'zh_TW' },
-
-        // Twitter Card
-        { name: 'twitter:card', content: 'summary_large_image' },
-        {
-          name: 'twitter:title',
-          content: '荷馬桑 Homer Shie｜設計 ‧ 插畫 ‧ 動畫 ‧ 藝術 | 台北',
-        },
-        {
-          name: 'twitter:description',
-          content: 'Hi！這裡是荷馬桑 Homer Shie，台灣的自由接案工作者，擅長平面設計、插畫以及動畫',
-        },
-        {
-          name: 'twitter:image',
-          content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg',
-        },
       ],
       link: [
         {
           rel: 'icon',
           href: 'https://r2bucket.homershie.com/assets/imgs/favicon_homer.png',
         },
-        { rel: 'canonical', href: 'https://homershie.com' },
         // Bootstrap CSS
         {
           rel: 'stylesheet',
@@ -168,6 +191,20 @@ export default defineNuxtConfig({
         {
           rel: 'stylesheet',
           href: 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css',
+        },
+        // Noto Sans TC 備用字體
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.googleapis.com',
+        },
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com',
+          crossorigin: '',
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap',
         },
       ],
       script: [
