@@ -66,6 +66,7 @@ export default defineNuxtConfig({
 
   // Nitro 預渲染設定
   nitro: {
+    preset: 'cloudflare-pages',
     prerender: {
       crawlLinks: true,
       routes: ['/', '/about', '/service', '/contact', '/portfolio'],
