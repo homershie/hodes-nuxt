@@ -104,6 +104,10 @@ export default defineNuxtConfig({
       autoSubfolderIndex: false,
     },
     // Cloudflare Pages 相容性設定
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true,
+    },
     alias: {
       '@react-email/render': 'unenv/runtime/mock/empty',
     },
