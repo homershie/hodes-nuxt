@@ -36,7 +36,7 @@ author: Homer Shie
   <figure class="image">
     <img
       class="w-100"
-      src="https://r2bucket.homershie.com/assets/imgs/blog/World_Vision/年表.png"
+      src="https://r2bucket.homershie.com/assets/imgs/blog/World_Vision/timeline.png"
       alt="年表"
       loading="lazy"
     />

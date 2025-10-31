@@ -1,5 +1,6 @@
 name = "hodes-nuxt"
-compatibility_date = "2025-10-26"
+compatibility_date = "2025-11-01"
+pages_build_output_dir = ".output/public"
 
 [site]
 bucket = ".output/public"

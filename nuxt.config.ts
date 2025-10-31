@@ -3,14 +3,12 @@ import { fileURLToPath } from 'node:url'
 import contentLinkSanitize from './modules/content-link-sanitize'
 
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
+  compatibilityDate: '2025-11-01',
   devtools: { enabled: true },
 
   // Nuxt Content 配置
   content: {
-    markdown: {
-      anchorLinks: false,
-    },
+    // markdown 配置已移除，使用預設值
   },
 
   // Site Config for SEO
@@ -71,6 +69,7 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
       routes: ['/', '/about', '/service', '/contact', '/portfolio'],
+      autoSubfolderIndex: false,
     },
     // Cloudflare Pages 相容性設定
     alias: {
@@ -131,11 +130,6 @@ export default defineNuxtConfig({
     autoLastmod: true,
     // 排除不需要的頁面
     exclude: ['/admin/**', '/api/**'],
-    // URL 設定
-    urls: async () => {
-      // 可以在這裡添加動態路由
-      return []
-    },
   },
 
   // Vite 配置
