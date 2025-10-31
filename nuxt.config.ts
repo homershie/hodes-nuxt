@@ -1,6 +1,41 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { readdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import contentLinkSanitize from './modules/content-link-sanitize'
+import { portfolio } from './data/portfolioData.js'
+
+const getArticleSlugs = () => {
+  try {
+    const articlesDir = fileURLToPath(new URL('./content/articles', import.meta.url))
+    return readdirSync(articlesDir)
+      .filter(filename => filename.endsWith('.md'))
+      .map(filename => filename.replace(/\.md$/, ''))
+  } catch (error) {
+    console.warn('[prerender] 讀取文章列表失敗：', error instanceof Error ? error.message : error)
+    return []
+  }
+}
+
+const resolvePortfolioRoutes = () => {
+  if (!Array.isArray(portfolio) || portfolio.length === 0) {
+    return []
+  }
+  return portfolio
+    .filter(item => item && (typeof item.id === 'string' || typeof item.id === 'number'))
+    .map(item => `/project/${item.id}`)
+}
+
+const articleSlugs = getArticleSlugs()
+const articleRoutes = articleSlugs.map(slug => `/article/${slug}`)
+
+const POSTS_PER_PAGE = 10
+const blogPageTotal = Math.max(1, Math.ceil(articleSlugs.length / POSTS_PER_PAGE))
+const blogPageRoutes = Array.from({ length: blogPageTotal }, (_, index) => `/blog/page/${index + 1}`)
+
+const projectRoutes = resolvePortfolioRoutes()
+
+const baseStaticRoutes = ['/', '/about', '/service', '/contact', '/portfolio']
+const prerenderRoutes = Array.from(new Set([...baseStaticRoutes, ...blogPageRoutes, ...articleRoutes, ...projectRoutes]))
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-10-30',
@@ -100,8 +135,8 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: true,
-      // 不在這裡硬編碼路由，讓 prerender hook 動態生成
-      routes: ['/'],
+      // 依據內容與資料集動態計算靜態化路由
+      routes: prerenderRoutes,
       autoSubfolderIndex: false,
       // 確保在預渲染時正確處理錯誤
       failOnError: false,
@@ -114,7 +149,7 @@ export default defineNuxtConfig({
       nodeCompat: true,
       routes: {
         include: ['/*'],
-        exclude: ['/api/*', '/_nuxt/*', '/fonts/*', '/images/*'],
+        exclude: ['/_nuxt/*', '/fonts/*', '/images/*'],
       },
     },
     alias: {
