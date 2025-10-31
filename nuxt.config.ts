@@ -149,7 +149,16 @@ export default defineNuxtConfig({
       nodeCompat: true,
       routes: {
         include: ['/*'],
-        exclude: ['/_nuxt/*', '/fonts/*', '/images/*'],
+        exclude: [
+          '/_nuxt/*',
+          '/fonts/*',
+          '/images/*',
+          '/public/*',
+          '/_fonts/*',
+          '/_headers',
+          '/_redirects',
+          '/_routes.json',
+        ],
       },
     },
     alias: {
@@ -187,8 +196,12 @@ export default defineNuxtConfig({
       prerender: true,
     },
 
-    // API 路由
-    '/api/**': { cors: true },
+    // API 路由 - 不預渲染，保持為動態 Functions
+    '/api/**': { 
+      cors: true,
+      ssr: true,
+      prerender: false, // ⭐ 關鍵：API 路由不應該被預渲染
+    },
   },
 
   gtag: {
