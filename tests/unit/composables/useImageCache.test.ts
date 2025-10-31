@@ -37,7 +37,7 @@ describe('useImageCache', () => {
   })
 
   describe('圖片路徑處理', () => {
-    it('應該正常化相對路徑', () => {
+    it('應該正常化相對路徑', async () => {
       // 由於 normalizeImagePath 是私有函數，我們透過實際調用來測試
       const testUrl = '/assets/imgs/test.jpg'
       const imageCache2 = useImageCache()
@@ -45,7 +45,7 @@ describe('useImageCache', () => {
       // 透過 saveImageToCache 間接測試
       const blob = new Blob(['test'], { type: 'image/jpeg' })
       
-      return expect(imageCache2['saveImageToCache']?.(testUrl, blob) || Promise.resolve()).resolves.toBeDefined().catch(() => {})
+      return await expect(imageCache2['saveImageToCache']?.(testUrl, blob) || Promise.resolve()).resolves.toBeDefined().catch(() => {})
     })
 
     it('應該處理絕對 URL', async () => {
