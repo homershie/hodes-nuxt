@@ -128,7 +128,7 @@ export const articles = {
   </figure>
   <figure class="image">
     <img
-      src="https://r2bucket.homershie.com/assets/imgs/blog/Pop_Art/草間彌生_Yayoi_KUSAMA｜No.327_南瓜_A_Pumpkin_YB-B｜2004｜絲網版畫_Screenprint｜24x28.5cm｜限量120版_Edition_of_120.jpg"
+      src="https://r2bucket.homershie.com/assets/imgs/blog/Pop_Art/yayoi_kusama_no_327_pumpkin_screenprint_2004.jpg"
       loading="lazy"
     />
     <figcaption>《A pumpkin》by 草間彌生, 2004</figcaption>
@@ -172,7 +172,7 @@ export const articles = {
     <a href="https://www.kkbox.com/tw/tc/song/zbv00OK8XSX-b4UP-b4UP0XL-index.html" target="_blank">
       <figure class="image">
         <img
-          src="https://r2bucket.homershie.com/assets/imgs/blog/Pop_Art/Release_小老虎專輯封面_2.jpg"
+          src="https://r2bucket.homershie.com/assets/imgs/blog/Pop_Art/release_little_tiger_album_cover_2.jpg"
           loading="lazy"
           alt="逍遙客小老虎專輯封面"
         />
@@ -727,16 +727,16 @@ export const articles = {
       <figcaption>attackM01</figcaption>
     </figure>
     <figure class="image">
-      <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/朱雀羽扇II.png" alt="朱雀羽扇II" loading="lazy" />
+      <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/vermilion_feather_fan_ii.png" alt="朱雀羽扇II" loading="lazy" />
       <figcaption>朱雀羽扇II</figcaption>
     </figure>
     <figure class="image">
-      <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/飛雲.png" alt="飛雲" loading="lazy" />
+      <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/flying_clouds.png" alt="飛雲" loading="lazy" />
       <figcaption>飛雲</figcaption>
     </figure>
     <figure class="image">
       <img
-        src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/冒險介面_對話狀態2.png"
+        src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/adventure_ui_dialog_state2.png"
         alt="冒險介面_對話狀態2"
         loading="lazy"
       />
