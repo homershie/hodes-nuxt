@@ -236,7 +236,7 @@ const formatCategory = categories => {
 }
 
 // 在服務端和客戶端都執行數據獲取
-const projectId = computed(() => route.params.id as string)
+const projectId = computed(() => route.params.id)
 
 // 使用 computed 而不是 onMounted，確保 SSG 時也能獲取數據
 project.value = getWorkById(projectId.value)
