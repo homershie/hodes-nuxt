@@ -197,29 +197,23 @@ watch(
     if (newProject && import.meta.client) {
       // 收集主圖與 gallery 圖片
       const images = []
-      if (newProject.mainImage) images.push(newProject.mainImage)
+      if (newProject.mainImage) {
+        // 直接使用 WebP 格式，不執行 HEAD 請求以避免 CORS 錯誤
+        images.push(newProject.mainImage.replace(/\.(jpg|png)$/i, '.webp'))
+      }
       if (Array.isArray(newProject.gallery)) {
-        images.push(...newProject.gallery.filter(Boolean))
+        // 過濾並轉換為 WebP 格式
+        const galleryImages = newProject.gallery
+          .filter(Boolean)
+          .map(img => img.replace(/\.(jpg|png)$/i, '.webp'))
+        images.push(...galleryImages)
       }
 
       if (images.length > 0) {
-        // 先檢查並獲取最佳圖片路徑
-        const processedImages = await Promise.all(
-          images.map(async img => {
-            if (!img) return null
-            return await getBestImagePath(img)
-          })
-        )
-
-        // 過濾掉無效的圖片
-        const validImages = processedImages.filter(Boolean)
-
-        if (validImages.length) {
-          // 預載入圖片
-          await preloadImages(validImages)
-          // 啟用 lightbox
-          enableImageLightbox(validImages)
-        }
+        // 預載入圖片
+        await preloadImages(images)
+        // 啟用 lightbox
+        enableImageLightbox(images)
       }
     }
   },

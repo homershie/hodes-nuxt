@@ -265,25 +265,80 @@ cloudflare: {
 }
 ```
 
-### 問題 2: API 路由 404 錯誤（修復後）
+### 問題 2: Cloudflare Pages API 路由 404 錯誤
 
-**症狀：** `GET /api/proxy-image?url=... 404 (Not Found)`
+**症狀：** 
+- `GET /api/proxy-image?url=... 404 (Not Found)`
+- `GET /api/_nuxt_icon/mdi.json 404 (Not Found)`
+
+**原因：**
+1. `nitro.cloudflare.routes` 屬性不存在，會導致 TypeScript 錯誤和路由配置問題
+2. Nuxt Icon 使用 `server` provider 在 SSG 模式下無法正常工作
 
 **解決：**
-1. 確保 Cloudflare 配置中沒有錯誤的 `routes` 屬性
-2. 確認 `nitro.cloudflare.routes.exclude` 不包含 `/api/**`
-3. 重新執行 `npm run generate`
-4. 檢查 `output/server/` 目錄中是否有 API Functions 文件
+1. **移除錯誤的 Cloudflare routes 配置**：
+   ```typescript
+   // ❌ 錯誤配置
+   cloudflare: {
+     routes: {
+       include: ['/*'],
+       exclude: ['/_nuxt/*', '/fonts/*', '/images/*'],
+     },
+   }
+   
+   // ✅ 正確配置
+   cloudflare: {
+     deployConfig: true,
+     nodeCompat: true,
+   }
+   ```
+
+2. **修改 Nuxt Icon 配置為使用 Iconify CDN**：
+   ```typescript
+   // ❌ 錯誤配置（SSG 模式下會 404）
+   icon: {
+     provider: 'server',
+     serverBundle: { collections: ['mdi'] },
+   }
+   
+   // ✅ 正確配置（使用 Iconify CDN 或打包到客戶端）
+   icon: {
+     clientBundle: {
+       scan: true,
+       sizeLimitKb: 256,
+     },
+   }
+   ```
 
 ### 問題 4: Payload 404 錯誤
 
 **症狀：** `GET /article/xxx/_payload.json 404 (Not Found)`
 
+**原因：**
+使用了錯誤的 Nuxt Content API (`queryCollection`) 或數據結構不正確。
+
 **解決：**
 1. 檢查 `experimental.payloadExtraction` 是否為 `true`
 2. 確認路由有加入到 `nitro.prerender.routes` 中
-3. 檢查頁面的 `useAsyncData` 是否設定 `server: true`
-4. 重新執行 `npm run generate`
+3. 使用正確的 Nuxt Content API：
+   ```typescript
+   // ❌ 錯誤：queryCollection 可能不適用
+   const { data } = await useAsyncData(
+     'articles',
+     () => queryCollection('content').all()
+   )
+   
+   // ✅ 正確：使用 queryContent
+   const { data } = await useAsyncData(
+     'articles',
+     () => queryContent('articles').find(),
+     { server: true, lazy: false }
+   )
+   ```
+4. 確保使用正確的屬性名稱：
+   - 使用 `_path` 而不是 `path`
+   - 直接訪問 frontmatter 屬性，不需要 `meta` 包裝
+5. 重新執行 `npm run generate`
 
 ### 問題 5: 刷新後內容消失
 
@@ -292,39 +347,48 @@ cloudflare: {
 2. 確認有使用 `useAsyncData`，而非直接呼叫 API
 3. 檢查路由規則中是否設定 `ssr: true`
 
-### 問題 6: API 路由 404
+### 問題 6: R2 Bucket 圖片 CORS 錯誤
 
-**症狀：** `GET /api/proxy-image?url=... 404 (Not Found)`
+**症狀：** 
+```
+Access to fetch at 'https://r2bucket.homershie.com/...' has been blocked by CORS policy
+HEAD https://r2bucket.homershie.com/.../work_0089.webp net::ERR_FAILED
+```
+
+**原因：**
+在 project 頁面中使用 `getBestImagePath()` 函數執行 HEAD 請求檢查圖片是否存在，但 R2 bucket 沒有設置 CORS 允許 HEAD 請求。
 
 **解決：**
-1. 在 `routeRules` 中明確設定 API 路由不被預渲染：
-   \`\`\`typescript
-   '/api/**': { 
-     cors: true,
-     ssr: true,
-     prerender: false, // ⭐ 關鍵：API 路由不應該被預渲染
-   },
-   \`\`\`
-2. 檢查 `nitro.cloudflare.routes.exclude` 中**不包含** `/api/**`（API 路由應該由 Functions 處理）
-3. 確認 API 路由文件存在於 `server/api/` 目錄
-4. 重新執行 `npm run generate` 並確認 `output/server/` 目錄中有 API Functions
+直接使用 WebP 格式圖片，不執行 HEAD 請求：
+
+```javascript
+// ❌ 錯誤：會觸發 CORS 錯誤
+const processedImages = await Promise.all(
+  images.map(async img => await getBestImagePath(img))
+)
+
+// ✅ 正確：直接使用 WebP 格式
+const webpImages = images.map(img => 
+  img.replace(/\.(jpg|png)$/i, '.webp')
+)
+```
 
 ---
 
 ## ✅ 檢查清單
 
 - [ ] `experimental.payloadExtraction` 已啟用
-- [ ] Cloudflare 配置正確（無 `routes` 屬性）
+- [ ] Cloudflare 配置正確（**移除 `routes` 屬性**）⭐
+- [ ] **Nuxt Icon 使用 Iconify CDN（不使用 server provider）** ⭐
 - [ ] 所有動態路由都加入到 `nitro.prerender.routes`
 - [ ] 頁面使用 `useAsyncData` 並設定 `server: true`
+- [ ] **使用正確的 Nuxt Content API (`queryContent`)** ⭐
 - [ ] 路由規則設定了 `ssr: true` 和 `prerender: true`
-- [ ] **API 路由設定了 `prerender: false`** ⭐
+- [ ] API 路由設定了 `prerender: false`
+- [ ] **移除會觸發 CORS 的 HEAD 請求** ⭐
 - [ ] 執行 `npm run generate` 成功
-- [ ] `output/server/` 目錄中有 API Functions 文件
-- [ ] `output/_routes.json` 正確配置
-- [ ] 本地開發服務器 API 路由測試通過
 - [ ] 所有頁面刷新後內容正常顯示
-- [ ] **生產環境 API 路由測試通過**（部署後）⭐
+- [ ] 沒有 404 或 CORS 錯誤
 
 ---
 
@@ -351,4 +415,4 @@ cloudflare: {
    curl http://localhost:3000/api/proxy-image?url=https://example.com/image.jpg
    \`\`\`
 
-**最後更新**: 2025-11-01 (修復 Cloudflare Pages API 路由 404 問題)
+**最後更新**: 2025-10-31 (修復 SSG 部署後的多個錯誤)

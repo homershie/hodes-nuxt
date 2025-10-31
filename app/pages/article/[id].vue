@@ -161,11 +161,11 @@ const ArticleImageGallery3 = ArticleImageGallery
 const route = useRoute()
 const articleId = route.params.id as string
 
-// 使用 queryCollection API (Nuxt Content v3)
+// 使用 queryContent API (Nuxt Content)
 // 使用 server: true 確保在 SSR/SSG 時正確執行
 const { data: allArticles } = await useAsyncData(
-  `article-${articleId}`, 
-  () => queryCollection('content').all(),
+  `articles-list`, 
+  () => queryContent('articles').find(),
   {
     // 確保在 SSR/SSG 時執行
     server: true,
@@ -177,9 +177,10 @@ const { data: allArticles } = await useAsyncData(
 // 找到當前文章
 const currentArticle = computed(() => {
   if (!allArticles.value) return null
-  const articles = allArticles.value.filter(item => item.path && item.path.startsWith('/articles/'))
-  return articles.find(item => {
-    const id = item.stem ? item.stem.replace(/^articles\//, '') : null
+  return allArticles.value.find(item => {
+    // 從 _path 屬性中提取 ID
+    const pathMatch = item._path?.match(/\/articles\/(.+)$/)
+    const id = pathMatch ? pathMatch[1] : null
     return id === articleId
   })
 })
@@ -189,15 +190,14 @@ const article = computed(() => {
   if (!currentArticle.value) return null
   
   const item = currentArticle.value
-  const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || item || {}
   const legacyExcerpt = legacyArticles?.[articleId]?.excerpt || ''
-  const computedExcerpt = meta.excerpt || item.excerpt || legacyExcerpt
+  const computedExcerpt = item.excerpt || item.description || legacyExcerpt
   
   if (import.meta.client) {
     // eslint-disable-next-line no-console
     console.log('Article excerpt debug:', {
       id: articleId,
-      hasExcerpt: Boolean(meta.excerpt || item.excerpt),
+      hasExcerpt: Boolean(item.excerpt),
       computedExcerptSample: (computedExcerpt || '').slice(0, 80),
     })
   }
@@ -205,15 +205,15 @@ const article = computed(() => {
   return {
     id: articleId,
     title: item.title,
-    date: meta.date,
-    category: meta.category,
-    categoryName: meta.categoryName,
+    date: item.date,
+    category: item.category,
+    categoryName: item.categoryName,
     excerpt: computedExcerpt,
-    image: meta.image || meta.thumbnail || item.image || item.thumbnail,
-    thumbnail: meta.thumbnail || meta.image || item.thumbnail || item.image,
-    author: meta.author || item.author || 'Homer Shie',
+    image: item.image || item.thumbnail,
+    thumbnail: item.thumbnail || item.image,
+    author: item.author || 'Homer Shie',
     body: item.body,
-    path: item.path,
+    path: item._path,
   }
 })
 
@@ -222,18 +222,18 @@ const sortedArticles = computed(() => {
   if (!allArticles.value) return []
 
   return allArticles.value
-    .filter(item => item.path && item.path.startsWith('/articles/'))
     .map(item => {
-      const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || {}
-      const id = item.stem ? item.stem.replace(/^articles\//, '') : meta.id || item.stem
+      const pathMatch = item._path?.match(/\/articles\/(.+)$/)
+      const id = pathMatch ? pathMatch[1] : null
       return {
         id,
         title: item.title,
-        date: meta.date,
-        thumbnail: meta.thumbnail || meta.image || item.thumbnail || item.image,
-        path: item.path,
+        date: item.date,
+        thumbnail: item.thumbnail || item.image,
+        path: item._path,
       }
     })
+    .filter(item => item.id) // 過濾掉無效的項目
     .sort((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime()
     })

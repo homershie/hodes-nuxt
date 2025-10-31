@@ -93,28 +93,15 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
   ],
 
-  // Icon 配置 - 確保生產構建時正確打包所有 icon
+  // Icon 配置 - SSG 模式使用 iconify CDN 或打包到客戶端
   icon: {
-    // 設置 provider 為 'server' 以啟用本地 API 端點
-    provider: 'server',
-    // 配置 serverBundle 確保 SSR 時能正確載入 icon
-    serverBundle: {
-      collections: ['mdi'], // 明確指定要包含的 icon 集合
-    },
+    // 使用預設的 iconify provider，避免 SSG 模式下的 API 404 錯誤
+    // provider: 'iconify', // 可以省略，預設就是 iconify
     clientBundle: {
       // 自動掃描所有組件並包含使用的 icon
       scan: true,
-      // 明確指定要包含的 icon（作為備用）
-      icons: [
-        'mdi:bell',
-        'mdi:note-text',
-        'mdi:email-outline',
-        'mdi:dumbbell',
-        'mdi:file-document-outline',
-        'mdi:map-marker-outline',
-      ],
-      // 包含自訂集合
-      includeCustomCollections: true,
+      // 減少打包大小，只包含實際使用的 icons
+      sizeLimitKb: 256,
     },
   },
 
@@ -147,19 +134,6 @@ export default defineNuxtConfig({
     cloudflare: {
       deployConfig: true,
       nodeCompat: true,
-      routes: {
-        include: ['/*'],
-        exclude: [
-          '/_nuxt/*',
-          '/fonts/*',
-          '/images/*',
-          '/public/*',
-          '/_fonts/*',
-          '/_headers',
-          '/_redirects',
-          '/_routes.json',
-        ],
-      },
     },
     alias: {
       '@react-email/render': 'unenv/runtime/mock/empty',
