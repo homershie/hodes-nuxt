@@ -47,7 +47,7 @@ const props = defineProps({
 
 const emit = defineEmits(['load', 'error'])
 
-const { imageRef, isLoaded, isVisible, loadImage } = useLazyImage()
+const { imageRef, isLoaded, isVisible } = useLazyImage()
 const { recordImageLoadStart, recordImageLoadComplete } = usePerformanceMonitor()
 
 // 處理載入完成
@@ -63,12 +63,10 @@ const handleError = event => {
   emit('error', event)
 }
 
-// 監聽可見性變化
+// 監聽可見性變化（但 useLazyImage 已經處理載入邏輯，這裡只記錄效能）
 watch(isVisible, visible => {
-  if (visible) {
+  if (visible && !isLoaded.value) {
     recordImageLoadStart()
-    // 當圖片可見時，立即載入
-    loadImage()
   }
 })
 

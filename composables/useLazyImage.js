@@ -44,18 +44,19 @@ export function useLazyImage() {
       observer = new IntersectionObserver(
         entries => {
           entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && !isLoaded.value) {
               isVisible.value = true
-              // 只在圖片已載入完成後才 disconnect observer
-              // 這樣如果圖片載入失敗，下次進入視窗時仍可重試
-              if (isLoaded.value && observer) {
+              // 圖片進入視窗且尚未載入時才觸發
+              loadImage()
+              // 立即 disconnect，避免重複觸發
+              if (observer) {
                 observer.disconnect()
               }
             }
           })
         },
         {
-          rootMargin: '200px', // 增加預載入距離，提前 200px 開始載入
+          rootMargin: '50px', // 提前 50px 開始載入
           threshold: 0.01,
         }
       )
