@@ -31,11 +31,15 @@ describe('server/api/proxy-image.get', () => {
 
   it('無效 url -> 400', async () => {
     const { handler } = await importHandler()
+    // Mock fetch to prevent actual network calls
+    vi.spyOn(globalThis, 'fetch').mockRejectedValueOnce(new Error('Should not reach fetch'))
     await expect(handler({ query: { url: ':://bad' } })).rejects.toMatchObject({ statusCode: 400 })
   })
 
   it('禁止的 host -> 403', async () => {
     const { handler } = await importHandler()
+    // Mock fetch to prevent actual network calls
+    vi.spyOn(globalThis, 'fetch').mockRejectedValueOnce(new Error('Should not reach fetch'))
     await expect(handler({ query: { url: 'https://example.com/a.png' } })).rejects.toMatchObject({ statusCode: 403 })
   })
 
