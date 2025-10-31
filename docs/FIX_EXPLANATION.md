@@ -1,52 +1,52 @@
-# SSG ????????
+# SSG 動態路由修正說明
 
-> **????**: 2025-10-31  
-> **??**: ??????????Payload 404?????
+> **修正日期**: 2025-10-31  
+> **問題**: 動態路由頁面找不到、Payload 404、版型異常
 
 ---
 
-## ?? ????
+## 🔍 問題分析
 
-### ????
-1. **Payload ????** - ????? `_payload.json` ????????
-2. **????** - ???????????????????
-3. **?? 404** - ???????????????????
+### 核心問題
+1. **Payload 文件缺失** - 動態路由的 `_payload.json` 文件沒有正確生成
+2. **版型異常** - 可能是由於錯誤的配置導致樣式或結構問題
+3. **頁面 404** - 刷新動態路由頁面後出現找不到頁面的錯誤
 
-### ??????
-```
+### 錯誤訊息範例
+\`\`\`
 GET /article/art-nouveau/_payload.json 404 (Not Found)
 GET /project/89/_payload.json 404 (Not Found)
 [nuxt] Cannot load payload SyntaxError: Unexpected end of JSON input
-```
+\`\`\`
 
 ---
 
-## ? ??????
+## ✅ 解決方案總結
 
-### 1. ?? Payload ???????
+### 1. 確認 Payload 提取功能已啟用
 
-? `nuxt.config.ts` ??
+在 `nuxt.config.ts` 中：
 
-```typescript
+\`\`\`typescript
 experimental: {
   componentIslands: true,
-  payloadExtraction: true, // ? ????
+  payloadExtraction: true, // ⭐ 必須啟用
 }
-```
+\`\`\`
 
-**???**
-- Nuxt 4 ? SSG ???? payload ????
-- ???????????????? `_payload.json` ??
-- ?? payload ??????????????
+**說明：**
+- Nuxt 4 的 SSG 模式依賴 payload 提取功能
+- 這會為每個預渲染的頁面生成對應的 `_payload.json` 文件
+- 這些 payload 包含頁面資料，用於客戶端導航
 
 ---
 
-### 2. ?????????
+### 2. 配置動態路由預渲染
 
-????????? `nuxt.config.ts` ???
+目前在 `nuxt.config.ts` 中的配置：
 
-```typescript
-// ??????
+\`\`\`typescript
+// 讀取文章列表
 const getArticleSlugs = () => {
   try {
     const articlesDir = fileURLToPath(new URL('./content/articles', import.meta.url))
@@ -54,33 +54,30 @@ const getArticleSlugs = () => {
       .filter(filename => filename.endsWith('.md'))
       .map(filename => filename.replace(/\.md$/, ''))
   } catch (error) {
-    console.warn('[prerender] ?????????', error)
+    console.warn('[prerender] 讀取文章列表失敗：', error)
     return []
   }
 }
 
-// ??????
+// 生成作品路由
 const resolvePortfolioRoutes = () => {
   if (!Array.isArray(portfolio) || portfolio.length === 0) return []
   return portfolio
     .filter(item => item && (typeof item.id === 'string' || typeof item.id === 'number'))
-    .map(item => `/project/${item.id}`)
+    .map(item => \`/project/\${item.id}\`)
 }
 
-// ??????
+// 組合所有路由
 const articleSlugs = getArticleSlugs()
-const articleRoutes = articleSlugs.map(slug => `/article/${slug}`)
+const articleRoutes = articleSlugs.map(slug => \`/article/\${slug}\`)
 const blogPageRoutes = Array.from(
   { length: Math.ceil(articleSlugs.length / 10) }, 
-  (_, i) => `/blog/page/${i + 1}`
+  (_, i) => \`/blog/page/\${i + 1}\`
 )
 const projectRoutes = resolvePortfolioRoutes()
-
 const prerenderRoutes = Array.from(new Set([
   '/', '/about', '/service', '/contact', '/portfolio',
-  ...blogPageRoutes,
-  ...articleRoutes,
-  ...projectRoutes
+  ...blogPageRoutes, ...articleRoutes, ...projectRoutes
 ]))
 
 export default defineNuxtConfig({
@@ -91,302 +88,185 @@ export default defineNuxtConfig({
     },
   },
 })
-```
-
-**???**
-- ???? `content/articles/` ?????? Markdown ??
-- ? `portfolioData.js` ???????????
-- ?? Blog ???????????
-- ?? `Set` ??????
+\`\`\`
 
 ---
 
-### 3. ?????????
+### 3. 設定正確的路由規則
 
-```typescript
+\`\`\`typescript
 routeRules: {
   '/': { prerender: true },
   '/about': { prerender: true },
   '/service': { prerender: true },
   '/contact': { prerender: true },
   '/portfolio': { prerender: true },
-  
   '/blog': { redirect: '/blog/page/1' },
   '/blog/page/**': { prerender: true },
-  
-  '/article/**': { 
-    ssr: true,      // ? ?? SSR ??
-    prerender: true // ? ???
-  },
-  
-  '/project/**': { 
-    ssr: true, 
-    prerender: true 
-  },
-  
-  '/api/**': { cors: true }, // API ??????
+  '/article/**': { ssr: true, prerender: true },
+  '/project/**': { ssr: true, prerender: true },
+  '/api/**': { cors: true },
 }
-```
-
-**???**
-- `ssr: true` ????????????
-- `prerender: true` ?? Nuxt ????? HTML ? payload
-- Blog ???? 301 ????????
+\`\`\`
 
 ---
 
-### 4. ??????????
+### 4. 修正頁面資料獲取方式
 
-#### ? ??????????
+#### ❌ 錯誤方式（文章頁面）
 
-```vue
+\`\`\`vue
 <script setup>
-// ? ???? server: true
+// ❌ 沒有設定 server: true
 const { data: article } = await useAsyncData(
-  `article-${articleId}`,
+  \`article-\${articleId}\`,
   () => queryContent('articles', articleId).findOne()
 )
 </script>
-```
+\`\`\`
 
-#### ? ????
+#### ✅ 正確方式
 
-```vue
+\`\`\`vue
 <script setup>
 const route = useRoute()
 const articleId = route.params.id
 
-// ? ?? server: true ? lazy: false
+// ✅ 加入 server: true 和 lazy: false
 const { data: article } = await useAsyncData(
-  `article-${articleId}`,
+  \`article-\${articleId}\`,
   () => queryContent('articles', articleId).findOne(),
   {
-    server: true,  // ? ? SSG ???
-    lazy: false,   // ? ?????
+    server: true,  // ⭐ 在 SSG 時執行
+    lazy: false,   // ⭐ 不延遲載入
   }
 )
 
-// 404 ??
 if (!article.value) {
-  throw createError({ statusCode: 404, message: '?????' })
+  throw createError({ statusCode: 404, message: '文章不存在' })
 }
 </script>
-```
+\`\`\`
 
 ---
 
-#### ? ??????????
+## 🧪 驗證結果
 
-```vue
-<script setup>
-// ? ? onMounted ??????????????
-onMounted(() => {
-  project.value = getWorkById(projectId)
-})
-</script>
-```
+### 構建成功
 
-#### ? ????
-
-```vue
-<script setup>
-const route = useRoute()
-const projectId = computed(() => route.params.id)
-
-// ? ??? setup ????SSR/SSG ????
-const { getWorkById } = usePortfolio()
-const project = ref(getWorkById(projectId.value))
-
-// SSG ?? 404 ??
-if (!project.value && import.meta.server) {
-  throw createError({ statusCode: 404, message: '?????' })
-}
-</script>
-```
-
-**????**
-- `onMounted` ????????SSG ???????
-- ? `<script setup>` ??????? SSR/SSG ???
-- ??????????? payload ?
-
----
-
-### 5. Cloudflare Pages ????
-
-```typescript
-nitro: {
-  preset: 'cloudflare-pages',
-  cloudflare: {
-    deployConfig: true,
-    nodeCompat: true,
-    routes: {
-      include: ['/*'],
-      exclude: ['/_nuxt/*', '/fonts/*', '/images/*'],
-      // ? ???? /api/*???? Cloudflare Workers ??
-    },
-  },
-}
-```
-
----
-
-## ?? ????
-
-### ????
-
-```bash
+\`\`\`bash
 npm run generate
-```
+\`\`\`
 
-**?????**
-```
-? Generated public output/public
+**輸出結果：**
+\`\`\`
+✔ Generated public output/public
 
-?????????
-  - ????: 5 ?
-  - Blog ??: 1 ?
-  - ????: 6 ?
-  - ????: 90 ?
+預渲染的頁面數量：
+  - 靜態頁面: 5 個
+  - Blog 分頁: 1 個
+  - 文章頁面: 6 個
+  - 作品頁面: 90 個
   
-??: 102 ???
-```
+總計: 102 個頁面
+\`\`\`
 
-### ???????
+### 檢查生成的文件
 
-```bash
-# Blog ??
+\`\`\`bash
+# Blog 分頁
 ls output/public/blog/page/1/
-# ??: _payload.json  index.html
+# 輸出: _payload.json  index.html
 
-# ????
+# 文章頁面
 ls output/public/article/art-nouveau/
-# ??: _payload.json  index.html
+# 輸出: _payload.json  index.html
 
-# ????
+# 作品頁面
 ls output/public/project/1/
-# ??: _payload.json  index.html
-
-# Payload ????
-find output/public -name "_payload.json" | wc -l
-# ??: 102+
-```
-
-### ??????
-
-```bash
-npm run preview
-```
-
-**?????**
-- ? ?? http://localhost:3000/blog/page/1 - ????
-- ? ?? http://localhost:3000/article/art-nouveau - ????
-- ? ?? http://localhost:3000/project/1 - ????
-- ? ?????F5?- ??????
-- ? Network ?? - `_payload.json` ?? 200
-- ? ?? 404 ? JSON ????
-- ? ??????
+# 輸出: _payload.json  index.html
+\`\`\`
 
 ---
 
-## ?? ??????
+## 📊 修正前後對比
 
-### ???
-? ?????????  
-? Payload 404 ??  
-? ???????  
-? JSON ????  
-? ????  
+### 修正前
+❌ 動態路由頁面找不到  
+❌ Payload 404 錯誤  
+❌ 刷新後內容消失  
+❌ JSON 解析錯誤  
+❌ 版型異常  
 
-### ???
-? ??????????  
-? Payload ????  
-? ???????  
-? ?????  
-? ??????  
+### 修正後
+✅ 所有動態路由正確生成  
+✅ Payload 文件完整  
+✅ 刷新後內容正常  
+✅ 無錯誤訊息  
+✅ 版型顯示正常  
 
 ---
 
-## ?? ????
+## 🚨 重要提醒
 
-### ?? ???????
+### ⚠️ 必須避免的錯誤
 
-1. **???? `payloadExtraction`**
-   ```typescript
-   // ? ??
-   experimental: {
-     payloadExtraction: false
-   }
+1. **不要關閉 `payloadExtraction`**
+   \`\`\`typescript
+   // ❌ 錯誤
+   experimental: { payloadExtraction: false }
    
-   // ? ??
-   experimental: {
-     payloadExtraction: true
-   }
-   ```
+   // ✅ 正確
+   experimental: { payloadExtraction: true }
+   \`\`\`
 
-2. **??? `onMounted` ?????**
-   ```vue
-   <!-- ? ?? -->
+2. **不要在 `onMounted` 中獲取資料**
+   \`\`\`vue
+   <!-- ❌ 錯誤：SSG 時不會執行 -->
    <script setup>
    onMounted(() => {
-     // SSG ?????
      data.value = fetchData()
    })
    </script>
    
-   <!-- ? ?? -->
+   <!-- ✅ 正確：SSG 時會執行 -->
    <script setup>
-   // SSG ????
    const { data } = await useAsyncData('key', () => fetchData(), {
      server: true,
      lazy: false
    })
    </script>
-   ```
+   \`\`\`
 
-3. **?????? `ssr: true`**
-   ```typescript
-   // ? ??
+3. **不要忘記設定 `ssr: true`**
+   \`\`\`typescript
+   // ❌ 錯誤
    routeRules: {
      '/article/**': { prerender: true }
    }
    
-   // ? ??
+   // ✅ 正確
    routeRules: {
-     '/article/**': { 
-       ssr: true,      // ? ????
-       prerender: true 
-     }
+     '/article/**': { ssr: true, prerender: true }
    }
-   ```
+   \`\`\`
 
 ---
 
-## ?? ????
+## ✅ 檢查清單
 
-- [NUXT_SSG_DYNAMIC_ROUTES.md](./NUXT_SSG_DYNAMIC_ROUTES.md) - ???????????
-- [SSG_OPTIMIZATION_PLAN.md](./SSG_OPTIMIZATION_PLAN.md) - SSG ????
-- [DEPLOYMENT_CHECKLIST.md](./DEPLOYMENT_CHECKLIST.md) - ??????
-
----
-
-## ? ????
-
-?????????????
-
-- [x] `experimental.payloadExtraction: true` ???
-- [x] ??????? `nitro.prerender.routes`
-- [x] ??????? `ssr: true` ? `prerender: true`
-- [x] ???? `useAsyncData` ??? `server: true`
-- [x] ????? `<script setup>` ????? `onMounted`
-- [x] ?????????????
-- [x] `_payload.json` ???????????
-- [x] ????????
-- [x] ???????????
-- [x] ? 404 ? JSON ??
-- [x] ??????
+- [x] `experimental.payloadExtraction: true` 已啟用
+- [x] 動態路由已加入 `nitro.prerender.routes`
+- [x] 路由規則設定了 `ssr: true` 和 `prerender: true`
+- [x] 頁面使用 `useAsyncData` 並設定 `server: true`
+- [x] 資料獲取在 `<script setup>` 頂層，而非 `onMounted`
+- [x] 構建成功且所有頁面正確生成
+- [x] `_payload.json` 文件存在於每個動態路由
+- [x] 本地預覽測試通過
+- [x] 刷新頁面後內容正常顯示
+- [x] 無 404 或 JSON 錯誤
+- [x] 版型顯示正常
 
 ---
 
-**????**: Claude (Anthropic AI)  
-**?????**: Homer Shie  
-**????**: 2025-10-31
+**最後更新**: 2025-10-31
