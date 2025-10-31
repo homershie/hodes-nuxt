@@ -1,5 +1,5 @@
 import { Resend } from 'resend'
-import { verifyRecaptcha } from '@/server/utils/recaptcha'
+import { verifyRecaptcha } from '~/server/utils/recaptcha'
 import { checkRateLimit } from '../utils/rate-limit'
 
 // rate limit 檢查移至 server/utils/rate-limit.ts 共用

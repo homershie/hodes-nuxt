@@ -11,6 +11,15 @@
   </div>
 </template>
 
+<script setup>
+useHead({
+  title: '404 - 頁面未找到 | HODES',
+  meta: [
+    { name: 'robots', content: 'noindex, nofollow' },
+  ],
+})
+</script>
+
 <style scoped>
 .not-found {
   min-height: 100vh;

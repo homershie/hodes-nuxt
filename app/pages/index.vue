@@ -267,9 +267,49 @@ const headlineWords = [
 const currentWordIndex = ref(0)
 let headlineInterval = null
 
-// 首頁只需要覆蓋標題，其他使用全域設定
+// 首頁完整 SEO 設定
 useSeoMeta({
-  title: 'HOEDES｜荷馬桑 Homer Shie｜設計 ‧ 插畫 ‧ 動畫 ‧ 藝術 | 台北',
+  title: 'HODES - 荷馬桑 Homer Shie | 視覺設計 ‧ 動態設計 ‧ 插畫',
+  description: 'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫、動畫以及網頁設計，有興趣可以隨意逛逛，歡迎和我連絡！',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: 'https://homershie.com/' }],
+  meta: [
+    { property: 'og:title', content: 'HODES - 荷馬桑 Homer Shie | 視覺設計 ‧ 動態設計 ‧ 插畫' },
+    { property: 'og:description', content: 'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫、動畫以及網頁設計，有興趣可以隨意逛逛，歡迎和我連絡！' },
+    { property: 'og:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg' },
+    { property: 'og:url', content: 'https://homershie.com/' },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'HODES - 荷馬桑 Homer Shie | 視覺設計 ‧ 動態設計 ‧ 插畫' },
+    { name: 'twitter:description', content: 'Hi！這裡是荷馬桑 Homer Shie，台灣的自由接案工作者，擅長平面設計、插畫、動畫以及網頁設計' },
+    { name: 'twitter:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg' },
+    { name: 'robots', content: 'index, follow' },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Homer Shie',
+        alternateName: '荷馬桑',
+        url: 'https://homershie.com',
+        image: 'https://r2bucket.homershie.com/assets/imgs/header/profile.webp',
+        jobTitle: '視覺設計師 / 動態設計師',
+        worksFor: {
+          '@type': 'Organization',
+          name: 'HODES',
+        },
+        sameAs: [
+          'https://www.instagram.com/homer_create',
+          'https://github.com/homershie',
+          'https://medium.com/homer-create',
+        ],
+      }),
+    },
+  ],
 })
 
 onMounted(() => {

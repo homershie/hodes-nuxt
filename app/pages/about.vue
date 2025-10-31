@@ -211,10 +211,28 @@ import { usePageTitle } from '@composables/usePageTitle.js'
 
 // 設定頁面標題範例
 const { setPageTitle } = usePageTitle()
-setPageTitle('關於我')
+setPageTitle('關於')
+
+// SEO 設定
 useSeoMeta({
   description:
-    '了解荷馬桑 Homer Shie 的背景、技能和經歷，以及各式各樣擅長的工具，展示專業的視覺設計師和動態設計師必備的技能。',
+    '了解荷馬桑 Homer Shie 的背景、技能和經歷，以及各式各樣擅長的工具，展示專業的視覺、動態技術的必備技能。',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: 'https://homershie.com/about' }],
+  meta: [
+    { property: 'og:title', content: '關於 | HODES - 荷馬桑 Homer Shie' },
+    { property: 'og:description', content: '了解荷馬桑 Homer Shie 的背景、技能和經歷，以及各式各樣擅長的工具，展示專業的視覺、動態技術的必備技能。' },
+    { property: 'og:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg' },
+    { property: 'og:url', content: 'https://homershie.com/about' },
+    { property: 'og:type', content: 'profile' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: '關於 | HODES - 荷馬桑 Homer Shie' },
+    { name: 'twitter:description', content: '了解荷馬桑 Homer Shie 的背景、技能和經歷，展示專業的視覺、動態技術的必備技能。' },
+    { name: 'twitter:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg' },
+    { name: 'robots', content: 'index, follow' },
+  ],
 })
 
 const { preloadImages, loadingProgress, isPreloading } = useImagePreloader()

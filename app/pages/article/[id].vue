@@ -297,10 +297,48 @@ useHead({
     { property: 'og:description', content: article.value.excerpt },
     { property: 'og:image', content: article.value.image },
     { property: 'og:url', content: `https://homershie.com/article/${articleId}` },
+    { property: 'og:type', content: 'article' },
     { property: 'article:published_time', content: article.value.date },
     { property: 'article:author', content: article.value.author },
+    // 新增 Twitter Card
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: article.value.title },
+    { name: 'twitter:description', content: article.value.excerpt },
+    { name: 'twitter:image', content: article.value.image },
+    // 新增 robots
+    { name: 'robots', content: 'index, follow' },
   ],
   link: [{ rel: 'canonical', href: `https://homershie.com/article/${articleId}` }],
+  // 新增 BlogPosting Schema
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: article.value.title,
+        description: article.value.excerpt,
+        image: article.value.image,
+        datePublished: article.value.date,
+        author: {
+          '@type': 'Person',
+          name: article.value.author || 'Homer Shie',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'HODES',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://r2bucket.homershie.com/assets/imgs/favicon_homer.png',
+          },
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': `https://homershie.com/article/${articleId}`,
+        },
+      }),
+    },
+  ],
 })
 
 // 在掛載後啟用 lightbox 並調整 gallery 圖片方向

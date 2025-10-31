@@ -26,21 +26,21 @@
 - 建議 SEO 設定：
   ```typescript
   useSeoMeta({
-    title: 'HOEDES｜荷馬桑 Homer Shie｜設計 ‧ 插畫 ‧ 動畫 ‧ 藝術 | 台北',
-    description: 'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫以及動畫，有興趣可以隨意逛逛，歡迎和我連絡！',
+    title: 'HODES - 荷馬桑 Homer Shie | 視覺設計 ‧ 動態設計 ‧ 插畫',
+    description: 'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫、動畫以及網頁設計，有興趣可以隨意逛逛，歡迎和我連絡！',
   })
 
   useHead({
     link: [{ rel: 'canonical', href: 'https://homershie.com/' }],
     meta: [
-      { property: 'og:title', content: 'HOEDES｜荷馬桑 Homer Shie｜設計 ‧ 插畫 ‧ 動畫 ‧ 藝術 | 台北' },
-      { property: 'og:description', content: 'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫以及動畫，有興趣可以隨意逛逛，歡迎和我連絡！' },
+      { property: 'og:title', content: 'HODES - 荷馬桑 Homer Shie | 設計 ‧ 動態 ‧ 插畫 ‧ 網頁' },
+      { property: 'og:description', content: 'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫、動畫以及網頁設計，有興趣可以隨意逛逛，歡迎和我連絡！' },
       { property: 'og:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg' },
       { property: 'og:url', content: 'https://homershie.com/' },
       { property: 'og:type', content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: 'HOEDES｜荷馬桑 Homer Shie｜設計 ‧ 插畫 ‧ 動畫 ‧ 藝術 | 台北' },
-      { name: 'twitter:description', content: 'Hi！這裡是荷馬桑 Homer Shie，台灣的自由接案工作者，擅長平面設計、插畫以及動畫' },
+      { name: 'twitter:title', content: 'HODES - 荷馬桑 Homer Shie | 設計 ‧ 動態 ‧ 插畫 ‧ 網頁' },
+      { name: 'twitter:description', content: 'Hi！這裡是荷馬桑 Homer Shie，台灣的自由接案工作者，擅長平面設計、插畫、動畫以及網頁設計' },
       { name: 'twitter:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg' },
       { name: 'robots', content: 'index, follow' },
     ],
@@ -54,7 +54,7 @@
           alternateName: '荷馬桑',
           url: 'https://homershie.com',
           image: 'https://r2bucket.homershie.com/assets/imgs/header/profile.webp',
-          jobTitle: '視覺設計師 / 動態設計師',
+          jobTitle: '視覺設計師 / 動態設計師 / 前端工程師',
           worksFor: {
             '@type': 'Organization',
             name: 'HODES',
@@ -73,28 +73,28 @@
 ##### 關於 `/about`（`app/pages/about.vue`）
 - 現況：
   - `useSeoMeta({ description })`
-  - 標題透過 `usePageTitle('關於我')`（推測全域合成）
+  - 標題透過 `usePageTitle('關於')`（推測全域合成）
   - 無 canonical、OG/Twitter、robots、schema
 - 建議 SEO 設定：
   ```typescript
   const { setPageTitle } = usePageTitle()
-  setPageTitle('關於我')
+  setPageTitle('關於')
 
   useSeoMeta({
-    description: '了解荷馬桑 Homer Shie 的背景、技能和經歷，以及各式各樣擅長的工具，展示專業的視覺設計師和動態設計師必備的技能。',
+    description: '了解荷馬桑 Homer Shie 的背景、技能和經歷，以及各式各樣擅長的工具，展示專業的視覺、動態技術的必備技能。',
   })
 
   useHead({
     link: [{ rel: 'canonical', href: 'https://homershie.com/about' }],
     meta: [
-      { property: 'og:title', content: '關於我 | HODES - 荷馬桑 Homer Shie' },
-      { property: 'og:description', content: '了解荷馬桑 Homer Shie 的背景、技能和經歷，以及各式各樣擅長的工具，展示專業的視覺設計師和動態設計師必備的技能。' },
+      { property: 'og:title', content: '關於 | HODES - 荷馬桑 Homer Shie' },
+      { property: 'og:description', content: '了解荷馬桑 Homer Shie 的背景、技能和經歷，以及各式各樣擅長的工具，展示專業的視覺、動態技術的必備技能。' },
       { property: 'og:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg' },
       { property: 'og:url', content: 'https://homershie.com/about' },
       { property: 'og:type', content: 'profile' },
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: '關於我 | HODES - 荷馬桑 Homer Shie' },
-      { name: 'twitter:description', content: '了解荷馬桑 Homer Shie 的背景、技能和經歷，展示專業的視覺設計師和動態設計師必備的技能。' },
+      { name: 'twitter:title', content: '關於 | HODES - 荷馬桑 Homer Shie' },
+      { name: 'twitter:description', content: '了解荷馬桑 Homer Shie 的背景、技能和經歷，展示專業的視覺、動態技術的必備技能。' },
       { name: 'twitter:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg' },
       { name: 'robots', content: 'index, follow' },
     ],
@@ -106,20 +106,20 @@
 - 建議 SEO 設定：
   ```typescript
   useSeoMeta({
-    title: '我的服務 | HODES - 荷馬桑 Homer Shie',
+    title: '服務 | HODES - 荷馬桑 Homer Shie',
     description: '提供平面設計、動態設計、插畫創作、3D 動畫、品牌設計、網頁前端設計等專業服務。超過 90+ 件專案成功合作經驗，與 Garmin 等知名品牌合作。',
   })
 
   useHead({
     link: [{ rel: 'canonical', href: 'https://homershie.com/service' }],
     meta: [
-      { property: 'og:title', content: '我的服務 | HODES - 荷馬桑 Homer Shie' },
+      { property: 'og:title', content: '服務 | HODES - 荷馬桑 Homer Shie' },
       { property: 'og:description', content: '提供平面設計、動態設計、插畫創作、3D 動畫、品牌設計、網頁前端設計等專業服務。' },
       { property: 'og:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg' },
       { property: 'og:url', content: 'https://homershie.com/service' },
       { property: 'og:type', content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: '我的服務 | HODES - 荷馬桑 Homer Shie' },
+      { name: 'twitter:title', content: '服務 | HODES - 荷馬桑 Homer Shie' },
       { name: 'twitter:description', content: '提供平面設計、動態設計、插畫創作、3D 動畫、品牌設計、網頁前端設計等專業服務。' },
       { name: 'twitter:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg' },
       { name: 'robots', content: 'index, follow' },
@@ -162,6 +162,13 @@
                 itemOffered: {
                   '@type': 'Service',
                   name: '插畫創作',
+                },
+              },
+                            {
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: '前端工程',
                 },
               },
             ],
