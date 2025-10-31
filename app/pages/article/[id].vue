@@ -137,7 +137,7 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, onMounted, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { articles as legacyArticles } from '@data/articleData.js'
@@ -159,72 +159,70 @@ import ArticleImageMasonry from '@components/article/ArticleImageMasonry.vue'
 const ArticleImageGallery3 = ArticleImageGallery
 
 const route = useRoute()
-const articleId = route.params.id
+const articleId = route.params.id as string
 
-// 從 Nuxt Content 查詢文章 (使用 v3 API)
-// 注意：v3 中只有一個 'content' collection
+// 使用 queryCollection API (Nuxt Content v3)
 const { data: allArticles } = await useAsyncData('all-articles', () =>
   queryCollection('content').all()
 )
 
-// （保留位置）
-
 // 找到當前文章
-const article = computed(() => {
+const currentArticle = computed(() => {
   if (!allArticles.value) return null
+  const articles = allArticles.value.filter(item => item.path && item.path.startsWith('/articles/'))
+  return articles.find(item => {
+    const id = item.stem ? item.stem.replace(/^articles\//, '') : null
+    return id === articleId
+  })
+})
 
-  // 轉換資料並尋找匹配的文章
-  const articles = allArticles.value
-    .filter(item => item.path && item.path.startsWith('/articles/'))
-    .map(item => {
-      const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || item || {}
-      // 從 stem 中提取文章 ID (移除 'articles/' 前綴)
-      const id = item.stem ? item.stem.replace(/^articles\//, '') : meta.id || item.stem
-      const legacyExcerpt = legacyArticles?.[id]?.excerpt || ''
-      const computedExcerpt = meta.excerpt || item.excerpt || legacyExcerpt
-      if (import.meta.client && id === articleId) {
-        // eslint-disable-next-line no-console
-        console.log('Article excerpt debug:', {
-          id,
-          hasMetaExcerpt: Boolean(meta.excerpt),
-          hasItemExcerpt: Boolean(item.excerpt),
-          computedExcerptSample: (computedExcerpt || '').slice(0, 80),
-        })
-      }
-      return {
-        id,
-        title: item.title,
-        date: meta.date,
-        category: meta.category,
-        categoryName: meta.categoryName,
-        excerpt: computedExcerpt,
-        image: meta.image || meta.thumbnail || item.image || item.thumbnail,
-        thumbnail: meta.thumbnail || meta.image || item.thumbnail || item.image,
-        author: meta.author || item.author || 'Homer Shie',
-        body: item.body,
-        path: item.path,
-      }
+// 轉換當前文章格式
+const article = computed(() => {
+  if (!currentArticle.value) return null
+  
+  const item = currentArticle.value
+  const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || item || {}
+  const legacyExcerpt = legacyArticles?.[articleId]?.excerpt || ''
+  const computedExcerpt = meta.excerpt || item.excerpt || legacyExcerpt
+  
+  if (import.meta.client) {
+    // eslint-disable-next-line no-console
+    console.log('Article excerpt debug:', {
+      id: articleId,
+      hasExcerpt: Boolean(meta.excerpt || item.excerpt),
+      computedExcerptSample: (computedExcerpt || '').slice(0, 80),
     })
-
-  return articles.find(a => a.id === articleId)
+  }
+  
+  return {
+    id: articleId,
+    title: item.title,
+    date: meta.date,
+    category: meta.category,
+    categoryName: meta.categoryName,
+    excerpt: computedExcerpt,
+    image: meta.image || meta.thumbnail || item.image || item.thumbnail,
+    thumbnail: meta.thumbnail || meta.image || item.thumbnail || item.image,
+    author: meta.author || item.author || 'Homer Shie',
+    body: item.body,
+    path: item.path,
+  }
 })
 
 // 排序文章（按日期降序）
 const sortedArticles = computed(() => {
   if (!allArticles.value) return []
 
-  // 轉換並排序所有文章
   return allArticles.value
     .filter(item => item.path && item.path.startsWith('/articles/'))
     .map(item => {
       const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || {}
-      // 從 stem 中提取文章 ID (移除 'articles/' 前綴)
       const id = item.stem ? item.stem.replace(/^articles\//, '') : meta.id || item.stem
       return {
         id,
         title: item.title,
         date: meta.date,
-        thumbnail: meta.thumbnail || meta.image,
+        thumbnail: meta.thumbnail || meta.image || item.thumbnail || item.image,
         path: item.path,
       }
     })
