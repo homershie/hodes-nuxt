@@ -30,12 +30,17 @@ const articleRoutes = articleSlugs.map(slug => `/article/${slug}`)
 
 const POSTS_PER_PAGE = 10
 const blogPageTotal = Math.max(1, Math.ceil(articleSlugs.length / POSTS_PER_PAGE))
-const blogPageRoutes = Array.from({ length: blogPageTotal }, (_, index) => `/blog/page/${index + 1}`)
+const blogPageRoutes = Array.from(
+  { length: blogPageTotal },
+  (_, index) => `/blog/page/${index + 1}`
+)
 
 const projectRoutes = resolvePortfolioRoutes()
 
 const baseStaticRoutes = ['/', '/about', '/service', '/contact', '/portfolio']
-const prerenderRoutes = Array.from(new Set([...baseStaticRoutes, ...blogPageRoutes, ...articleRoutes, ...projectRoutes]))
+const prerenderRoutes = Array.from(
+  new Set([...baseStaticRoutes, ...blogPageRoutes, ...articleRoutes, ...projectRoutes])
+)
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-10-30',
@@ -169,13 +174,13 @@ export default defineNuxtConfig({
     '/blog/page/**': { prerender: true },
 
     // 文章詳情 - 靜態生成（SSR + Prerender）
-    '/article/**': { 
+    '/article/**': {
       ssr: true,
       prerender: true,
     },
 
     // 作品詳情 - 靜態生成（SSR + Prerender）
-    '/project/**': { 
+    '/project/**': {
       ssr: true,
       prerender: true,
     },
@@ -188,8 +193,12 @@ export default defineNuxtConfig({
     },
   },
 
+  // Google Analytics 配置
   gtag: {
-    id: 'G-8YSG21XKMM',
+    // GA4 追蹤 ID（可透過環境變數 NUXT_PUBLIC_GTAG_ID 覆蓋）
+    id: process.env.NUXT_PUBLIC_GTAG_ID || 'G-8YSG21XKMM',
+    // SSG 模式下確保只在生產環境啟用（開發時不會載入 GA 腳本）
+    enabled: process.env.NODE_ENV === 'production',
   },
 
   // Robots 配置
