@@ -1,3 +1,6 @@
 /blog    /blog/page/1    301
-# SPA fallback ?? 200.html
-/*  /200.html   200
+
+# ⚠️ 不要使用 SPA fallback！
+# Nitro 已經通過 _routes.json 和 Worker 處理路由
+# 以下規則會導致靜態資源（JS/CSS）被錯誤地重定向到 HTML
+# /*  /200.html   200  ← 已移除，改由 _routes.json 和 Worker 處理
