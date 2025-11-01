@@ -30,7 +30,7 @@
     "preview:wrangler": "npx wrangler pages dev dist --compatibility-date=2025-10-30 --ip 0.0.0.0 --port 8788",
     "clean": "scripts\\clean.cmd",
     "clean:force": "scripts\\clean.cmd",
-    "rebuild": "npm run clean && npm run generate",
+    "rebuild": "npm run clean && npm run build",
     "postinstall": "nuxt prepare && patch-package",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",

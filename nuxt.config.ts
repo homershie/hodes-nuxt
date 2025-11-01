@@ -118,11 +118,11 @@ export default defineNuxtConfig({
     // 不需要手動生成
   },
 
-  // Nitro 預渲染設定
+  // Nitro 設定 - Cloudflare Pages with SSR + Prerender
   nitro: {
     preset: 'cloudflare-pages',
-    // 使用預設的 .output 目錄（不要自定義 output.dir）
-    // 禁用 app manifest，防止 SSG 部署時的 404 錯誤
+    // 使用 npm run build (不是 generate) 來支援 server API routes
+    // 輸出到 .output/public (靜態檔案) + .output/server (Workers)
     future: {
       nativeFetch: true,
     },
@@ -179,11 +179,11 @@ export default defineNuxtConfig({
       prerender: true,
     },
 
-    // API 路由 - 不預渲染，保持為動態 Functions
-    '/api/**': { 
+    // API 路由 - 編譯為 Cloudflare Workers Functions
+    '/api/**': {
       cors: true,
       ssr: true,
-      prerender: false, // ⭐ 關鍵：API 路由不應該被預渲染
+      prerender: false, // ⭐ API 路由會被編譯成 Worker，不預渲染為靜態檔案
     },
   },
 
