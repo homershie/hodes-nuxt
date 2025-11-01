@@ -89,7 +89,7 @@ if (import.meta.client) {
 
 /* 可選：添加淡入效果 */
 .optimized-image {
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.3s ease;
 }
 

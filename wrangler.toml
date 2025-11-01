@@ -1,2 +1,12 @@
 name = "hodes-nuxt"
 compatibility_date = "2025-10-30"
+
+[vars]
+NUXT_PUBLIC_APP_VERSION = "2.0.4"
+TO_EMAIL = "homerxworkshop@gmail.com"
+
+[env.production.vars]
+NUXT_PUBLIC_APP_VERSION = "2.0.4"
+
+[env.preview.vars]
+NUXT_PUBLIC_APP_VERSION = "dev-build"
