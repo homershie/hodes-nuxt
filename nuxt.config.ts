@@ -121,10 +121,7 @@ export default defineNuxtConfig({
   // Nitro 預渲染設定
   nitro: {
     preset: 'cloudflare-pages',
-    // 使用 .output 作為構建目錄（Cloudflare Pages 會從這裡部署）
-    output: {
-      dir: '.output',
-    },
+    // 使用預設的 .output 目錄（不要自定義 output.dir）
     // 禁用 app manifest，防止 SSG 部署時的 404 錯誤
     future: {
       nativeFetch: true,
