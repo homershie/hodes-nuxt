@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { onMounted, watch } from 'vue'
+import { onMounted, watch, computed } from 'vue'
 import { useLazyImage } from '@composables/useLazyImage.js'
 import { usePerformanceMonitor } from '@composables/usePerformanceMonitor.js'
 
@@ -50,6 +50,9 @@ const emit = defineEmits(['load', 'error'])
 const { imageRef, isLoaded, isVisible } = useLazyImage()
 const { recordImageLoadStart, recordImageLoadComplete } = usePerformanceMonitor()
 
+// 判斷是否應該立即載入（高優先級或預載入）
+const shouldPreload = computed(() => props.preload || props.priority === 'high')
+
 // 處理載入完成
 const handleLoad = event => {
   isLoaded.value = true
@@ -72,17 +75,23 @@ watch(isVisible, visible => {
 
 // 如果設定為預載入或高優先級，立即載入
 onMounted(() => {
-  if (props.preload || props.priority === 'high') {
-    // 設定實際的 src 而不是 data-src
-    if (imageRef.value) {
-      imageRef.value.src = props.src
-      // 移除 data-src，因為已經設定 src
-      imageRef.value.removeAttribute('data-src')
+  if (shouldPreload.value && imageRef.value) {
+    const img = imageRef.value
+
+    // 檢查是否已經有 src，避免重複設定
+    if (!img.src || img.src === '') {
+      img.src = props.src
+      img.removeAttribute('data-src')
       recordImageLoadStart()
-      // 對於預載入的圖片，也需要檢查是否已經載入完成
-      if (imageRef.value.complete) {
+
+      // 檢查圖片是否已經從快取載入完成
+      if (img.complete && img.naturalWidth > 0) {
         isLoaded.value = true
+        recordImageLoadComplete()
       }
+    } else if (img.complete && img.naturalWidth > 0) {
+      // 圖片已經載入完成（例如從快取）
+      isLoaded.value = true
     }
   }
 })
@@ -93,19 +102,22 @@ onMounted(() => {
   width: 100%;
   height: auto;
   transition: opacity 0.3s ease;
-  opacity: 0;
+  /* 修正：預設顯示圖片，避免捲動時閃爍 */
+  opacity: 1;
   /* 確保圖片在載入過程中不會完全消失 */
   min-height: 50px;
   background-color: var(--placeholder-color, #f0f0f0);
 }
 
-/* 當圖片可見但未載入時，顯示低透明度避免完全消失 */
+/* 當圖片可見但未載入時，顯示低透明度 */
 .optimized-image.loading {
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
+/* 圖片載入完成時，確保完全顯示 */
 .optimized-image.loaded {
   opacity: 1;
+  background-color: transparent;
 }
 
 .optimized-image.error {
@@ -113,27 +125,6 @@ onMounted(() => {
   filter: grayscale(100%);
 }
 
-/* 載入動畫 */
-.optimized-image.loading::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  margin: -10px 0 0 -10px;
-  border: 2px solid #f3f3f3;
-  border-top: 2px solid var(--maincolor);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+/* 載入動畫 - 移除，避免干擾捲動體驗 */
+/* 如果需要載入指示器，可以在外層容器添加 */
 </style>

@@ -65,6 +65,7 @@ export default defineNuxtConfig({
     // Public keys (可在 client-side 使用)
     public: {
       recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY,
+      appVersion: process.env.NUXT_PUBLIC_APP_VERSION || 'v2.0.1',
     },
   },
 

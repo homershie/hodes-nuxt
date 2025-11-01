@@ -14,7 +14,7 @@
                   >Ui-ThemeZ</a
                 >
               </span>
-              v2.0.1
+              {{ config.public.appVersion }}
             </p>
           </div>
         </div>
@@ -25,6 +25,8 @@
 
 <script setup>
 import { computed } from 'vue'
+
+const config = useRuntimeConfig()
 
 // 動態取得當前年份
 const currentYear = computed(() => {
