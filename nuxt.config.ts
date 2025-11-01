@@ -111,6 +111,37 @@ export default defineNuxtConfig({
     payloadExtraction: true, // 啟用 Payload 提取（SSG 必需）
   },
 
+  // Nuxt Hooks
+  hooks: {
+    // 禁用 app manifest 以修復 SSG 部署的 404 錯誤
+    'build:manifest': (manifest) => {
+      // 在 SSG 模式下禁用 app manifest
+      // 這可以防止 /_nuxt/builds/meta/*.json 的 404 錯誤
+      for (const key in manifest) {
+        if (key.includes('builds/meta')) {
+          delete manifest[key]
+        }
+      }
+    },
+    // 生成 Cloudflare Pages _routes.json
+    'nitro:build:public-assets': async (nitro) => {
+      const fs = await import('node:fs/promises')
+      const path = await import('node:path')
+
+      const routes = {
+        version: 1,
+        include: ['/*'],
+        exclude: ['/_nuxt/*'],
+      }
+
+      const publicDir = path.join(nitro.options.output.publicDir)
+      const routesPath = path.join(publicDir, '_routes.json')
+
+      await fs.writeFile(routesPath, JSON.stringify(routes, null, 2), 'utf-8')
+      console.log('✅ Generated _routes.json for Cloudflare Pages')
+    },
+  },
+
   // Nitro 預渲染設定
   nitro: {
     preset: 'cloudflare-pages',
@@ -225,6 +256,7 @@ export default defineNuxtConfig({
 
   // 全域基礎設定（SEO meta 已移至各頁面個別設定）
   app: {
+    buildAssetsDir: '/_nuxt/',
     head: {
       htmlAttrs: {
         lang: 'zh-Hant-TW',
