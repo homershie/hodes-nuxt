@@ -1,11 +1,11 @@
-# 文章頁面圖片載入問題修正文檔
+# 文章頁面圖片載入問題修正文檔（第二版）
 
 ## 問題描述
 
-### 症狀
-- 文章頁面的圖片在捲動時會消失
+### 症狀（第一次修正後）
+- 圖片在捲動時不會完全消失，但會顯示**連結失效圖示**
 - 只有捲動停止時才會顯示正確圖片
-- 往上捲動時，已經載入過的圖片會重新讀取
+- 根本問題：`<img>` 的 `src` 屬性沒有被正確管理
 - **重要**: 問題只在生產環境（build 後）出現，開發環境（dev）正常
 
 ### 影響範圍
@@ -13,74 +13,189 @@
 - 所有使用 OptimizedImage 元件的圖片
 - 使用 ArticleImg 元件的文章內容圖片
 
-## 問題根源分析
+## 問題根源分析（深層原因）
 
-### 1. IntersectionObserver 過早 disconnect
+### 根本問題：直接操作 DOM 而非使用響應式狀態
 
-**位置**: [composables/useLazyImage.js:52-54](../composables/useLazyImage.js#L52-L54)
+**原始架構的問題**:
+```vue
+<template>
+  <img ref="imageRef" :data-src="src" :alt="alt" />
+  <!-- 注意：沒有 :src 屬性！ -->
+</template>
 
-**原始問題**:
-```javascript
-if (entry.isIntersecting && !isLoaded.value) {
-  isVisible.value = true
-  loadImage()
-  // 問題：立即 disconnect，導致捲動時無法正確追蹤
-  if (observer) {
-    observer.disconnect()
-  }
-}
+<script>
+// 在 JavaScript 中直接操作 DOM
+img.src = src  // ❌ 這會被 Vue 的重新渲染覆蓋
+</script>
 ```
 
-當圖片進入視窗時，Observer 會立即 `disconnect()`。在生產環境中，Vue 的元件優化可能導致：
-- 元件重新渲染時，Observer 已經被移除
-- 捲動時圖片重新進入視窗，但沒有 Observer 監聽
-- 已載入的圖片失去追蹤，導致重複載入
+### 1. `<img>` 標籤沒有 `src` 屬性的問題
 
-### 2. 缺少載入狀態追蹤
-
-**問題**: 沒有專門的變數追蹤圖片是否「已開始載入」，只依賴 `isLoaded` 和 `isVisible`，導致：
-- 圖片載入中時可能被重複觸發
-- 無法區分「未載入」和「載入中」狀態
-
-### 3. CSS 透明度設定不當
-
-**位置**: [app/components/OptimizedImage.vue:96](../app/components/OptimizedImage.vue#L96)
-
-**原始問題**:
-```css
-.optimized-image {
-  opacity: 0;  /* 預設完全透明 */
-}
+當 `<img>` 標籤沒有 `src` 屬性時：
+```html
+<img data-src="image.jpg" alt="..." />
 ```
 
-預設 `opacity: 0` 導致圖片在載入過程中完全不可見，加劇閃爍問題。
+瀏覽器會自動設定一個**空的 `src=""`**，這會：
+- 嘗試載入當前頁面作為圖片
+- 顯示**連結失效圖示**（❌）
+- 即使後來用 JavaScript 設定 `img.src`，在 Vue 重新渲染時也會被重置
+
+### 2. 直接操作 DOM vs Vue 響應式系統衝突
+
+**問題流程**:
+1. JavaScript 設定 `img.src = "image.jpg"` ✅ 圖片開始載入
+2. 使用者捲動，觸發 Vue 重新渲染
+3. Vue 重新渲染時，發現模板中沒有 `:src` 綁定
+4. DOM 被重置，`src` 屬性消失或變成空字串
+5. 圖片顯示失效圖示 ❌
+
+### 3. IntersectionObserver 的時機問題
+
+即使使用 IntersectionObserver，在生產環境中：
+- Vue 的元件優化會頻繁重新渲染
+- 直接設定的 `img.src` 會在重新渲染時丟失
+- Observer 無法防止 Vue 的 DOM 更新
 
 ### 4. 生產環境 vs 開發環境的差異
 
 **為什麼開發環境正常？**
-- 開發環境：Vue 的 Hot Module Replacement (HMR) 會保持元件狀態
-- 生產環境：Vue 做了更積極的優化和元件重用，可能重新建立元件實例
+- 開發環境：Vue 的 Hot Module Replacement (HMR) 會保持 DOM 狀態
+- 元件更新較溫和，較少完全重新渲染
 
 **為什麼生產環境有問題？**
-- 元件重新建立時，Observable 的 disconnect 導致失去追蹤
-- 圖片的 `src` 屬性可能在重新渲染時被重置
-- 沒有持久化的載入狀態追蹤機制
+- 生產環境：Vue 做了更積極的優化和 Virtual DOM diff
+- 頻繁的重新渲染會重置未綁定的 DOM 屬性
+- 直接操作的 `img.src` 會被覆蓋
 
-## 修正方案
+## 修正方案（第二版 - 完全重構）
 
-### 1. 改進 useLazyImage.js
+### 核心概念：使用 Vue 響應式狀態管理 src
 
-**修正內容**:
+**關鍵改變**:
+```vue
+<template>
+  <!-- ✅ 使用響應式的 imageSrc -->
+  <img ref="imageRef" :src="imageSrc" :alt="alt" />
+</template>
 
-#### a) 新增 `hasStartedLoading` 狀態
-```javascript
-let hasStartedLoading = false // 追蹤是否已開始載入
+<script>
+const imageSrc = ref(TRANSPARENT_PLACEHOLDER) // 響應式 ref
+
+// 當需要載入圖片時，更新 ref
+const setImageSrc = () => {
+  imageSrc.value = props.src  // ✅ Vue 會自動同步到 DOM
+}
+</script>
 ```
 
-#### b) 改進 loadImage 函數
+### 1. 完全重構 OptimizedImage.vue
+
+**移除對 useLazyImage 的依賴**，直接在元件內管理所有邏輯：
+
+#### a) 使用透明 placeholder 避免失效圖示
+
 ```javascript
-const loadImage = () => {
-  if (!imageRef.value || hasStartedLoading) return
+// 使用透明的 1x1 像素 SVG，避免顯示失效圖示
+const TRANSPARENT_PLACEHOLDER = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E'
+const imageSrc = ref(TRANSPARENT_PLACEHOLDER)
+```
+
+**為什麼使用 placeholder**:
+- 避免瀏覽器顯示失效圖示
+- 提供有效的 `src` 值
+- 不會產生額外的網路請求
+
+#### b) 響應式 src 管理
+
+```javascript
+const imageRef = ref(null)
+const isLoaded = ref(false)
+const isVisible = ref(false)
+const imageSrc = ref(TRANSPARENT_PLACEHOLDER) // 關鍵：響應式 ref
+let observer = null
+let hasSetSrc = false // 追蹤是否已設定 src
+
+// 設定圖片 src（只會執行一次）
+const setImageSrc = () => {
+  if (hasSetSrc) return
+
+  hasSetSrc = true
+  imageSrc.value = props.src  // ✅ Vue 會同步到 DOM
+  recordImageLoadStart()
+
+  // 檢查圖片是否已經從快取載入完成
+  if (imageRef.value?.complete && imageRef.value?.naturalWidth > 0) {
+    isLoaded.value = true
+    recordImageLoadComplete()
+    if (observer) {
+      observer.disconnect()
+      observer = null
+    }
+  }
+}
+```
+
+#### c) 改進 IntersectionObserver 邏輯
+
+```javascript
+onMounted(() => {
+  // 如果是預載入或高優先級，立即設定 src
+  if (shouldPreload.value) {
+    setImageSrc()
+    return
+  }
+
+  // 否則使用 IntersectionObserver
+  if (!imageRef.value) return
+
+  if ('IntersectionObserver' in window) {
+    observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          isVisible.value = entry.isIntersecting
+
+          // 當圖片進入視窗時，設定 src（只會執行一次）
+          if (entry.isIntersecting && !hasSetSrc) {
+            setImageSrc()
+          }
+        })
+      },
+      {
+        rootMargin: '200px', // 提前 200px 開始載入，避免捲動時才載入
+        threshold: 0.01,
+      }
+    )
+
+    observer.observe(imageRef.value)
+  } else {
+    // Fallback: 立即載入
+    setImageSrc()
+  }
+})
+```
+
+**關鍵改進**:
+- `rootMargin: '200px'` - 提前 200px 開始載入，避免捲動時閃現
+- 使用 `hasSetSrc` 確保只設定一次
+- 載入完成後才 disconnect observer
+
+#### d) 改進 handleLoad 事件處理
+
+```javascript
+const handleLoad = event => {
+  isLoaded.value = true
+  recordImageLoadComplete()
+
+  // 載入完成後立即 disconnect observer，避免重複觸發
+  if (observer) {
+    observer.disconnect()
+    observer = null
+  }
+
+  emit('load', event)
+}
 
   const img = imageRef.value
   const src = img.dataset.src || img.getAttribute('data-src')

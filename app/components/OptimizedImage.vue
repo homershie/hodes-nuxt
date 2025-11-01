@@ -2,6 +2,7 @@
   <img
     ref="imageRef"
     :data-src="src"
+    :src="imageSrc"
     :alt="alt"
     :class="['optimized-image', { loaded: isLoaded, loading: isVisible && !isLoaded }]"
     :style="{
@@ -14,8 +15,7 @@
 </template>
 
 <script setup>
-import { onMounted, watch, computed } from 'vue'
-import { useLazyImage } from '@composables/useLazyImage.js'
+import { ref, onMounted, watch, computed, onBeforeUnmount } from 'vue'
 import { usePerformanceMonitor } from '@composables/usePerformanceMonitor.js'
 
 const props = defineProps({
@@ -47,7 +47,15 @@ const props = defineProps({
 
 const emit = defineEmits(['load', 'error'])
 
-const { imageRef, isLoaded, isVisible } = useLazyImage()
+const imageRef = ref(null)
+const isLoaded = ref(false)
+const isVisible = ref(false)
+// 使用透明的 1x1 像素 placeholder，避免顯示失效圖示
+const TRANSPARENT_PLACEHOLDER = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E'
+const imageSrc = ref(TRANSPARENT_PLACEHOLDER) // 響應式的 src 屬性，一旦設定就不會清空
+let observer = null
+let hasSetSrc = false // 追蹤是否已經設定過 src
+
 const { recordImageLoadStart, recordImageLoadComplete } = usePerformanceMonitor()
 
 // 判斷是否應該立即載入（高優先級或預載入）
@@ -57,42 +65,89 @@ const shouldPreload = computed(() => props.preload || props.priority === 'high')
 const handleLoad = event => {
   isLoaded.value = true
   recordImageLoadComplete()
+
+  // 載入完成後立即 disconnect observer，避免重複觸發
+  if (observer) {
+    observer.disconnect()
+    observer = null
+  }
+
   emit('load', event)
 }
 
 // 處理載入錯誤
 const handleError = event => {
+  console.warn('圖片載入失敗:', props.src)
   recordImageLoadComplete()
+  // 錯誤時不 disconnect，保留重試機會
   emit('error', event)
 }
 
-// 監聽可見性變化（但 useLazyImage 已經處理載入邏輯，這裡只記錄效能）
+// 設定圖片 src（只會執行一次）
+const setImageSrc = () => {
+  if (hasSetSrc) return
+
+  hasSetSrc = true
+  imageSrc.value = props.src
+  recordImageLoadStart()
+
+  // 檢查圖片是否已經從快取載入完成
+  if (imageRef.value?.complete && imageRef.value?.naturalWidth > 0) {
+    isLoaded.value = true
+    recordImageLoadComplete()
+    if (observer) {
+      observer.disconnect()
+      observer = null
+    }
+  }
+}
+
+// 監聽可見性變化
 watch(isVisible, visible => {
-  if (visible && !isLoaded.value) {
-    recordImageLoadStart()
+  if (visible && !hasSetSrc && !shouldPreload.value) {
+    setImageSrc()
   }
 })
 
-// 如果設定為預載入或高優先級，立即載入
 onMounted(() => {
-  if (shouldPreload.value && imageRef.value) {
-    const img = imageRef.value
+  // 如果是預載入或高優先級，立即設定 src
+  if (shouldPreload.value) {
+    setImageSrc()
+    return
+  }
 
-    // 檢查是否已經有 src，避免重複設定
-    if (!img.src || img.src === '') {
-      img.src = props.src
-      img.removeAttribute('data-src')
-      recordImageLoadStart()
+  // 否則使用 IntersectionObserver
+  if (!imageRef.value) return
 
-      // 檢查圖片是否已經從快取載入完成
-      if (img.complete && img.naturalWidth > 0) {
-        isLoaded.value = true
-        recordImageLoadComplete()
+  if ('IntersectionObserver' in window) {
+    observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          isVisible.value = entry.isIntersecting
+
+          // 當圖片進入視窗時，設定 src（只會執行一次）
+          if (entry.isIntersecting && !hasSetSrc) {
+            setImageSrc()
+          }
+        })
+      },
+      {
+        rootMargin: '200px', // 提前 200px 開始載入，避免捲動時才載入
+        threshold: 0.01,
       }
-    } else if (img.complete && img.naturalWidth > 0) {
-      // 圖片已經載入完成（例如從快取）
-      isLoaded.value = true
-    }
+    )
+
+    observer.observe(imageRef.value)
+  } else {
+    // Fallback: 立即載入
+    setImageSrc()
+  }
+})
+
+onBeforeUnmount(() => {
+  if (observer) {
+    observer.disconnect()
+    observer = null
   }
 })
 </script>
