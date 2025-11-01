@@ -14,6 +14,7 @@
                   >Ui-ThemeZ</a
                 >
               </span>
+              v2.0.1
             </p>
           </div>
         </div>
