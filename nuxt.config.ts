@@ -124,7 +124,7 @@ export default defineNuxtConfig({
       crawlLinks: true,
       // 依據內容與資料集動態計算靜態化路由
       routes: prerenderRoutes,
-      autoSubfolderIndex: false,
+      autoSubfolderIndex: true, // 修改為 true，確保生成子目錄結構和 index.html
       // 確保在預渲染時正確處理錯誤
       failOnError: false,
       // 增加並發數以加快預渲染

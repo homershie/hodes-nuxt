@@ -161,11 +161,11 @@ const ArticleImageGallery3 = ArticleImageGallery
 const route = useRoute()
 const articleId = route.params.id as string
 
-// 使用 queryContent API (Nuxt Content)
-// 使用 server: true 確保在 SSR/SSG 時正確執行
-const { data: allArticles } = await useAsyncData(
-  `articles-list`, 
-  () => queryContent('articles').find(),
+// 使用 queryCollection API (Nuxt Content v3)
+// 查詢所有文章
+const { data: allArticles, error: articlesError } = await useAsyncData(
+  'articles-list',
+  () => queryCollection('content').all(),
   {
     // 確保在 SSR/SSG 時執行
     server: true,
@@ -174,14 +174,17 @@ const { data: allArticles } = await useAsyncData(
   }
 )
 
-// 找到當前文章
+// 記錄錯誤（如果有）
+if (articlesError.value && import.meta.server) {
+  console.error(`Failed to load articles:`, articlesError.value)
+}
+
+// 從所有文章中找到當前文章
 const currentArticle = computed(() => {
   if (!allArticles.value) return null
   return allArticles.value.find(item => {
-    // 從 _path 屬性中提取 ID
-    const pathMatch = item._path?.match(/\/articles\/(.+)$/)
-    const id = pathMatch ? pathMatch[1] : null
-    return id === articleId
+    const itemId = item.stem ? item.stem.replace(/^articles\//, '') : item.id
+    return itemId === articleId
   })
 })
 
@@ -190,30 +193,32 @@ const article = computed(() => {
   if (!currentArticle.value) return null
   
   const item = currentArticle.value
+  // 處理 meta 欄位（可能是 JSON 字串）
+  const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || item || {}
   const legacyExcerpt = legacyArticles?.[articleId]?.excerpt || ''
-  const computedExcerpt = item.excerpt || item.description || legacyExcerpt
+  const computedExcerpt = meta.excerpt || item.excerpt || legacyExcerpt
   
   if (import.meta.client) {
     // eslint-disable-next-line no-console
     console.log('Article excerpt debug:', {
       id: articleId,
-      hasExcerpt: Boolean(item.excerpt),
+      hasExcerpt: Boolean(meta.excerpt || item.excerpt),
       computedExcerptSample: (computedExcerpt || '').slice(0, 80),
     })
   }
   
   return {
-    id: articleId,
-    title: item.title,
-    date: item.date,
-    category: item.category,
-    categoryName: item.categoryName,
+    id: meta.id || articleId,
+    title: meta.title || item.title,
+    date: meta.date || item.date,
+    category: meta.category || item.category,
+    categoryName: meta.categoryName || item.categoryName,
     excerpt: computedExcerpt,
-    image: item.image || item.thumbnail,
-    thumbnail: item.thumbnail || item.image,
-    author: item.author || 'Homer Shie',
+    image: meta.image || item.image || meta.thumbnail || item.thumbnail,
+    thumbnail: meta.thumbnail || item.thumbnail || meta.image || item.image,
+    author: meta.author || item.author || 'Homer Shie',
     body: item.body,
-    path: item._path,
+    path: item.path || item._path,
   }
 })
 
@@ -222,15 +227,16 @@ const sortedArticles = computed(() => {
   if (!allArticles.value) return []
 
   return allArticles.value
+    .filter(item => item.path && item.path.startsWith('/articles/'))
     .map(item => {
-      const pathMatch = item._path?.match(/\/articles\/(.+)$/)
-      const id = pathMatch ? pathMatch[1] : null
+      const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || item || {}
+      const itemId = item.stem ? item.stem.replace(/^articles\//, '') : meta.id || item.stem
       return {
-        id,
-        title: item.title,
-        date: item.date,
-        thumbnail: item.thumbnail || item.image,
-        path: item._path,
+        id: itemId,
+        title: meta.title || item.title,
+        date: meta.date || item.date,
+        thumbnail: meta.thumbnail || item.thumbnail || meta.image || item.image,
+        path: item.path || item._path,
       }
     })
     .filter(item => item.id) // 過濾掉無效的項目
@@ -239,8 +245,8 @@ const sortedArticles = computed(() => {
     })
 })
 
-// 404 處理
-if (!article.value) {
+// 404 處理 - 只在 server 端且確認沒有資料時拋出錯誤
+if (!currentArticle.value && import.meta.server) {
   throw createError({
     statusCode: 404,
     message: '文章不存在',
