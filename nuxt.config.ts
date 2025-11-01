@@ -109,47 +109,28 @@ export default defineNuxtConfig({
   experimental: {
     componentIslands: true, // 元件孤島
     payloadExtraction: true, // 啟用 Payload 提取（SSG 必需）
+    appManifest: false, // 禁用 app manifest 以避免 SSG 404 錯誤
   },
 
   // Nuxt Hooks
   hooks: {
-    // 禁用 app manifest 以修復 SSG 部署的 404 錯誤
-    'build:manifest': (manifest) => {
-      // 在 SSG 模式下禁用 app manifest
-      // 這可以防止 /_nuxt/builds/meta/*.json 的 404 錯誤
-      for (const key in manifest) {
-        if (key.includes('builds/meta')) {
-          delete manifest[key]
-        }
-      }
-    },
-    // 生成 Cloudflare Pages _routes.json
-    'nitro:build:public-assets': async (nitro) => {
-      const fs = await import('node:fs/promises')
-      const path = await import('node:path')
-
-      const routes = {
-        version: 1,
-        include: ['/*'],
-        exclude: ['/_nuxt/*'],
-      }
-
-      const publicDir = path.join(nitro.options.output.publicDir)
-      const routesPath = path.join(publicDir, '_routes.json')
-
-      await fs.writeFile(routesPath, JSON.stringify(routes, null, 2), 'utf-8')
-      console.log('✅ Generated _routes.json for Cloudflare Pages')
-    },
+    // Nitro 會自動為 Cloudflare Pages 生成 _routes.json
+    // 不需要手動生成
   },
 
   // Nitro 預渲染設定
   nitro: {
     preset: 'cloudflare-pages',
-    // 使用非隱藏目錄，避免 Cloudflare Pages 無法識別的問題
+    // 使用 .output 作為構建目錄（Cloudflare Pages 會從這裡部署）
     output: {
-      dir: 'output',
-      serverDir: 'output/server',
-      publicDir: 'output/public',
+      dir: '.output',
+    },
+    // 禁用 app manifest，防止 SSG 部署時的 404 錯誤
+    future: {
+      nativeFetch: true,
+    },
+    experimental: {
+      wasm: false,
     },
     prerender: {
       crawlLinks: true,
