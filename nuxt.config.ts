@@ -58,6 +58,10 @@ export default defineNuxtConfig({
     description:
       'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫以及動畫，有興趣可以隨意逛逛，歡迎和我連絡！',
     defaultLocale: 'zh-Hant-TW',
+    // 忽略追蹤參數，避免產生重複的 canonical URL
+    trailingSlash: false,
+    // 在生成 canonical URL 時忽略這些查詢參數
+    indexable: true,
   },
 
   // Runtime Config
@@ -129,9 +133,6 @@ export default defineNuxtConfig({
     preset: 'cloudflare-pages',
     // 使用 npm run build (不是 generate) 來支援 server API routes
     // 輸出到 .output/public (靜態檔案) + .output/server (Workers)
-    future: {
-      nativeFetch: true,
-    },
     experimental: {
       wasm: false,
     },
@@ -217,6 +218,8 @@ export default defineNuxtConfig({
     autoLastmod: true,
     // 排除不需要的頁面
     exclude: ['/admin/**', '/api/**'],
+    // 確保 sitemap 中的 URL 不包含查詢參數
+    strictNuxtContentPaths: true,
   },
 
   // Vite 配置
