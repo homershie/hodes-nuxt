@@ -1,6 +1,9 @@
 <template>
   <section class="project section-padding radius-15">
     <div class="container">
+      <!-- 麵包屑導航 -->
+      <Breadcrumb :items="breadcrumbItems" />
+
       <!-- 載入進度顯示 -->
       <div v-if="isPreloading" class="loading-progress">
         <div class="progress-bar">
@@ -85,6 +88,9 @@
       <Preloader v-else />
     </div>
   </section>
+
+  <!-- 相關作品區塊 -->
+  <RelatedWorks v-if="project" :current-work-id="projectId" :limit="6" />
 </template>
 
 <script setup>
@@ -93,11 +99,30 @@ import { useRoute } from 'vue-router'
 import { usePortfolio } from '@composables/usePortfolio.js'
 import { useImagePreloader } from '@composables/useImagePreloader.js'
 import Preloader from '@components/PreLoader.vue'
+import RelatedWorks from '@components/RelatedWorks.vue'
+import Breadcrumb from '@components/Breadcrumb.vue'
 import { enableImageLightbox } from '@composables/useLightBox.js'
 
 const route = useRoute()
 const project = ref(null)
 const { getWorkById } = usePortfolio()
+
+// 麵包屑導航
+const breadcrumbItems = computed(() => {
+  const items = [
+    { name: '首頁', path: '/' },
+    { name: '作品集', path: '/portfolio' },
+  ]
+
+  if (project.value) {
+    items.push({
+      name: project.value.title,
+      path: `/project/${route.params.id}`,
+    })
+  }
+
+  return items
+})
 const { preloadImages, loadingProgress, isPreloading } = useImagePreloader()
 
 // 獲取WebP格式的圖片路徑

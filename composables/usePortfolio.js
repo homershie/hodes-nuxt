@@ -74,12 +74,50 @@ export function usePortfolio() {
     return ['all', ...Array.from(new Set(cats))]
   })
 
+  // 取得相關作品（基於類別和日期）
+  const getRelatedWorks = (currentWorkId, limit = 6) => {
+    const currentWork = portfolioData.value.find(work => work.id === parseInt(currentWorkId))
+    if (!currentWork) return []
+
+    // 計算相關性分數
+    const scoredWorks = portfolioData.value
+      .filter(work => work.id !== parseInt(currentWorkId)) // 排除當前作品
+      .map(work => {
+        let score = 0
+
+        // 相同類別加分
+        if (Array.isArray(work.category) && Array.isArray(currentWork.category)) {
+          const commonCategories = work.category.filter(cat => currentWork.category.includes(cat))
+          score += commonCategories.length * 10
+        }
+
+        // 日期相近加分（同一年加5分，相差一年加3分）
+        const currentYear = currentWork.date ? new Date(currentWork.date).getFullYear() : 0
+        const workYear = work.date ? new Date(work.date).getFullYear() : 0
+        if (currentYear && workYear) {
+          const yearDiff = Math.abs(currentYear - workYear)
+          if (yearDiff === 0) score += 5
+          else if (yearDiff === 1) score += 3
+          else if (yearDiff <= 2) score += 1
+        }
+
+        return { work, score }
+      })
+      .sort((a, b) => b.score - a.score) // 按分數排序
+      .slice(0, limit)
+      .map(item => item.work)
+
+    // 轉換為WebP格式
+    return convertPortfolioToWebP(scoredWorks)
+  }
+
   return {
     portfolioData: webpPortfolioData,
     loading: computed(() => loading.value),
     error: computed(() => error.value),
     getWorkById,
     getWorksByCategory,
+    getRelatedWorks,
     categories,
   }
 }
