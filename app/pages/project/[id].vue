@@ -91,17 +91,13 @@
 import { ref, onMounted, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePortfolio } from '@composables/usePortfolio.js'
-import { useImageFormat } from '@composables/useImageFormat.js'
 import { useImagePreloader } from '@composables/useImagePreloader.js'
 import Preloader from '@components/PreLoader.vue'
 import { enableImageLightbox } from '@composables/useLightBox.js'
 
-const BASE_TITLE = 'HOEDES｜荷馬桑 Homer Shie'
-
 const route = useRoute()
 const project = ref(null)
 const { getWorkById } = usePortfolio()
-const { getBestImagePath } = useImageFormat()
 const { preloadImages, loadingProgress, isPreloading } = useImagePreloader()
 
 // 獲取WebP格式的圖片路徑

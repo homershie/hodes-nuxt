@@ -191,13 +191,13 @@ const currentArticle = computed(() => {
 // 轉換當前文章格式
 const article = computed(() => {
   if (!currentArticle.value) return null
-  
+
   const item = currentArticle.value
   // 處理 meta 欄位（可能是 JSON 字串）
   const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || item || {}
   const legacyExcerpt = legacyArticles?.[articleId]?.excerpt || ''
   const computedExcerpt = meta.excerpt || item.excerpt || legacyExcerpt
-  
+
   if (import.meta.client) {
     // eslint-disable-next-line no-console
     console.log('Article excerpt debug:', {
@@ -206,7 +206,7 @@ const article = computed(() => {
       computedExcerptSample: (computedExcerpt || '').slice(0, 80),
     })
   }
-  
+
   return {
     id: meta.id || articleId,
     title: meta.title || item.title,

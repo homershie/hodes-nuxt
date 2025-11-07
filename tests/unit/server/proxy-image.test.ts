@@ -10,7 +10,9 @@ async function importHandler() {
       ...actual,
       defineEventHandler: (fn: any) => fn,
       getQuery: (e: any) => e.query || {},
-      setHeader: (_e: any, k: string, v: string) => { headers[k] = v },
+      setHeader: (_e: any, k: string, v: string) => {
+        headers[k] = v
+      },
       createError: (o: any) => ({ ...o }),
     }
   })
@@ -40,13 +42,19 @@ describe('server/api/proxy-image.get', () => {
     const { handler } = await importHandler()
     // Mock fetch to prevent actual network calls
     vi.spyOn(globalThis, 'fetch').mockRejectedValueOnce(new Error('Should not reach fetch'))
-    await expect(handler({ query: { url: 'https://example.com/a.png' } })).rejects.toMatchObject({ statusCode: 403 })
+    await expect(handler({ query: { url: 'https://example.com/a.png' } })).rejects.toMatchObject({
+      statusCode: 403,
+    })
   })
 
   it('上游錯誤 -> 轉拋上游狀態碼', async () => {
     const { handler } = await importHandler()
-    vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(new Response(null, { status: 404, statusText: 'Not Found' }) as any)
-    await expect(handler({ query: { url: 'https://r2bucket.homershie.com/a.png' } })).rejects.toMatchObject({ statusCode: 404 })
+    vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(
+      new Response(null, { status: 404, statusText: 'Not Found' }) as any
+    )
+    await expect(
+      handler({ query: { url: 'https://r2bucket.homershie.com/a.png' } })
+    ).rejects.toMatchObject({ statusCode: 404 })
   })
 
   it('成功代理，設定 headers 與回傳串流', async () => {
@@ -69,5 +77,3 @@ describe('server/api/proxy-image.get', () => {
     expect((res as Response).status).toBe(200)
   })
 })
-
-

@@ -32,7 +32,8 @@ vi.mock('#imports', async () => {
 // 由於測試環境不會啟用 Nuxt 自動引入，補上全域方法供 SFC 直接呼叫
 ;(globalThis as any).useRoute = () => ((globalThis as any).__testRoute ||= reactive({ path: '/' }))
 ;(globalThis as any).defineEventHandler = (fn: any) => fn
-;(globalThis as any).createError = (options: { statusCode?: number; statusMessage: string }) => options
+;(globalThis as any).createError = (options: { statusCode?: number; statusMessage: string }) =>
+  options
 ;(globalThis as any).getRequestHeader = () => '127.0.0.1'
 ;(globalThis as any).readBody = async () => ({})
 ;(globalThis as any).useRuntimeConfig = () => ({
@@ -70,8 +71,10 @@ vi.mock('gsap/ScrollTrigger', () => ({
 // Mock masonry-layout，避免真實佈局行為
 vi.mock('masonry-layout', () => {
   class MasonryMock {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    constructor(public container: Element | null, public options: Record<string, unknown>) {}
+    constructor(
+      public container: Element | null,
+      public options: Record<string, unknown>
+    ) {}
     layout() {}
     reloadItems() {}
     destroy() {}
@@ -81,7 +84,6 @@ vi.mock('masonry-layout', () => {
 
 // IntersectionObserver polyfill（最小可用實作）
 class IO {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   constructor(public callback: (...args: unknown[]) => void) {}
   observe() {}
   unobserve() {}
@@ -94,5 +96,3 @@ g.IntersectionObserver = g.IntersectionObserver || IO
 // 常見環境變數（供服務端工具/測試使用）
 process.env.RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY || 'test-secret-key'
 process.env.RESEND_API_KEY = process.env.RESEND_API_KEY || 'test-resend-api-key'
-
-

@@ -31,64 +31,104 @@ describe('useFormValidation', () => {
     it('應該驗證名稱欄位為必填', async () => {
       const { formSchema } = useFormValidation()
 
-      await expect(formSchema.validate({ name: '', email: 'test@test.com', message: 'This is a test message with more than ten characters.' })).rejects.toThrow(
-        '請輸入您的名字'
-      )
+      await expect(
+        formSchema.validate({
+          name: '',
+          email: 'test@test.com',
+          message: 'This is a test message with more than ten characters.',
+        })
+      ).rejects.toThrow('請輸入您的名字')
     })
 
     it('應該驗證名稱長度至少 2 個字元', async () => {
       const { formSchema } = useFormValidation()
 
-      await expect(formSchema.validate({ name: 'A', email: 'test@test.com', message: 'This is a test message with more than ten characters.' })).rejects.toThrow(
-        '名字至少需要2個字元'
-      )
+      await expect(
+        formSchema.validate({
+          name: 'A',
+          email: 'test@test.com',
+          message: 'This is a test message with more than ten characters.',
+        })
+      ).rejects.toThrow('名字至少需要2個字元')
     })
 
     it('應該驗證名稱長度不超過 50 個字元', async () => {
       const { formSchema } = useFormValidation()
       const longName = 'A'.repeat(51)
 
-      await expect(formSchema.validate({ name: longName, email: 'test@test.com', message: 'This is a test message with more than ten characters.' })).rejects.toThrow(
-        '名字不能超過50個字元'
-      )
+      await expect(
+        formSchema.validate({
+          name: longName,
+          email: 'test@test.com',
+          message: 'This is a test message with more than ten characters.',
+        })
+      ).rejects.toThrow('名字不能超過50個字元')
     })
 
     it('應該驗證名稱只能包含中文、英文和空格', async () => {
       const { formSchema } = useFormValidation()
 
       await expect(
-        formSchema.validate({ name: 'Test123', email: 'test@test.com', message: 'This is a test message with more than ten characters.' })
+        formSchema.validate({
+          name: 'Test123',
+          email: 'test@test.com',
+          message: 'This is a test message with more than ten characters.',
+        })
       ).rejects.toThrow('名字只能包含中文、英文和空格')
     })
 
     it('應該驗證有效的名稱', async () => {
       const { formSchema } = useFormValidation()
 
-      await expect(formSchema.validate({ name: 'Test User', email: 'test@test.com', message: 'This is a test message with more than ten characters.' })).resolves.toBeDefined()
-      await expect(formSchema.validate({ name: '測試使用者', email: 'test@test.com', message: 'This is a test message with more than ten characters.' })).resolves.toBeDefined()
+      await expect(
+        formSchema.validate({
+          name: 'Test User',
+          email: 'test@test.com',
+          message: 'This is a test message with more than ten characters.',
+        })
+      ).resolves.toBeDefined()
+      await expect(
+        formSchema.validate({
+          name: '測試使用者',
+          email: 'test@test.com',
+          message: 'This is a test message with more than ten characters.',
+        })
+      ).resolves.toBeDefined()
     })
 
     it('應該驗證電子郵件為必填', async () => {
       const { formSchema } = useFormValidation()
 
-      await expect(formSchema.validate({ name: 'Test', email: '', message: 'This is a test message with more than ten characters.' })).rejects.toThrow(
-        '請輸入您的電子信箱'
-      )
+      await expect(
+        formSchema.validate({
+          name: 'Test',
+          email: '',
+          message: 'This is a test message with more than ten characters.',
+        })
+      ).rejects.toThrow('請輸入您的電子信箱')
     })
 
     it('應該驗證電子郵件格式', async () => {
       const { formSchema } = useFormValidation()
 
-      await expect(formSchema.validate({ name: 'Test', email: 'invalid-email', message: 'This is a test message with more than ten characters.' })).rejects.toThrow(
-        '請輸入有效的電子信箱格式'
-      )
+      await expect(
+        formSchema.validate({
+          name: 'Test',
+          email: 'invalid-email',
+          message: 'This is a test message with more than ten characters.',
+        })
+      ).rejects.toThrow('請輸入有效的電子信箱格式')
     })
 
     it('應該驗證有效的電子郵件', async () => {
       const { formSchema } = useFormValidation()
 
       await expect(
-        formSchema.validate({ name: 'Test', email: 'test@example.com', message: 'This is a test message with more than ten characters.' })
+        formSchema.validate({
+          name: 'Test',
+          email: 'test@example.com',
+          message: 'This is a test message with more than ten characters.',
+        })
       ).resolves.toBeDefined()
     })
 
@@ -97,24 +137,29 @@ describe('useFormValidation', () => {
       const longSubject = 'A'.repeat(101)
 
       await expect(
-        formSchema.validate({ name: 'Test', email: 'test@test.com', subject: longSubject, message: 'This is a test message with more than ten characters.' })
+        formSchema.validate({
+          name: 'Test',
+          email: 'test@test.com',
+          subject: longSubject,
+          message: 'This is a test message with more than ten characters.',
+        })
       ).rejects.toThrow('主旨不能超過100個字元')
     })
 
     it('應該驗證訊息為必填', async () => {
       const { formSchema } = useFormValidation()
 
-      await expect(formSchema.validate({ name: 'Test', email: 'test@test.com', message: '' })).rejects.toThrow(
-        '請輸入您的訊息'
-      )
+      await expect(
+        formSchema.validate({ name: 'Test', email: 'test@test.com', message: '' })
+      ).rejects.toThrow('請輸入您的訊息')
     })
 
     it('應該驗證訊息長度至少 10 個字元', async () => {
       const { formSchema } = useFormValidation()
 
-      await expect(formSchema.validate({ name: 'Test', email: 'test@test.com', message: 'short' })).rejects.toThrow(
-        '訊息至少需要10個字元'
-      )
+      await expect(
+        formSchema.validate({ name: 'Test', email: 'test@test.com', message: 'short' })
+      ).rejects.toThrow('訊息至少需要10個字元')
     })
 
     it('應該驗證訊息長度不超過 1000 個字元', async () => {
@@ -130,7 +175,11 @@ describe('useFormValidation', () => {
       const { formSchema } = useFormValidation()
 
       await expect(
-        formSchema.validate({ name: 'Test', email: 'test@test.com', message: '我想去賭博網站看看有什麼好玩的東西' })
+        formSchema.validate({
+          name: 'Test',
+          email: 'test@test.com',
+          message: '我想去賭博網站看看有什麼好玩的東西',
+        })
       ).rejects.toThrow('訊息內容不適當')
     })
 
@@ -165,7 +214,7 @@ describe('useFormValidation', () => {
       const { isBot, initFormStartTime } = useFormValidation()
 
       initFormStartTime()
-      
+
       // 模擬快速提交（1秒後）
       const now = Date.now()
       vi.spyOn(Date, 'now').mockReturnValue(now + 1000)
@@ -177,7 +226,7 @@ describe('useFormValidation', () => {
       const { isBot, initFormStartTime } = useFormValidation()
 
       initFormStartTime()
-      
+
       // 模擬正常提交（3秒後）
       const now = Date.now()
       vi.spyOn(Date, 'now').mockReturnValue(now + 3000)
@@ -213,7 +262,7 @@ describe('useFormValidation', () => {
       const { checkSpam, updateSubmitStats } = useFormValidation()
 
       updateSubmitStats()
-      
+
       // 模擬 30 秒後再次提交
       const now = Date.now()
       vi.spyOn(Date, 'now').mockReturnValue(now + 30000)
@@ -225,7 +274,7 @@ describe('useFormValidation', () => {
       const { checkSpam, updateSubmitStats } = useFormValidation()
 
       updateSubmitStats()
-      
+
       // 模擬 2 分鐘後再次提交
       const now = Date.now()
       vi.spyOn(Date, 'now').mockReturnValue(now + 120000)
@@ -295,4 +344,3 @@ describe('useFormValidation', () => {
     })
   })
 })
-

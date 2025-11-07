@@ -14,9 +14,7 @@
 <script setup>
 useHead({
   title: '404 - 頁面未找到 | HODES',
-  meta: [
-    { name: 'robots', content: 'noindex, nofollow' },
-  ],
+  meta: [{ name: 'robots', content: 'noindex, nofollow' }],
 })
 </script>
 

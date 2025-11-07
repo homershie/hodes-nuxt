@@ -239,9 +239,7 @@ describe('Article Page Integration Tests', () => {
   describe('404 錯誤處理', () => {
     it('當文章不存在時應該準備拋出 404 錯誤', () => {
       const articleId = 'non-existent-article'
-      const foundArticle = mockArticles.find(
-        a => a.stem.replace(/^articles\//, '') === articleId
-      )
+      const foundArticle = mockArticles.find(a => a.stem.replace(/^articles\//, '') === articleId)
 
       expect(foundArticle).toBeUndefined()
     })

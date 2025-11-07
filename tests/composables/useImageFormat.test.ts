@@ -52,5 +52,3 @@ describe('useImageFormat', () => {
     await expect(getBestImagePath('/img/b.jpg')).resolves.toBe('/img/b.jpg')
   })
 })
-
-

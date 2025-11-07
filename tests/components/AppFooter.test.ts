@@ -9,5 +9,3 @@ describe('AppFooter.vue', () => {
     expect(wrapper.text()).toContain(year)
   })
 })
-
-

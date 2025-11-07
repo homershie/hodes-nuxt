@@ -46,11 +46,13 @@ describe('usePortfolio', () => {
 
     it('應該將畫廊圖片轉換為 WebP 格式', () => {
       // 找到有 gallery 的作品
-      const workWithGallery = portfolioComposable.portfolioData.value.find(work => Array.isArray(work.gallery) && work.gallery.length > 0)
+      const workWithGallery = portfolioComposable.portfolioData.value.find(
+        work => Array.isArray(work.gallery) && work.gallery.length > 0
+      )
 
       if (workWithGallery) {
         const galleryImages = workWithGallery.gallery.filter(img => img)
-        
+
         if (galleryImages.length > 0) {
           galleryImages.forEach(img => {
             const isWebP = img.toLowerCase().endsWith('.webp')
@@ -62,7 +64,7 @@ describe('usePortfolio', () => {
 
     it('應該處理已經是多層物件結構的圖片', () => {
       const work = portfolioComposable.getWorkById(1)
-      
+
       if (work && work.mainImage) {
         expect(typeof work.mainImage).toBe('string')
       }
@@ -164,7 +166,9 @@ describe('usePortfolio', () => {
 
     it('應該處理多分類陣列格式', () => {
       // 找到有多個分類的作品
-      const workWithMultipleCategories = portfolio.find(work => Array.isArray(work.category) && work.category.length > 1)
+      const workWithMultipleCategories = portfolio.find(
+        work => Array.isArray(work.category) && work.category.length > 1
+      )
 
       if (workWithMultipleCategories && workWithMultipleCategories.category.length > 0) {
         const category = workWithMultipleCategories.category[0]
@@ -251,4 +255,3 @@ describe('usePortfolio', () => {
     })
   })
 })
-

@@ -347,21 +347,34 @@ function scrollToContact() {
 // SEO 設定
 useSeoMeta({
   title: '服務 | HODES - 荷馬桑 Homer Shie',
-  description: '提供平面設計、動態設計、插畫創作、3D 動畫、品牌設計、網頁前端設計等專業服務。超過 90+ 件專案成功合作經驗，與 Garmin 等知名品牌合作。',
+  description:
+    '提供平面設計、動態設計、插畫創作、3D 動畫、品牌設計、網頁前端設計等專業服務。超過 90+ 件專案成功合作經驗，與 Garmin 等知名品牌合作。',
 })
 
 useHead({
   link: [{ rel: 'canonical', href: 'https://homershie.com/service' }],
   meta: [
     { property: 'og:title', content: '服務 | HODES - 荷馬桑 Homer Shie' },
-    { property: 'og:description', content: '提供平面設計、動態設計、插畫創作、3D 動畫、品牌設計、網頁前端設計等專業服務。' },
-    { property: 'og:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg' },
+    {
+      property: 'og:description',
+      content: '提供平面設計、動態設計、插畫創作、3D 動畫、品牌設計、網頁前端設計等專業服務。',
+    },
+    {
+      property: 'og:image',
+      content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg',
+    },
     { property: 'og:url', content: 'https://homershie.com/service' },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: '服務 | HODES - 荷馬桑 Homer Shie' },
-    { name: 'twitter:description', content: '提供平面設計、動態設計、插畫創作、3D 動畫、品牌設計、網頁前端設計等專業服務。' },
-    { name: 'twitter:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg' },
+    {
+      name: 'twitter:description',
+      content: '提供平面設計、動態設計、插畫創作、3D 動畫、品牌設計、網頁前端設計等專業服務。',
+    },
+    {
+      name: 'twitter:image',
+      content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg',
+    },
     { name: 'robots', content: 'index, follow' },
   ],
   script: [

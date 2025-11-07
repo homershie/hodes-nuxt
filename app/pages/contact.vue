@@ -327,21 +327,34 @@ const submitForm = handleSubmit(async formValues => {
 // SEO 設定
 useSeoMeta({
   title: '聯絡我 | HODES - 荷馬桑 Homer Shie',
-  description: '有任何設計需求或合作機會嗎？歡迎透過表單、電子郵件 homerxworkshop@gmail.com 與我聯繫。位於新北市板橋區，提供平面設計、動態設計、插畫等專業服務。',
+  description:
+    '有任何設計需求或合作機會嗎？歡迎透過表單、電子郵件 homerxworkshop@gmail.com 與我聯繫。位於新北市板橋區，提供平面設計、動態設計、插畫等專業服務。',
 })
 
 useHead({
   link: [{ rel: 'canonical', href: 'https://homershie.com/contact' }],
   meta: [
     { property: 'og:title', content: '聯絡我 | HODES - 荷馬桑 Homer Shie' },
-    { property: 'og:description', content: '有任何設計需求或合作機會嗎？歡迎透過表單、電子郵件與我聯繫。' },
-    { property: 'og:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg' },
+    {
+      property: 'og:description',
+      content: '有任何設計需求或合作機會嗎？歡迎透過表單、電子郵件與我聯繫。',
+    },
+    {
+      property: 'og:image',
+      content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg',
+    },
     { property: 'og:url', content: 'https://homershie.com/contact' },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: '聯絡我 | HODES - 荷馬桑 Homer Shie' },
-    { name: 'twitter:description', content: '有任何設計需求或合作機會嗎？歡迎透過表單、電子郵件與我聯繫。' },
-    { name: 'twitter:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg' },
+    {
+      name: 'twitter:description',
+      content: '有任何設計需求或合作機會嗎？歡迎透過表單、電子郵件與我聯繫。',
+    },
+    {
+      name: 'twitter:image',
+      content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg',
+    },
     { name: 'robots', content: 'index, follow' },
   ],
   script: [

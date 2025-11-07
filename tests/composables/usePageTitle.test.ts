@@ -25,5 +25,3 @@ describe('usePageTitle', () => {
     expect((globalThis as any).useSeoMeta).toHaveBeenCalledWith({ title: `關於${suffix}` })
   })
 })
-
-

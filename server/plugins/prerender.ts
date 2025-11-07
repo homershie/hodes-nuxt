@@ -3,7 +3,7 @@ import { defineNitroPlugin } from 'nitropack/runtime/plugin'
 export default defineNitroPlugin(nitroApp => {
   nitroApp.hooks.hook('prerender:routes', async ctx => {
     console.log('[Prerender] Starting route generation...')
-    
+
     // 文章路由 - 從 content 目錄讀取
     const articleIds = [
       'pop-art',
@@ -36,7 +36,7 @@ export default defineNitroPlugin(nitroApp => {
     // 動態導入作品資料（使用 @data 指向專案根目錄的 data/）
     try {
       const { portfolio } = await import('@data/portfolioData.js')
-      
+
       // 生成作品路由
       console.log(`[Prerender] Generating ${portfolio.length} project pages...`)
       for (const work of portfolio) {
@@ -55,7 +55,7 @@ export default defineNitroPlugin(nitroApp => {
         ctx.routes.add(route)
         console.log(`[Prerender] Added: ${route}`)
       }
-      
+
       console.log('[Prerender] Route generation completed successfully!')
     } catch (error) {
       console.error('[Prerender] Error loading portfolio data:', error)

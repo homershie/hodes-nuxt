@@ -14,5 +14,3 @@ describe('useTextFade', async () => {
     expect(toSpy).toHaveBeenCalled()
   })
 })
-
-

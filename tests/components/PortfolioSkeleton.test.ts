@@ -5,7 +5,7 @@ import PortfolioSkeleton from '@/app/components/PortfolioSkeleton.vue'
 describe('PortfolioSkeleton', () => {
   it('renders default number of skeleton items', () => {
     const wrapper = mount(PortfolioSkeleton)
-    
+
     const skeletonItems = wrapper.findAll('.skeleton-item')
     expect(skeletonItems.length).toBe(3) // 預設值
   })
@@ -16,7 +16,7 @@ describe('PortfolioSkeleton', () => {
         count: 5,
       },
     })
-    
+
     const skeletonItems = wrapper.findAll('.skeleton-item')
     expect(skeletonItems.length).toBe(5)
   })
@@ -27,7 +27,7 @@ describe('PortfolioSkeleton', () => {
         count: 1,
       },
     })
-    
+
     // 檢查骨架結構
     expect(wrapper.find('.skeleton-container').exists()).toBe(true)
     expect(wrapper.find('.skeleton-image').exists()).toBe(true)
@@ -41,9 +41,9 @@ describe('PortfolioSkeleton', () => {
         count: 3,
       },
     })
-    
+
     const skeletonItems = wrapper.findAll('.skeleton-item')
-    
+
     // 檢查每個項目是否有動畫延遲
     skeletonItems.forEach((item, index) => {
       const style = item.attributes('style')
@@ -60,7 +60,7 @@ describe('PortfolioSkeleton', () => {
         count: 0,
       },
     })
-    
+
     const skeletonItems = wrapper.findAll('.skeleton-item')
     expect(skeletonItems.length).toBe(0)
   })

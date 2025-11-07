@@ -1,5 +1,12 @@
 import { defineNuxtModule } from '@nuxt/kit'
 
+type ContentFileMutable = Record<string, unknown> & {
+  _id?: string
+  body?: string
+  content?: string
+  _content?: string
+}
+
 export default defineNuxtModule({
   meta: {
     name: 'content-link-sanitize',
@@ -10,39 +17,26 @@ export default defineNuxtModule({
     nuxt.hooks.hook('modules:done', () => {
       // 註冊 content:file:beforeParse hook
       nuxt.hooks.hook('content:file:beforeParse', file => {
-        console.log(`[beforeParse] file:`, JSON.stringify(Object.keys(file || {})))
+        const mutableFile = file as ContentFileMutable
 
-        if (file && file._id) {
-          console.log(`[beforeParse] 處理文件: ${file._id}`)
-        }
-
-        // 嘗試不同的屬性名稱
-        const bodyKey =
-          file?.body !== undefined
-            ? 'body'
-            : file?.content !== undefined
-              ? 'content'
-              : file?._content !== undefined
-                ? '_content'
-                : null
+        const bodyKey = (['body', 'content', '_content'] as const).find(key =>
+          Object.prototype.hasOwnProperty.call(mutableFile, key)
+        )
 
         if (!bodyKey) {
-          console.log(`[beforeParse] 找不到 body/content 屬性`)
           return
         }
 
-        console.log(`[beforeParse] 使用屬性: ${bodyKey}, type: ${typeof file[bodyKey]}`)
+        const rawContent = mutableFile[bodyKey]
 
-        if (typeof file[bodyKey] === 'string') {
-          const originalLength = file[bodyKey].length
-          file[bodyKey] = sanitizeContent(file[bodyKey])
-          const newLength = file[bodyKey].length
+        if (typeof rawContent !== 'string') {
+          return
+        }
 
-          if (originalLength !== newLength) {
-            console.log(
-              `[content-link-sanitize] ✅ 清理了文件: ${file._id} (${originalLength} -> ${newLength} bytes)`
-            )
-          }
+        const sanitizedContent = sanitizeContent(rawContent)
+
+        if (sanitizedContent !== rawContent) {
+          mutableFile[bodyKey] = sanitizedContent
         }
       })
     })

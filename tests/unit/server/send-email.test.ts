@@ -56,7 +56,11 @@ describe('server/api/send-email.post 行為', () => {
   it.skip('成功送出', async () => {
     const handler = await importHandlerWithMocks({
       body: {
-        name: 'A', email: 'a@a.com', message: 'hi', subject: 's', recaptchaToken: 't'
+        name: 'A',
+        email: 'a@a.com',
+        message: 'hi',
+        subject: 's',
+        recaptchaToken: 't',
       },
       isHuman: true,
       resendOk: true,
@@ -95,5 +99,3 @@ describe('server/api/send-email.post 行為', () => {
     await expect(handler({})).rejects.toMatchObject({ statusCode: 500 })
   })
 })
-
-

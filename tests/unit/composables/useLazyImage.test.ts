@@ -38,13 +38,12 @@ describe('useLazyImage', () => {
     await nextTick()
 
     expect((wrapper.vm as any).isVisible).toBe(true)
-
     ;(wrapper.vm as any).loadImage()
-    imgEl.onload && imgEl.onload(new Event('load'))
+    if (imgEl.onload) {
+      imgEl.onload(new Event('load'))
+    }
     await nextTick()
 
     expect((wrapper.vm as any).isLoaded).toBe(true)
   })
 })
-
-

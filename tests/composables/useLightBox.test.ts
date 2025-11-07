@@ -34,8 +34,8 @@ describe('useLightBox / enableImageLightbox', () => {
     }
 
     // 應該生成 modal 並帶入圖片
-    const modal = Array.from(document.querySelectorAll('div')).find(el =>
-      (el as HTMLElement).style.position === 'fixed'
+    const modal = Array.from(document.querySelectorAll('div')).find(
+      el => (el as HTMLElement).style.position === 'fixed'
     ) as HTMLElement | undefined
     expect(modal).toBeTruthy()
     const modalImg = modal!.querySelector('img') as HTMLImageElement
@@ -59,5 +59,3 @@ describe('useLightBox / enableImageLightbox', () => {
     expect(modal).toBeFalsy()
   })
 })
-
-

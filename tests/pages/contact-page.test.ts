@@ -194,9 +194,7 @@ describe('Contact Page Tests', () => {
       const spamKeywords = ['viagra', 'casino', 'lottery', 'winner']
       const message = 'You are a lottery winner!'
 
-      const containsSpam = spamKeywords.some(keyword =>
-        message.toLowerCase().includes(keyword)
-      )
+      const containsSpam = spamKeywords.some(keyword => message.toLowerCase().includes(keyword))
 
       expect(containsSpam).toBe(true)
     })

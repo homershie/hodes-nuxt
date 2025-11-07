@@ -55,5 +55,3 @@ describe('remark-fix-anchors', () => {
     expect(result[0]).toBe('https://a.com/p#hello-world')
   })
 })
-
-

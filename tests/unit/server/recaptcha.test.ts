@@ -22,7 +22,7 @@ describe('server/utils/recaptcha.verifyRecaptcha', () => {
 
   it('Google 驗證成功且分數高 -> true', async () => {
     vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce({
-      json: async () => ({ success: true, score: 0.9 })
+      json: async () => ({ success: true, score: 0.9 }),
     } as any)
     const { verifyRecaptcha } = await import('@/server/utils/recaptcha')
     expect(await verifyRecaptcha('t')).toBe(true)
@@ -30,7 +30,7 @@ describe('server/utils/recaptcha.verifyRecaptcha', () => {
 
   it('Google 驗證成功但分數低 -> false', async () => {
     vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce({
-      json: async () => ({ success: true, score: 0.1 })
+      json: async () => ({ success: true, score: 0.1 }),
     } as any)
     const { verifyRecaptcha } = await import('@/server/utils/recaptcha')
     expect(await verifyRecaptcha('t')).toBe(false)
@@ -42,5 +42,3 @@ describe('server/utils/recaptcha.verifyRecaptcha', () => {
     expect(await verifyRecaptcha('t')).toBe(false)
   })
 })
-
-

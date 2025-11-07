@@ -1980,4 +1980,25 @@ export const portfolio = [
       url: 'https://r2bucket.homershie.com/assets/imgs/works/work_0090.webp',
     },
   },
+  {
+    id: 91,
+    title: '動畫時日 AniDaze 網站',
+    description:
+      '動畫時日 AniDaze 是動畫播出時間追蹤工具，提供當前季節動畫和長期播放作品的詳細播出時間表。支援下載 iCal 日曆檔案，直接匯入你的行事曆，隨時掌握最新動畫資訊。',
+    website: 'https://www.anidaze.com/',
+    image: 'https://r2bucket.homershie.com/assets/imgs/works/work_0091.webp',
+    mainImage: 'https://r2bucket.homershie.com/assets/imgs/works/work_0091.webp',
+    gallery: [],
+    category: ['網頁設計', 'UI/UX'],
+    client: 'N/A',
+    date: '2025-11-07',
+    type: 'image',
+    imageDimensions: {
+      width: 900,
+      height: 600,
+      aspectRatio: 1.5,
+      format: 'webp',
+      url: 'https://r2bucket.homershie.com/assets/imgs/works/work_0091.webp',
+    },
+  },
 ]

@@ -53,6 +53,15 @@ export default withNuxt(
       'no-undef': 'off', // 關閉未定義變數檢查（Nuxt 全域函數）
     },
   },
+  {
+    files: ['**/*.test.{js,ts}', 'tests/**/*', 'scripts/**/*', 'server/**/*', 'functions/**/*'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-dynamic-delete': 'off',
+      'no-console': 'off',
+    },
+  },
   // 添加 prettier 配置來關閉衝突的規則
   prettier
 )

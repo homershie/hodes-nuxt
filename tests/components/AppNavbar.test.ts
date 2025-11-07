@@ -4,7 +4,7 @@ import AppNavbar from '@/app/components/AppNavbar.vue'
 
 const NuxtLinkStub = {
   template: '<a :href="to"><slot /></a>',
-  props: ['to']
+  props: ['to'],
 }
 
 describe('AppNavbar.vue', () => {
@@ -46,5 +46,3 @@ describe('AppNavbar.vue', () => {
     expect(btn.classes()).not.toContain('active')
   })
 })
-
-

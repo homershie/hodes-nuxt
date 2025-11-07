@@ -628,5 +628,12 @@
     "aspectRatio": 2.11,
     "format": "webp",
     "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0090.webp"
+  },
+  "work_0091.webp": {
+    "width": 900,
+    "height": 600,
+    "aspectRatio": 1.5,
+    "format": "webp",
+    "url": "https://r2bucket.homershie.com/assets/imgs/works/work_0091.webp"
   }
 }

@@ -38,5 +38,3 @@ export function getRateLimit(ip: string): RateLimitEntry | undefined {
 export function setRateLimit(ip: string, entry: RateLimitEntry): void {
   rateLimitMap.set(ip, entry)
 }
-
-

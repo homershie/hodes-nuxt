@@ -7,7 +7,7 @@
  * 參考：https://developers.cloudflare.com/pages/platform/functions/routing/
  */
 
-export default defineNitroPlugin((nitroApp) => {
+export default defineNitroPlugin(nitroApp => {
   nitroApp.hooks.hook('prerender:done', async () => {
     const fs = await import('node:fs')
     const path = await import('node:path')
@@ -51,11 +51,7 @@ export default defineNitroPlugin((nitroApp) => {
 
     try {
       await fs.promises.mkdir(publicDir, { recursive: true })
-      await fs.promises.writeFile(
-        routesPath,
-        JSON.stringify(routes, null, 2),
-        'utf-8'
-      )
+      await fs.promises.writeFile(routesPath, JSON.stringify(routes, null, 2), 'utf-8')
       console.log('✅ Generated _routes.json for Cloudflare Pages')
     } catch (error) {
       console.error('❌ Failed to generate _routes.json:', error)

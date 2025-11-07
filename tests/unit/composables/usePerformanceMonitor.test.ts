@@ -8,7 +8,13 @@ describe('usePerformanceMonitor', () => {
 
   it('記錄起訖並產生指標與平均時間', () => {
     vi.spyOn(performance, 'now').mockReturnValueOnce(100).mockReturnValueOnce(250)
-    const { recordImageLoadStart, recordImageLoadComplete, getMetrics, getAverageLoadTime, clearMetrics } = usePerformanceMonitor()
+    const {
+      recordImageLoadStart,
+      recordImageLoadComplete,
+      getMetrics,
+      getAverageLoadTime,
+      clearMetrics,
+    } = usePerformanceMonitor()
 
     recordImageLoadStart()
     recordImageLoadComplete()
@@ -23,5 +29,3 @@ describe('usePerformanceMonitor', () => {
     expect(getMetrics().length).toBe(0)
   })
 })
-
-

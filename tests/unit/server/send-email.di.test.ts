@@ -13,7 +13,11 @@ function makeDeps(overrides: Partial<Parameters<typeof createSendEmailHandler>[0
 
   return {
     readBody: vi.fn(async () => ({
-      name: 'A', email: 'a@a.com', subject: 'S', message: 'hi', recaptchaToken: 't',
+      name: 'A',
+      email: 'a@a.com',
+      subject: 'S',
+      message: 'hi',
+      recaptchaToken: 't',
     })),
     getRequestHeader: vi.fn(() => '1.2.3.4'),
     verifyRecaptcha: vi.fn(async () => true),
@@ -53,12 +57,12 @@ describe('send-email.post DI handler', () => {
   it('Resend 送信失敗 -> 500', async () => {
     class ResendFail {
       emails = {
-        send: vi.fn(async () => { throw new Error('send failed') }),
+        send: vi.fn(async () => {
+          throw new Error('send failed')
+        }),
       }
     }
     const handler = createSendEmailHandler(makeDeps({ ResendCtor: ResendFail as any }))
     await expect(handler({})).rejects.toMatchObject({ statusCode: 500 })
   })
 })
-
-

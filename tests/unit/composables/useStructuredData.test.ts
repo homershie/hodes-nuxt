@@ -1,10 +1,19 @@
 import { describe, it, expect } from 'vitest'
-import { useArticleSchema, usePortfolioSchema, usePersonSchema, useWebsiteSchema } from '@/composables/useStructuredData'
+import {
+  useArticleSchema,
+  usePortfolioSchema,
+  usePersonSchema,
+  useWebsiteSchema,
+} from '@/composables/useStructuredData'
 
 describe('useStructuredData', () => {
   it('產生 Article schema', () => {
     const schema = useArticleSchema({
-      title: 'T', excerpt: 'E', image: '/a.jpg', date: '2024-01-01', author: 'A',
+      title: 'T',
+      excerpt: 'E',
+      image: '/a.jpg',
+      date: '2024-01-01',
+      author: 'A',
     })
     expect(schema['@type']).toBe('BlogPosting')
     expect(schema.headline).toBe('T')
@@ -27,5 +36,3 @@ describe('useStructuredData', () => {
     expect(site['@type']).toBe('WebSite')
   })
 })
-
-

@@ -19,7 +19,7 @@ describe('Article Components', () => {
           default: 'Test paragraph content',
         },
       })
-      
+
       expect(wrapper.find('.article-p').exists()).toBe(true)
       expect(wrapper.text()).toBe('Test paragraph content')
       expect(wrapper.element.tagName).toBe('P')
@@ -31,7 +31,7 @@ describe('Article Components', () => {
           default: '<strong>Bold text</strong>',
         },
       })
-      
+
       expect(wrapper.html()).toContain('<strong>Bold text</strong>')
     })
   })
@@ -43,7 +43,7 @@ describe('Article Components', () => {
           default: 'Test heading 2',
         },
       })
-      
+
       expect(wrapper.find('.article-h2').exists()).toBe(true)
       expect(wrapper.text()).toBe('Test heading 2')
       expect(wrapper.element.tagName).toBe('H2')
@@ -55,7 +55,7 @@ describe('Article Components', () => {
           default: 'Heading Content',
         },
       })
-      
+
       expect(wrapper.text()).toBe('Heading Content')
     })
   })
@@ -67,7 +67,7 @@ describe('Article Components', () => {
           default: 'Test heading 3',
         },
       })
-      
+
       expect(wrapper.find('.article-h3').exists()).toBe(true)
       expect(wrapper.text()).toBe('Test heading 3')
       expect(wrapper.element.tagName).toBe('H3')
@@ -79,7 +79,7 @@ describe('Article Components', () => {
           default: 'Sub Heading',
         },
       })
-      
+
       expect(wrapper.text()).toBe('Sub Heading')
     })
   })
@@ -94,7 +94,7 @@ describe('Article Components', () => {
           default: 'Link text',
         },
       })
-      
+
       expect(wrapper.find('a.article-a').exists()).toBe(true)
       expect(wrapper.text()).toBe('Link text')
       expect(wrapper.find('a').attributes('href')).toBe('https://example.com')
@@ -107,7 +107,7 @@ describe('Article Components', () => {
           default: 'Link text',
         },
       })
-      
+
       expect(wrapper.find('a').attributes('href')).toBe('#')
     })
   })
@@ -119,7 +119,7 @@ describe('Article Components', () => {
           default: 'Quote text',
         },
       })
-      
+
       expect(wrapper.find('blockquote.article-blockquote').exists()).toBe(true)
       expect(wrapper.text()).toBe('Quote text')
       expect(wrapper.element.tagName).toBe('BLOCKQUOTE')
@@ -133,7 +133,7 @@ describe('Article Components', () => {
           default: 'Caption text',
         },
       })
-      
+
       expect(wrapper.find('figcaption.article-figcaption').exists()).toBe(true)
       expect(wrapper.text()).toBe('Caption text')
       expect(wrapper.element.tagName).toBe('FIGCAPTION')
@@ -147,7 +147,7 @@ describe('Article Components', () => {
           default: '<img src="test.jpg" alt="test" />',
         },
       })
-      
+
       expect(wrapper.find('figure.article-figure').exists()).toBe(true)
       expect(wrapper.element.tagName).toBe('FIGURE')
     })
@@ -160,7 +160,7 @@ describe('Article Components', () => {
           default: 'List item',
         },
       })
-      
+
       expect(wrapper.find('li.article-li').exists()).toBe(true)
       expect(wrapper.text()).toBe('List item')
       expect(wrapper.element.tagName).toBe('LI')
@@ -174,7 +174,7 @@ describe('Article Components', () => {
           default: '<li>Item 1</li><li>Item 2</li>',
         },
       })
-      
+
       expect(wrapper.find('ol.article-ol').exists()).toBe(true)
       expect(wrapper.element.tagName).toBe('OL')
     })
@@ -187,7 +187,7 @@ describe('Article Components', () => {
           default: '<li>Item 1</li><li>Item 2</li>',
         },
       })
-      
+
       expect(wrapper.find('ul.article-ul').exists()).toBe(true)
       expect(wrapper.element.tagName).toBe('UL')
     })

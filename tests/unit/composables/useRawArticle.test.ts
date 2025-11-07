@@ -7,5 +7,3 @@ describe('useRawArticle (client fallback)', () => {
     expect(res).toBeNull()
   })
 })
-
-

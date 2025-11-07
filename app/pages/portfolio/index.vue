@@ -255,13 +255,19 @@ useHead({
     { property: 'og:description', content: pageDescription },
     { property: 'og:url', content: 'https://homershie.com/portfolio' },
     // 新增 og:image
-    { property: 'og:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg' },
+    {
+      property: 'og:image',
+      content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg',
+    },
     { property: 'og:type', content: 'website' },
     // 新增 Twitter Card
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: pageTitle },
     { name: 'twitter:description', content: pageDescription },
-    { name: 'twitter:image', content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg' },
+    {
+      name: 'twitter:image',
+      content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg',
+    },
     { name: 'robots', content: 'index, follow' },
   ],
   link: [{ rel: 'canonical', href: 'https://homershie.com/portfolio' }],

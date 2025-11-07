@@ -10,15 +10,28 @@ describe('useImagePreloader', () => {
     const { preloadImages, loadingProgress, isPreloading } = useImagePreloader()
 
     // mock Image 行為：立即觸發 load
-    vi.stubGlobal('Image', class {
-      onload: any
-      onerror: any
-      set src(_v: string) {
-        setTimeout(() => this.onload && this.onload(new Event('load')), 0)
-      }
-      addEventListener(evt: string, cb: any) { (evt === 'load' ? (this.onload = cb) : (this.onerror = cb)) }
-      removeEventListener() {}
-    } as any)
+    vi.stubGlobal(
+      'Image',
+      class {
+        onload: any
+        onerror: any
+        set src(_v: string) {
+          setTimeout(() => {
+            if (this.onload) {
+              this.onload(new Event('load'))
+            }
+          }, 0)
+        }
+        addEventListener(evt: string, cb: any) {
+          if (evt === 'load') {
+            this.onload = cb
+          } else {
+            this.onerror = cb
+          }
+        }
+        removeEventListener() {}
+      } as any
+    )
 
     const urls = ['/a.jpg', '/b.jpg', '/c.jpg']
     const result = await preloadImages(urls, 2)
@@ -27,5 +40,3 @@ describe('useImagePreloader', () => {
     expect(result).toEqual(urls)
   })
 })
-
-

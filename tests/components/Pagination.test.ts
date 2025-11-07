@@ -4,13 +4,13 @@ import Pagination from '@/app/components/Pagination.vue'
 
 const NuxtLinkStub = {
   template: '<a :href="to"><slot /></a>',
-  props: ['to']
+  props: ['to'],
 }
 
 function mountComp(props: any) {
   return mount(Pagination, {
     props,
-    global: { stubs: { NuxtLink: NuxtLinkStub } }
+    global: { stubs: { NuxtLink: NuxtLinkStub } },
   })
 }
 
@@ -74,5 +74,3 @@ describe('Pagination.vue', () => {
     expect(hrefs[hrefs.length - 1]).toBe('/blog/page/4')
   })
 })
-
-

@@ -22,7 +22,7 @@ describe('ReadingProgress', () => {
 
   it('renders progress bar container', () => {
     const wrapper = mount(ReadingProgress)
-    
+
     // 在非客戶端環境下，shouldShowProgress 預設為 false
     // 所以進度條可能不會顯示
     expect(wrapper.find('.reading-progress').exists()).toBe(false)
@@ -30,14 +30,14 @@ describe('ReadingProgress', () => {
 
   it('has correct structure when visible', async () => {
     const wrapper = mount(ReadingProgress)
-    
+
     // 手動設置 shouldShowProgress 為 true（通過修改組件內部狀態）
     // 在實際應用中，這會在滾動時自動設置
     const vm = wrapper.vm as any
     if (vm.shouldShowProgress !== undefined) {
       vm.shouldShowProgress = true
       await nextTick()
-      
+
       expect(wrapper.find('.reading-progress').exists()).toBe(true)
       expect(wrapper.find('.progress-bar').exists()).toBe(true)
     }
@@ -45,7 +45,7 @@ describe('ReadingProgress', () => {
 
   it('computes progress correctly', () => {
     const wrapper = mount(ReadingProgress)
-    
+
     // 在非客戶端環境下，progress 應該是 0
     const vm = wrapper.vm as any
     if (vm.progress !== undefined) {

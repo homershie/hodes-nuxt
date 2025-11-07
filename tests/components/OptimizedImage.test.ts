@@ -46,7 +46,7 @@ describe('OptimizedImage.vue', () => {
       attachTo: document.body,
     })
     const img = wrapper.find('img')
-    const mod = await import('@/composables/useLazyImage.js') as any
+    const mod = (await import('@/composables/useLazyImage.js')) as any
     mod.imageRef.value = img.element
     mod.isVisible.value = true
     await nextTick()
@@ -54,5 +54,3 @@ describe('OptimizedImage.vue', () => {
     expect((img.element as HTMLImageElement).getAttribute('data-src')).toBe('/img/a.jpg')
   })
 })
-
-

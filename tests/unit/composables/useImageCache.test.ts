@@ -59,7 +59,7 @@ describe('useImageCache', () => {
 
     it('應該處理絕對 URL', async () => {
       const absoluteUrl = 'https://example.com/image.jpg'
-      
+
       // Mock fetch
       global.fetch = vi.fn(() =>
         Promise.resolve({
@@ -82,14 +82,14 @@ describe('useImageCache', () => {
   describe('快取操作', () => {
     it('應該能夠獲取快取大小', async () => {
       const size = await imageCache.getCacheSize()
-      
+
       expect(typeof size).toBe('number')
       expect(size).toBeGreaterThanOrEqual(0)
     })
 
     it('應該在初始化時快取大小為 0', async () => {
       const size = await imageCache.getCacheSize()
-      
+
       // 因為是新資料庫，應該為 0 或接近 0
       expect(size).toBeDefined()
     })
@@ -202,10 +202,7 @@ describe('useImageCache', () => {
     })
 
     it('應該處理部分圖片載入失敗', async () => {
-      const urls = [
-        'https://example.com/image1.jpg',
-        'https://example.com/invalid.jpg',
-      ]
+      const urls = ['https://example.com/image1.jpg', 'https://example.com/invalid.jpg']
 
       let callCount = 0
       global.fetch = vi.fn(() => {
@@ -235,7 +232,7 @@ describe('useImageCache', () => {
   describe('快取清理', () => {
     it('應該能夠啟動快取清理', () => {
       imageCache.startCacheCleanup()
-      
+
       // 測試不會拋出錯誤
       expect(imageCache.startCacheCleanup).toBeDefined()
     })
@@ -243,7 +240,7 @@ describe('useImageCache', () => {
     it('應該能夠停止快取清理', () => {
       imageCache.startCacheCleanup()
       imageCache.stopCacheCleanup()
-      
+
       // 測試不會拋出錯誤
       expect(imageCache.stopCacheCleanup).toBeDefined()
     })
@@ -252,7 +249,7 @@ describe('useImageCache', () => {
       imageCache.startCacheCleanup()
       imageCache.startCacheCleanup()
       imageCache.stopCacheCleanup()
-      
+
       // 測試不會拋出錯誤
       expect(imageCache.startCacheCleanup).toBeDefined()
     })
@@ -298,7 +295,7 @@ describe('useImageCache', () => {
   describe('R2 網域代理', () => {
     it('應該將 R2 URL 轉換為代理 URL', async () => {
       const r2Url = 'https://r2bucket.homershie.com/image.jpg'
-      
+
       global.fetch = vi.fn(() =>
         Promise.resolve({
           ok: true,
@@ -331,7 +328,7 @@ describe('useImageCache', () => {
 
     it('應該處理預載入空陣列', async () => {
       const results = await imageCache.preloadImages([])
-      
+
       expect(results).toBeDefined()
       expect(Array.isArray(results)).toBe(true)
       expect(results.length).toBe(0)
@@ -341,7 +338,7 @@ describe('useImageCache', () => {
   describe('快取大小限制', () => {
     it('應該能夠檢查快取大小', async () => {
       const size = await imageCache.getCacheSize()
-      
+
       expect(typeof size).toBe('number')
       expect(size).toBeGreaterThanOrEqual(0)
     })
@@ -350,10 +347,9 @@ describe('useImageCache', () => {
       // 這個測試需要實際寫入大量數據，在單元測試中可能會很慢
       // 所以我們只測試函數不會拋出錯誤
       const imageCache2 = useImageCache()
-      
+
       // 測試不會拋出錯誤
       expect(imageCache2.getCacheSize).toBeDefined()
     })
   })
 })
-

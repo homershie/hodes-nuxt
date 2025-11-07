@@ -1,20 +1,30 @@
 import { Resend } from 'resend'
+import { createError, defineEventHandler, getRequestHeader, readBody } from 'h3'
+import type { H3Event } from 'h3'
 import { verifyRecaptcha } from '../utils/recaptcha'
 import { checkRateLimit } from '../utils/rate-limit'
 
 // rate limit 檢查移至 server/utils/rate-limit.ts 共用
 
+type ContactFormPayload = {
+  name: string
+  email: string
+  subject?: string
+  message: string
+  recaptchaToken: string
+}
+
 export type SendEmailDeps = {
-  readBody: (event: any) => Promise<any>
-  getRequestHeader: (event: any, name: string) => string | undefined
+  readBody: (event: H3Event) => Promise<ContactFormPayload>
+  getRequestHeader: (event: H3Event, name: string) => string | undefined
   verifyRecaptcha: (token: string) => Promise<boolean>
   ResendCtor: typeof Resend
   useRuntimeConfig: () => { resendApiKey?: string; toEmail?: string }
-  createError: (opts: any) => any
+  createError: typeof createError
 }
 
 export function createSendEmailHandler(deps: SendEmailDeps) {
-  return async function handler(event: any) {
+  return async function handler(event: H3Event) {
     const {
       readBody,
       getRequestHeader,
@@ -63,7 +73,6 @@ export function createSendEmailHandler(deps: SendEmailDeps) {
       const toEmail = config.toEmail
 
       if (!resendApiKey || !toEmail) {
-        console.error('❌ 缺少必要的環境變數')
         throw createError({
           statusCode: 500,
           statusMessage: '伺服器設定錯誤',
@@ -85,19 +94,11 @@ export function createSendEmailHandler(deps: SendEmailDeps) {
         `,
       })
 
-      console.log('📧 Email 發送成功:', {
-        to: toEmail,
-        subject,
-        timestamp: new Date().toISOString(),
-      })
-
       return {
         success: true,
         data,
       }
     } catch (error) {
-      console.error('❌ Email 發送失敗:', error)
-
       // 如果已經是 H3Error，直接拋出
       if (error && typeof error === 'object' && 'statusCode' in error) {
         throw error
@@ -105,7 +106,7 @@ export function createSendEmailHandler(deps: SendEmailDeps) {
 
       // 其他錯誤
       const errorMessage = error instanceof Error ? error.message : '發送失敗'
-      throw deps.createError({
+      throw createError({
         statusCode: 500,
         statusMessage: errorMessage,
       })

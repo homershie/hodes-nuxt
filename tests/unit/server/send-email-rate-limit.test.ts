@@ -1,5 +1,10 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { checkRateLimit, clearRateLimit, getRateLimit, setRateLimit } from '@/server/utils/rate-limit'
+import {
+  checkRateLimit,
+  clearRateLimit,
+  getRateLimit,
+  setRateLimit,
+} from '@/server/utils/rate-limit'
 
 describe('send-email rate limiting', () => {
   beforeEach(() => {
@@ -140,4 +145,3 @@ describe('send-email rate limiting', () => {
     })
   })
 })
-
