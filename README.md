@@ -44,6 +44,7 @@ cp .env.example .env
 ```
 
 然後填入必要的 API keys：
+
 - `NUXT_PUBLIC_RECAPTCHA_SITE_KEY` - Google reCAPTCHA Site Key
 - `RECAPTCHA_SECRET_KEY` - Google reCAPTCHA Secret Key
 - `RESEND_API_KEY` - Resend Email API Key
@@ -210,7 +211,7 @@ public/              # 公開靜態檔案
   - 實作自動判斷圖片方向（寬圖/高圖）並套用最佳顯示方式
   - 修正 Markdown 渲染問題（採用不縮排的 HTML 寫法避免被誤判為程式碼區塊）
   - 評估過 MDC 自訂容器方案，因 ContentRenderer 自動元件轉換問題而不適用
-- [ ] **測試覆蓋**: 建立單元測試和整合測試
+- [x] **測試覆蓋**: 建立單元測試和整合測試
 
 ### 低優先級
 

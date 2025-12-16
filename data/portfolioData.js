@@ -2001,4 +2001,25 @@ export const portfolio = [
       url: 'https://r2bucket.homershie.com/assets/imgs/works/work_0091.webp',
     },
   },
+  {
+    id: 92,
+    title: 'Three.js 3D互動 LOGO 展示',
+    description:
+      '一個結合設計思維與程式實作的 Three.js 專案。\n\n利用傳統攝影的三點打光法搭配動態粒子場，打造出科技感十足的 3D 互動體驗。\n\n滑鼠移到模型上會觸發加速旋轉和故障藝術特效，光源也會跟著游標移動產生動態光影。\n\n這個專案原本是面試作業，但做著做著就停不下來了 XD\n\n特別注重動畫的流暢度和視覺細節，用了指數補間讓速度變化更自然，\n\n也加了不少效能優化讓它能在各種裝置上穩定運行。',
+    website: 'https://homershie.github.io/pacston-interview-m/',
+    image: 'https://r2bucket.homershie.com/assets/imgs/works/work_0092.webp',
+    mainImage: 'https://r2bucket.homershie.com/assets/imgs/works/work_0092.webp',
+    gallery: [],
+    category: ['網頁設計', 'UI/UX'],
+    client: 'N/A',
+    date: '2025-11-28',
+    type: 'image',
+    imageDimensions: {
+      width: 1063,
+      height: 850,
+      aspectRatio: 1.25,
+      format: 'webp',
+      url: 'https://r2bucket.homershie.com/assets/imgs/works/work_0092.webp',
+    },
+  },
 ]
