@@ -89,6 +89,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { articles as legacyArticles } from '@data/articleData.js'
+import categories from '../../../../content/config/categories.json'
 // 不再自動從 body 擷取，僅使用 frontmatter 與舊資料作為回退
 
 // 取得路由參數
@@ -246,7 +247,7 @@ const pageDescription = computed(() => {
     return `搜尋「${searchQuery.value}」的部落格文章`
   }
   if (selectedCategory.value !== 'all') {
-    const categoryName = selectedCategory.value === 'GraphicStyle' ? '視覺風格大全' : '世界視界'
+    const categoryName = categories[selectedCategory.value]?.name || selectedCategory.value
     return `${categoryName} 分類的部落格文章，第 ${currentPage.value} 頁`
   }
   return `荷馬桑的部落格文章列表，分享視覺風格、設計理念與創作心得，第 ${currentPage.value} 頁`

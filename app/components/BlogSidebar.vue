@@ -21,19 +21,13 @@
           </span>
           <span class="ml-auto">{{ allPosts.length }}</span>
         </li>
-        <li>
+        <li v-for="(category, key) in categories" :key="key">
           <span>
-            <a href="#0" @click.prevent="$emit('update:category', 'GraphicStyle')">
-              視覺風格大全
+            <a href="#0" @click.prevent="$emit('update:category', key)">
+              {{ category.name }}
             </a>
           </span>
-          <span class="ml-auto">{{ getCategoryCount('GraphicStyle') }}</span>
-        </li>
-        <li>
-          <span>
-            <a href="#0" @click.prevent="$emit('update:category', 'WorldVision')"> 世界視界 </a>
-          </span>
-          <span class="ml-auto">{{ getCategoryCount('WorldVision') }}</span>
+          <span class="ml-auto">{{ getCategoryCount(key) }}</span>
         </li>
       </ul>
     </div>
@@ -67,6 +61,8 @@
 </template>
 
 <script setup>
+import categories from '../../content/config/categories.json'
+
 const props = defineProps({
   searchQuery: {
     type: String,
