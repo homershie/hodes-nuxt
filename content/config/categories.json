@@ -8,5 +8,10 @@
     "id": "WorldVision",
     "name": "世界視界",
     "description": "分享世界各地的設計文化與創意靈感"
+  },
+  "Philosophy": {
+    "id": "Philosophy",
+    "name": "哲學思辨",
+    "description": "探索哲學思考與人生議題"
   }
 }

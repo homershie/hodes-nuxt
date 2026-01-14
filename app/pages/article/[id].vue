@@ -219,6 +219,15 @@ const article = computed(() => {
     author: meta.author || item.author || 'Homer Shie',
     body: item.body,
     path: item.path || item._path,
+    // SEO 相關欄位
+    keywords: meta.keywords || item.keywords || '',
+    canonical: meta.canonical || item.canonical || '',
+    ogType: meta.ogType || item.ogType || 'article',
+    twitterCard: meta.twitterCard || item.twitterCard || 'summary_large_image',
+    lastModified: meta.lastModified || item.lastModified || '',
+    lang: meta.lang || item.lang || 'zh-TW',
+    tags: meta.tags || item.tags || [],
+    readingTime: meta.readingTime || item.readingTime || 0,
   }
 })
 
@@ -301,27 +310,40 @@ function formatDate(dateString) {
 }
 
 // SEO Meta
+const canonicalUrl = article.value.canonical || `https://homershie.com/article/${articleId}`
+const articleTags = article.value.tags || []
+
 useHead({
   title: `${article.value.title} | HODES`,
+  htmlAttrs: {
+    lang: article.value.lang,
+  },
   meta: [
     { name: 'description', content: article.value.excerpt },
+    // keywords
+    ...(article.value.keywords ? [{ name: 'keywords', content: article.value.keywords }] : []),
+    // Open Graph
     { property: 'og:title', content: article.value.title },
     { property: 'og:description', content: article.value.excerpt },
     { property: 'og:image', content: article.value.image },
-    { property: 'og:url', content: `https://homershie.com/article/${articleId}` },
-    { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: canonicalUrl },
+    { property: 'og:type', content: article.value.ogType },
+    { property: 'og:locale', content: article.value.lang.replace('-', '_') },
+    // Article meta
     { property: 'article:published_time', content: article.value.date },
     { property: 'article:author', content: article.value.author },
-    // 新增 Twitter Card
-    { name: 'twitter:card', content: 'summary_large_image' },
+    ...(article.value.lastModified ? [{ property: 'article:modified_time', content: article.value.lastModified }] : []),
+    ...articleTags.map(tag => ({ property: 'article:tag', content: tag })),
+    // Twitter Card
+    { name: 'twitter:card', content: article.value.twitterCard },
     { name: 'twitter:title', content: article.value.title },
     { name: 'twitter:description', content: article.value.excerpt },
     { name: 'twitter:image', content: article.value.image },
-    // 新增 robots
+    // robots
     { name: 'robots', content: 'index, follow' },
   ],
-  link: [{ rel: 'canonical', href: `https://homershie.com/article/${articleId}` }],
-  // 新增 BlogPosting Schema
+  link: [{ rel: 'canonical', href: canonicalUrl }],
+  // BlogPosting Schema
   script: [
     {
       type: 'application/ld+json',
@@ -332,6 +354,9 @@ useHead({
         description: article.value.excerpt,
         image: article.value.image,
         datePublished: article.value.date,
+        ...(article.value.lastModified && { dateModified: article.value.lastModified }),
+        inLanguage: article.value.lang,
+        ...(articleTags.length > 0 && { keywords: articleTags.join(', ') }),
         author: {
           '@type': 'Person',
           name: article.value.author || 'Homer Shie',
@@ -346,7 +371,7 @@ useHead({
         },
         mainEntityOfPage: {
           '@type': 'WebPage',
-          '@id': `https://homershie.com/article/${articleId}`,
+          '@id': canonicalUrl,
         },
       }),
     },
