@@ -2010,7 +2010,7 @@ export const portfolio = [
     image: 'https://r2bucket.homershie.com/assets/imgs/works/work_0092.webp',
     mainImage: 'https://r2bucket.homershie.com/assets/imgs/works/work_0092.webp',
     gallery: [],
-    category: ['網頁設計', 'UI/UX'],
+    category: ['網頁設計', 'UI/UX', '3D'],
     client: 'N/A',
     date: '2025-11-28',
     type: 'image',

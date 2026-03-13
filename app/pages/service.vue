@@ -39,7 +39,7 @@
                   </div>
                 </div>
                 <p>
-                  擅長品牌識別、海報與包裝設計，從色彩到構圖，每一筆都蘊含策略思維與視覺魔法，協助你在一眼之間脫穎而出。
+                  擅長品牌識別、行銷視覺與主視覺設計，從色彩計畫到版面構成，每個決策都以傳遞品牌價值為核心目標，協助你的視覺在競爭中一眼入魂。
                 </p>
               </div>
             </div>
@@ -64,7 +64,8 @@
                   </div>
                 </div>
                 <p>
-                  為靜態畫面注入靈魂，打造流暢、有記憶點的動畫內容——不論是品牌動畫、行銷短片，或社群用的動態視覺，皆能呈現故事的脈動。
+                  以 After Effects 打造具敘事性的動態圖形，曾為 Garmin ×
+                  木曜四超玩聯名錶面製作完整動畫。靜態畫面注入靈魂，讓品牌在每次播放中留下印記。
                 </p>
               </div>
             </div>
@@ -89,7 +90,8 @@
                   </div>
                 </div>
                 <p>
-                  從奇想世界到品牌角色，風格橫跨可愛、極簡、奇幻與實驗。每一筆插畫不只是圖像，而是能與觀者對話的故事容器。
+                  具備手繪與電繪能力，風格 橫跨
+                  ACG、極簡、奇幻與品牌角色設計。每一筆插畫不只是圖像，而是能和觀者精準對話的視覺語言。
                 </p>
               </div>
             </div>
@@ -102,19 +104,20 @@
                     <span class="icon-img-50 mr-40">
                       <img
                         :src="
-                          getWebpImage('https://r2bucket.homershie.com/assets/imgs/serv-img/4.png')
+                          getWebpImage('https://r2bucket.homershie.com/assets/imgs/serv-img/5.png')
                         "
-                        alt="3D動畫"
+                        alt="UI/UX設計"
                       />
                     </span>
                   </div>
                   <div>
-                    <span class="opacity-7 fz-13 mb-5">{{ getProjectCount('3D') }}+ 專案</span>
-                    <h5 class="fz-20">3D</h5>
+                    <span class="opacity-7 fz-13 mb-5">{{ getProjectCount('UI/UX') }}+ 專案</span>
+                    <h5 class="fz-20">UI/UX 設計</h5>
                   </div>
                 </div>
                 <p>
-                  利用3D模型與動畫打造立體世界，讓幻想栩栩如生，把概念化為實體，為品牌和行銷帶來更高維度的想像空間。
+                  長期與 Garmin 合作穿戴式裝置介面設計，擅長在有限螢幕空間進行資訊架構重組。結合
+                  Design System 思維，讓設計語言從元件到頁面保持一致。
                 </p>
               </div>
             </div>
@@ -127,22 +130,20 @@
                     <span class="icon-img-50 mr-40">
                       <img
                         :src="
-                          getWebpImage('https://r2bucket.homershie.com/assets/imgs/serv-img/5.png')
+                          getWebpImage('https://r2bucket.homershie.com/assets/imgs/serv-img/4.png')
                         "
-                        alt="品牌設計"
+                        alt="3D"
                       />
                     </span>
                   </div>
                   <div>
-                    <span class="opacity-7 fz-13 mb-5"
-                      >{{ getProjectCount('品牌設計') }}+ 專案</span
-                    >
-                    <h5 class="fz-20">品牌設計</h5>
+                    <span class="opacity-7 fz-13 mb-5">{{ getProjectCount('3D') }}+ 專案</span>
+                    <h5 class="fz-20">3D</h5>
                   </div>
                 </div>
                 <p>
-                  從 Logo
-                  到整體識別系統，量身打造一套視覺語言，讓品牌在每個接觸點都一致、鮮明且令人記住，打造專屬於你的符號學。
+                  以 Blender 與 3ds Max 建構立體場景與角色，讓概念化為可觸摸的視覺實體。
+                  為品牌與行銷帶來突破平面的想像維度。
                 </p>
               </div>
             </div>
@@ -169,7 +170,8 @@
                   </div>
                 </div>
                 <p>
-                  結合設計美感與互動邏輯，打造富有視覺張力且使用直覺的網站介面。讓使用者不只瀏覽，而是享受每一次的點擊與滑動。
+                  以React / Next 或 Vue / Nuxt 實作，結合 GSAP 微互動與 ScrollTrigger，打造視覺張力
+                  與操作流暢並存的網站體驗。設計與工程一人完成，確保 pixel-perfect 落地。
                 </p>
               </div>
             </div>
@@ -267,7 +269,7 @@
                     </li>
                     <li>
                       <i class="fas fa-check"></i>
-                      <span>現代化網頁設計</span>
+                      <span>UI/UX 介面設計</span>
                     </li>
                   </ul>
                 </div>
@@ -348,7 +350,7 @@ function scrollToContact() {
 useSeoMeta({
   title: '服務 | HODES - 荷馬桑 Homer Shie',
   description:
-    '提供平面設計、動態設計、插畫創作、3D 動畫、品牌設計、網頁前端設計等專業服務。超過 90+ 件專案成功合作經驗，與 Garmin 等知名品牌合作。',
+    '提供平面設計、動態設計、插畫創作、UI/UX 設計、3D、網頁前端設計等專業服務。長期與 Garmin 合作，累積超過 90+ 件專案成功經驗。',
 })
 
 useHead({
@@ -357,7 +359,8 @@ useHead({
     { property: 'og:title', content: '服務 | HODES - 荷馬桑 Homer Shie' },
     {
       property: 'og:description',
-      content: '提供平面設計、動態設計、插畫創作、3D 動畫、品牌設計、網頁前端設計等專業服務。',
+      content:
+        '提供平面設計、動態設計、插畫創作、UI/UX 設計、3D、網頁前端設計等專業服務。長期與 Garmin 合作。',
     },
     {
       property: 'og:image',
@@ -369,7 +372,8 @@ useHead({
     { name: 'twitter:title', content: '服務 | HODES - 荷馬桑 Homer Shie' },
     {
       name: 'twitter:description',
-      content: '提供平面設計、動態設計、插畫創作、3D 動畫、品牌設計、網頁前端設計等專業服務。',
+      content:
+        '提供平面設計、動態設計、插畫創作、UI/UX 設計、3D、網頁前端設計等專業服務。長期與 Garmin 合作。',
     },
     {
       name: 'twitter:image',
@@ -415,6 +419,13 @@ useHead({
               itemOffered: {
                 '@type': 'Service',
                 name: '插畫創作',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'UI/UX 設計',
               },
             },
           ],
