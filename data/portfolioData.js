@@ -1988,7 +1988,10 @@ export const portfolio = [
     website: 'https://www.anidaze.com/',
     image: 'https://r2bucket.homershie.com/assets/imgs/works/work_0091.webp',
     mainImage: 'https://r2bucket.homershie.com/assets/imgs/works/work_0091.webp',
-    gallery: [],
+    gallery: [
+      'https://r2bucket.homershie.com/assets/imgs/works/project/work_main_0091_A.webp',
+      'https://r2bucket.homershie.com/assets/imgs/works/project/work_main_0091_B.webp',
+    ],
     category: ['網頁設計', 'UI/UX'],
     client: 'N/A',
     date: '2025-11-07',
