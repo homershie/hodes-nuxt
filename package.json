@@ -68,6 +68,7 @@
     "pinia": "^3.0.1",
     "resend": "^6.2.2",
     "sass": "^1.89.1",
+    "swiper": "^12.1.2",
     "unist-util-visit": "^5.0.0",
     "vee-validate": "^4.15.1",
     "vue": "^3.5.22",

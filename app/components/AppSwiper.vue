@@ -1,6 +1,6 @@
 <template>
   <div :class="['swiper-wrapper-component', variant]">
-    <div :id="containerId" class="swiper-container">
+    <div :id="containerId" class="swiper">
       <div class="swiper-wrapper">
         <slot />
       </div>
@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { onMounted, onUnmounted, computed } from 'vue'
 
 const props = defineProps({
   // 基本配置
@@ -89,8 +89,9 @@ const props = defineProps({
   },
 })
 
-const containerId = ref(`swiper-container-${Math.random().toString(36).substr(2, 9)}`)
-const paginationId = ref(`swiper-pagination-${Math.random().toString(36).substr(2, 9)}`)
+const id = useId()
+const containerId = `swiper-container-${id}`
+const paginationId = `swiper-pagination-${id}`
 let swiperInstance = null
 
 // 根據 variant 決定預設的 breakpoints
@@ -117,30 +118,26 @@ const getBreakpoints = computed(() => {
     case 'resume-swiper':
       return {
         0: { slidesPerView: 1 },
-        640: { slidesPerView: 1 },
         768: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
+        1200: { slidesPerView: 3 },
       }
     case 'resume-swiper2':
       return {
         0: { slidesPerView: 1 },
-        640: { slidesPerView: 1 },
         768: { slidesPerView: 2 },
-        1024: { slidesPerView: 2 },
+        1200: { slidesPerView: 3 },
       }
     case 'testim-swiper':
       return {
         0: { slidesPerView: 1 },
-        640: { slidesPerView: 1 },
         768: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
+        1200: { slidesPerView: 3 },
       }
     case 'testim-swiper2':
       return {
         0: { slidesPerView: 1 },
-        640: { slidesPerView: 1 },
-        768: { slidesPerView: 1 },
-        1024: { slidesPerView: 2 },
+        768: { slidesPerView: 2 },
+        1200: { slidesPerView: 3 },
       }
     default:
       return undefined
@@ -148,8 +145,14 @@ const getBreakpoints = computed(() => {
 })
 
 // 初始化 Swiper
-onMounted(() => {
+onMounted(async () => {
+  const { default: Swiper } = await import('swiper')
+  const { Pagination, Navigation, Autoplay, Mousewheel, Parallax, EffectFade } = await import(
+    'swiper/modules'
+  )
+
   const config = {
+    modules: [Pagination, Navigation, Autoplay, Mousewheel, Parallax, EffectFade],
     speed: props.speed,
     spaceBetween: props.spaceBetween,
     loop: props.loop,
@@ -157,6 +160,7 @@ onMounted(() => {
     initialSlide: props.initialSlide,
     effect: props.effect,
     direction: props.direction,
+    grabCursor: true,
   }
 
   // 加入 slidesPerView
@@ -187,7 +191,7 @@ onMounted(() => {
   // 加入 pagination
   if (props.showPagination) {
     config.pagination = {
-      el: `#${paginationId.value}`,
+      el: `#${paginationId}`,
       clickable: true,
     }
   }
@@ -200,21 +204,7 @@ onMounted(() => {
     }
   }
 
-  // 等待 Swiper 從 CDN 載入
-  if (typeof window.Swiper !== 'undefined') {
-    swiperInstance = new window.Swiper(`#${containerId.value}`, config)
-  } else {
-    // 如果 Swiper 還沒載入，等待一下
-    const checkSwiper = setInterval(() => {
-      if (typeof window.Swiper !== 'undefined') {
-        clearInterval(checkSwiper)
-        swiperInstance = new window.Swiper(`#${containerId.value}`, config)
-      }
-    }, 100)
-
-    // 10 秒後停止檢查
-    setTimeout(() => clearInterval(checkSwiper), 10000)
-  }
+  swiperInstance = new Swiper(`#${containerId}`, config)
 })
 
 // 清理

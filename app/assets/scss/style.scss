@@ -44,6 +44,11 @@
   33. responsive CSS START
 **********************************************/
 
+// Swiper (npm)
+@import "swiper/css";
+@import "swiper/css/pagination";
+@import "swiper/css/navigation";
+
 // utility
 @import "utility/variables.scss";
 @import "utility/mixin.scss";

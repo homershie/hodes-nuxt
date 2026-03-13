@@ -279,11 +279,6 @@ export default defineNuxtConfig({
           rel: 'stylesheet',
           href: 'https://cdn.jsdelivr.net/npm/pe-icon-7-stroke@1.2.0/css/pe-icon-7-stroke.min.css',
         },
-        // Swiper
-        {
-          rel: 'stylesheet',
-          href: 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css',
-        },
         // Noto Sans TC 備用字體
         {
           rel: 'preconnect',
@@ -313,11 +308,6 @@ export default defineNuxtConfig({
         // Bootstrap JS
         {
           src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js',
-          defer: true,
-        },
-        // Swiper JS
-        {
-          src: 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js',
           defer: true,
         },
       ],

@@ -41,22 +41,28 @@
                 <h6>關於</h6>
               </div>
               <div class="text">
-                <h4 class="mb-30">
-                  我是荷馬桑，來自台灣的
-                  <span class="main-color"> 視覺和動態設計師 </span> 。
-                  <br />
-                  專注於平面媒體工作和思考如何平面媒體轉換為活潑的動畫，擅長將複雜的概念轉化為直覺且吸引人的視覺呈現。
-                </h4>
+                <h5 class="mb-20 text-secondary fst-italic">
+                  擁有 9 年視覺經驗，用程式實踐設計想像。<br />我專注於將複雜邏輯，轉化為具備動態感且直覺的數位體驗。
+                </h5>
+                <h3 class="mb-30">
+                  我是Homer<br />
+                  在美學中植入邏輯的<span class="main-color">「全端設計師」</span>
+                </h3>
+
                 <p>
-                  我利用平面和動態的設計元素，結合我日常的興趣，
-                  如插畫、動畫、遊戲、音樂和動漫，創造出獨特且具有個人風格的設計作品。同時，致力於從多元包容的視角出發，有效地傳達行銷訊息和塑造品牌形象。
-                  我在設計領域累積了豐富的經驗，並且在商業界創作了大量的設計作品。
-                  <br />
-                  在閒暇之餘，我會更新部落格，發表我對視覺美感的見解，並整理出視覺風格和一些厲害的巨巨給視覺視覺麻瓜們認識。
-                  我認為視覺美感也需要普及，不管是提案還是喜歡視覺藝術，我希望我的文章能對你有所幫助。有時間的話，可以幫我點一下LikeCoin，
-                  你們的支持也許能成為我前進的動力。
-                  <br />
-                  感謝你們！
+                  在過去 9 年的視覺設計生涯中，我以接案形式深度參與了多樣化的商業專案。曾長期與
+                  Garmin
+                  合作，負責將複雜的穿戴裝置介面轉化為具吸引力的視覺體驗，其中「木曜四超玩」合作案更練就了我對動態節奏的精準掌控。長期與不同領域的品牌合作，讓我深刻理解與不同專業合作的能力。
+                  <br /><br />
+                  為了打破設計與工程間的溝通壁壘，我投身全端開發領域，並以此完成全端專案－迷因典
+                  MemeDam。這不僅是一次技術的訓練題目，更是對產品架構的完整實踐操演——從資料庫 ERD
+                  設計、Redis
+                  快取優化到前端互動動畫，我享受利用程式碼將靜態設計轉化為「可運作邏輯」的過程。
+                  <br /><br />
+                  身為
+                  INTJ人格，我習慣在感性的藝術創作中尋找理性的系統化路徑。無論是進行體組成管理、彈奏搖滾吉他，還是沉浸於
+                  ACG
+                  文化，這些興趣最終都回流成我的設計養分。我不僅是視覺的建造者，更是邏輯的編織者，致力於讓美感不再只是表象，而是具備技術支撐的深度解決方案。
                 </p>
 
                 <div class="feat mt-30">
@@ -67,7 +73,7 @@
                           <span class="fz-13 mr-10 main-color">
                             <i class="fas fa-check"></i>
                           </span>
-                          平面設計
+                          UI/UX 設計
                         </h6>
                       </div>
                       <div class="item sm-mb15">
@@ -75,7 +81,7 @@
                           <span class="fz-13 mr-10 main-color">
                             <i class="fas fa-check"></i>
                           </span>
-                          動態設計
+                          動態視覺
                         </h6>
                       </div>
                     </div>
@@ -85,7 +91,7 @@
                           <span class="fz-13 mr-10 main-color">
                             <i class="fas fa-check"></i>
                           </span>
-                          3D動畫
+                          全端開發
                         </h6>
                       </div>
                       <div class="item">
@@ -93,7 +99,7 @@
                           <span class="fz-13 mr-10 main-color">
                             <i class="fas fa-check"></i>
                           </span>
-                          插畫
+                          3D 動畫
                         </h6>
                       </div>
                     </div>
@@ -133,34 +139,60 @@
                 <Icon name="mdi:dumbbell" class="icon" />
                 <h6>我的技能</h6>
               </div>
-              <h3>優勢</h3>
+              <h3>核心工具</h3>
             </div>
           </div>
         </div>
-        <div class="row">
-          <!-- 使用 v-for 重構技能列表 -->
-          <div v-for="skill in skills" :key="skill.id" class="col-lg-4 col-md-6">
-            <div class="item mb-30">
-              <div class="d-flex align-items-center mb-30">
-                <div class="mr-30">
-                  <div class="img icon-img-40">
-                    <img :src="skill.icon" :alt="skill.name" />
-                  </div>
+        <div class="skill-groups">
+          <!-- 設計與動態鏈 -->
+          <div class="skill-group mb-40">
+            <h5 class="skill-category-title mb-30">
+              <Icon name="mdi:palette-outline" class="me-2" />
+              設計與動態
+            </h5>
+            <div class="skill-grid">
+              <div
+                v-for="skill in designSkills"
+                :key="skill.id"
+                class="skill-item d-flex align-items-center"
+              >
+                <div class="skill-icon">
+                  <img
+                    v-if="!skill.noIcon"
+                    :src="getSkillIconUrl(skill)"
+                    :alt="skill.name"
+                    loading="lazy"
+                  />
                 </div>
-                <div>
-                  <h6 class="fz-18">{{ skill.name }}</h6>
+                <span class="skill-name fz-16">{{ skill.name }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-divider"></div>
+
+          <!-- 開發技術鏈 -->
+          <div class="skill-group">
+            <h5 class="skill-category-title mb-30">
+              <Icon name="mdi:code-tags" class="me-2" />
+              開發技術
+            </h5>
+            <div class="skill-grid">
+              <div
+                v-for="skill in devSkills"
+                :key="skill.id"
+                class="skill-item d-flex align-items-center"
+              >
+                <div class="skill-icon">
+                  <img
+                    v-if="!skill.noIcon"
+                    :src="getSkillIconUrl(skill)"
+                    :alt="skill.name"
+                    loading="lazy"
+                  />
                 </div>
+                <span class="skill-name fz-16">{{ skill.name }}</span>
               </div>
-              <div class="skill-progress">
-                <span
-                  class="progres"
-                  :data-value="skill.percentage + '%'"
-                  :style="{
-                    width: animatedSkills ? skill.percentage + '%' : '0%',
-                  }"
-                ></span>
-              </div>
-              <span class="value">{{ skill.percentage }}%</span>
             </div>
           </div>
         </div>
@@ -183,29 +215,25 @@
             </div>
           </div>
         </div>
-
-        <div>
-          <AppSwiper variant="resume-swiper" :space-between="50" :speed="1000">
-            <div v-for="experience in experiences" :key="experience.id" class="swiper-slide">
-              <div class="item text-center">
-                <h6 class="main-color date fz-15 mb-60">
-                  {{ experience.period }}
-                </h6>
-                <h5>{{ experience.title }}</h5>
-                <span class="opacity-8 fw-500 mt-10">[ {{ experience.company }} ]</span>
-                <p class="fz-13 mt-15">{{ experience.description }}</p>
-              </div>
-            </div>
-          </AppSwiper>
-        </div>
       </div>
+      <AppSwiper variant="resume-swiper" :space-between="0" :speed="1000">
+        <div v-for="experience in experiences" :key="experience.id" class="swiper-slide">
+          <div class="item text-center px-5 mx-3">
+            <h6 class="main-color date fz-15 mb-60">
+              {{ experience.period }}
+            </h6>
+            <h5>{{ experience.title }}</h5>
+            <span class="opacity-8 fw-500 mt-10">[ {{ experience.company }} ]</span>
+            <p class="fz-13 mt-15">{{ experience.description }}</p>
+          </div>
+        </div>
+      </AppSwiper>
     </section>
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import { useTimeoutFn } from '@vueuse/core'
 import { useImagePreloader } from '@composables/useImagePreloader.js'
 import { usePageTitle } from '@composables/usePageTitle.js'
 
@@ -250,71 +278,121 @@ useHead({
 
 const { preloadImages, loadingProgress, isPreloading } = useImagePreloader()
 
-// 響應式資料
-const animatedSkills = ref(false)
+// Adobe 工具 icon 由 r2bucket 提供，依檔名組出路徑
+const ADOBE_ICON_BASE = 'https://r2bucket.homershie.com/assets/imgs/resume/adobe'
 
-// 技能資料
-const skills = ref([
-  {
-    id: 1,
-    name: '平面設計',
-    percentage: 95,
-    icon: 'https://r2bucket.homershie.com/assets/imgs/resume/s1.png',
-  },
+/** 取得技能 icon URL：支援 iconUrl、slug（可選 color 給 Simple Icons） */
+function getSkillIconUrl(skill) {
+  if (skill.iconUrl) return skill.iconUrl
+  const base = `https://cdn.simpleicons.org/${skill.slug}`
+  return skill.color ? `${base}/${skill.color}` : base
+}
+
+// 設計與動態鏈（具體工具）
+const designSkills = ref([
+  { id: 1, name: 'Figma', slug: 'figma' },
   {
     id: 2,
-    name: '插畫',
-    percentage: 85,
-    icon: 'https://r2bucket.homershie.com/assets/imgs/resume/s2.png',
+    name: 'Adobe Photoshop',
+    iconUrl: `${ADOBE_ICON_BASE}/photoshop.webp`,
   },
   {
     id: 3,
-    name: '動態設計',
-    percentage: 80,
-    icon: 'https://r2bucket.homershie.com/assets/imgs/resume/s3.png',
+    name: 'Adobe Illustrator',
+    iconUrl: `${ADOBE_ICON_BASE}/illustrator.webp`,
   },
   {
     id: 4,
-    name: '3D動畫',
-    percentage: 72,
-    icon: 'https://r2bucket.homershie.com/assets/imgs/resume/s4.png',
+    name: 'Adobe After Effects',
+    iconUrl: `${ADOBE_ICON_BASE}/after-effects.webp`,
   },
   {
     id: 5,
-    name: 'UI設計',
-    percentage: 65,
-    icon: 'https://r2bucket.homershie.com/assets/imgs/resume/s5.png',
+    name: 'Adobe Premiere Pro',
+    iconUrl: `${ADOBE_ICON_BASE}/premiere-pro.webp`,
   },
   {
     id: 6,
-    name: '網頁開發',
-    percentage: 60,
-    icon: 'https://r2bucket.homershie.com/assets/imgs/resume/s6.png',
+    name: 'Adobe Animate',
+    iconUrl: `${ADOBE_ICON_BASE}/animate.webp`,
   },
+  {
+    id: 7,
+    name: 'Adobe InDesign',
+    iconUrl: `${ADOBE_ICON_BASE}/indesign.webp`,
+  },
+  { id: 8, name: 'Blender', slug: 'blender' },
+  { id: 9, name: '3ds Max', slug: 'autodesk', color: 'fff' },
+  {
+    id: 10,
+    name: 'Procreate',
+    iconUrl: 'https://r2bucket.homershie.com/assets/imgs/resume/Procreate-AppIcon.webp',
+  },
+])
+
+// 開發技術鏈（具體工具，凸顯跨領域能力）
+// color: 'fff' 表示 icon 以白色顯示（深色背景友善）
+const devSkills = ref([
+  // 前端框架
+  { id: 1, name: 'Vue 3', slug: 'vuedotjs' },
+  { id: 2, name: 'Nuxt', slug: 'nuxt' },
+  { id: 3, name: 'React', slug: 'react' },
+  { id: 4, name: 'Next.js', slug: 'nextdotjs', color: 'fff' },
+  // 樣式與動畫
+  { id: 5, name: 'Tailwind CSS', slug: 'tailwindcss' },
+  { id: 6, name: 'Bootstrap', slug: 'bootstrap' },
+  { id: 7, name: 'SCSS', slug: 'sass' },
+  { id: 8, name: 'GSAP', slug: 'greensock' },
+  { id: 9, name: 'Three.js', slug: 'threedotjs', color: 'fff' },
+  { id: 10, name: 'React Query', slug: 'tanstack', color: 'fff' },
+  // UI 元件庫
+  { id: 11, name: 'Vuetify', slug: 'vuetify' },
+  { id: 12, name: 'PrimeVue', slug: 'primevue' },
+  { id: 13, name: 'shadcn/ui', slug: 'shadcnui' },
+  // 狀態與語言
+  { id: 14, name: 'Pinia', slug: 'pinia' },
+  { id: 15, name: 'Zustand', noIcon: true },
+  { id: 16, name: 'TypeScript', slug: 'typescript' },
+  { id: 17, name: 'JavaScript', slug: 'javascript' },
+  // 後端
+  { id: 18, name: 'Node.js', slug: 'nodedotjs' },
+  { id: 19, name: 'Express', slug: 'express', color: 'fff' },
+  { id: 20, name: 'Supabase', slug: 'supabase' },
+  { id: 21, name: 'MongoDB', slug: 'mongodb' },
+  { id: 22, name: 'Redis', slug: 'redis' },
+  // 部署
+  {
+    id: 23,
+    name: 'AWS',
+    iconUrl: 'https://r2bucket.homershie.com/assets/imgs/resume/aws-color.webp',
+  },
+  { id: 24, name: 'Cloudflare', slug: 'cloudflare' },
+  { id: 25, name: 'Vercel', slug: 'vercel', color: 'fff' },
+  { id: 26, name: 'Render', slug: 'render', color: 'fff' },
 ])
 
 // 工作經驗資料
 const experiences = ref([
   {
     id: 1,
-    period: '2019 - 現在',
-    title: '視覺&動態設計師',
-    company: '接案中',
+    period: '2025 - 現在',
+    title: '前端工程開發與產品實踐',
+    company: '獨立開發者',
     description:
-      '自2019年起全職自由接案，與 Garmin 等品牌合作智慧手錶錶面設計，專精視覺整合與動畫製作。服務內容涵蓋品牌形象、平面設計、行銷素材、動態視覺與影片剪輯。平時持續學習 3D、UI、網頁建置等技術，拓展跨領域創作能力與實踐經驗。',
+      '專注於 React/Next.js 與 Vue/Nuxt3 雙框架開發，目前主導《AniDaze》動漫行事曆平台的持續迭代。具備全端實作能力，曾於《MemeDam》專案中親自設計 ERD 資料架構、RESTful API 並導入 Redis 快取優化效能。致力於將九年的設計底蘊轉化為高品質的程式邏輯，實現設計與開發的深度整合。',
   },
   {
     id: 2,
-    period: '2025 - 2025',
-    title: '前端工程師進修',
-    company: '職訓局北分署',
+    period: '2019 - 現在',
+    title: '資深視覺與動態設計師',
+    company: '自由接案',
     description:
-      '因應2024年年底前公司業務縮減，於2025年報名職訓局北分署的前端設計課程，系統性學習 HTML、CSS、JavaScript、Vue.js 等技術。課程中也實作 LINE Bot 專案，深入體驗應用層開發流程。期望結合過往設計專長與新習得的開發技能，轉型為能獨立製作互動產品的前端工程師。',
+      '長期與 Garmin 等國際品牌合作，負責智慧手錶錶面（Watch Face）的視覺整合與動態特效。作品涵蓋「木曜四超玩」等大型合作案，擅長在極限效能下創造流暢的動畫體驗。具備從品牌識別到 3D 建模、UI/UX 設計的完整視覺解決方案能力。',
   },
   {
     id: 3,
     period: '2023 - 2025',
-    title: '兼職資深美術編輯',
+    title: '資深美術編輯',
     company: '問禮有限公司',
     description:
       '為穩定收入轉任兼職設計職，參與兒童英文教材出版專案。負責插圖繪製、教材排版、包裝設計與品牌視覺整合。兼顧專案品質與時效，並於此期間積極準備轉職前端工程師，朝設計與開發整合的方向前進。',
@@ -337,14 +415,6 @@ const experiences = ref([
   },
 ])
 
-// 新增技能的方法
-const addSkill = newSkill => {
-  skills.value.push({
-    id: skills.value.length + 1,
-    ...newSkill,
-  })
-}
-
 // 新增經驗的方法
 const addExperience = newExperience => {
   experiences.value.unshift({
@@ -363,21 +433,13 @@ onMounted(async () => {
     'https://r2bucket.homershie.com/assets/imgs/header/icon2.webp',
     'https://r2bucket.homershie.com/assets/imgs/header/icon3.webp',
     'https://r2bucket.homershie.com/assets/imgs/header/icon4.webp',
-    // 技能圖示
-    ...skills.value.map(skill => skill.icon.replace(/\.(jpg|png)$/, '.webp')),
   ].filter(Boolean)
 
   // 預載入圖片
   await preloadImages(imageUrls)
-
-  // 啟動技能動畫 - 使用 VueUse 的 useTimeoutFn 替代 setTimeout
-  useTimeoutFn(() => {
-    animatedSkills.value = true
-  }, 500)
 })
 // 導出方法供其他組件使用
 defineExpose({
-  addSkill,
   addExperience,
 })
 </script>
@@ -413,5 +475,48 @@ defineExpose({
 .progress-text {
   color: #fff;
   font-size: 14px;
+}
+
+/* 技能區塊：左右並排、icon + 名稱 */
+.skill-category-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem 1.5rem;
+}
+
+.skill-item {
+  gap: 0.75rem;
+}
+
+.skill-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.skill-name {
+  font-weight: 500;
+}
+
+@media (max-width: 991px) {
+  .skill-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
 }
 </style>

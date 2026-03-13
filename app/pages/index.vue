@@ -203,11 +203,17 @@
                 </span>
               </h5>
               <h1>
-                在台灣擔任動態設計師和
-                <span class="bord">視覺設計師</span> 兼職接案中。
+                擁有九年視覺設計實戰經驗<br />結合全端與互動開發技術<br />整合<span class="bord"
+                  >美感與邏輯</span
+                >
+                的數位體驗
               </h1>
-              <p class="text">
-                作為一位專業的視覺師，除了擅長平面設計和插畫，也熟悉動畫、3D軟體和網頁語法。我曾經遠端為Garmin等客戶提供設計服務，並成功完成了許多B2B和B2C的創作。其中最值得一提的是，我曾與Garmin合作，將木曜四超玩主題的錶面動畫化。此外，我在大學期間參加了皮克斯的動畫營，並獲得了當時的皮克斯動畫師的肯定。我致力於創造出獨特且具有視覺吸引力的設計，期待能為您的業務帶來價值。
+              <p class="text line-height-9">
+                我是 Homer，一位擁有 9 年實戰經驗的視覺設計師，目前專注於 Vue / React
+                前端開發。我擅長將複雜的邏輯轉化為直覺的視覺語彙，不僅能定義產品的視覺深度，更能獨立完成從
+                UI/UX 到前端實作的完整閉環。曾長期與 Garmin
+                合作（如：木曜四超玩錶面動畫），並在大學期間獲得 Pixar
+                動畫師肯定。我深信AI工具能帶來便捷的開發流程，但好的產品不只需要穩定的程式碼，更需要能引起使用者共鳴的視覺靈魂和人文關懷。
               </p>
               <div class="stauts mt-50 pt-50 bord-thin-top">
                 <div class="d-flex align-items-center">
@@ -267,13 +273,13 @@ const { preloadImages, loadingProgress, isPreloading } = useImagePreloader()
 
 // headline 輪播文字
 const headlineWords = [
-  '荷馬桑',
-  'Homer Shie',
-  '視覺設計師',
-  '動態設計師',
-  '遊戲玩家',
-  '動漫宅宅',
-  '前端工程學生',
+  '全端設計師',
+  '前端開發者',
+  '視覺藝術家',
+  '民謠吉他手',
+  'ACG 觀察家',
+  '迷因研究員',
+  '健身愛好者',
 ]
 const currentWordIndex = ref(0)
 let headlineInterval = null
@@ -368,7 +374,7 @@ onUnmounted(() => {
 
 // 計算工作年資
 const experienceYear = computed(() => {
-  const startYear = 2020
+  const startYear = 2017
   const currentYear = new Date().getFullYear()
   return currentYear - startYear
 })
