@@ -209,7 +209,7 @@
                 的數位體驗
               </h1>
               <p class="text line-height-9">
-                我是 Homer，一位擁有 9 年實戰經驗的視覺設計師，目前專注於 Vue / React
+                我是荷馬桑 Homer，一位擁有 9 年實戰經驗的視覺設計師，目前專注於 Vue / React
                 前端開發。我擅長將複雜的邏輯轉化為直覺的視覺語彙，不僅能定義產品的視覺深度，更能獨立完成從
                 UI/UX 到前端實作的完整閉環。曾長期與 Garmin
                 合作（如：木曜四超玩錶面動畫），並在大學期間獲得 Pixar
@@ -286,19 +286,19 @@ let headlineInterval = null
 
 // 首頁完整 SEO 設定
 useSeoMeta({
-  title: 'HODES - 荷馬桑 Homer Shie | 視覺設計 ‧ 動態設計 ‧ 插畫',
+  title: 'HODES - 荷馬桑 Homer Shie | Full Stack Designer',
   description:
-    'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫、動畫以及網頁設計，有興趣可以隨意逛逛，歡迎和我連絡！',
+    'HODES 是荷馬桑 Homer Shie 的個人網站。擁有 9 年視覺設計經驗的 Full Stack Designer，橫跨 UI/UX 設計、動態設計與前端開發，致力於將設計美感與工程邏輯深度整合。',
 })
 
 useHead({
   link: [{ rel: 'canonical', href: 'https://homershie.com/' }],
   meta: [
-    { property: 'og:title', content: 'HODES - 荷馬桑 Homer Shie | 視覺設計 ‧ 動態設計 ‧ 插畫' },
+    { property: 'og:title', content: 'HODES - 荷馬桑 Homer Shie | Full Stack Designer' },
     {
       property: 'og:description',
       content:
-        'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫、動畫以及網頁設計，有興趣可以隨意逛逛，歡迎和我連絡！',
+        'HODES 是荷馬桑 Homer Shie 的個人網站。擁有 9 年視覺設計經驗的 Full Stack Designer，橫跨 UI/UX 設計、動態設計與前端開發，致力於將設計美感與工程邏輯深度整合。',
     },
     {
       property: 'og:image',
@@ -307,11 +307,11 @@ useHead({
     { property: 'og:url', content: 'https://homershie.com/' },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'HODES - 荷馬桑 Homer Shie | 視覺設計 ‧ 動態設計 ‧ 插畫' },
+    { name: 'twitter:title', content: 'HODES - 荷馬桑 Homer Shie | Full Stack Designer' },
     {
       name: 'twitter:description',
       content:
-        'Hi！這裡是荷馬桑 Homer Shie，台灣的自由接案工作者，擅長平面設計、插畫、動畫以及網頁設計',
+        '台灣的 Full Stack Designer，9 年視覺設計經驗，兼具 UI/UX 設計、動態設計與前端開發能力，歡迎和我連絡！',
     },
     {
       name: 'twitter:image',

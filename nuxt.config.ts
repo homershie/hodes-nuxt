@@ -56,7 +56,7 @@ export default defineNuxtConfig({
     url: 'https://homershie.com',
     name: 'HODES | 荷馬桑 Homer Shie 的個人網站',
     description:
-      'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫以及動畫，有興趣可以隨意逛逛，歡迎和我連絡！',
+      'HODES 是荷馬桑 Homer Shie 的個人網站。擁有 9 年視覺設計經驗的 Full Stack Designer，橫跨 UI/UX 設計、動態設計與前端開發，致力於將設計美感與工程邏輯深度整合。',
     defaultLocale: 'zh-Hant-TW',
     // 忽略追蹤參數，避免產生重複的 canonical URL
     trailingSlash: false,

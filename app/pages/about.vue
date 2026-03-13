@@ -45,7 +45,7 @@
                   擁有 9 年視覺經驗，用程式實踐設計想像。<br />我專注於將複雜邏輯，轉化為具備動態感且直覺的數位體驗。
                 </h5>
                 <h3 class="mb-30">
-                  我是Homer<br />
+                  我是荷馬桑 Homer<br />
                   在美學中植入邏輯的<span class="main-color">「全端設計師」</span>
                 </h3>
 
@@ -132,7 +132,7 @@
     <!-- ==================== Start Skills ==================== -->
     <section class="skills section-padding pt-0">
       <div class="container with-pad">
-        <div class="sec-head mb-80">
+        <div class="sec-head mb-60">
           <div class="row justify-content-center">
             <div class="col-lg-6 text-center">
               <div class="sub-title-icon d-flex align-items-center mx-auto">
@@ -199,10 +199,46 @@
       </div>
     </section>
 
+    <!-- ==================== Start Capabilities ==================== -->
+    <section class="capabilities section-padding pt-0">
+      <div class="container with-pad">
+        <div class="sec-head mb-60">
+          <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+              <div class="sub-title-icon d-flex align-items-center mx-auto">
+                <Icon name="mdi:lightbulb-outline" class="icon" />
+                <h6>我的能力</h6>
+              </div>
+              <h3>核心能力</h3>
+            </div>
+          </div>
+        </div>
+        <div class="row lg-marg">
+          <div v-for="cap in capabilities" :key="cap.id" class="col-lg-4 col-md-6 mb-30">
+            <div class="capability-card">
+              <div class="cap-icon">
+                <Icon :name="cap.icon" />
+              </div>
+              <h5 class="mb-15">{{ cap.title }}</h5>
+              <p class="fz-14 mb-30 opacity-8">{{ cap.summary }}</p>
+              <div class="cap-divider"></div>
+              <ul class="cap-list">
+                <li v-for="item in cap.items" :key="item.label">
+                  <span class="cap-item-label fz-14 fw-500">{{ item.label }}</span>
+                  <p class="fz-13 opacity-7 mt-5">{{ item.desc }}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ==================== End Capabilities ==================== -->
+
     <!-- ==================== Start Resume ==================== -->
     <section class="resume section-padding pt-0">
       <div class="container with-pad">
-        <div class="sec-head mb-80">
+        <div class="sec-head mb-60">
           <div class="row justify-content-center">
             <div class="col-lg-6 text-center">
               <div class="d-inline-block">
@@ -244,7 +280,7 @@ setPageTitle('關於')
 // SEO 設定
 useSeoMeta({
   description:
-    '了解荷馬桑 Homer Shie 的背景、技能和經歷，以及各式各樣擅長的工具，展示專業的視覺、動態技術的必備技能。',
+    '了解荷馬桑 Homer Shie 的設計歷程與開發能力。擁有 9 年視覺設計經驗，具備 UI/UX 設計、動態設計與全端開發實力，以 Full Stack Designer 定位橋接設計與工程。',
 })
 
 useHead({
@@ -254,7 +290,7 @@ useHead({
     {
       property: 'og:description',
       content:
-        '了解荷馬桑 Homer Shie 的背景、技能和經歷，以及各式各樣擅長的工具，展示專業的視覺、動態技術的必備技能。',
+        '了解荷馬桑 Homer Shie 的設計歷程與開發能力。擁有 9 年視覺設計經驗，具備 UI/UX 設計、動態設計與全端開發實力，以 Full Stack Designer 定位橋接設計與工程。',
     },
     {
       property: 'og:image',
@@ -266,7 +302,8 @@ useHead({
     { name: 'twitter:title', content: '關於 | HODES - 荷馬桑 Homer Shie' },
     {
       name: 'twitter:description',
-      content: '了解荷馬桑 Homer Shie 的背景、技能和經歷，展示專業的視覺、動態技術的必備技能。',
+      content:
+        '9 年視覺設計經驗 × 全端開發能力，荷馬桑 Homer Shie 的設計歷程、核心能力與技術棧完整介紹。',
     },
     {
       name: 'twitter:image',
@@ -369,6 +406,70 @@ const devSkills = ref([
   { id: 24, name: 'Cloudflare', slug: 'cloudflare' },
   { id: 25, name: 'Vercel', slug: 'vercel', color: 'fff' },
   { id: 26, name: 'Render', slug: 'render', color: 'fff' },
+])
+
+// 核心能力資料
+const capabilities = ref([
+  {
+    id: 1,
+    icon: 'mdi:monitor-dashboard',
+    title: 'UI/UX 與介面設計',
+    summary: '從穿戴裝置到響應式網頁，在有限的螢幕空間內整合資訊架構與視覺美感。',
+    items: [
+      {
+        label: '多平台介面規劃',
+        desc: '曾與 Garmin 合作開發多款穿戴式裝置介面，擅長在極限螢幕空間進行資訊架構重組，兼顧美觀與易讀性。',
+      },
+      {
+        label: '響應式網頁設計 RWD',
+        desc: '針對 Desktop、Tablet、Mobile 進行佈局規劃，運用 CSS Grid/Flexbox 確保切版達到 Pixel-perfect 還原。',
+      },
+      {
+        label: '設計系統建構',
+        desc: '以元件化思維建立設計規範，定義 Design Tokens（色彩、字體、間距），確保設計與開發端邏輯一致。',
+      },
+    ],
+  },
+  {
+    id: 2,
+    icon: 'mdi:play-circle-outline',
+    title: '視覺與動態設計',
+    summary: '融合品牌敘事與動態語言，將靜態視覺轉化為具備記憶點的動態體驗。',
+    items: [
+      {
+        label: '品牌識別與視覺敘事',
+        desc: '擅長為品牌、主視覺、Banner 等媒材以視覺語言傳遞價值，服務涵蓋國際品牌商業專案。',
+      },
+      {
+        label: '動態圖像設計 Motion Graphics',
+        desc: '結合 After Effects 與前端程式碼，將品牌視覺轉化為具敘事性的動態網頁，強化使用者記憶點。',
+      },
+      {
+        label: '插畫與風格營造',
+        desc: '具備手繪與電繪能力，能為專案量身打造插畫風格（含日系 ACG 風格），應用於主視覺與 UI 元件。',
+      },
+    ],
+  },
+  {
+    id: 3,
+    icon: 'mdi:code-braces',
+    title: '高保真原型開發',
+    summary: '不只做出設計稿，更能用程式碼精確驗證互動邏輯，縮短設計到開發的落差。',
+    items: [
+      {
+        label: '程式碼互動原型',
+        desc: '運用 React.js / Vue.js / HTML / CSS 製作可實際操作的高保真原型，在開發前精準模擬複雜的互動邏輯與動態手感。',
+      },
+      {
+        label: '微互動設計 Micro-interactions',
+        desc: '專注於按鈕回饋、轉場特效等細節，運用 GSAP 與 CSS Animation 提升操作的流暢度與愉悅感。',
+      },
+      {
+        label: '全端產品獨立實作',
+        desc: '從 Wireframe、ERD、系統架構設計到上線部署，具備獨立完成完整產品開發流程的實戰能力。',
+      },
+    ],
+  },
 ])
 
 // 工作經驗資料
@@ -517,6 +618,68 @@ defineExpose({
 @media (max-width: 991px) {
   .skill-grid {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
+
+/* 核心能力卡片 */
+.capability-card {
+  height: 100%;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  text-align: center;
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
+
+  &:hover {
+    border-color: rgba(var(--maincolor-rgb, 255, 255, 255), 0.3);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .cap-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--maincolor);
+    font-size: 1.5rem;
+  }
+}
+
+.cap-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 20px 0;
+}
+
+.cap-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  gap: 1rem;
+
+  li {
+    padding-left: 1rem;
+    margin: 0.75rem 0;
+    border-left: 2px solid var(--maincolor);
+  }
+}
+
+.cap-item-label {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .capability-card {
+    padding: 1.5rem;
   }
 }
 </style>
