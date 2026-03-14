@@ -12,7 +12,9 @@
 | tm() 回傳 message 物件 | index.vue, service.vue, about.vue | 畫面上顯示 JSON 物件 | ✅ 已解決 |
 | NuxtIcon 收到物件 | about.vue | `name.startsWith is not a function` | ✅ 已解決 |
 | useI18nList 未定義 | index.vue, service.vue | `useI18nList is not defined` | ✅ 已解決 |
-| localePath 非函式 | index.vue | `$setup.localePath is not a function` | ⚠️ 需確認 |
+| localePath 非函式 | index.vue | `$setup.localePath is not a function` | ✅ 已解決 |
+| locale JSON 特殊字元衝突 | zh-TW.json / en.json | `[unplugin-vue-i18n] error code 10/11` | ✅ 已解決 |
+| langDir 雙重路徑 | nuxt.config.ts | `Could not load .../i18n/i18n/locales/en.json` | ✅ 已解決 |
 | 對 computed 做 unshift | about.vue | 唯讀資料被修改 | ✅ 已解決 |
 
 ---
@@ -144,6 +146,83 @@ Vue I18n 的 **`tm()`** 在取得陣列或巢狀物件時，回傳的是**編譯
 
 - 確認 `@nuxtjs/i18n` 已在 `nuxt.config.ts` 中正確設定。
 - 若與其他錯誤（如 `useI18nList is not defined`）同時發生，先修復 composable 匯入，再檢查 `localePath` 是否已正確注入。
+
+**解決狀態：** 修正 `useI18nList` 匯入後，`localePath` 注入恢復正常，確認為連帶錯誤而非獨立問題。
+
+---
+
+## 5. `langDir` 雙重路徑 Bug
+
+### 現象
+
+- `nuxi generate` 失敗
+- 錯誤訊息：`[vite:load-fallback] Could not load D:/git/hodes-nuxt/i18n/i18n/locales/en.json`
+- 注意路徑中出現兩次 `i18n/`
+
+### 成因
+
+`@nuxtjs/i18n` v10 中，`langDir` 是**相對於專案根目錄下的 `i18n/` 目錄**，而非相對於專案根目錄。
+
+設定 `langDir: './i18n/locales/'` 時，模組會計算：
+
+```
+<project_root>/i18n/  +  ./i18n/locales/  =  <project_root>/i18n/i18n/locales/
+```
+
+產生雙重路徑而找不到檔案。
+
+### 解法
+
+```ts
+// ❌ 錯誤
+langDir: './i18n/locales/',
+
+// ✅ 正確（相對於 i18n/ 目錄）
+langDir: 'locales/',
+```
+
+### 補充
+
+- dev server 在此 bug 下會無聲掛起（Nitro 編譯永遠不完成），不會印出錯誤
+- 只有執行 `nuxi generate` 才會看到明確的路徑錯誤訊息
+
+---
+
+## 6. Locale JSON 特殊字元衝突
+
+### 現象
+
+- Build 失敗（`nuxi generate`）
+- 錯誤訊息：`[unplugin-vue-i18n:resource] 10 (error code: 10)` 和 `11 (error code: 11)`
+- 指向 `zh-TW.json` 和 `en.json`
+
+### 成因
+
+`unplugin-vue-i18n` 在 build 時編譯所有 locale message：
+
+1. **ASCII `|`（U+007C）** 被 vue-i18n message compiler 視為 **plural separator**。SEO 標題中常用 `Title | Brand` 格式，導致 error code 11（`INVALID_LINKED_FORMAT`）。
+2. **`@`** 被視為 **linked message prefix**（`@:key`）。Email 地址 `homerxworkshop@gmail.com` 中的 `@g` 觸發嘗試解析 linked message，導致 error code 10（`INVALID_MESSAGE_FORMAT`）。
+
+`i18n.compilation.strictMessage: false` 理論上應降級為 warning，但 build 仍失敗（可能因 unplugin 版本行為不一致）。
+
+### 受影響位置
+
+| 檔案 | 鍵值 | 問題字元 |
+|------|------|----------|
+| `zh-TW.json` | `seo.*.title`（多筆） | ASCII `\|` |
+| `en.json` | `seo.*.title`（多筆） | ASCII `\|` |
+| `zh-TW.json` | `seo.contact.description` | `@gmail.com` |
+| `en.json` | `seo.contact.description` | `@gmail.com` |
+
+### 解法
+
+1. 所有 SEO 標題中的 ASCII `|` 替換為全形 `｜`（U+FF5C）：
+   - 視覺上完全相同，但不會觸發 plural 解析
+2. Email 地址中的 `@` 使用 vue-i18n escape 語法：
+   ```json
+   "description": "...homerxworkshop{'@'}gmail.com..."
+   ```
+   vue-i18n 會將 `{'@'}` 渲染為字面 `@`。
 
 ---
 

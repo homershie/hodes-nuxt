@@ -32,7 +32,7 @@
 | 7 | 更新 Components | ✅ 完成（見備註） |
 | 8 | 更新 Pages | ✅ 完成 |
 | 9 | 審查 canonical.client.ts | ✅ 完成 |
-| 10 | 測試驗收 | ⏳ 待執行 |
+| 10 | 測試驗收 | ✅ 完成 |
 
 ---
 
@@ -120,9 +120,13 @@ i18n: {
     { code: 'en',    language: 'en',          name: 'English',  file: 'en.json' },
   ],
   defaultLocale: 'zh-TW',
-  langDir: './i18n/locales/',
-  lazy: true,
+  langDir: 'locales/',  // ⚠️ 相對於 i18n/ 目錄，不是專案根目錄！'./i18n/locales/' 會產生雙重路徑 bug
+  // lazy: true,  // ❌ v10 TypeScript 不接受此選項；file 屬性存在時自動 lazy-load
   detectBrowserLanguage: false, // 改用自定義 middleware 處理（SSR 相容）
+  compilation: {
+    strictMessage: false, // 允許 SEO 標題中的 | 字元（否則被誤判為 plural separator）
+    escapeHtml: false,
+  },
 },
 ```
 
@@ -388,7 +392,7 @@ useSeoMeta({ ogLocale })
 - [X] `/en/contact` 表單驗證訊息為英文
 - [X] Build 後 `hreflang` 標籤存在於兩種語系的頁面 HTML
 - [X] `.output/public/zh-TW/` 和 `.output/public/en/` 都有對應靜態檔
-- [ ] `npm run preview` Wrangler 本地測試通過
+- [X] `npm run preview` Wrangler 本地測試通過
 
 ---
 
