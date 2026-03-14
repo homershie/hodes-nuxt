@@ -5,7 +5,7 @@
       <input
         :value="searchQuery"
         type="text"
-        placeholder="搜尋文章"
+        :placeholder="t('sidebar.search_placeholder')"
         @input="$emit('update:search', $event.target.value)"
       />
       <span class="icon pe-7s-search"></span>
@@ -13,11 +13,11 @@
 
     <!-- 分類 -->
     <div class="widget catogry">
-      <h6 class="title-widget">分類</h6>
+      <h6 class="title-widget">{{ t('sidebar.categories_title') }}</h6>
       <ul class="rest">
         <li>
           <span>
-            <a href="#0" @click.prevent="$emit('update:category', 'all')"> 全部文章 </a>
+            <a href="#0" @click.prevent="$emit('update:category', 'all')">{{ t('sidebar.all_posts') }}</a>
           </span>
           <span class="ml-auto">{{ allPosts.length }}</span>
         </li>
@@ -34,23 +34,23 @@
 
     <!-- 最新文章 -->
     <div class="widget last-post-thum">
-      <h6 class="title-widget">最新文章</h6>
+      <h6 class="title-widget">{{ t('sidebar.latest_posts') }}</h6>
       <div v-for="post in latestPosts" :key="post.id" class="item">
         <div class="valign">
           <div class="img">
-            <NuxtLink :to="`/article/${post.id}`">
+            <NuxtLink :to="localePath(`/article/${post.id}`)">
               <img :src="post.thumbnail" :alt="post.title" loading="lazy" />
             </NuxtLink>
           </div>
         </div>
         <div class="cont">
           <h6>
-            <NuxtLink :to="`/article/${post.id}`">
+            <NuxtLink :to="localePath(`/article/${post.id}`)">
               {{ post.title }}
             </NuxtLink>
           </h6>
           <span>
-            <NuxtLink :to="`/article/${post.id}`">
+            <NuxtLink :to="localePath(`/article/${post.id}`)">
               {{ formatDate(post.date) }}
             </NuxtLink>
           </span>
@@ -62,6 +62,9 @@
 
 <script setup>
 import categories from '../../content/config/categories.json'
+
+const { t, locale } = useI18n()
+const localePath = useLocalePath()
 
 const props = defineProps({
   searchQuery: {
@@ -90,7 +93,7 @@ function getCategoryCount(category) {
 
 function formatDate(dateString) {
   const date = new Date(dateString)
-  return date.toLocaleDateString('zh-TW', {
+  return date.toLocaleDateString(locale.value, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',

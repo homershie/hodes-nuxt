@@ -59,20 +59,20 @@
                 <ul>
                   <li class="mb-30">
                     <span class="sub-title">
-                      <i class="far fa-calendar-alt mr-10"></i> 日期 :
+                      <i class="far fa-calendar-alt mr-10"></i> {{ t('portfolio.date_label') }}
                     </span>
                     <p>{{ formatDate(project.date) }}</p>
                   </li>
                   <li class="mb-30">
-                    <span class="sub-title"> <i class="fas fa-list-ul mr-10"></i> 類別 : </span>
+                    <span class="sub-title"> <i class="fas fa-list-ul mr-10"></i> {{ t('portfolio.category_label') }} </span>
                     <p>{{ formatCategory(project.category) }}</p>
                   </li>
                   <li v-if="project.client" class="mb-30">
-                    <span class="sub-title"> <i class="far fa-user mr-10"></i> 客戶 : </span>
+                    <span class="sub-title"> <i class="far fa-user mr-10"></i> {{ t('portfolio.client_label') }} </span>
                     <p>{{ project.client }}</p>
                   </li>
                   <li v-if="project.website">
-                    <span class="sub-title"> <i class="fas fa-globe mr-10"></i> 連結 : </span>
+                    <span class="sub-title"> <i class="fas fa-globe mr-10"></i> {{ t('portfolio.link_label') }} </span>
                     <p>
                       <a :href="project.website" target="_blank" class="break-link">{{
                         project.website
@@ -103,6 +103,8 @@ import RelatedWorks from '@components/RelatedWorks.vue'
 import Breadcrumb from '@components/Breadcrumb.vue'
 import { enableImageLightbox } from '@composables/useLightBox.js'
 
+const { t, locale } = useI18n()
+const localePath = useLocalePath()
 const route = useRoute()
 const project = ref(null)
 const { getWorkById } = usePortfolio()
@@ -110,14 +112,14 @@ const { getWorkById } = usePortfolio()
 // 麵包屑導航
 const breadcrumbItems = computed(() => {
   const items = [
-    { name: '首頁', path: '/' },
-    { name: '作品集', path: '/portfolio' },
+    { name: t('breadcrumb.home'), path: localePath('/') },
+    { name: t('breadcrumb.portfolio'), path: localePath('/portfolio') },
   ]
 
   if (project.value) {
     items.push({
       name: project.value.title,
-      path: `/project/${route.params.id}`,
+      path: '',
     })
   }
 
@@ -148,7 +150,7 @@ const formattedDescription = computed(() => {
 const formatDate = dateString => {
   if (!dateString) return ''
   const date = new Date(dateString)
-  return date.toLocaleDateString('zh-TW', {
+  return date.toLocaleDateString(locale.value, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',

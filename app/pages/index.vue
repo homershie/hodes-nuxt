@@ -11,13 +11,15 @@
                   <div class="tow-items">
                     <div class="item1 box-shadwo">
                       <div class="circle-item d-flex align-items-center justify-content-center">
-                        <h6><router-link to="/about">關於我</router-link></h6>
+                        <h6>
+                          <router-link :to="localePath('/about')">{{ t('nav.about') }}</router-link>
+                        </h6>
                       </div>
                       <div class="text-center mt-30">
                         <a
                           href="https://r2bucket.homershie.com/assets/resume/Homer_Shie_Resume.pdf"
                           target="_blank"
-                          aria-label="下載履歷"
+                          :aria-label="t('home.download_aria')"
                         >
                           <svg
                             class="arrow-down"
@@ -34,7 +36,7 @@
                             <line x1="17.3" y1="0.7" x2="33.2" y2="16.5"></line>
                             <line x1="17.3" y1="31.6" x2="33.5" y2="15.4"></line>
                           </svg>
-                          <p class="fz-13 mt-15">下載履歷</p>
+                          <p class="fz-13 mt-15">{{ t('home.download_resume') }}</p>
                         </a>
                       </div>
                     </div>
@@ -45,8 +47,8 @@
                         <div class="text-center">
                           <h2 class="fw-700">{{ experienceYear }}</h2>
                           <p class="fz-13">
-                            年 <br />
-                            工作經驗
+                            {{ t('home.years_label') }} <br />
+                            {{ t('home.experience_label') }}
                           </p>
                         </div>
                       </div>
@@ -56,7 +58,10 @@
                   <div class="item-down box-shadwo d-flex align-items-center">
                     <div>
                       <div class="circle-item d-flex align-items-center justify-content-center">
-                        <router-link to="/service" aria-label="前往我的服務頁面">
+                        <router-link
+                          :to="localePath('/service')"
+                          :aria-label="t('home.service_aria')"
+                        >
                           <svg
                             class="arrow-right"
                             xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +81,9 @@
                       </div>
                     </div>
                     <h6 class="ml-15">
-                      <router-link to="/service">我的服務</router-link>
+                      <router-link :to="localePath('/service')">
+                        {{ t('home.service_link') }}
+                      </router-link>
                     </h6>
                   </div>
                 </div>
@@ -85,7 +92,9 @@
                   <div class="item3 box-shadwo"></div>
                   <div class="item4 box-shadwo d-flex align-items-center">
                     <h6>
-                      <router-link to="/portfolio"><br />我的作品集 </router-link>
+                      <router-link :to="localePath('/portfolio')">
+                        <br />{{ t('home.portfolio_link') }}
+                      </router-link>
                     </h6>
                   </div>
                 </div>
@@ -97,7 +106,7 @@
                     class="icon"
                     rel="noopener noreferrer"
                     target="_blank"
-                    aria-label="前往 Instagram"
+                    :aria-label="t('home.instagram_aria')"
                   >
                     <i class="fab fa-instagram" aria-hidden="true"></i>
                   </a>
@@ -108,7 +117,7 @@
                     class="icon"
                     rel="noopener noreferrer"
                     target="_blank"
-                    aria-label="前往 GitHub"
+                    :aria-label="t('home.github_aria')"
                   >
                     <i class="fab fa-github" aria-hidden="true"></i>
                   </a>
@@ -119,7 +128,7 @@
                     class="icon"
                     rel="noopener noreferrer"
                     target="_blank"
-                    aria-label="前往 Medium"
+                    :aria-label="t('home.medium_aria')"
                   >
                     <i class="fab fa-medium" aria-hidden="true"></i>
                   </a>
@@ -131,15 +140,15 @@
                 <div class="img">
                   <img
                     src="https://r2bucket.homershie.com/assets/imgs/header/profile.webp"
-                    alt="荷馬桑 Homer Shie 個人照片"
+                    :alt="t('home.profile_alt')"
                     loading="lazy"
                   />
                 </div>
               </div>
               <div class="author-info">
                 <div class="text-center">
-                  <span class="main-color sub-title mb-10">視覺設計師 / 動態設計師</span>
-                  <h4 class="fw-500">Hi, 我是荷馬桑 Homer Shie</h4>
+                  <span class="main-color sub-title mb-10">{{ t('home.subtitle') }}</span>
+                  <h4 class="fw-500">{{ t('home.name') }}</h4>
                 </div>
                 <div class="social mt-20">
                   <a
@@ -147,7 +156,7 @@
                     class="icon"
                     rel="noopener noreferrer"
                     target="_blank"
-                    aria-label="前往 Instagram"
+                    :aria-label="t('home.instagram_aria')"
                   >
                     <i class="fab fa-instagram" aria-hidden="true"></i>
                   </a>
@@ -156,7 +165,7 @@
                     class="icon"
                     rel="noopener noreferrer"
                     target="_blank"
-                    aria-label="前往 Pinterest"
+                    :aria-label="t('home.pinterest_aria')"
                   >
                     <i class="fab fa-pinterest" aria-hidden="true"></i>
                   </a>
@@ -165,23 +174,23 @@
                     class="icon"
                     rel="noopener noreferrer"
                     target="_blank"
-                    aria-label="前往 Medium"
+                    :aria-label="t('home.medium_aria')"
                   >
                     <i class="fab fa-medium" aria-hidden="true"></i>
                   </a>
                 </div>
               </div>
               <div class="butns mt-30">
-                <router-link to="/contact#contact-form" class="inf-butn">
-                  <span>聯絡我</span>
+                <router-link :to="localePath('/contact') + '#contact-form'" class="inf-butn">
+                  <span>{{ t('home.contact_cta') }}</span>
                 </router-link>
                 <a
                   href="https://r2bucket.homershie.com/assets/resume/Homer_Shie_Resume.pdf"
                   class="inf-butn"
                   target="_blank"
-                  aria-label="下載履歷"
+                  :aria-label="t('home.download_aria')"
                 >
-                  <span>下載履歷</span>
+                  <span>{{ t('home.download_resume') }}</span>
                 </a>
               </div>
             </div>
@@ -189,7 +198,7 @@
           <div class="col-lg-7 valign">
             <div class="content">
               <h5 class="cd-headline slide">
-                <span>哈囉, 我是</span>
+                <span>{{ t('home.greeting') }}</span>
                 <span class="cd-words-wrapper main-color">
                   <b
                     v-for="(word, idx) in headlineWords"
@@ -203,17 +212,13 @@
                 </span>
               </h5>
               <h1>
-                擁有九年視覺設計實戰經驗<br />結合全端與互動開發技術<br />整合<span class="bord"
-                  >美感與邏輯</span
-                >
-                的數位體驗
+                {{ t('home.h1_line1') }}<br />{{ t('home.h1_line2') }}<br />
+                {{ t('home.h1_line3_before')
+                }}<span class="bord">{{ t('home.h1_highlight') }}</span>
+                {{ t('home.h1_line3_after') }}
               </h1>
               <p class="text line-height-9">
-                我是荷馬桑 Homer，一位擁有 9 年實戰經驗的視覺設計師，目前專注於 Vue / React
-                前端開發。我擅長將複雜的邏輯轉化為直覺的視覺語彙，不僅能定義產品的視覺深度，更能獨立完成從
-                UI/UX 到前端實作的完整閉環。曾長期與 Garmin
-                合作（如：木曜四超玩錶面動畫），並在大學期間獲得 Pixar
-                動畫師肯定。我深信AI工具能帶來便捷的開發流程，但好的產品不只需要穩定的程式碼，更需要能引起使用者共鳴的視覺靈魂和人文關懷。
+                {{ t('home.bio') }}
               </p>
               <div class="stauts mt-50 pt-50 bord-thin-top">
                 <div class="d-flex align-items-center">
@@ -221,27 +226,27 @@
                     <div class="d-flex align-items-center">
                       <h2>{{ projectCount }}</h2>
                       <p>
-                        件 <br />
-                        已完成專案
+                        {{ t('home.projects_count_label') }} <br />
+                        {{ t('home.projects_sublabel') }}
                       </p>
                     </div>
                   </div>
                   <div class="mr-40">
                     <div class="d-flex align-items-center">
-                      <h2>10</h2>
+                      <h2>{{ t('home.software_count') }}</h2>
                       <p>
-                        個 <br />
-                        擅長軟體
+                        {{ t('home.software_label') }} <br />
+                        {{ t('home.software_sublabel') }}
                       </p>
                     </div>
                   </div>
                   <div class="ml-auto">
                     <div class="butn-presv">
                       <router-link
-                        to="/contact#contact-form"
+                        :to="localePath('/contact') + '#contact-form'"
                         class="butn butn-md butn-bord radius-5 skew"
                       >
-                        <span>跟我聯繫！</span>
+                        <span>{{ t('home.contact_cta2') }}</span>
                       </router-link>
                     </div>
                   </div>
@@ -259,7 +264,7 @@
       <div class="progress-bar">
         <div class="progress" :style="{ width: `${loadingProgress}%` }"></div>
       </div>
-      <div class="progress-text">載入中... {{ loadingProgress }}%</div>
+      <div class="progress-text">{{ t('home.loading', { percent: loadingProgress }) }}</div>
     </div>
   </div>
 </template>
@@ -268,27 +273,23 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { portfolio } from '@data/portfolioData.js'
 import { useImagePreloader } from '@composables/useImagePreloader.js'
+import { useI18nList } from '@composables/useI18nList.js'
+
+const { t, tm } = useI18n()
+const localePath = useLocalePath()
+const { resolveMessageList } = useI18nList()
 
 const { preloadImages, loadingProgress, isPreloading } = useImagePreloader()
 
-// headline 輪播文字
-const headlineWords = [
-  '全端設計師',
-  '前端開發者',
-  '視覺藝術家',
-  '民謠吉他手',
-  'ACG 觀察家',
-  '迷因研究員',
-  '健身愛好者',
-]
+// headline 輪播文字（tm() 回傳編譯物件，需轉成字串陣列）
+const headlineWords = computed(() => resolveMessageList(tm('home.headline_words')))
 const currentWordIndex = ref(0)
 let headlineInterval = null
 
 // 首頁完整 SEO 設定
 useSeoMeta({
-  title: 'HODES - 荷馬桑 Homer Shie | Full Stack Designer',
-  description:
-    'HODES 是荷馬桑 Homer Shie 的個人網站。擁有 9 年視覺設計經驗的 Full Stack Designer，橫跨 UI/UX 設計、動態設計與前端開發，致力於將設計美感與工程邏輯深度整合。',
+  title: computed(() => t('seo.home.title')),
+  description: computed(() => t('seo.home.description')),
 })
 
 useHead({
@@ -345,10 +346,13 @@ useHead({
 })
 
 onMounted(() => {
-  // headline 輪播
-  headlineInterval = setInterval(() => {
-    currentWordIndex.value = (currentWordIndex.value + 1) % headlineWords.length
-  }, 2000)
+  // headline 輪播（僅在有字詞時啟動）
+  const words = headlineWords.value
+  if (words.length > 0) {
+    headlineInterval = setInterval(() => {
+      currentWordIndex.value = (currentWordIndex.value + 1) % headlineWords.value.length
+    }, 2000)
+  }
 
   // 收集首頁所有圖片URL（已改用 WebP 格式）
   const imageUrls = [
@@ -418,5 +422,9 @@ const projectCount = computed(() => {
 .progress-text {
   color: #fff;
   font-size: 14px;
+}
+
+.cd-words-wrapper {
+  margin-left: 10px;
 }
 </style>

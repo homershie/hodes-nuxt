@@ -52,6 +52,7 @@
     "@nuxt/icon": "^2.1.0",
     "@nuxt/image": "^1.11.0",
     "@nuxt/ui": "^4.0.1",
+    "@nuxtjs/i18n": "^10.2.3",
     "@nuxtjs/mdc": "^0.18.0",
     "@nuxtjs/seo": "^3.2.2",
     "@pinia/nuxt": "^0.5.5",

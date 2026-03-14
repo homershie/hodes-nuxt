@@ -11,6 +11,7 @@ const getArticleSlugs = () => {
       .filter(filename => filename.endsWith('.md'))
       .map(filename => filename.replace(/\.md$/, ''))
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.warn('[prerender] 讀取文章列表失敗：', error instanceof Error ? error.message : error)
     return []
   }
@@ -37,9 +38,23 @@ const blogPageRoutes = Array.from(
 
 const projectRoutes = resolvePortfolioRoutes()
 
+const locales = ['zh-TW', 'en']
+
 const baseStaticRoutes = ['/', '/about', '/service', '/contact', '/portfolio']
+const localizedStaticRoutes = locales.flatMap(locale =>
+  baseStaticRoutes.map(p => (p === '/' ? `/${locale}/` : `/${locale}${p}`))
+)
+const localizedBlogPageRoutes = locales.flatMap(locale => blogPageRoutes.map(r => `/${locale}${r}`))
+const localizedArticleRoutes = locales.flatMap(locale => articleRoutes.map(r => `/${locale}${r}`))
+const localizedProjectRoutes = locales.flatMap(locale => projectRoutes.map(r => `/${locale}${r}`))
+
 const prerenderRoutes = Array.from(
-  new Set([...baseStaticRoutes, ...blogPageRoutes, ...articleRoutes, ...projectRoutes])
+  new Set([
+    ...localizedStaticRoutes,
+    ...localizedBlogPageRoutes,
+    ...localizedArticleRoutes,
+    ...localizedProjectRoutes,
+  ])
 )
 
 export default defineNuxtConfig({
@@ -57,7 +72,7 @@ export default defineNuxtConfig({
     name: 'HODES | 荷馬桑 Homer Shie 的個人網站',
     description:
       'HODES 是荷馬桑 Homer Shie 的個人網站。擁有 9 年視覺設計經驗的 Full Stack Designer，橫跨 UI/UX 設計、動態設計與前端開發，致力於將設計美感與工程邏輯深度整合。',
-    defaultLocale: 'zh-Hant-TW',
+    defaultLocale: 'zh-TW',
     // 忽略追蹤參數，避免產生重複的 canonical URL
     trailingSlash: false,
     // 在生成 canonical URL 時忽略這些查詢參數
@@ -100,8 +115,24 @@ export default defineNuxtConfig({
     'nuxt-gtag',
     '@vueuse/nuxt',
     '@pinia/nuxt',
+    '@nuxtjs/i18n',
     '@nuxtjs/seo',
   ],
+
+  i18n: {
+    strategy: 'prefix',
+    locales: [
+      { code: 'zh-TW', language: 'zh-Hant-TW', name: '繁體中文', file: 'zh-TW.json' },
+      { code: 'en', language: 'en', name: 'English', file: 'en.json' },
+    ],
+    defaultLocale: 'zh-TW',
+    langDir: 'locales/',
+    detectBrowserLanguage: false,
+    compilation: {
+      strictMessage: false, // allow | in SEO title strings (not plural syntax)
+      escapeHtml: false,
+    },
+  },
 
   // Icon 配置 - SSG 模式使用 iconify CDN 或打包到客戶端
   icon: {
@@ -161,36 +192,42 @@ export default defineNuxtConfig({
 
   // 路由規則
   routeRules: {
-    // 首頁 - 靜態生成
-    '/': { prerender: true },
+    // 根路徑 - 由 middleware 依瀏覽器語言 302 導向
+    '/': { redirect: '/zh-TW/' },
 
-    // 靜態頁面
-    '/about': { prerender: true },
-    '/service': { prerender: true },
-    '/contact': { prerender: true },
-    '/portfolio': { prerender: true },
+    // 繁體中文靜態頁面
+    '/zh-TW/': { prerender: true },
+    '/zh-TW/about': { prerender: true },
+    '/zh-TW/service': { prerender: true },
+    '/zh-TW/contact': { prerender: true },
+    '/zh-TW/portfolio': { prerender: true },
 
-    // Blog 分頁 - 靜態生成
-    '/blog': { redirect: '/blog/page/1' },
-    '/blog/page/**': { prerender: true },
+    // 英文靜態頁面
+    '/en/': { prerender: true },
+    '/en/about': { prerender: true },
+    '/en/service': { prerender: true },
+    '/en/contact': { prerender: true },
+    '/en/portfolio': { prerender: true },
+
+    // Blog 分頁
+    '/zh-TW/blog': { redirect: '/zh-TW/blog/page/1' },
+    '/en/blog': { redirect: '/en/blog/page/1' },
+    '/zh-TW/blog/page/**': { prerender: true },
+    '/en/blog/page/**': { prerender: true },
 
     // 文章詳情 - 靜態生成（SSR + Prerender）
-    '/article/**': {
-      ssr: true,
-      prerender: true,
-    },
+    '/zh-TW/article/**': { ssr: true, prerender: true },
+    '/en/article/**': { ssr: true, prerender: true },
 
     // 作品詳情 - 靜態生成（SSR + Prerender）
-    '/project/**': {
-      ssr: true,
-      prerender: true,
-    },
+    '/zh-TW/project/**': { ssr: true, prerender: true },
+    '/en/project/**': { ssr: true, prerender: true },
 
     // API 路由 - 編譯為 Cloudflare Workers Functions
     '/api/**': {
       cors: true,
       ssr: true,
-      prerender: false, // ⭐ API 路由會被編譯成 Worker，不預渲染為靜態檔案
+      prerender: false,
     },
   },
 
@@ -239,6 +276,7 @@ export default defineNuxtConfig({
           manualChunks: {
             // 將大型第三方庫單獨打包
             masonry: ['masonry-layout'],
+            'vue-i18n': ['vue-i18n'],
           },
         },
       },
@@ -249,15 +287,11 @@ export default defineNuxtConfig({
   app: {
     buildAssetsDir: '/_nuxt/',
     head: {
-      htmlAttrs: {
-        lang: 'zh-Hant-TW',
-      },
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'keywords', content: '設計,動畫,插畫,藝術,homer shie,作品集' },
         { name: 'author', content: 'Homer Shie' },
-        { property: 'og:locale', content: 'zh_TW' },
       ],
       link: [
         {

@@ -5,7 +5,7 @@
       <div class="progress-bar">
         <div class="progress" :style="{ width: `${loadingProgress}%` }"></div>
       </div>
-      <div class="progress-text">載入中... {{ loadingProgress }}%</div>
+      <div class="progress-text">{{ t('portfolio.loading', { percent: loadingProgress }) }}</div>
     </div>
 
     <!-- 作品列表 -->
@@ -37,7 +37,7 @@
               <a
                 href="#0"
                 class="link"
-                :aria-label="`查看 ${work.title} 詳情`"
+                :aria-label="t('portfolio.view_aria', { title: work.title })"
                 @click.prevent="viewDetails(work)"
               ></a>
             </div>
@@ -59,7 +59,7 @@
                 <div class="arrow">
                   <a
                     href="#0"
-                    :aria-label="`查看 ${work.title} 詳情`"
+                    :aria-label="t('portfolio.view_aria', { title: work.title })"
                     @click.prevent="viewDetails(work)"
                   >
                     <svg
@@ -106,6 +106,8 @@ import { useImagePreloader } from '@composables/useImagePreloader'
 import { useEventListener, useIntersectionObserver, useTimeoutFn } from '@vueuse/core'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const { t } = useI18n()
 
 const props = defineProps({
   works: {

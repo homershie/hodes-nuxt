@@ -8,10 +8,10 @@
             <div class="d-inline-block">
               <div class="sub-title-icon d-flex align-items-center">
                 <span class="icon fas fa-map-marker-alt"></span>
-                <h6>聯絡我</h6>
+                <h6>{{ t('contact.section_label') }}</h6>
               </div>
             </div>
-            <h3>如有任何問題，請隨時與我聯繫。</h3>
+            <h3>{{ t('contact.heading') }}</h3>
           </div>
         </div>
       </div>
@@ -34,27 +34,25 @@
         <div class="col-lg-5 valign">
           <div class="info full-width md-mb80">
             <div class="item mb-30 d-flex align-items-center">
-              <div class="mr-15">
+              <div class="contact-item-icon">
                 <Icon name="mdi:email-outline" class="icon main-color" />
               </div>
-              <div class="mr-10">
+              <div class="contact-item-title">
                 <h6 class="opacity-7">Email</h6>
               </div>
-              <div class="ml-auto">
-                <h4>
-                  <a href="mailto:homerxworkshop@gmail.com">homerxworkshop@gmail.com</a>
-                </h4>
+              <div class="contact-item-content">
+                <h4>homerxworkshop@gmail.com</h4>
               </div>
             </div>
             <div class="item d-flex align-items-center">
-              <div class="mr-15">
+              <div class="contact-item-icon">
                 <Icon name="mdi:map-marker-outline" class="icon main-color" />
               </div>
-              <div class="mr-10">
+              <div class="contact-item-title">
                 <h6 class="opacity-7">Address</h6>
               </div>
-              <div class="ml-auto">
-                <h4>新北市板橋區，台灣</h4>
+              <div class="contact-item-content">
+                <h4>{{ t('contact.address') }}</h4>
               </div>
             </div>
           </div>
@@ -69,7 +67,7 @@
               <div class="controls row">
                 <div class="col-lg-6">
                   <div class="form-group mb-30">
-                    <label>你的名字 *</label>
+                    <label>{{ t('contact.form.name') }} *</label>
                     <input
                       v-model="name"
                       name="name"
@@ -96,7 +94,7 @@
 
                 <div class="col-lg-6">
                   <div class="form-group mb-30">
-                    <label>你的電子信箱 *</label>
+                    <label>{{ t('contact.form.email') }} *</label>
                     <input
                       v-model="email"
                       name="email"
@@ -123,7 +121,7 @@
 
                 <div class="col-12">
                   <div class="form-group mb-30">
-                    <label>主旨</label>
+                    <label>{{ t('contact.form.subject') }}</label>
                     <input
                       v-model="subject"
                       name="subject"
@@ -149,14 +147,14 @@
 
                 <div class="col-12">
                   <div class="form-group">
-                    <label>你的訊息 *</label>
+                    <label>{{ t('contact.form.message') }} *</label>
                     <textarea
                       v-model="message"
                       name="message"
                       rows="6"
                       required
                       :disabled="isSubmitting"
-                      placeholder="請詳細描述您的需求、預算範圍、專案時程等資訊..."
+                      :placeholder="t('contact.form.message_placeholder')"
                       class="form-control"
                       :class="{
                         'is-invalid': touched.message && errors.message,
@@ -187,9 +185,9 @@
 
                   <div class="mt-30">
                     <button type="submit" :disabled="isSubmitting" class="submit-btn">
-                      <span v-if="!isSubmitting" class="text">傳送訊息</span>
+                      <span v-if="!isSubmitting" class="text">{{ t('contact.form.submit') }}</span>
                       <span v-else class="text">
-                        <i class="fas fa-spinner fa-spin"></i> 傳送中...
+                        <i class="fas fa-spinner fa-spin"></i> {{ t('contact.form.submitting') }}
                       </span>
                     </button>
                   </div>
@@ -205,11 +203,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useForm, useField } from 'vee-validate'
 import { useReCaptcha } from 'vue-recaptcha-v3'
 import { useTimeoutFn } from '@vueuse/core'
 import { useFormValidation } from '@composables/useFormValidation.js'
+
+const { t } = useI18n()
 
 const isSubmitting = ref(false)
 const formMessage = ref('')
@@ -269,7 +269,7 @@ const submitForm = handleSubmit(async formValues => {
   // 檢查是否為機器人
   if (isBot() || honeypot.value) {
     // 若為機器人，假裝成功但不實際發送
-    formMessage.value = '訊息已成功發送！'
+    formMessage.value = t('contact.form.success')
     messageClass.value = 'alert alert-success'
     resetForm()
     return
@@ -277,7 +277,7 @@ const submitForm = handleSubmit(async formValues => {
 
   // 防垃圾訊息檢查
   if (!checkSpam()) {
-    formMessage.value = '提交過於頻繁，請稍後再試'
+    formMessage.value = t('contact.form.spam_error')
     messageClass.value = 'alert alert-danger'
     return
   }
@@ -307,7 +307,7 @@ const submitForm = handleSubmit(async formValues => {
     // 更新提交統計
     updateSubmitStats()
 
-    formMessage.value = '訊息已成功發送！'
+    formMessage.value = t('contact.form.success')
     messageClass.value = 'alert alert-success'
     resetForm()
     // 重置觸碰狀態
@@ -315,7 +315,7 @@ const submitForm = handleSubmit(async formValues => {
       touched.value[key] = false
     })
   } catch {
-    formMessage.value = '發送失敗，請稍後再試。'
+    formMessage.value = t('contact.form.error')
     messageClass.value = 'alert alert-danger'
   } finally {
     isSubmitting.value = false
@@ -326,9 +326,8 @@ const submitForm = handleSubmit(async formValues => {
 
 // SEO 設定
 useSeoMeta({
-  title: '聯絡我 | HODES - 荷馬桑 Homer Shie',
-  description:
-    '有任何設計需求或合作機會嗎？歡迎透過表單、電子郵件 homerxworkshop@gmail.com 與我聯繫。位於新北市板橋區，提供平面設計、動態設計、插畫等專業服務。',
+  title: computed(() => t('seo.contact.title')),
+  description: computed(() => t('seo.contact.description')),
 })
 
 useHead({
@@ -428,6 +427,33 @@ useHead({
   color: var(--maincolor);
   font-size: 20px;
 }
+
+/* [icon 50px][title 80px][content 置中] */
+.contact-item-icon {
+  flex-shrink: 0;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact-item-title {
+  flex-shrink: 0;
+  width: 80px;
+}
+.contact-item-content {
+  flex: 1 1 0;
+  padding-left: 10px;
+  min-width: 0;
+  text-align: right;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  @media (max-width: 768px) {
+    padding-left: 0;
+    text-align: center;
+  }
+}
+
+/* 約束內容區寬度，避免 Email、Address 在窄螢幕爆版 */
 
 .social-links {
   display: flex;
@@ -585,10 +611,6 @@ useHead({
     flex-direction: column;
     text-align: center;
     gap: 10px;
-  }
-
-  .info .item .ml-auto {
-    margin-left: 0 !important;
   }
 
   .social-links {

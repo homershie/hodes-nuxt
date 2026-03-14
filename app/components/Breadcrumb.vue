@@ -1,5 +1,5 @@
 <template>
-  <nav v-if="items.length > 0" class="breadcrumb-nav" aria-label="麵包屑導航">
+  <nav v-if="items.length > 0" class="breadcrumb-nav" :aria-label="t('breadcrumb.nav_aria')">
     <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
       <li
         v-for="(item, index) in items"
@@ -14,7 +14,7 @@
           v-if="index < items.length - 1"
           :to="item.path"
           itemprop="item"
-          :aria-label="`前往${item.name}`"
+          :aria-label="t('breadcrumb.link_aria', { name: item.name })"
         >
           <span itemprop="name">{{ item.name }}</span>
         </NuxtLink>
@@ -29,6 +29,8 @@
 defineOptions({
   name: 'AppBreadcrumb',
 })
+
+const { t } = useI18n()
 
 const { items } = defineProps({
   items: {

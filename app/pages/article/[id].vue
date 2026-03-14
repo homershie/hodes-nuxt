@@ -85,13 +85,13 @@
                   backgroundSize: 'cover',
                 }"
               >
-                <NuxtLink :to="`/article/${prevArticle.id}`">
+                <NuxtLink :to="localePath('/article/' + prevArticle.id)">
                   <span
                     class="fz-12 text-u ls1 main-color mb-15"
                     style="text-shadow: 2px 2px 2px #000"
                   >
                     <i class="fas fa-angle-left"></i>
-                    上一篇
+                    {{ t('blog.prev_article') }}
                   </span>
                   <h6 class="fw-500 fz-16" style="text-shadow: 2px 2px 2px #000">
                     {{ prevArticle.title }}
@@ -107,12 +107,12 @@
                   backgroundSize: 'cover',
                 }"
               >
-                <NuxtLink :to="`/article/${nextArticle.id}`">
+                <NuxtLink :to="localePath('/article/' + nextArticle.id)">
                   <span
                     class="fz-12 text-u ls1 main-color mb-15"
                     style="text-shadow: 2px 2px 2px #000"
                   >
-                    下一篇 <i class="fas fa-angle-right"></i>
+                    {{ t('blog.next_article') }} <i class="fas fa-angle-right"></i>
                   </span>
                   <h6 class="fw-500 fz-16" style="text-shadow: 2px 2px 2px #000">
                     {{ nextArticle.title }}
@@ -129,9 +129,9 @@
   <!-- 404 狀態 -->
   <section v-else class="section-padding">
     <div class="container text-center">
-      <h2>文章不存在</h2>
-      <NuxtLink to="/blog/page/1" class="butn butn-md butn-bord radius-30 mt-30">
-        <span>回到部落格</span>
+      <h2>{{ t('blog.article_not_found') }}</h2>
+      <NuxtLink :to="localePath('/blog/page/1')" class="butn butn-md butn-bord radius-30 mt-30">
+        <span>{{ t('blog.back_to_blog') }}</span>
       </NuxtLink>
     </div>
   </section>
@@ -158,6 +158,8 @@ import ArticleImageGallery from '@components/article/ArticleImageGallery.vue'
 import ArticleImageMasonry from '@components/article/ArticleImageMasonry.vue'
 const ArticleImageGallery3 = ArticleImageGallery
 
+const { t, locale } = useI18n()
+const localePath = useLocalePath()
 const route = useRoute()
 const articleId = route.params.id as string
 
@@ -302,7 +304,7 @@ const shareUrls = computed(() => {
 // 日期格式化
 function formatDate(dateString) {
   const date = new Date(dateString)
-  return date.toLocaleDateString('zh-TW', {
+  return date.toLocaleDateString(locale.value, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -315,9 +317,6 @@ const articleTags = article.value.tags || []
 
 useHead({
   title: `${article.value.title} | HODES`,
-  htmlAttrs: {
-    lang: article.value.lang,
-  },
   meta: [
     { name: 'description', content: article.value.excerpt },
     // keywords

@@ -5,7 +5,7 @@
         <div class="col-lg-3 col-6 order1">
           <div class="bord">
             <!-- Logo -->
-            <NuxtLink class="logo icon-img-120" to="/" aria-label="回到首頁">
+            <NuxtLink class="logo icon-img-120" :to="localePath('/')" :aria-label="t('nav.logo_aria')">
               <img
                 src="https://r2bucket.homershie.com/assets/imgs/logo-light.png"
                 alt="HODES-LOGO"
@@ -21,33 +21,33 @@
             <div class="full-width">
               <ul class="navbar-nav text-center">
                 <li class="nav-item">
-                  <NuxtLink class="nav-link" to="/">
-                    <span class="rolling-text">首頁</span>
+                  <NuxtLink class="nav-link" :to="localePath('/')">
+                    <span class="rolling-text">{{ t('nav.home') }}</span>
                   </NuxtLink>
                 </li>
                 <li class="nav-item">
-                  <NuxtLink class="nav-link" to="/about">
-                    <span class="rolling-text">關於</span>
+                  <NuxtLink class="nav-link" :to="localePath('/about')">
+                    <span class="rolling-text">{{ t('nav.about') }}</span>
                   </NuxtLink>
                 </li>
                 <li class="nav-item">
-                  <NuxtLink class="nav-link" to="/service">
-                    <span class="rolling-text">服務</span>
+                  <NuxtLink class="nav-link" :to="localePath('/service')">
+                    <span class="rolling-text">{{ t('nav.service') }}</span>
                   </NuxtLink>
                 </li>
                 <li class="nav-item">
-                  <NuxtLink class="nav-link" to="/portfolio">
-                    <span class="rolling-text">作品</span>
+                  <NuxtLink class="nav-link" :to="localePath('/portfolio')">
+                    <span class="rolling-text">{{ t('nav.portfolio') }}</span>
                   </NuxtLink>
                 </li>
                 <li class="nav-item">
-                  <NuxtLink class="nav-link" to="/blog">
-                    <span class="rolling-text">部落格</span>
+                  <NuxtLink class="nav-link" :to="localePath('/blog')">
+                    <span class="rolling-text">{{ t('nav.blog') }}</span>
                   </NuxtLink>
                 </li>
                 <li class="nav-item">
-                  <NuxtLink class="nav-link" to="/contact">
-                    <span class="rolling-text">聯絡我</span>
+                  <NuxtLink class="nav-link" :to="localePath('/contact')">
+                    <span class="rolling-text">{{ t('nav.contact') }}</span>
                   </NuxtLink>
                 </li>
               </ul>
@@ -62,7 +62,7 @@
                   href="https://www.instagram.com/homer_create"
                   rel="noopener noreferrer"
                   target="_blank"
-                  aria-label="前往 Instagram 查看荷馬桑作品"
+                  :aria-label="t('nav.instagram_aria')"
                 >
                   <i class="fab fa-instagram" aria-hidden="true"></i>
                 </a>
@@ -72,7 +72,7 @@
                   href="https://github.com/homershie"
                   rel="noopener noreferrer"
                   target="_blank"
-                  aria-label="前往 GitHub 查看荷馬桑的程式"
+                  :aria-label="t('nav.github_aria')"
                 >
                   <i class="fab fa-github" aria-hidden="true"></i>
                 </a>
@@ -82,7 +82,7 @@
                   href="https://medium.com/homer-create"
                   rel="noopener noreferrer"
                   target="_blank"
-                  aria-label="前往 Medium 閱讀荷馬桑文章"
+                  :aria-label="t('nav.medium_aria')"
                 >
                   <i class="fab fa-medium" aria-hidden="true"></i>
                 </a>
@@ -115,6 +115,8 @@ import { ref, watch, nextTick } from 'vue'
 import { useScroll } from '@vueuse/core'
 import gsap from 'gsap'
 
+const { t } = useI18n()
+const localePath = useLocalePath()
 const route = useRoute()
 const isMenuOpen = ref(false)
 const bgRef = ref(null)

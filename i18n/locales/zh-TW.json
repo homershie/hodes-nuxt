@@ -1,0 +1,348 @@
+{
+  "nav": {
+    "home": "首頁",
+    "about": "關於",
+    "service": "服務",
+    "portfolio": "作品",
+    "blog": "部落格",
+    "contact": "聯絡我",
+    "logo_aria": "回到首頁",
+    "instagram_aria": "前往 Instagram 查看荷馬桑作品",
+    "github_aria": "前往 GitHub 查看荷馬桑的程式",
+    "medium_aria": "前往 Medium 閱讀荷馬桑文章"
+  },
+  "home": {
+    "about_me": "關於我",
+    "download_resume": "下載履歷",
+    "download_aria": "下載履歷",
+    "years_label": "年",
+    "experience_label": "工作經驗",
+    "service_link": "我的服務",
+    "service_aria": "前往我的服務頁面",
+    "portfolio_link": "我的作品集",
+    "instagram_aria": "前往 Instagram",
+    "github_aria": "前往 GitHub",
+    "medium_aria": "前往 Medium",
+    "pinterest_aria": "前往 Pinterest",
+    "subtitle": "視覺設計師 / 動態設計師",
+    "name": "Hi, 我是荷馬桑 Homer Shie",
+    "contact_cta": "聯絡我",
+    "greeting": "哈囉, 我是",
+    "headline_words": [
+      "全端設計師",
+      "前端開發者",
+      "視覺藝術家",
+      "民謠吉他手",
+      "ACG 觀察家",
+      "迷因研究員",
+      "健身愛好者"
+    ],
+    "h1_line1": "擁有九年視覺設計實戰經驗",
+    "h1_line2": "結合全端與互動開發技術",
+    "h1_line3_before": "整合",
+    "h1_highlight": "美感與邏輯",
+    "h1_line3_after": "的數位體驗",
+    "bio": "我是荷馬桑 Homer，一位擁有 9 年實戰經驗的視覺設計師，目前專注於 Vue / React 前端開發。我擅長將複雜的邏輯轉化為直覺的視覺語彙，不僅能定義產品的視覺深度，更能獨立完成從 UI/UX 到前端實作的完整閉環。曾長期與 Garmin 合作（如：木曜四超玩錶面動畫），並在大學期間獲得 Pixar 動畫師肯定。我深信AI工具能帶來便捷的開發流程，但好的產品不只需要穩定的程式碼，更需要能引起使用者共鳴的視覺靈魂和人文關懷。",
+    "projects_count_label": "件",
+    "projects_sublabel": "已完成專案",
+    "software_count": "10",
+    "software_label": "個",
+    "software_sublabel": "擅長軟體",
+    "contact_cta2": "跟我聯繫！",
+    "loading": "載入中... {percent}%",
+    "profile_alt": "荷馬桑 Homer Shie 個人照片"
+  },
+  "about": {
+    "section_label": "關於",
+    "subtitle": "擁有 9 年視覺經驗，用程式實踐設計想像。\n我專注於將複雜邏輯，轉化為具備動態感且直覺的數位體驗。",
+    "h3_line1": "我是荷馬桑 Homer",
+    "h3_mid": "在美學中植入邏輯的",
+    "h3_highlight": "「全端設計師」",
+    "bio_p1": "在過去 9 年的視覺設計生涯中，我以接案形式深度參與了多樣化的商業專案。曾長期與 Garmin 合作，負責將複雜的穿戴裝置介面轉化為具吸引力的視覺體驗，其中「木曜四超玩」合作案更練就了我對動態節奏的精準掌控。長期與不同領域的品牌合作，讓我深刻理解與不同專業合作的能力。",
+    "bio_p2": "為了打破設計與工程間的溝通壁壘，我投身全端開發領域，並以此完成全端專案－迷因典 MemeDam。這不僅是一次技術的訓練題目，更是對產品架構的完整實踐操演——從資料庫 ERD 設計、Redis 快取優化到前端互動動畫，我享受利用程式碼將靜態設計轉化為「可運作邏輯」的過程。",
+    "bio_p3": "身為 INTJ人格，我習慣在感性的藝術創作中尋找理性的系統化路徑。無論是進行體組成管理、彈奏搖滾吉他，還是沉浸於 ACG 文化，這些興趣最終都回流成我的設計養分。我不僅是視覺的建造者，更是邏輯的編織者，致力於讓美感不再只是表象，而是具備技術支撐的深度解決方案。",
+    "feat_uiux": "UI/UX 設計",
+    "feat_motion": "動態視覺",
+    "feat_fullstack": "全端開發",
+    "feat_3d": "3D 動畫",
+    "email_label": "電子信箱",
+    "profile_alt": "荷馬桑個人照片",
+    "skills_section_label": "我的技能",
+    "skills_heading": "核心工具",
+    "design_category": "設計與動態",
+    "dev_category": "開發技術",
+    "capabilities_section_label": "我的能力",
+    "capabilities_heading": "核心能力",
+    "resume_section_label": "我的簡歷",
+    "resume_heading": "學歷和工作經驗",
+    "capabilities": [
+      {
+        "id": 1,
+        "icon": "mdi:monitor-dashboard",
+        "title": "UI/UX 與介面設計",
+        "summary": "從穿戴裝置到響應式網頁，在有限的螢幕空間內整合資訊架構與視覺美感。",
+        "items": [
+          {
+            "label": "多平台介面規劃",
+            "desc": "曾與 Garmin 合作開發多款穿戴式裝置介面，擅長在極限螢幕空間進行資訊架構重組，兼顧美觀與易讀性。"
+          },
+          {
+            "label": "響應式網頁設計 RWD",
+            "desc": "針對 Desktop、Tablet、Mobile 進行佈局規劃，運用 CSS Grid/Flexbox 確保切版達到 Pixel-perfect 還原。"
+          },
+          {
+            "label": "設計系統建構",
+            "desc": "以元件化思維建立設計規範，定義 Design Tokens（色彩、字體、間距），確保設計與開發端邏輯一致。"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "icon": "mdi:play-circle-outline",
+        "title": "視覺與動態設計",
+        "summary": "融合品牌敘事與動態語言，將靜態視覺轉化為具備記憶點的動態體驗。",
+        "items": [
+          {
+            "label": "品牌識別與視覺敘事",
+            "desc": "擅長為品牌、主視覺、Banner 等媒材以視覺語言傳遞價值，服務涵蓋國際品牌商業專案。"
+          },
+          {
+            "label": "動態圖像設計 Motion Graphics",
+            "desc": "結合 After Effects 與前端程式碼，將品牌視覺轉化為具敘事性的動態網頁，強化使用者記憶點。"
+          },
+          {
+            "label": "插畫與風格營造",
+            "desc": "具備手繪與電繪能力，能為專案量身打造插畫風格（含日系 ACG 風格），應用於主視覺與 UI 元件。"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "icon": "mdi:code-braces",
+        "title": "高保真原型開發",
+        "summary": "不只做出設計稿，更能用程式碼精確驗證互動邏輯，縮短設計到開發的落差。",
+        "items": [
+          {
+            "label": "程式碼互動原型",
+            "desc": "運用 React.js / Vue.js / HTML / CSS 製作可實際操作的高保真原型，在開發前精準模擬複雜的互動邏輯與動態手感。"
+          },
+          {
+            "label": "微互動設計 Micro-interactions",
+            "desc": "專注於按鈕回饋、轉場特效等細節，運用 GSAP 與 CSS Animation 提升操作的流暢度與愉悅感。"
+          },
+          {
+            "label": "全端產品獨立實作",
+            "desc": "從 Wireframe、ERD、系統架構設計到上線部署，具備獨立完成完整產品開發流程的實戰能力。"
+          }
+        ]
+      }
+    ],
+    "experiences": [
+      {
+        "id": 1,
+        "period": "2025 - 現在",
+        "title": "前端工程開發與產品實踐",
+        "company": "獨立開發者",
+        "description": "專注於 React/Next.js 與 Vue/Nuxt3 雙框架開發，目前主導《AniDaze》動漫行事曆平台的持續迭代。具備全端實作能力，曾於《MemeDam》專案中親自設計 ERD 資料架構、RESTful API 並導入 Redis 快取優化效能。致力於將九年的設計底蘊轉化為高品質的程式邏輯，實現設計與開發的深度整合。"
+      },
+      {
+        "id": 2,
+        "period": "2019 - 現在",
+        "title": "資深視覺與動態設計師",
+        "company": "自由接案",
+        "description": "長期與 Garmin 等國際品牌合作，負責智慧手錶錶面（Watch Face）的視覺整合與動態特效。作品涵蓋「木曜四超玩」等大型合作案，擅長在極限效能下創造流暢的動畫體驗。具備從品牌識別到 3D 建模、UI/UX 設計的完整視覺解決方案能力。"
+      },
+      {
+        "id": 3,
+        "period": "2023 - 2025",
+        "title": "資深美術編輯",
+        "company": "問禮有限公司",
+        "description": "為穩定收入轉任兼職設計職，參與兒童英文教材出版專案。負責插圖繪製、教材排版、包裝設計與品牌視覺整合。兼顧專案品質與時效，並於此期間積極準備轉職前端工程師，朝設計與開發整合的方向前進。"
+      },
+      {
+        "id": 4,
+        "period": "2018 - 2019",
+        "title": "視覺設計師",
+        "company": "臺灣娜珂黛肌有限公司",
+        "description": "我負責薑類保健品的產品視覺與網站素材設計，專注於品牌定位與行銷轉換。協助行銷團隊優化網站視覺與用戶體驗，提升品牌識別與商品曝光。該經驗讓我深入理解設計與商業目標之間的整合策略。"
+      },
+      {
+        "id": 5,
+        "period": "2013 - 2017",
+        "title": "應用美術學系",
+        "company": "天主教輔仁大學",
+        "description": "主修視覺設計與美術應用，專注於概念發想、圖像溝通與使用者導向設計。課堂外積極參與接案與工作，提前累積業界經驗，奠定視覺創作與創新思維的堅實基礎，為日後的職涯發展鋪路。"
+      }
+    ]
+  },
+  "service": {
+    "section_label": "我的服務",
+    "heading": "我有哪些方式讓您眼前一亮？",
+    "pricing_label": "合作方案",
+    "pricing_heading": "讓好的設計成為值得的投資",
+    "pricing_desc": "我重視與每一位客戶的深入溝通，致力於理解需求、解決設計挑戰，並透過專業的視覺語言為專案創造實質價值。",
+    "price_negotiable": "議價",
+    "contact_btn": "聯絡我",
+    "projects_suffix": "+ 專案",
+    "brand_text": "超過 {count}+ 專案的成功合作經驗",
+    "services": {
+      "graphic_design": {
+        "name": "平面設計",
+        "description": "擅長品牌識別、行銷視覺與主視覺設計，從色彩計畫到版面構成，每個決策都以傳遞品牌價值為核心目標，協助你的視覺在競爭中一眼入魂。"
+      },
+      "motion_design": {
+        "name": "動態設計",
+        "description": "以 After Effects 打造具敘事性的動態圖形，曾為 Garmin × 木曜四超玩聯名錶面製作完整動畫。靜態畫面注入靈魂，讓品牌在每次播放中留下印記。"
+      },
+      "illustration": {
+        "name": "插畫創作",
+        "description": "具備手繪與電繪能力，風格橫跨 ACG、極簡、奇幻與品牌角色設計。每一筆插畫不只是圖像，而是能和觀者精準對話的視覺語言。"
+      },
+      "uiux": {
+        "name": "UI/UX 設計",
+        "description": "長期與 Garmin 合作穿戴式裝置介面設計，擅長在有限螢幕空間進行資訊架構重組。結合 Design System 思維，讓設計語言從元件到頁面保持一致。"
+      },
+      "3d": {
+        "name": "3D",
+        "description": "以 Blender 與 3ds Max 建構立體場景與角色，讓概念化為可觸摸的視覺實體。為品牌與行銷帶來突破平面的想像維度。"
+      },
+      "web_frontend": {
+        "name": "網頁前端設計",
+        "description": "以React / Next 或 Vue / Nuxt 實作，結合 GSAP 微互動與 ScrollTrigger，打造視覺張力與操作流暢並存的網站體驗。設計與工程一人完成，確保 pixel-perfect 落地。"
+      }
+    },
+    "plans": {
+      "graphic": {
+        "title": "平面設計方案",
+        "features": ["平面設計服務", "品牌識別設計", "插畫創作", "主視覺設計"]
+      },
+      "motion": {
+        "title": "動態設計方案",
+        "features": ["動態設計與動畫", "3D視覺效果", "影片特效與剪輯", "UI/UX 介面設計"]
+      }
+    }
+  },
+  "contact": {
+    "section_label": "聯絡我",
+    "heading": "如有任何問題，請隨時與我聯繫。",
+    "address": "新北市板橋區，台灣",
+    "form": {
+      "name": "你的名字",
+      "email": "你的電子信箱",
+      "subject": "主旨",
+      "message": "你的訊息",
+      "message_placeholder": "請詳細描述您的需求、預算範圍、專案時程等資訊...",
+      "submit": "傳送訊息",
+      "submitting": "傳送中...",
+      "success": "訊息已成功發送！",
+      "error": "發送失敗，請稍後再試。",
+      "spam_error": "提交過於頻繁，請稍後再試"
+    }
+  },
+  "portfolio": {
+    "section_label": "我的作品",
+    "h3_line1": "透過視覺方法",
+    "h3_line2": "讓萬物賦予意義",
+    "all_works": "全部作品",
+    "all_shown": "已顯示全部作品",
+    "loading": "載入中... {percent}%",
+    "view_aria": "查看 {title} 詳情",
+    "date_label": "日期",
+    "category_label": "類別",
+    "client_label": "客戶",
+    "link_label": "連結"
+  },
+  "blog": {
+    "section_label": "部落格",
+    "heading": "開啟你的視界",
+    "read_more": "閱讀更多",
+    "prev_article": "上一篇",
+    "next_article": "下一篇",
+    "back_to_blog": "回到部落格",
+    "article_not_found": "文章不存在"
+  },
+  "sidebar": {
+    "search_placeholder": "搜尋文章",
+    "categories_title": "分類",
+    "all_posts": "全部文章",
+    "latest_posts": "最新文章"
+  },
+  "pagination": {
+    "prev": "上一頁",
+    "next": "下一頁"
+  },
+  "breadcrumb": {
+    "nav_aria": "麵包屑導航",
+    "link_aria": "前往{name}",
+    "home": "首頁",
+    "portfolio": "作品集"
+  },
+  "related": {
+    "heading": "相關作品",
+    "subtitle": "您可能也會喜歡這些作品",
+    "view_all": "查看所有作品",
+    "view_aria": "查看 {title}",
+    "view_detail_aria": "查看 {title} 詳情"
+  },
+  "validation": {
+    "name_required": "請輸入您的名字",
+    "name_min": "名字至少需要2個字元",
+    "name_max": "名字不能超過50個字元",
+    "name_format": "名字只能包含中文、英文和空格",
+    "email_required": "請輸入您的電子信箱",
+    "email_format": "請輸入有效的電子信箱格式",
+    "subject_max": "主旨不能超過100個字元",
+    "message_required": "請輸入您的訊息",
+    "message_min": "訊息至少需要10個字元",
+    "message_max": "訊息不能超過1000個字元",
+    "message_spam": "訊息內容不適當"
+  },
+  "seo": {
+    "page_title_base": "HODES｜荷馬桑 Homer Shie｜設計 ‧ 插畫 ‧ 動畫 ‧ 藝術｜台北",
+    "page_title_suffix": "｜HODES｜荷馬桑 Homer Shie｜設計 ‧ 插畫 ‧ 動畫 ‧ 藝術｜台北",
+    "home": {
+      "title": "HODES - 荷馬桑 Homer Shie｜Full Stack Designer",
+      "description": "HODES 是荷馬桑 Homer Shie 的個人網站。擁有 9 年視覺設計經驗的 Full Stack Designer，橫跨 UI/UX 設計、動態設計與前端開發，致力於將設計美感與工程邏輯深度整合。",
+      "twitter_description": "台灣的 Full Stack Designer，9 年視覺設計經驗，兼具 UI/UX 設計、動態設計與前端開發能力，歡迎和我連絡！"
+    },
+    "about": {
+      "title": "關於｜HODES - 荷馬桑 Homer Shie",
+      "description": "了解荷馬桑 Homer Shie 的設計歷程與開發能力。擁有 9 年視覺設計經驗，具備 UI/UX 設計、動態設計與全端開發實力，以 Full Stack Designer 定位橋接設計與工程。",
+      "twitter_description": "9 年視覺設計經驗 × 全端開發能力，荷馬桑 Homer Shie 的設計歷程、核心能力與技術棧完整介紹。"
+    },
+    "service": {
+      "title": "服務｜HODES - 荷馬桑 Homer Shie",
+      "description": "提供平面設計、動態設計、插畫創作、UI/UX 設計、3D、網頁前端設計等專業服務。長期與 Garmin 合作，累積超過 90+ 件專案成功經驗。",
+      "twitter_description": "提供平面設計、動態設計、插畫創作、UI/UX 設計、3D、網頁前端設計等專業服務。長期與 Garmin 合作。"
+    },
+    "contact": {
+      "title": "聯絡我｜HODES - 荷馬桑 Homer Shie",
+      "description": "有任何設計需求或合作機會嗎？歡迎透過表單、電子郵件 homerxworkshop{'@'}gmail.com 與我聯繫。位於新北市板橋區，提供平面設計、動態設計、插畫等專業服務。",
+      "twitter_description": "有任何設計需求或合作機會嗎？歡迎透過表單、電子郵件與我聯繫。"
+    },
+    "portfolio": {
+      "title": "作品集｜HODES - 荷馬桑 Homer Shie",
+      "description": "荷馬桑的作品集，包含平面設計、UI/UX、插畫、動畫、品牌設計等 90+ 件作品"
+    },
+    "blog": {
+      "title": "部落格｜HODES - 荷馬桑 Homer Shie",
+      "title_paged": "部落格 - 第 {page} 頁｜HODES - 荷馬桑 Homer Shie",
+      "description": "荷馬桑的部落格文章列表，分享視覺風格、設計理念與創作心得",
+      "description_paged": "荷馬桑的部落格文章列表，分享視覺風格、設計理念與創作心得，第 {page} 頁"
+    },
+    "404": {
+      "title": "404 - 頁面未找到｜HODES"
+    }
+  },
+  "404": {
+    "title": "頁面未找到",
+    "message": "抱歉，您訪問的頁面不存在。",
+    "back_home": "返回首頁"
+  },
+  "structured_data": {
+    "person_description": "來自台灣的全端設計師，擅長 UI/UX 設計、動態設計與前端開發",
+    "person_job_title": "全端設計師 / 插畫家 / 動畫師",
+    "website_description": "HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的全端設計師，擅長 UI/UX 設計、動態設計與前端開發",
+    "website_language": "zh-TW"
+  }
+}

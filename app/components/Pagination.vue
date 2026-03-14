@@ -5,11 +5,11 @@
       <li class="page-item" :class="{ disabled: currentPage === 1 }">
         <NuxtLink v-if="currentPage > 1" :to="`${baseUrl}/${currentPage - 1}`" class="page-link">
           <i class="fas fa-chevron-left"></i>
-          <span class="ml-2">上一頁</span>
+          <span class="ml-2">{{ t('pagination.prev') }}</span>
         </NuxtLink>
         <span v-else class="page-link disabled">
           <i class="fas fa-chevron-left"></i>
-          <span class="ml-2">上一頁</span>
+          <span class="ml-2">{{ t('pagination.prev') }}</span>
         </span>
       </li>
 
@@ -33,11 +33,11 @@
           :to="`${baseUrl}/${currentPage + 1}`"
           class="page-link"
         >
-          <span class="mr-2">下一頁</span>
+          <span class="mr-2">{{ t('pagination.next') }}</span>
           <i class="fas fa-chevron-right"></i>
         </NuxtLink>
         <span v-else class="page-link disabled">
-          <span class="mr-2">下一頁</span>
+          <span class="mr-2">{{ t('pagination.next') }}</span>
           <i class="fas fa-chevron-right"></i>
         </span>
       </li>
@@ -51,6 +51,8 @@ import { computed } from 'vue'
 defineOptions({
   name: 'BlogPagination',
 })
+
+const { t } = useI18n()
 
 const props = defineProps({
   currentPage: {

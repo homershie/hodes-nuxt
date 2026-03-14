@@ -1,0 +1,358 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "service": "Services",
+    "portfolio": "Works",
+    "blog": "Blog",
+    "contact": "Contact",
+    "logo_aria": "Back to Home",
+    "instagram_aria": "View Homer's work on Instagram",
+    "github_aria": "View Homer's code on GitHub",
+    "medium_aria": "Read Homer's articles on Medium"
+  },
+  "home": {
+    "about_me": "About Me",
+    "download_resume": "Download Resume",
+    "download_aria": "Download Resume",
+    "years_label": "Yrs",
+    "experience_label": "Experience",
+    "service_link": "My Services",
+    "service_aria": "Go to Services page",
+    "portfolio_link": "My Portfolio",
+    "instagram_aria": "Instagram",
+    "github_aria": "GitHub",
+    "medium_aria": "Medium",
+    "pinterest_aria": "Pinterest",
+    "subtitle": "Visual Designer / Motion Designer",
+    "name": "Hi, I'm Homer Shie",
+    "contact_cta": "Contact Me",
+    "greeting": "Hello, I'm a",
+    "headline_words": [
+      "Full Stack Designer",
+      "Frontend Developer",
+      "Visual Artist",
+      "Folk Guitarist",
+      "ACG Observer",
+      "Meme Researcher",
+      "Fitness Enthusiast"
+    ],
+    "h1_line1": "9 Years of Visual Expertise",
+    "h1_line2": "Full-Stack & Interactive Dev",
+    "h1_line3_before": "Fusing",
+    "h1_highlight": "Aesthetics & Logic",
+    "h1_line3_after": "",
+    "bio": "I'm Homer, a visual designer with 9 years of experience, now focused on Vue / React frontend development. I transform complex logic into intuitive visual language, capable of defining a product's visual depth and independently delivering the full loop from UI/UX to frontend implementation. I've collaborated long-term with Garmin and received recognition from a Pixar animator during college. I believe AI tools streamline workflows, but great products need more than stable code — they need a visual soul that resonates with users.",
+    "projects_count_label": "",
+    "projects_sublabel": "Projects Done",
+    "software_count": "10",
+    "software_label": "",
+    "software_sublabel": "Tools Mastered",
+    "contact_cta2": "Let's Talk!",
+    "loading": "Loading... {percent}%",
+    "profile_alt": "Homer Shie profile photo"
+  },
+  "about": {
+    "section_label": "About",
+    "subtitle": "9 years of visual experience, bringing design concepts to life through code.\nI focus on transforming complex logic into intuitive, dynamic digital experiences.",
+    "h3_line1": "I'm Homer",
+    "h3_mid": "A",
+    "h3_highlight": "\"Full Stack Designer\"",
+    "bio_p1": "Over the past 9 years of visual design, I've deeply participated in diverse commercial projects on a freelance basis. I worked long-term with Garmin, transforming complex wearable device interfaces into compelling visual experiences — the \"Muse of Thursday\" collaboration honed my precision in motion timing. Years of collaboration across industries gave me deep insight into cross-disciplinary communication.",
+    "bio_p2": "To bridge the gap between design and engineering, I dove into full-stack development, culminating in the MemeDam project. More than a technical exercise, it was a complete product architecture practice — from database ERD design and Redis cache optimization to frontend interactive animations. I love turning static designs into \"working logic\" through code.",
+    "bio_p3": "As an INTJ, I naturally seek rational, systematic paths within sensory creative work. Whether it's body composition management, playing rock guitar, or immersing in ACG culture — these interests ultimately feed back into my design. I'm not just a visual builder; I'm a logic weaver, committed to making aesthetics more than surface-level, backed by technical depth.",
+    "feat_uiux": "UI/UX Design",
+    "feat_motion": "Motion Graphics",
+    "feat_fullstack": "Full Stack Dev",
+    "feat_3d": "3D Animation",
+    "email_label": "Email",
+    "profile_alt": "Homer Shie profile photo",
+    "skills_section_label": "My Skills",
+    "skills_heading": "Core Tools",
+    "design_category": "Design & Motion",
+    "dev_category": "Development",
+    "capabilities_section_label": "My Capabilities",
+    "capabilities_heading": "Core Competencies",
+    "resume_section_label": "My Resume",
+    "resume_heading": "Education & Work Experience",
+    "capabilities": [
+      {
+        "id": 1,
+        "icon": "mdi:monitor-dashboard",
+        "title": "UI/UX & Interface Design",
+        "summary": "From wearables to responsive web — integrating information architecture and visual aesthetics within constrained screen real estate.",
+        "items": [
+          {
+            "label": "Multi-platform Interface Planning",
+            "desc": "Collaborated with Garmin to develop wearable device interfaces, skilled at reorganizing information architecture within extreme screen constraints while balancing aesthetics and readability."
+          },
+          {
+            "label": "Responsive Web Design (RWD)",
+            "desc": "Layouts planned for Desktop, Tablet, and Mobile — using CSS Grid/Flexbox to achieve pixel-perfect implementation."
+          },
+          {
+            "label": "Design System Construction",
+            "desc": "Building design standards with a component-driven mindset, defining Design Tokens (colors, typography, spacing) to ensure consistency between design and development."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "icon": "mdi:play-circle-outline",
+        "title": "Visual & Motion Design",
+        "summary": "Blending brand narrative with motion language, transforming static visuals into memorable animated experiences.",
+        "items": [
+          {
+            "label": "Brand Identity & Visual Storytelling",
+            "desc": "Expert at conveying brand value through visual language for brand identities, key visuals, and banners — serving international commercial projects."
+          },
+          {
+            "label": "Motion Graphics Design",
+            "desc": "Combining After Effects with frontend code to transform brand visuals into narrative-driven motion web experiences that strengthen user memory."
+          },
+          {
+            "label": "Illustration & Style Creation",
+            "desc": "Skilled in both traditional and digital illustration, crafting custom styles (including Japanese ACG aesthetics) for key visuals and UI elements."
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "icon": "mdi:code-braces",
+        "title": "High-Fidelity Prototype Development",
+        "summary": "Beyond mockups — using code to precisely validate interaction logic and close the gap between design and development.",
+        "items": [
+          {
+            "label": "Code-based Interactive Prototypes",
+            "desc": "Using React.js / Vue.js / HTML / CSS to build fully operable high-fidelity prototypes that accurately simulate complex interaction logic and motion feel before development."
+          },
+          {
+            "label": "Micro-interaction Design",
+            "desc": "Focused on button feedback, transition effects, and other details — using GSAP and CSS Animation to enhance smoothness and delight."
+          },
+          {
+            "label": "Full-stack Product Solo Implementation",
+            "desc": "From Wireframe, ERD, system architecture design to deployment — proven ability to independently complete an entire product development cycle."
+          }
+        ]
+      }
+    ],
+    "experiences": [
+      {
+        "id": 1,
+        "period": "2025 - Present",
+        "title": "Frontend Engineering & Product Development",
+        "company": "Independent Developer",
+        "description": "Focused on dual-framework development with React/Next.js and Vue/Nuxt3, currently leading the continuous iteration of AniDaze, an anime calendar platform. Demonstrated full-stack capability through MemeDam, where I personally designed the ERD schema, RESTful API, and implemented Redis cache optimization. Committed to transforming nine years of design sensibility into high-quality engineering logic."
+      },
+      {
+        "id": 2,
+        "period": "2019 - Present",
+        "title": "Senior Visual & Motion Designer",
+        "company": "Freelance",
+        "description": "Long-term collaborations with international brands such as Garmin, responsible for smart watch face visual integration and motion effects. Projects include major collaborations like \"Muse of Thursday,\" excelling at creating smooth animation experiences under extreme performance constraints. Full visual solution capabilities from brand identity to 3D modeling and UI/UX design."
+      },
+      {
+        "id": 3,
+        "period": "2023 - 2025",
+        "title": "Senior Art Editor",
+        "company": "Wenli Co., Ltd.",
+        "description": "Transitioned to part-time design for stable income, participating in children's English educational material publishing projects. Responsible for illustration, layout, packaging design, and brand visual integration. Balanced project quality with deadlines while actively preparing for a frontend engineering career transition."
+      },
+      {
+        "id": 4,
+        "period": "2018 - 2019",
+        "title": "Visual Designer",
+        "company": "Taiwan Nacodejie Co., Ltd.",
+        "description": "Responsible for product visuals and website materials for ginger health products, focusing on brand positioning and marketing conversion. Assisted the marketing team in optimizing website visuals and user experience to improve brand recognition and product exposure."
+      },
+      {
+        "id": 5,
+        "period": "2013 - 2017",
+        "title": "Department of Applied Arts",
+        "company": "Fu Jen Catholic University",
+        "description": "Majored in visual design and applied arts, focusing on concept development, visual communication, and user-centered design. Actively participated in freelance work alongside studies, building industry experience early and establishing a strong foundation in visual creativity and innovative thinking."
+      }
+    ]
+  },
+  "service": {
+    "section_label": "My Services",
+    "heading": "How can I make your vision shine?",
+    "pricing_label": "Collaboration Plans",
+    "pricing_heading": "Let Great Design Be a Worthy Investment",
+    "pricing_desc": "I value in-depth communication with every client, committed to understanding needs, solving design challenges, and creating real value through professional visual language.",
+    "price_negotiable": "Negotiable",
+    "contact_btn": "Contact Me",
+    "projects_suffix": "+ Projects",
+    "brand_text": "Over {count}+ successful project collaborations",
+    "services": {
+      "graphic_design": {
+        "name": "Graphic Design",
+        "description": "Expert in brand identity, marketing visuals, and key visual design. Every decision — from color planning to layout composition — centers on communicating brand value, helping your visuals make an immediate impact."
+      },
+      "motion_design": {
+        "name": "Motion Design",
+        "description": "Creating narrative-driven motion graphics with After Effects. Produced complete animations for the Garmin × Muse of Thursday watch face collaboration. Infusing static visuals with soul, leaving a lasting impression with every play."
+      },
+      "illustration": {
+        "name": "Illustration",
+        "description": "Skilled in both traditional and digital illustration across styles — ACG, minimalist, fantasy, and brand characters. Every illustration isn't just an image; it's a visual language that precisely speaks to its audience."
+      },
+      "uiux": {
+        "name": "UI/UX Design",
+        "description": "Long-term collaboration with Garmin on wearable device interface design, skilled at reorganizing information architecture within constrained screen space. Design System thinking ensures consistency from components to pages."
+      },
+      "3d": {
+        "name": "3D",
+        "description": "Building three-dimensional scenes and characters with Blender and 3ds Max, turning concepts into tangible visual reality. Bringing brands and marketing beyond the flat page into an imaginative new dimension."
+      },
+      "web_frontend": {
+        "name": "Web Frontend Design",
+        "description": "Implemented with React/Next or Vue/Nuxt, combined with GSAP micro-interactions and ScrollTrigger — creating websites where visual impact and smooth operation coexist. Design and engineering delivered by one person, ensuring pixel-perfect output."
+      }
+    },
+    "plans": {
+      "graphic": {
+        "title": "Graphic Design Plan",
+        "features": [
+          "Graphic Design Services",
+          "Brand Identity Design",
+          "Illustration",
+          "Key Visual Design"
+        ]
+      },
+      "motion": {
+        "title": "Motion Design Plan",
+        "features": [
+          "Motion Design & Animation",
+          "3D Visual Effects",
+          "Video Effects & Editing",
+          "UI/UX Interface Design"
+        ]
+      }
+    }
+  },
+  "contact": {
+    "section_label": "Contact Me",
+    "heading": "Feel free to reach out with any questions.",
+    "address": "Banqiao District, New Taipei City, Taiwan",
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "subject": "Subject",
+      "message": "Your Message",
+      "message_placeholder": "Please describe your needs, budget range, project timeline, etc...",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "Failed to send. Please try again later.",
+      "spam_error": "Too many submissions. Please try again later."
+    }
+  },
+  "portfolio": {
+    "section_label": "My Works",
+    "h3_line1": "Through Visual Methods",
+    "h3_line2": "Giving Meaning to Everything",
+    "all_works": "All Works",
+    "all_shown": "All works displayed",
+    "loading": "Loading... {percent}%",
+    "view_aria": "View {title} details",
+    "date_label": "Date",
+    "category_label": "Category",
+    "client_label": "Client",
+    "link_label": "Link"
+  },
+  "blog": {
+    "section_label": "Blog",
+    "heading": "Expand Your Vision",
+    "read_more": "Read More",
+    "prev_article": "Previous",
+    "next_article": "Next",
+    "back_to_blog": "Back to Blog",
+    "article_not_found": "Article not found"
+  },
+  "sidebar": {
+    "search_placeholder": "Search articles",
+    "categories_title": "Categories",
+    "all_posts": "All Posts",
+    "latest_posts": "Latest Posts"
+  },
+  "pagination": {
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "breadcrumb": {
+    "nav_aria": "Breadcrumb navigation",
+    "link_aria": "Go to {name}",
+    "home": "Home",
+    "portfolio": "Portfolio"
+  },
+  "related": {
+    "heading": "Related Works",
+    "subtitle": "You might also like these works",
+    "view_all": "View All Works",
+    "view_aria": "View {title}",
+    "view_detail_aria": "View {title} details"
+  },
+  "validation": {
+    "name_required": "Please enter your name",
+    "name_min": "Name must be at least 2 characters",
+    "name_max": "Name cannot exceed 50 characters",
+    "name_format": "Name can only contain letters and spaces",
+    "email_required": "Please enter your email",
+    "email_format": "Please enter a valid email address",
+    "subject_max": "Subject cannot exceed 100 characters",
+    "message_required": "Please enter your message",
+    "message_min": "Message must be at least 10 characters",
+    "message_max": "Message cannot exceed 1000 characters",
+    "message_spam": "Message content is inappropriate"
+  },
+  "seo": {
+    "page_title_base": "HODES｜Homer Shie｜Design · Illustration · Animation · Art｜Taipei",
+    "page_title_suffix": "｜HODES｜Homer Shie｜Design · Illustration · Animation · Art｜Taipei",
+    "home": {
+      "title": "HODES - Homer Shie｜Full Stack Designer",
+      "description": "HODES is Homer Shie's personal website. A Full Stack Designer with 9 years of visual design experience spanning UI/UX, motion design, and frontend development — dedicated to deeply integrating design aesthetics with engineering logic.",
+      "twitter_description": "Full Stack Designer from Taiwan with 9 years of visual design experience — UI/UX, motion design, and frontend development. Let's connect!"
+    },
+    "about": {
+      "title": "About｜HODES - Homer Shie",
+      "description": "Learn about Homer Shie's design journey and development capabilities. 9 years of visual design experience with UI/UX, motion design, and full-stack development — bridging design and engineering as a Full Stack Designer.",
+      "twitter_description": "9 years of visual design × full-stack development — a complete introduction to Homer Shie's design journey, core competencies, and tech stack."
+    },
+    "service": {
+      "title": "Services｜HODES - Homer Shie",
+      "description": "Professional services in graphic design, motion design, illustration, UI/UX design, 3D, and web frontend design. Long-term Garmin collaborator with 90+ successful projects.",
+      "twitter_description": "Professional services in graphic design, motion design, illustration, UI/UX, 3D, and web frontend design. Long-term Garmin collaborator."
+    },
+    "contact": {
+      "title": "Contact｜HODES - Homer Shie",
+      "description": "Have a design project or collaboration opportunity? Reach out via form or email at homerxworkshop{'@'}gmail.com. Based in New Taipei City, providing graphic design, motion design, illustration, and more.",
+      "twitter_description": "Have a design project or collaboration? Feel free to reach out via form or email."
+    },
+    "portfolio": {
+      "title": "Portfolio｜HODES - Homer Shie",
+      "description": "Homer Shie's portfolio featuring 90+ works in graphic design, UI/UX, illustration, animation, and brand design"
+    },
+    "blog": {
+      "title": "Blog｜HODES - Homer Shie",
+      "title_paged": "Blog - Page {page}｜HODES - Homer Shie",
+      "description": "Homer Shie's blog — sharing visual styles, design philosophy, and creative insights",
+      "description_paged": "Homer Shie's blog — sharing visual styles, design philosophy, and creative insights, page {page}"
+    },
+    "404": {
+      "title": "404 - Page Not Found｜HODES"
+    }
+  },
+  "404": {
+    "title": "Page Not Found",
+    "message": "Sorry, the page you visited does not exist.",
+    "back_home": "Back to Home"
+  },
+  "structured_data": {
+    "person_description": "Full Stack Designer from Taiwan, specializing in UI/UX design, motion design, and frontend development",
+    "person_job_title": "Full Stack Designer / Illustrator / Animator",
+    "website_description": "HODES is Homer Shie's personal website. A Full Stack Designer from Taiwan specializing in UI/UX design, motion design, and frontend development.",
+    "website_language": "en"
+  }
+}

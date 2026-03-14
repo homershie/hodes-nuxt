@@ -1,37 +1,24 @@
 /**
  * 統一的頁面標題格式管理
- * 格式：頁面名稱｜HOEDES｜荷馬桑 Homer Shie｜設計 ‧ 插畫 ‧ 動畫 ‧ 藝術 | 台北
+ * 格式：頁面名稱 | HODES | Homer Shie | ...
  */
 export const usePageTitle = () => {
-  const baseTitle = 'HOEDES｜荷馬桑 Homer Shie｜設計 ‧ 插畫 ‧ 動畫 ‧ 藝術 | 台北'
-  const suffix = '｜HOEDES｜荷馬桑 Homer Shie｜設計 ‧ 插畫 ‧ 動畫 ‧ 藝術 | 台北'
+  const { t } = useI18n()
 
-  /**
-   * 生成完整的頁面標題
-   * @param {string} pageName - 頁面名稱
-   * @returns {string} 完整標題
-   */
   const getPageTitle = pageName => {
-    if (!pageName) return baseTitle
-    return `${pageName}${suffix}`
+    if (!pageName) return t('seo.page_title_base')
+    return `${pageName}${t('seo.page_title_suffix')}`
   }
 
-  /**
-   * 設定頁面 SEO 標題
-   * @param {string} pageName - 頁面名稱
-   */
   const setPageTitle = pageName => {
-    // 使用 Nuxt 的 useSeoMeta（全域可用）
     if (typeof useSeoMeta !== 'undefined') {
       useSeoMeta({
-        title: getPageTitle(pageName),
+        title: computed(() => getPageTitle(pageName)),
       })
     }
   }
 
   return {
-    baseTitle,
-    suffix,
     getPageTitle,
     setPageTitle,
   }

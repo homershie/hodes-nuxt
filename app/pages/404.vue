@@ -3,17 +3,23 @@
     <div class="container">
       <div class="text-center">
         <h1>404</h1>
-        <h2>頁面未找到</h2>
-        <p>抱歉，您訪問的頁面不存在。</p>
-        <router-link to="/" class="btn btn-primary">返回首頁</router-link>
+        <h2>{{ t('404.title') }}</h2>
+        <p>{{ t('404.message') }}</p>
+        <NuxtLink :to="localePath('/')" class="btn btn-primary">{{ t('404.back_home') }}</NuxtLink>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+const { t } = useI18n()
+const localePath = useLocalePath()
+
+useSeoMeta({
+  title: computed(() => t('seo.404.title')),
+})
+
 useHead({
-  title: '404 - 頁面未找到 | HODES',
   meta: [{ name: 'robots', content: 'noindex, nofollow' }],
 })
 </script>

@@ -9,10 +9,10 @@
               <div class="d-inline-block">
                 <div class="sub-title-icon d-flex align-items-center">
                   <span class="icon fas fa-sticky-note"></span>
-                  <h6>部落格</h6>
+                  <h6>{{ t('blog.section_label') }}</h6>
                 </div>
               </div>
-              <h3>開啟你的視界</h3>
+              <h3>{{ t('blog.heading') }}</h3>
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@
                 :key="post.id"
                 class="item pb-50 mb-50 bord-thin-bottom blog-post"
               >
-                <NuxtLink :to="`/article/${post.id}`">
+                <NuxtLink :to="localePath(`/article/${post.id}`)">
                   <div class="img">
                     <OptimizedImage :src="post.image" :alt="post.title" priority="normal" />
                   </div>
@@ -48,13 +48,13 @@
                 <div class="cont mt-30">
                   <span class="date mb-10">{{ formatDate(post.date) }}</span>
                   <h4 class="mb-15 post-title">
-                    <NuxtLink :to="`/article/${post.id}`">
+                    <NuxtLink :to="localePath(`/article/${post.id}`)">
                       {{ post.title }}
                     </NuxtLink>
                   </h4>
                   <p>{{ post.excerpt }}</p>
-                  <NuxtLink :to="`/article/${post.id}`" class="mt-15 read-more">
-                    閱讀更多 <i class="fas fa-arrow-right ml-10"></i>
+                  <NuxtLink :to="localePath(`/article/${post.id}`)" class="mt-15 read-more">
+                    {{ t('blog.read_more') }} <i class="fas fa-arrow-right ml-10"></i>
                   </NuxtLink>
                 </div>
               </div>
@@ -65,7 +65,7 @@
               v-if="totalPages > 1"
               :current-page="currentPage"
               :total-pages="totalPages"
-              :base-url="'/blog/page'"
+              :base-url="paginationBaseUrl"
             />
           </div>
 
@@ -90,6 +90,10 @@
 import { ref, computed } from 'vue'
 import { articles as legacyArticles } from '@data/articleData.js'
 import categories from '../../../../content/config/categories.json'
+
+const { t, locale } = useI18n()
+const localePath = useLocalePath()
+const paginationBaseUrl = computed(() => localePath('/blog/page'))
 // 不再自動從 body 擷取，僅使用 frontmatter 與舊資料作為回退
 
 // 取得路由參數
@@ -211,7 +215,7 @@ function handleSearch(query) {
   searchQuery.value = query
   // 搜尋後回到第一頁
   if (currentPage.value !== 1) {
-    navigateTo('/blog/page/1')
+    navigateTo(localePath('/blog/page/1'))
   }
 }
 
@@ -220,14 +224,14 @@ function handleCategory(category) {
   selectedCategory.value = category
   // 篩選後回到第一頁
   if (currentPage.value !== 1) {
-    navigateTo('/blog/page/1')
+    navigateTo(localePath('/blog/page/1'))
   }
 }
 
 // 日期格式化
 function formatDate(dateString) {
   const date = new Date(dateString)
-  return date.toLocaleDateString('zh-TW', {
+  return date.toLocaleDateString(locale.value, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -235,48 +239,17 @@ function formatDate(dateString) {
 }
 
 // SEO Meta
-const pageTitle = computed(() => {
-  if (currentPage.value === 1) {
-    return '部落格 | HODES - 荷馬桑 Homer Shie'
-  }
-  return `部落格 - 第 ${currentPage.value} 頁 | HODES`
-})
-
-const pageDescription = computed(() => {
-  if (searchQuery.value) {
-    return `搜尋「${searchQuery.value}」的部落格文章`
-  }
-  if (selectedCategory.value !== 'all') {
-    const categoryName = categories[selectedCategory.value]?.name || selectedCategory.value
-    return `${categoryName} 分類的部落格文章，第 ${currentPage.value} 頁`
-  }
-  return `荷馬桑的部落格文章列表，分享視覺風格、設計理念與創作心得，第 ${currentPage.value} 頁`
-})
-
-useHead({
-  title: pageTitle,
-  meta: [
-    { name: 'description', content: pageDescription },
-    { property: 'og:title', content: pageTitle },
-    { property: 'og:description', content: pageDescription },
-    { property: 'og:url', content: `https://homershie.com/blog/page/${currentPage.value}` },
-    // 新增 og:image
-    {
-      property: 'og:image',
-      content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg',
-    },
-    { property: 'og:type', content: 'website' },
-    // 新增 Twitter Card
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: pageTitle },
-    { name: 'twitter:description', content: pageDescription },
-    {
-      name: 'twitter:image',
-      content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg',
-    },
-    { name: 'robots', content: 'index, follow' },
-  ],
-  link: [{ rel: 'canonical', href: `https://homershie.com/blog/page/${currentPage.value}` }],
+useSeoMeta({
+  title: computed(() =>
+    currentPage.value === 1
+      ? t('seo.blog.title')
+      : t('seo.blog.title_paged', { page: currentPage.value })
+  ),
+  description: computed(() =>
+    currentPage.value === 1
+      ? t('seo.blog.description')
+      : t('seo.blog.description_paged', { page: currentPage.value })
+  ),
 })
 
 // 404 處理

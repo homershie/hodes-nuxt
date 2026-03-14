@@ -51,6 +51,7 @@ export function usePortfolioSchema(works) {
 }
 
 export function usePersonSchema() {
+  const { t } = useI18n()
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -58,27 +59,25 @@ export function usePersonSchema() {
     alternateName: '荷馬桑',
     url: 'https://homershie.com',
     image: 'https://r2bucket.homershie.com/assets/imgs/favicon_homer.png',
-    description: '來自台灣的自由接案工作者，擅長平面設計、插畫以及動畫',
-    jobTitle: '平面設計師 / 插畫家 / 動畫師',
+    description: t('structured_data.person_description'),
+    jobTitle: t('structured_data.person_job_title'),
     worksFor: {
       '@type': 'Organization',
       name: 'HODES',
     },
-    sameAs: [
-      // 可以加入社群媒體連結
-    ],
+    sameAs: [],
   }
 }
 
 export function useWebsiteSchema() {
+  const { t } = useI18n()
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'HODES',
-    description:
-      'HODES 是荷馬桑 Homer Shie 的個人網站，來自台灣的自由接案工作者，擅長平面設計、插畫以及動畫',
+    description: t('structured_data.website_description'),
     url: 'https://homershie.com',
-    inLanguage: 'zh-TW',
+    inLanguage: t('structured_data.website_language'),
     publisher: {
       '@type': 'Person',
       name: 'Homer Shie',

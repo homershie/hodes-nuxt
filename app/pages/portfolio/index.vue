@@ -8,12 +8,12 @@
             <div class="d-inline-block">
               <div class="sub-title-icon d-flex align-items-center">
                 <span class="icon fas fa-briefcase"></span>
-                <h6>我的作品</h6>
+                <h6>{{ t('portfolio.section_label') }}</h6>
               </div>
             </div>
             <h3>
-              透過視覺方法 <br />
-              讓萬物賦予意義
+              {{ t('portfolio.h3_line1') }} <br />
+              {{ t('portfolio.h3_line2') }}
             </h3>
           </div>
         </div>
@@ -52,7 +52,7 @@
 
       <!-- 全部載入完成提示 -->
       <div v-if="!hasMore && displayedWorks.length > 0" class="text-center mt-50">
-        <p class="text-muted">已顯示全部作品</p>
+        <p class="text-muted">{{ t('portfolio.all_shown') }}</p>
       </div>
     </div>
   </section>
@@ -65,6 +65,9 @@ import { useScroll, useIntersectionObserver } from '@vueuse/core'
 import PortfolioList from '@components/PortfolioList.vue'
 import { usePortfolio } from '@composables/usePortfolio.js'
 import { useImageCache } from '@composables/useImageCache'
+
+const { t } = useI18n()
+const localePath = useLocalePath()
 
 const router = useRouter()
 const route = useRoute()
@@ -170,7 +173,7 @@ async function handleCategoryChange(category) {
 
 // 查看詳情
 function handleViewDetails(work) {
-  router.push(`/project/${work.id}`)
+  router.push(localePath('/project/' + work.id))
 }
 
 // 處理 tag 點擊
@@ -185,7 +188,7 @@ function handleTagClick(tag) {
 
 // 分類名稱
 function getCategoryName(category) {
-  if (category === 'all') return '全部作品'
+  if (category === 'all') return t('portfolio.all_works')
   return category
 }
 
@@ -233,44 +236,9 @@ onUnmounted(() => {
 })
 
 // SEO Meta
-const pageTitle = computed(() => {
-  if (selectedCategory.value !== 'all') {
-    return `${selectedCategory.value} 作品集 | HODES - 荷馬桑 Homer Shie`
-  }
-  return '作品集 | HODES - 荷馬桑 Homer Shie'
-})
-
-const pageDescription = computed(() => {
-  if (selectedCategory.value !== 'all') {
-    return `荷馬桑的 ${selectedCategory.value} 作品集，展示設計、插畫、動畫等創作`
-  }
-  return '荷馬桑的作品集，包含平面設計、UI/UX、插畫、動畫、品牌設計等 90+ 件作品'
-})
-
-useHead({
-  title: pageTitle,
-  meta: [
-    { name: 'description', content: pageDescription },
-    { property: 'og:title', content: pageTitle },
-    { property: 'og:description', content: pageDescription },
-    { property: 'og:url', content: 'https://homershie.com/portfolio' },
-    // 新增 og:image
-    {
-      property: 'og:image',
-      content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/og-image.jpg',
-    },
-    { property: 'og:type', content: 'website' },
-    // 新增 Twitter Card
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: pageTitle },
-    { name: 'twitter:description', content: pageDescription },
-    {
-      name: 'twitter:image',
-      content: 'https://r2bucket.homershie.com/assets/imgs/thumbnail/twitter-card.jpg',
-    },
-    { name: 'robots', content: 'index, follow' },
-  ],
-  link: [{ rel: 'canonical', href: 'https://homershie.com/portfolio' }],
+useSeoMeta({
+  title: computed(() => t('seo.portfolio.title')),
+  description: computed(() => t('seo.portfolio.description')),
 })
 </script>
 

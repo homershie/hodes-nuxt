@@ -2,15 +2,15 @@
   <section v-if="relatedWorks.length > 0" class="related-works section-padding">
     <div class="container">
       <div class="sec-head mb-50">
-        <h3 class="fw-600">相關作品</h3>
-        <p>您可能也會喜歡這些作品</p>
+        <h3 class="fw-600">{{ t('related.heading') }}</h3>
+        <p>{{ t('related.subtitle') }}</p>
       </div>
       <div class="row">
         <div v-for="work in relatedWorks" :key="work.id" class="col-lg-4 col-md-6 mb-30">
           <NuxtLink
-            :to="`/project/${work.id}`"
+            :to="localePath(`/project/${work.id}`)"
             class="related-work-card"
-            :aria-label="`查看 ${work.title}`"
+            :aria-label="t('related.view_aria', { title: work.title })"
           >
             <div class="img-wrapper">
               <img
@@ -44,7 +44,7 @@
                 <div class="arrow">
                   <a
                     href="#0"
-                    :aria-label="`查看 ${work.title} 詳情`"
+                    :aria-label="t('related.view_detail_aria', { title: work.title })"
                     @click.prevent="viewDetails(work)"
                   >
                     <svg
@@ -66,7 +66,7 @@
         </div>
       </div>
       <div class="text-center mt-50">
-        <NuxtLink to="/portfolio" class="btn btn-primary"> 查看所有作品 </NuxtLink>
+        <NuxtLink :to="localePath('/portfolio')" class="btn btn-primary">{{ t('related.view_all') }}</NuxtLink>
       </div>
     </div>
   </section>
@@ -76,6 +76,9 @@
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { usePortfolio } from '@composables/usePortfolio.js'
+
+const { t } = useI18n()
+const localePath = useLocalePath()
 
 const props = defineProps({
   currentWorkId: {
@@ -96,11 +99,11 @@ const relatedWorks = computed(() => {
 })
 
 function viewDetails(work) {
-  router.push(`/project/${work.id}`)
+  router.push(localePath(`/project/${work.id}`))
 }
 
 function handleTagClick(tag) {
-  router.push({ path: '/portfolio', query: { category: tag } })
+  router.push({ path: localePath('/portfolio'), query: { category: tag } })
 }
 </script>
 
