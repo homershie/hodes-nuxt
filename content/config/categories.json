@@ -2,16 +2,36 @@
   "GraphicStyle": {
     "id": "GraphicStyle",
     "name": "視覺風格大全",
-    "description": "探索各種視覺設計風格的歷史、特色與應用"
+    "nameEn": "Visual Style Guide",
+    "description": "探索各種視覺設計風格的歷史、特色與應用",
+    "descriptionEn": "Explore the history, characteristics, and application of visual design styles"
   },
   "WorldVision": {
     "id": "WorldVision",
     "name": "世界視界",
-    "description": "分享世界各地的設計文化與創意靈感"
+    "nameEn": "World Vision",
+    "description": "分享世界各地的設計文化與創意靈感",
+    "descriptionEn": "Design culture and creative inspiration from around the world"
   },
   "Philosophy": {
     "id": "Philosophy",
     "name": "哲學思辨",
-    "description": "探索哲學思考與人生議題"
+    "nameEn": "Philosophy",
+    "description": "探索哲學思考與人生議題",
+    "descriptionEn": "Exploring philosophical thinking and life topics"
+  },
+  "Development": {
+    "id": "Development",
+    "name": "開發筆記",
+    "nameEn": "Development",
+    "description": "分享開發過程中的筆記與心得",
+    "descriptionEn": "Notes and insights from the development process"
+  },
+  "Relationships": {
+    "id": "Relationships",
+    "name": "關係探討",
+    "nameEn": "Relationships",
+    "description": "探討人際與親密關係的種種面向",
+    "descriptionEn": "Exploring aspects of interpersonal and intimate relationships"
   }
 }

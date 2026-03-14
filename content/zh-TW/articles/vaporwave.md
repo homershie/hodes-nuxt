@@ -8,6 +8,7 @@ excerpt: "​「對酒當歌，人生幾何！譬如朝露，去日苦多。」 
 image: https://r2bucket.homershie.com/assets/imgs/blog/vaporwave.jpg
 thumbnail: https://r2bucket.homershie.com/assets/imgs/blog/vaporwave.jpg
 author: Homer Shie
+lang: zh-TW
 ---
 
 

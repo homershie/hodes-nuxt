@@ -24,7 +24,7 @@
         <li v-for="(category, key) in categories" :key="key">
           <span>
             <a href="#0" @click.prevent="$emit('update:category', key)">
-              {{ category.name }}
+              {{ getCategoryName(category) }}
             </a>
           </span>
           <span class="ml-auto">{{ getCategoryCount(key) }}</span>
@@ -86,6 +86,10 @@ const props = defineProps({
 })
 
 defineEmits(['update:search', 'update:category'])
+
+function getCategoryName(category) {
+  return locale.value === 'en' && category.nameEn ? category.nameEn : category.name
+}
 
 function getCategoryCount(category) {
   return props.allPosts.filter(post => post.category === category).length

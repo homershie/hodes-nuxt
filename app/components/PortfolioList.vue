@@ -51,7 +51,7 @@
                     class="tag clickable-tag"
                     @click.stop="handleTagClick(tag)"
                   >
-                    {{ tag }}
+                    {{ getCategoryLabel(tag) }}
                   </span>
                 </div>
               </div>
@@ -128,6 +128,11 @@ const emit = defineEmits(['view-details', 'tag-click'])
 
 function viewDetails(work) {
   emit('view-details', work)
+}
+
+function getCategoryLabel(cat) {
+  const tr = t(`portfolioData.categories.${cat}`)
+  return tr && !tr.startsWith('portfolioData.') ? tr : cat
 }
 
 function handleTagClick(tag) {

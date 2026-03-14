@@ -8,6 +8,7 @@ excerpt: "少女、花朵和植物不管何時都是藝術家和設計師們喜�
 image: https://r2bucket.homershie.com/assets/imgs/blog/art-nouveau.jpg
 thumbnail: https://r2bucket.homershie.com/assets/imgs/blog/art-nouveau.jpg
 author: Homer Shie
+lang: zh-TW
 ---
 
 

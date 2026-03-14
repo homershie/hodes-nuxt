@@ -6,10 +6,20 @@ import { portfolio } from './data/portfolioData.js'
 
 const getArticleSlugs = () => {
   try {
-    const articlesDir = fileURLToPath(new URL('./content/articles', import.meta.url))
-    return readdirSync(articlesDir)
-      .filter(filename => filename.endsWith('.md'))
-      .map(filename => filename.replace(/\.md$/, ''))
+    const contentDir = fileURLToPath(new URL('./content', import.meta.url))
+    const slugs = new Set<string>()
+    for (const locale of ['zh-TW', 'en']) {
+      const articlesDir = `${contentDir}/${locale}/articles`
+      try {
+        const files = readdirSync(articlesDir)
+        files
+          .filter(filename => filename.endsWith('.md'))
+          .forEach(filename => slugs.add(filename.replace(/\.md$/, '')))
+      } catch {
+        // 某語系目錄可能不存在
+      }
+    }
+    return Array.from(slugs)
   } catch (error) {
     // eslint-disable-next-line no-console
     console.warn('[prerender] 讀取文章列表失敗：', error instanceof Error ? error.message : error)

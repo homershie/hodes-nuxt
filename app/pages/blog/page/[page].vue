@@ -100,6 +100,22 @@ const paginationBaseUrl = computed(() => localePath('/blog/page'))
 const route = useRoute()
 const currentPage = computed(() => parseInt(route.params.page) || 1)
 
+// 從 path/stem 提取文章 slug（支援 zh-TW/articles/xxx、en/articles/xxx、articles/xxx）
+function getArticleSlug(item) {
+  const p = item.stem || item.path || item._path || ''
+  const match = p.match(/\/?([^/]+)\/articles\/([^/]+)$/) || p.match(/articles\/([^/]+)/)
+  return match ? (match[2] || match[1]) : (item.id || '')
+}
+
+// 判斷文章是否屬於當前語系（依 path/stem 或 frontmatter lang）
+function isArticleForLocale(item, loc) {
+  const meta = typeof item.meta === 'string' ? (() => { try { return JSON.parse(item.meta) } catch { return {} } })() : item.meta || {}
+  const lang = meta?.lang || item.lang
+  if (lang) return lang === loc || lang.replace('_', '-') === loc
+  const p = (item.path || item.stem || item._path || '').toString()
+  return p.includes(`/${loc}/`) || p.startsWith(`${loc}/`)
+}
+
 // 從 Nuxt Content 查詢所有文章 (使用 v3 API)
 // 注意：v3 中只有一個 'content' collection
 const { data: allArticles, error } = await useAsyncData(
@@ -127,15 +143,25 @@ if (import.meta.client) {
   console.log('First article data:', allArticles.value?.[0])
 }
 
+// 從 route 取得當前語系（prerender 時更可靠）
+const currentLocale = computed(() => {
+  const seg = route.path.split('/').filter(Boolean)
+  return seg[0] === 'zh-TW' || seg[0] === 'en' ? seg[0] : locale.value
+})
+
 const allPosts = computed(() => {
-  // 將資料庫返回的資料轉換為文章格式
+  const loc = currentLocale.value
+  // 將資料庫返回的資料轉換為文章格式（依 locale 過濾）
   const articles = (allArticles.value || [])
-    .filter(item => item.path && item.path.startsWith('/articles/'))
+    .filter(item => {
+      const p = item.path || item.stem || item._path || ''
+      return (p.includes('/articles/') || p.includes('articles/')) && isArticleForLocale(item, loc)
+    })
     .map(item => {
       // 解析 meta JSON 欄位獲取 frontmatter 資料；若無 meta，嘗試直接使用項目本身（Nuxt Content 會將 frontmatter 提升為頂層欄位）
       const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || item || {}
-      // 從 stem 中提取文章 ID (移除 'articles/' 前綴)
-      const articleId = item.stem ? item.stem.replace(/^articles\//, '') : meta.id || item.stem
+      // 從 path/stem 提取文章 ID
+      const articleId = getArticleSlug(item) || meta.id || item.stem
       // 僅使用 frontmatter 與舊資料的 excerpt，不自動擷取
       const legacyExcerpt = legacyArticles?.[articleId]?.excerpt || ''
       const computedExcerpt = meta.excerpt || item.excerpt || legacyExcerpt

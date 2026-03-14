@@ -8,6 +8,7 @@ excerpt: "什麼是像素風格？ 像素風格起源於電子遊戲，早期的
 image: https://r2bucket.homershie.com/assets/imgs/blog/pixel-art.jpg
 thumbnail: https://r2bucket.homershie.com/assets/imgs/blog/pixel-art.jpg
 author: Homer Shie
+lang: zh-TW
 ---
 
 

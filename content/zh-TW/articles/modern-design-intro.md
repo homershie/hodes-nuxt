@@ -8,6 +8,7 @@ excerpt: "常常被各種「現代」搞的烏煙瘴氣？這個系列主要幫�
 image: https://r2bucket.homershie.com/assets/imgs/blog/modern-design-intro.jpg
 thumbnail: https://r2bucket.homershie.com/assets/imgs/blog/modern-design-intro.jpg
 author: Homer Shie
+lang: zh-TW
 ---
 
 

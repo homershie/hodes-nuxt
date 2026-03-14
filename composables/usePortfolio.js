@@ -7,13 +7,40 @@ const portfolioData = ref(portfolio)
 const loading = ref(false)
 const error = ref(null)
 
+/** 依語系翻譯作品 title、description、category、client */
+function translateWork(work, t) {
+  const id = String(work.id)
+  const base = `portfolioData.works.${id}`
+
+  const title = t(`${base}.title`)
+  const desc = t(`${base}.description`)
+  const hasTitle = title && !title.startsWith('portfolioData.')
+  const hasDesc = desc && !desc.startsWith('portfolioData.')
+
+  const translated = {
+    ...work,
+    title: hasTitle ? title : work.title,
+    description: hasDesc ? desc : work.description,
+    // category 保留原文（用於 URL/篩選），顯示時由元件用 t() 翻譯
+    category: work.category || [],
+  }
+  const clientKey = `${base}.client`
+  const clientTr = t(clientKey)
+  if (work.client && clientTr && !clientTr.startsWith('portfolioData.')) {
+    translated.client = clientTr
+  }
+  return translated
+}
+
 export function usePortfolio() {
+  const { t } = useI18n()
   const { toWebP } = useImageFormat()
 
-  // 將所有圖片路徑轉換為WebP格式
+  // 將所有圖片路徑轉換為WebP格式，並套用 i18n 翻譯
   const convertPortfolioToWebP = data => {
     return data.map(item => {
-      const newItem = { ...item }
+      const translated = translateWork(item, t)
+      const newItem = { ...translated }
 
       // 轉換主圖
       if (newItem.mainImage) {
@@ -29,18 +56,18 @@ export function usePortfolio() {
     })
   }
 
-  // 使用WebP格式的作品集
+  // 使用WebP格式的作品集（含 i18n 翻譯）
   const webpPortfolioData = computed(() => {
     return convertPortfolioToWebP(portfolioData.value)
   })
 
   // 根據 ID 取得單一作品
   const getWorkById = id => {
-    const work = portfolioData.value.find(work => work.id === parseInt(id))
+    const work = portfolioData.value.find(w => w.id === parseInt(id))
     if (!work) return null
 
-    // 轉換為WebP格式
-    const webpWork = { ...work }
+    const translated = translateWork(work, t)
+    const webpWork = { ...translated }
     if (webpWork.mainImage) {
       webpWork.mainImage = toWebP(webpWork.mainImage)
     }
@@ -51,7 +78,7 @@ export function usePortfolio() {
     return webpWork
   }
 
-  // 根據類別篩選作品
+  // 根據類別篩選作品（category 篩選仍用中文 key，顯示時已翻譯）
   const getWorksByCategory = category => {
     let filtered = []
 
@@ -64,7 +91,7 @@ export function usePortfolio() {
       )
     }
 
-    // 轉換為WebP格式
+    // 轉換為WebP格式並翻譯
     return convertPortfolioToWebP(filtered)
   }
 

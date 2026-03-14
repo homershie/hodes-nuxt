@@ -186,10 +186,11 @@ function handleTagClick(tag) {
   }
 }
 
-// 分類名稱
+// 分類名稱（依語系翻譯）
 function getCategoryName(category) {
   if (category === 'all') return t('portfolio.all_works')
-  return category
+  const tr = t(`portfolioData.categories.${category}`)
+  return tr && !tr.startsWith('portfolioData.') ? tr : category
 }
 
 // 監聽滾動，距底部 500px 時觸發

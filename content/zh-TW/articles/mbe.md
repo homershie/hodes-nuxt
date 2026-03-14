@@ -8,6 +8,7 @@ excerpt: "這幾年的設計風格漸漸走向扁平化、單一化、抽象化�
 image: https://r2bucket.homershie.com/assets/imgs/blog/mbe.jpg
 thumbnail: https://r2bucket.homershie.com/assets/imgs/blog/mbe.jpg
 author: Homer Shie
+lang: zh-TW
 ---
 
 

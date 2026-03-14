@@ -36,7 +36,7 @@
                     class="tag clickable-tag"
                     @click.stop="handleTagClick(tag)"
                   >
-                    {{ tag }}
+                    {{ getCategoryLabel(tag) }}
                   </span>
                 </div>
               </div>
@@ -97,6 +97,11 @@ const { getRelatedWorks } = usePortfolio()
 const relatedWorks = computed(() => {
   return getRelatedWorks(props.currentWorkId, props.limit)
 })
+
+function getCategoryLabel(cat) {
+  const tr = t(`portfolioData.categories.${cat}`)
+  return tr && !tr.startsWith('portfolioData.') ? tr : cat
+}
 
 function viewDetails(work) {
   router.push(localePath(`/project/${work.id}`))

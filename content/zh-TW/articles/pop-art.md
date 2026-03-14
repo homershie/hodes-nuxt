@@ -8,6 +8,7 @@ excerpt: "早在第一次世界大戰期間產生的達達主義思潮，杜象�
 image: https://r2bucket.homershie.com/assets/imgs/blog/pop-art.jpg
 thumbnail: https://r2bucket.homershie.com/assets/imgs/blog/pop-art.jpg
 author: Homer Shie
+lang: zh-TW
 ---
 
 

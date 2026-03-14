@@ -181,12 +181,36 @@ if (articlesError.value && import.meta.server) {
   console.error(`Failed to load articles:`, articlesError.value)
 }
 
-// 從所有文章中找到當前文章
+// 從 path/stem 提取文章 slug（支援 zh-TW/articles/xxx、en/articles/xxx、articles/xxx）
+function getArticleSlug(item: { stem?: string; path?: string; _path?: string; id?: string }) {
+  const p = item.stem || item.path || item._path || ''
+  const match = p.match(/\/?([^/]+)\/articles\/([^/]+)$/) || p.match(/articles\/([^/]+)/)
+  return match ? (match[2] || match[1]) : (item.id || '')
+}
+
+// 判斷文章是否屬於當前語系（依 path/stem 或 frontmatter lang）
+function isArticleForLocale(item: { path?: string; stem?: string; _path?: string; lang?: string; meta?: unknown }, loc: string) {
+  const meta = typeof item.meta === 'string' ? (() => { try { return JSON.parse(item.meta) } catch { return {} } })() : item.meta || {}
+  const lang = (meta as { lang?: string }).lang || item.lang
+  if (lang) return lang === loc || lang.replace('_', '-') === loc
+  const p = (item.path || item.stem || item._path || '').toString()
+  return p.includes(`/${loc}/`) || p.startsWith(`${loc}/`)
+}
+
+// 從 route 取得當前語系（prerender 時更可靠）
+const currentLocale = computed(() => {
+  const seg = route.path.split('/').filter(Boolean)
+  return seg[0] === 'zh-TW' || seg[0] === 'en' ? seg[0] : locale.value
+})
+
+// 從所有文章中找到當前文章（依 locale 過濾）
 const currentArticle = computed(() => {
   if (!allArticles.value) return null
+  const loc = currentLocale.value
   return allArticles.value.find(item => {
-    const itemId = item.stem ? item.stem.replace(/^articles\//, '') : item.id
-    return itemId === articleId
+    if (!isArticleForLocale(item, loc)) return false
+    const slug = getArticleSlug(item)
+    return slug === articleId
   })
 })
 
@@ -236,12 +260,16 @@ const article = computed(() => {
 // 排序文章（按日期降序）
 const sortedArticles = computed(() => {
   if (!allArticles.value) return []
+  const loc = currentLocale.value
 
   return allArticles.value
-    .filter(item => item.path && item.path.startsWith('/articles/'))
+    .filter(item => {
+      const p = item.path || item.stem || item._path || ''
+      return (p.includes('/articles/') || p.includes('articles/')) && isArticleForLocale(item, loc)
+    })
     .map(item => {
       const meta = typeof item.meta === 'string' ? JSON.parse(item.meta) : item.meta || item || {}
-      const itemId = item.stem ? item.stem.replace(/^articles\//, '') : meta.id || item.stem
+      const itemId = getArticleSlug(item) || meta.id
       return {
         id: itemId,
         title: meta.title || item.title,
@@ -256,12 +284,9 @@ const sortedArticles = computed(() => {
     })
 })
 
-// 404 處理 - 只在 server 端且確認沒有資料時拋出錯誤
+// 404 處理 - 使用 setResponseStatus 而非 throw，避免 prerender 時 500
 if (!currentArticle.value && import.meta.server) {
-  throw createError({
-    statusCode: 404,
-    message: '文章不存在',
-  })
+  setResponseStatus(404)
 }
 
 // 使用 useScroll 來計算閱讀進度
@@ -311,70 +336,72 @@ function formatDate(dateString) {
   })
 }
 
-// SEO Meta
-const canonicalUrl = article.value.canonical || `https://homershie.com/article/${articleId}`
-const articleTags = article.value.tags || []
+// SEO Meta（僅在文章存在時設定）
+const canonicalUrl = computed(() => article.value?.canonical || `https://homershie.com/article/${articleId}`)
+const articleTags = computed(() => article.value?.tags || [])
 
 useHead({
-  title: `${article.value.title} | HODES`,
-  meta: [
-    { name: 'description', content: article.value.excerpt },
-    // keywords
-    ...(article.value.keywords ? [{ name: 'keywords', content: article.value.keywords }] : []),
-    // Open Graph
-    { property: 'og:title', content: article.value.title },
-    { property: 'og:description', content: article.value.excerpt },
-    { property: 'og:image', content: article.value.image },
-    { property: 'og:url', content: canonicalUrl },
-    { property: 'og:type', content: article.value.ogType },
-    { property: 'og:locale', content: article.value.lang.replace('-', '_') },
-    // Article meta
-    { property: 'article:published_time', content: article.value.date },
-    { property: 'article:author', content: article.value.author },
-    ...(article.value.lastModified ? [{ property: 'article:modified_time', content: article.value.lastModified }] : []),
-    ...articleTags.map(tag => ({ property: 'article:tag', content: tag })),
-    // Twitter Card
-    { name: 'twitter:card', content: article.value.twitterCard },
-    { name: 'twitter:title', content: article.value.title },
-    { name: 'twitter:description', content: article.value.excerpt },
-    { name: 'twitter:image', content: article.value.image },
-    // robots
-    { name: 'robots', content: 'index, follow' },
-  ],
-  link: [{ rel: 'canonical', href: canonicalUrl }],
-  // BlogPosting Schema
-  script: [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        headline: article.value.title,
-        description: article.value.excerpt,
-        image: article.value.image,
-        datePublished: article.value.date,
-        ...(article.value.lastModified && { dateModified: article.value.lastModified }),
-        inLanguage: article.value.lang,
-        ...(articleTags.length > 0 && { keywords: articleTags.join(', ') }),
-        author: {
-          '@type': 'Person',
-          name: article.value.author || 'Homer Shie',
-        },
-        publisher: {
-          '@type': 'Organization',
-          name: 'HODES',
-          logo: {
-            '@type': 'ImageObject',
-            url: 'https://r2bucket.homershie.com/assets/imgs/favicon_homer.png',
+  title: computed(() => (article.value ? `${article.value.title} | HODES` : t('blog.article_not_found'))),
+  meta: computed(() => {
+    if (!article.value) return []
+    const a = article.value
+    return [
+      { name: 'description', content: a.excerpt },
+      ...(a.keywords ? [{ name: 'keywords', content: a.keywords }] : []),
+      { property: 'og:title', content: a.title },
+      { property: 'og:description', content: a.excerpt },
+      { property: 'og:image', content: a.image },
+      { property: 'og:url', content: canonicalUrl.value },
+      { property: 'og:type', content: a.ogType },
+      { property: 'og:locale', content: a.lang.replace('-', '_') },
+      { property: 'article:published_time', content: a.date },
+      { property: 'article:author', content: a.author },
+      ...(a.lastModified ? [{ property: 'article:modified_time', content: a.lastModified }] : []),
+      ...articleTags.value.map(tag => ({ property: 'article:tag', content: tag })),
+      { name: 'twitter:card', content: a.twitterCard },
+      { name: 'twitter:title', content: a.title },
+      { name: 'twitter:description', content: a.excerpt },
+      { name: 'twitter:image', content: a.image },
+      { name: 'robots', content: 'index, follow' },
+    ]
+  }),
+  link: computed(() => [{ rel: 'canonical', href: canonicalUrl.value }]),
+  script: computed(() => {
+    if (!article.value) return []
+    const a = article.value
+    return [
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: a.title,
+          description: a.excerpt,
+          image: a.image,
+          datePublished: a.date,
+          ...(a.lastModified && { dateModified: a.lastModified }),
+          inLanguage: a.lang,
+          ...(articleTags.value.length > 0 && { keywords: articleTags.value.join(', ') }),
+          author: {
+            '@type': 'Person',
+            name: a.author || 'Homer Shie',
           },
-        },
-        mainEntityOfPage: {
-          '@type': 'WebPage',
-          '@id': canonicalUrl,
-        },
-      }),
-    },
-  ],
+          publisher: {
+            '@type': 'Organization',
+            name: 'HODES',
+            logo: {
+              '@type': 'ImageObject',
+              url: 'https://r2bucket.homershie.com/assets/imgs/favicon_homer.png',
+            },
+          },
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': canonicalUrl.value,
+          },
+        }),
+      },
+    ]
+  }),
 })
 
 // 在掛載後啟用 lightbox 並調整 gallery 圖片方向
