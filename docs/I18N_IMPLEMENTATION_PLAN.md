@@ -351,6 +351,13 @@ useSeoMeta({ ogLocale })
 ### 部落格文章 hreflang
 `/zh-TW/article/slug` 和 `/en/article/slug` 都 prerender，SEO 模組自動產生互指的 `hreflang`。兩個 URL 渲染相同的中文內容是 acceptable 的做法（符合需求規格）。
 
+### Sitemap（i18n 後已更新）
+`server/api/__sitemap__/urls.ts` 已配合 i18n 調整：
+- 使用 `_i18nTransform: true` 讓 @nuxtjs/sitemap 自動產生 `/zh-TW/*`、`/en/*` 雙語 URL 及 xhtml:link alternates
+- 涵蓋靜態頁面、作品、文章、blog 分頁
+- Blog 分頁數依 `getArticleSlugs()` 動態計算
+- 文章 `lastmod` 取自檔案 mtime
+
 ---
 
 ## 第十步：Cloudflare Pages 部署注意事項

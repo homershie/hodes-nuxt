@@ -259,14 +259,10 @@ export default defineNuxtConfig({
     disallow: process.env.NODE_ENV !== 'production' ? '/' : [],
   },
 
-  // Sitemap 配置
+  // Sitemap 配置（與 @nuxtjs/i18n 整合，_i18nTransform 自動產生雙語 URL 與 hreflang alternates）
   sitemap: {
-    // 自動從頁面路由生成
     autoLastmod: true,
-    // 排除不需要的頁面
     exclude: ['/admin/**', '/api/**'],
-    // 確保 sitemap 中的 URL 不包含查詢參數
-    strictNuxtContentPaths: true,
   },
 
   // Vite 配置
