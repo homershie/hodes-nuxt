@@ -20,7 +20,7 @@ lang: zh-TW
       alt="Sweet Dreams, Baby! by Roy Lichtenstein"
       loading="lazy"
     />
-    <figcaption>《Beer》, by MBE, from Dribble</figcaption>
+    <figcaption>《Beer》, by MBE, from Dribbble</figcaption>
   </figure>
 
   <!-- 章節：什麼是藝術？ -->
@@ -37,7 +37,7 @@ lang: zh-TW
 
   <h3>2. 讓我一個人靜一靜</h3>
   <p>
-    資訊爆炸、大數據，這些名詞在這幾年很常出現在媒體中，這個時代的人類處理的資訊量遠大於農業時代，科技加速的發展又將差距一天比一天拉大，面對了一整天的資訊，回到家會想要幹嘛？當然是倒頭直接攤軟在床上看著無止盡的劇直到睡著，隔天再一次輪迴。因此一目了然又簡單清晰的視覺風格才真正適合讓人想要看，在你手指往上滑的三秒間馬上讓你知道這個置入的廣告到底葫蘆裡賣什麼藥。
+    資訊爆炸、大數據，這些名詞在這幾年很常出現在媒體中，這個時代的人類處理的資訊量遠大於農業時代，科技加速的發展又將差距一天比一天拉大，面對了一整天的資訊，回到家會想要幹嘛？當然是倒頭直接癱軟在床上看著無止盡的劇直到睡著，隔天再一次輪迴。因此一目了然又簡單清晰的視覺風格才真正適合讓人想要看，在你手指往上滑的三秒間馬上讓你知道這個置入的廣告到底葫蘆裡賣什麼藥。
   </p>
   <p>
     馮老師將這種扁平化、單一化、抽象化的設計風格命名為「輕現代」，是一種融合現代與後現代主義的視覺風格，同時也認為輕現代是未來設計風格的強勢風格。
@@ -71,7 +71,7 @@ lang: zh-TW
   </ul>
 
   <p>
-    一般對MBE風格的既定印象有以上這8點，但是實際去Dribble看MBE的作品可以發現近期的作品有在嘗試以漸層填色創作，也拿掉了代表性的黑邊，不確定是否是想做創作上的突破，可以再繼續關注。
+    一般對MBE風格的既定印象有以上這9點，但是實際去Dribbble看MBE的作品可以發現近期的作品有在嘗試以漸層填色創作，也拿掉了代表性的黑邊，不確定是否是想做創作上的突破，可以再繼續關注。
   </p>
 
   <!-- 圖庫展示 -->
@@ -121,7 +121,7 @@ lang: zh-TW
 
   <h2>參考資料</h2>
   <p>
-    <a target="_blank" href="https://read01.com/zh-tw/dd7ymo.html#.Xb_oXpozaUl"> 壹讀</a>、<a target="_blank" href="http://www.sucaijishi.com/2016/worth_0805/150.html">素材集市</a>、<a target="_blank" href="https://dribbble.com/Madebyelvis">MBE Dribble</a>
+    <a target="_blank" href="https://read01.com/zh-tw/dd7ymo.html#.Xb_oXpozaUl"> 壹讀</a>、<a target="_blank" href="http://www.sucaijishi.com/2016/worth_0805/150.html">素材集市</a>、<a target="_blank" href="https://dribbble.com/Madebyelvis">MBE Dribbble</a>
   </p>
 
   <hr />

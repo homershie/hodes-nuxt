@@ -104,6 +104,18 @@ content/
 | Part A：portfolioData | ✅ 已完成 | zh-TW.json / en.json 新增 portfolioData；usePortfolio 翻譯；PortfolioList、RelatedWorks、portfolio/index 顯示翻譯 |
 | Part B：content/articles | ✅ 已完成 | 建立 zh-TW/articles、en/articles；9 篇雙語文章；article/blog 頁依 locale 過濾；getArticleSlugs 掃描雙目錄；文章 frontmatter 含 lang |
 | Part C：categories.json | ✅ 已完成 | 新增 nameEn、descriptionEn、Relationships；BlogSidebar 依 locale 顯示 |
+| Part B 延伸：設計風格文章翻譯 | ✅ 已完成 | 6 篇設計風格文章完成 zh-TW → en 全文翻譯（見下方清單） |
+
+### Part B 延伸：已翻譯文章清單
+
+| 文章 | zh-TW | en | 備註 |
+|------|-------|-----|------|
+| 現代設計入門 | modern-design-intro.md | modern-design-intro.md | 修正筆誤：鼓催→鼓吹、過逞→過程；譯文優化：卑鄙元之助→The Pragmatic Chameleon |
+| 新藝術 | art-nouveau.md | art-nouveau.md | 修正筆誤：不訪→不妨、Jaeger Reservo→Reverso、18世紀→19世紀；品牌／平台譯名確認 |
+| MBE 風格 | mbe.md | mbe.md | 修正筆誤：攤軟→癱軟、Dribble→Dribbble、8點→9點 |
+| 像素藝術 | pixel-art.md | pixel-art.md | 修正筆誤：風及一時→風靡一時、熱忠→熱衷、EBoy→eBoy、Paper, please→Papers, Please、Vin Gogh→Vincent van Gogh |
+| 普普藝術 | pop-art.md | pop-art.md | 譯文優化：逍遙客小老虎保留中文、網點→halftone dots |
+| 蒸汽波 | vaporwave.md | vaporwave.md | 修正筆誤：取材字→取材自、風刺→諷刺；譯文優化：鏘鏘→tipsy、千元大餐→NT$1,000 meal |
 
 ### 其他修正
 

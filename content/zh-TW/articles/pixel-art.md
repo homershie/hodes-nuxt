@@ -27,7 +27,7 @@ lang: zh-TW
   <p>
     在大四苦惱畢製的劇本時，老師在課堂上分享這句話，一開始以為只能用在劇本寫作上，但最近越來越能體會這句話的意涵。
     <br />
-    每個創作人都無法絕對自由的創作，或多或少都受限於生命中的時間與體力，又或者是大環境之下的脈動，從藝術分支出設計後，加上電腦與軟體的普及，近年的設計與藝術作品產生了壓縮時間以提高產值的現象，因此在這個趨勢下扁平化設計、極簡主義、#Low-poly等等風格逐漸抬起頭來，而像素風格風及一時的時代，同樣也有種種的限制，因此誕生了這種風格。
+    每個創作人都無法絕對自由的創作，或多或少都受限於生命中的時間與體力，又或者是大環境之下的脈動，從藝術分支出設計後，加上電腦與軟體的普及，近年的設計與藝術作品產生了壓縮時間以提高產值的現象，因此在這個趨勢下扁平化設計、極簡主義、#Low-poly等等風格逐漸抬起頭來，而像素風格風靡一時的時代，同樣也有種種的限制，因此誕生了這種風格。
   </p>
 
   <h2>什麼是像素風格？</h2>
@@ -60,16 +60,16 @@ lang: zh-TW
   <figure class="image">
     <img
       src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/2523822-7471044340-m01WP.png"
-      alt="Paper, please"
+      alt="Papers, Please"
       loading="lazy"
     />
-    <figcaption>Game 《Paper, please》, 2013</figcaption>
+    <figcaption>Game 《Papers, Please》, 2013</figcaption>
   </figure>
 
   <h2>新時代的像素</h2>
 
   <p>
-    像素風格雖然復古，但卻不過時，近年還有藝術家以像素風格作為表現手法，而近年視覺工作者在3D引擎上使用像素風格的作品也不在少數。<a href="https://www.eboy.com/?srsltid=AfmBOorb33bG5s-1iiAHHBfb3QvWGcYAlxmqBLqbQ001eZWV3yUIjJkD" target="_blank">EBoy</a>從1998年來一直熱忠於像素風格，是一家專門創作像素風格的平面設計公司。他們的客戶包括Nike, Paul
+    像素風格雖然復古，但卻不過時，近年還有藝術家以像素風格作為表現手法，而近年視覺工作者在3D引擎上使用像素風格的作品也不在少數。<a href="https://www.eboy.com/?srsltid=AfmBOorb33bG5s-1iiAHHBfb3QvWGcYAlxmqBLqbQ001eZWV3yUIjJkD" target="_blank">eBoy</a>從1998年來一直熱衷於像素風格，是一家專門創作像素風格的平面設計公司。他們的客戶包括Nike, Paul
     Smith, Playstation, Kidrobot等等，證明了像素藝術的受歡迎程度和吸引力。eBoy的Kai
     Verschamer解釋說，像素藝術永遠不會過時，因為它是如此基本和令人愉快的工作：
   </p>
@@ -103,8 +103,8 @@ lang: zh-TW
   <figcaption>The starry night</figcaption>
   </figure>
   <figure class="image">
-  <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/vin-gogh.jpg" alt="Vin Gogh" loading="lazy" />
-  <figcaption>Vin Gogh</figcaption>
+  <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/vin-gogh.jpg" alt="Vincent van Gogh" loading="lazy" />
+  <figcaption>Vincent van Gogh</figcaption>
   </figure>
   <figure class="image">
   <img src="https://r2bucket.homershie.com/assets/imgs/blog/Pixel_Art/Jaebum-copy-of-George-seurat.jpg" alt="Jaebum copy of George seurat" loading="lazy" />
