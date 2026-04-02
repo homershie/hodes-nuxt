@@ -96,10 +96,10 @@ const localePath = useLocalePath()
 const paginationBaseUrl = computed(() => localePath('/blog/page'))
 // 不再自動從 body 擷取，僅使用 frontmatter 與舊資料作為回退
 
-// 今日日期（null = server-side，不過濾；client 掛載後設定）
+// 今日日期時間戳（null = server-side，不過濾；client 掛載後設定）
 const today = ref(null)
 onMounted(() => {
-  today.value = new Date()
+  today.value = Date.now()
 })
 
 // 取得路由參數
@@ -197,7 +197,7 @@ const allPosts = computed(() => {
         path: item.path,
       }
     })
-    .filter(post => !today.value || !post.date || new Date(post.date) <= today.value)
+    .filter(post => today.value === null || !post.date || new Date(post.date).getTime() <= today.value)
     .sort((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime()
     })

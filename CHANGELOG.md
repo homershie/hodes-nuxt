@@ -1,5 +1,12 @@
 # Changelog
 
+## [2026-04-03]
+
+### 修復
+- 修正「日期排程」機制導致所有文章消失的 bug：`today.value = new Date()` 將 Date 存入 Vue ref 時，Vue 3 會以 Proxy 包裝物件，導致 `Date.prototype.getTime` 因無法存取 `[[DateValue]]` 內部 slot 而拋出 TypeError，所有文章皆被過濾掉；改以 `Date.now()` 儲存毫秒時間戳（primitive），並用 `.getTime()` 比較，避免 Proxy 問題
+
+---
+
 ## [2026-04-02]
 
 ### 新增
