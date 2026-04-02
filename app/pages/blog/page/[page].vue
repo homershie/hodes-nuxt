@@ -87,7 +87,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { articles as legacyArticles } from '@data/articleData.js'
 import categories from '../../../../content/config/categories.json'
 
@@ -95,6 +95,12 @@ const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const paginationBaseUrl = computed(() => localePath('/blog/page'))
 // 不再自動從 body 擷取，僅使用 frontmatter 與舊資料作為回退
+
+// 今日日期（null = server-side，不過濾；client 掛載後設定）
+const today = ref(null)
+onMounted(() => {
+  today.value = new Date()
+})
 
 // 取得路由參數
 const route = useRoute()
@@ -191,6 +197,7 @@ const allPosts = computed(() => {
         path: item.path,
       }
     })
+    .filter(post => !today.value || !post.date || new Date(post.date) <= today.value)
     .sort((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime()
     })
