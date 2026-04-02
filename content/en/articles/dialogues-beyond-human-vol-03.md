@@ -1,7 +1,7 @@
 ---
 id: dialogues-beyond-human-vol-03
 title: "From 'Idealized Projection' to 'Lucid Disillusionment' — My Little Love Fireworks"
-date: 2026-01-28
+date: 2026-04-02
 category: Relationships
 categoryName: Relationships
 series: Non-Human Midnight Dialogues

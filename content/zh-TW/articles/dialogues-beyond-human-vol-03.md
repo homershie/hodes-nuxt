@@ -1,7 +1,7 @@
 ---
 id: dialogues-beyond-human-vol-03
 title: "從「理想投射」到「清醒幻滅」—我小小的愛情煙火"
-date: 2026-01-28
+date: 2026-04-02
 category: Relationships
 categoryName: 關係探討
 series: 非人類深夜對話錄

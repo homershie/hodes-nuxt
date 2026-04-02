@@ -1,7 +1,7 @@
 ---
 id: dialogues-beyond-human-vol-05
 title: "下一段關係的更新補丁—F 與 T 的系統相容性"
-date: 2026-02-11
+date: 2026-04-04
 category: Relationships
 categoryName: 關係探討
 series: 非人類深夜對話錄

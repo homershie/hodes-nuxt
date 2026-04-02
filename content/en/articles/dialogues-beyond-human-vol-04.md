@@ -1,7 +1,7 @@
 ---
 id: dialogues-beyond-human-vol-04
 title: "When 'Optimization' Suffocates Love — The INTJ's Blind Spot"
-date: 2026-02-04
+date: 2026-04-03
 category: Relationships
 categoryName: Relationships
 series: Non-Human Midnight Dialogues

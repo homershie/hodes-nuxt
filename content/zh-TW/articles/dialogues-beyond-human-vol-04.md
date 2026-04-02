@@ -1,7 +1,7 @@
 ---
 id: dialogues-beyond-human-vol-04
 title: "當「優化」讓愛窒息—INTJ的盲點"
-date: 2026-02-04
+date: 2026-04-03
 category: Relationships
 categoryName: 關係探討
 series: 非人類深夜對話錄

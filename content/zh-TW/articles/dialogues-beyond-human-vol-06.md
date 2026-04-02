@@ -1,7 +1,7 @@
 ---
 id: dialogues-beyond-human-vol-06
 title: "在經濟殘骸中升起的英雄主義—從荒原到建築"
-date: 2026-02-18
+date: 2026-04-05
 category: Philosophy
 categoryName: 哲學思辨
 series: 非人類深夜對話錄

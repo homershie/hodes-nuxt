@@ -1,7 +1,7 @@
 ---
 id: dialogues-beyond-human-vol-06
 title: "Heroism Rising from Economic Ruins — From Wasteland to Architecture"
-date: 2026-02-18
+date: 2026-04-05
 category: Philosophy
 categoryName: Philosophy
 series: Non-Human Midnight Dialogues

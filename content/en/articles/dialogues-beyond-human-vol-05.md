@@ -1,7 +1,7 @@
 ---
 id: dialogues-beyond-human-vol-05
 title: "The Update Patch for the Next Relationship — F and T System Compatibility"
-date: 2026-02-11
+date: 2026-04-04
 category: Relationships
 categoryName: Relationships
 series: Non-Human Midnight Dialogues
