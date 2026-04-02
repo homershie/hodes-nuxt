@@ -4,6 +4,16 @@
 
 ## 📖 文件索引
 
+### 📋 專案總覽
+
+- **[../CLAUDE.md](../CLAUDE.md)** - AI 快速認識專案的總覽文件
+  - 技術棧、專案結構、i18n 架構
+  - 部署流程、常用指令、關鍵設計決策
+
+- **[../CHANGELOG.md](../CHANGELOG.md)** - 版本變更紀錄
+  - 功能新增、修復、重構的歷史紀錄
+  - 按日期倒序排列
+
 ### 🚀 設定指南
 
 - **[SETUP_EMAIL.md](./SETUP_EMAIL.md)** - Email 聯絡表單完整設定指南
@@ -31,11 +41,16 @@
 ## 🗂️ 文件結構
 
 ```
+/（根目錄）
+├── CLAUDE.md                      # AI 專案總覽（技術棧、架構、規範）
+├── CHANGELOG.md                   # 版本變更紀錄
 docs/
-├── README.md           # 本檔案 - 文件索引
-├── SETUP_EMAIL.md      # Email 功能設定指南
-├── SEO_SETUP.md        # SEO 優化設定指南
-└── SERVER_API.md       # Server API 技術文件
+├── README.md                      # 本檔案 - 文件索引
+├── SETUP_EMAIL.md                 # Email 功能設定指南
+├── SEO_SETUP.md                   # SEO 優化設定指南
+├── SERVER_API.md                  # Server API 技術文件
+├── I18N_IMPLEMENTATION_PLAN.md    # i18n 完整實作計畫與紀錄
+└── DEPLOYMENT_CHECKLIST.md        # Cloudflare Pages 部署清單
 ```
 
 ## 🔗 快速連結
@@ -85,4 +100,4 @@ docs/
 
 ---
 
-**最後更新**: 2025-10-25
+**最後更新**: 2026-04-02
