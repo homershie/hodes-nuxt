@@ -3,7 +3,9 @@
 ## [2026-04-03]
 
 ### 修復
-- 修正「日期排程」機制導致所有文章消失的 bug：`today.value = new Date()` 將 Date 存入 Vue ref 時，Vue 3 會以 Proxy 包裝物件，導致 `Date.prototype.getTime` 因無法存取 `[[DateValue]]` 內部 slot 而拋出 TypeError，所有文章皆被過濾掉；改以 `Date.now()` 儲存毫秒時間戳（primitive），並用 `.getTime()` 比較，避免 Proxy 問題
+- 修正「日期排程」機制導致所有文章消失的 bug（兩層修正）：
+  1. **Vue Proxy 問題**：`today.value = new Date()` 將 Date 存入 Vue ref 時，Vue 3 以 Proxy 包裝物件，導致 `Date.prototype.getTime` 因無法存取 `[[DateValue]]` 內部 slot 而拋出 TypeError；改以 `Date.now()` 儲存毫秒時間戳（primitive）
+  2. **Cloudflare Pages 500 錯誤**：Nuxt 4 的 `useAsyncData` 在 client 端導覽時預設會重新呼叫 fetcher，觸發 POST `/__nuxt_content/content/query`，但 Cloudflare Pages Worker 因 `wrangler.json` 設定問題回傳 500，導致 `allArticles.value` 變 null；修正方式：key 改為穩定的 `'all-articles'`，並加 `getCachedData` 讓 client 優先使用 SSR payload，完全不打 API
 
 ---
 

@@ -124,14 +124,17 @@ function isArticleForLocale(item, loc) {
 
 // 從 Nuxt Content 查詢所有文章 (使用 v3 API)
 // 注意：v3 中只有一個 'content' collection
+// getCachedData：Nuxt 4 預設在 client 端導覽時會重新 fetch，
+// 加此選項讓 client 優先使用 SSR payload 的資料，避免打 /__nuxt_content API
 const { data: allArticles, error } = await useAsyncData(
-  `blog-page-${currentPage.value}`,
+  'all-articles',
   () => queryCollection('content').all(),
   {
-    // 確保在 SSR/SSG 時執行
     server: true,
-    // 確保數據被緩存
     lazy: false,
+    getCachedData(key, nuxtApp) {
+      return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key]
+    },
   }
 )
 
@@ -197,7 +200,7 @@ const allPosts = computed(() => {
         path: item.path,
       }
     })
-    .filter(post => today.value === null || !post.date || new Date(post.date).getTime() <= today.value)
+    .filter(post => today.value === null || !post.date || new Date(String(post.date)).getTime() <= today.value)
     .sort((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime()
     })
