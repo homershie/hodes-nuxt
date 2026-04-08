@@ -2025,4 +2025,25 @@ export const portfolio = [
       url: 'https://r2bucket.homershie.com/assets/imgs/works/work_0092.webp',
     },
   },
+  {
+    id: 93,
+    title: 'FocusTick - Garmin Connect IQ App',
+    description:
+      '一款發布於 Garmin Connect IQ Store 的番茄鐘 Watch App，支援 44 款 Garmin 全彩裝置。\n\n用 Garmin 官方語言 MonkeyC 從零打造，涵蓋完整的番茄鐘狀態機（專注 → 短休息 → 長休息）、自動長休息間隔、暫停繼續，以及震動通知回饋。\n\n視覺上特別下了不少功夫：進度弧帶有 Glow 暈光效果，WORK 狀態會慢速脈衝呼吸，番茄完成數以圓點陣列呈現，所有元素以圓心百分比定位，在圓形、方形、長方形螢幕上都能精準對齊。\n\n設定頁支援觸控（Venu 系列）和實體按鍵（FR/Fenix 系列）兩種操作方式，方向性轉場動畫與手勢方向一致。還內建 5 套可選計時器字體（Unbounded、Fugaz One、Monoton 等），字體以 AngelCode BMFont 格式打包進 APK。\n\n首次啟動有全螢幕 Tutorial Overlay，針對每種裝置尺寸和操作方式（觸控／按鍵）各自設計了對應的引導圖，共 22 張 SVG。\n\n支援語言：英文、繁體中文、簡體中文、日文、韓文。已正式上架 Connect IQ Store（v1.0.1）。\n\n**技術：** Garmin Connect IQ SDK、MonkeyC、AngelCode BMFont、Python fonttools\n**支援裝置：** 44 款 Garmin 16-bit 全彩裝置（7 種螢幕規格）',
+    website: 'https://apps.garmin.cn/zh-CN/apps/7dfc609b-0adc-4c1a-8a0e-113011335079',
+    image: 'https://r2bucket.homershie.com/assets/imgs/works/work_0093.webp',
+    mainImage: 'https://r2bucket.homershie.com/assets/imgs/works/work_0093.webp',
+    gallery: ['https://r2bucket.homershie.com/assets/imgs/works/project/work_main_0093.webp'],
+    category: ['App開發', 'UI/UX'],
+    client: 'N/A',
+    date: '2026-03-25',
+    type: 'image',
+    imageDimensions: {
+      width: 1080,
+      height: 1080,
+      aspectRatio: 1,
+      format: 'webp',
+      url: 'https://r2bucket.homershie.com/assets/imgs/works/work_0093.webp',
+    },
+  },
 ]
