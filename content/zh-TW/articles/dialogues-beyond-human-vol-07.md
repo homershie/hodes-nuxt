@@ -1,7 +1,7 @@
 ---
 id: dialogues-beyond-human-vol-07
 title: "我死後，請把餘燼留給自由—關於祭祀、骨灰與不朽"
-date: 2026-04-05
+date: 2026-04-07
 category: Philosophy
 categoryName: 哲學思辨
 series: 非人類深夜對話錄

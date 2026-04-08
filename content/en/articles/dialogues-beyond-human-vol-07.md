@@ -1,7 +1,7 @@
 ---
 id: dialogues-beyond-human-vol-07
 title: "After I Die, Leave the Ashes to Freedom — On Ritual, Remains, and Immortality"
-date: 2026-04-05
+date: 2026-04-06
 category: Philosophy
 categoryName: Philosophy
 series: Non-Human Midnight Dialogues
