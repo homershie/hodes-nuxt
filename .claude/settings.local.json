@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "Bash(npm install:*)",
-      "Bash(test:*)"
+      "Bash(test:*)",
+      "Read(//c/Users/User/.claude/skills/gstack/**)",
+      "Bash(./setup)",
+      "Bash(export BUN_INSTALL=\"$HOME/.bun\")",
+      "Bash(export PATH=\"$BUN_INSTALL/bin:$PATH\")",
+      "Bash(xargs grep *)",
+      "Bash(export PATH=\"$HOME/.bun/bin:$PATH\")",
+      "Bash(npx skills *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ],
     "deny": [],
     "ask": []
