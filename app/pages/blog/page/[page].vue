@@ -126,11 +126,12 @@ function isArticleForLocale(item, loc) {
 // 注意：v3 中只有一個 'content' collection
 // getCachedData：Nuxt 4 預設在 client 端導覽時會重新 fetch，
 // 加此選項讓 client 優先使用 SSR payload 的資料，避免打 /__nuxt_content API
+// 注意：不設 server: true，確保 getCachedData 回傳 undefined 時（_payload.json 尚未載入）
+// client 端能執行 fallback fetch，避免從外部連結冷啟動時文章消失
 const { data: allArticles, error } = await useAsyncData(
   'all-articles',
   () => queryCollection('content').all(),
   {
-    server: true,
     lazy: false,
     getCachedData(key, nuxtApp) {
       return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key]
