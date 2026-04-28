@@ -1,8 +1,63 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { readdirSync } from 'node:fs'
+import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import contentLinkSanitize from './modules/content-link-sanitize'
 import { portfolio } from './data/portfolioData.js'
+
+// 簡易 YAML frontmatter 解析器（僅處理本專案使用到的型態：
+// 字串/引號字串/數字/布林/單層陣列）。為了把 build-time 文章 metadata
+// 預先打包成 JSON，避免 client 端 hydration race condition 導致文章消失。
+const parseSimpleFrontmatter = (text: string): Record<string, unknown> => {
+  const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---/)
+  if (!match) return {}
+  const yaml = match[1]
+  const result: Record<string, unknown> = {}
+  let currentArrayKey: string | null = null
+  let arrayItems: string[] | null = null
+
+  const stripQuotes = (raw: string): string => {
+    const v = raw.trim()
+    if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) {
+      return v.slice(1, -1)
+    }
+    return v
+  }
+
+  for (const rawLine of yaml.split('\n')) {
+    const line = rawLine.replace(/\r$/, '')
+    // 陣列項目：以 "  - " 開頭
+    if (currentArrayKey && arrayItems !== null && /^\s*-\s+/.test(line)) {
+      arrayItems.push(stripQuotes(line.replace(/^\s*-\s+/, '')))
+      continue
+    }
+    // 結束目前陣列累積
+    if (currentArrayKey && arrayItems !== null) {
+      result[currentArrayKey] = arrayItems
+      currentArrayKey = null
+      arrayItems = null
+    }
+    const keyValueMatch = line.match(/^([a-zA-Z_][\w-]*):\s*(.*)$/)
+    if (!keyValueMatch) continue
+    const key = keyValueMatch[1]
+    const rawValue = keyValueMatch[2]
+    if (rawValue.trim() === '') {
+      // 空值 → 視為陣列起點（下一行可能是 "  - item"）
+      currentArrayKey = key
+      arrayItems = []
+      continue
+    }
+    const value = stripQuotes(rawValue)
+    if (value === 'true') result[key] = true
+    else if (value === 'false') result[key] = false
+    else if (/^-?\d+(\.\d+)?$/.test(value)) result[key] = Number(value)
+    else result[key] = value
+  }
+  // 收尾
+  if (currentArrayKey && arrayItems !== null) {
+    result[currentArrayKey] = arrayItems
+  }
+  return result
+}
 
 const getArticleSlugs = () => {
   try {
@@ -26,6 +81,49 @@ const getArticleSlugs = () => {
     return []
   }
 }
+
+// 在 build 時掃描所有文章 markdown，把 metadata 輸出成靜態 JSON。
+// 部落格列表頁直接 import 這份 JSON，避免在 client 端用 useAsyncData/queryCollection
+// 觸發 cold-start hydration race（_payload.json 尚未載入時 fetcher 命中
+// /__nuxt_content/content/query 500，導致文章全部消失）。
+const generateArticleList = () => {
+  try {
+    const contentDir = fileURLToPath(new URL('./content', import.meta.url))
+    const list: Array<Record<string, unknown>> = []
+    for (const locale of ['zh-TW', 'en']) {
+      const articlesDir = `${contentDir}/${locale}/articles`
+      let files: string[] = []
+      try {
+        files = readdirSync(articlesDir)
+      } catch {
+        continue
+      }
+      for (const filename of files) {
+        if (!filename.endsWith('.md')) continue
+        const slug = filename.replace(/\.md$/, '')
+        const text = readFileSync(`${articlesDir}/${filename}`, 'utf-8')
+        const meta = parseSimpleFrontmatter(text)
+        list.push({
+          ...meta,
+          // 保險：固定欄位以解析結果為準，但未在 frontmatter 提供時補上預設值
+          id: meta.id ?? slug,
+          slug,
+          lang: meta.lang ?? locale,
+          path: `/${locale}/articles/${slug}`,
+        })
+      }
+    }
+    const outputPath = fileURLToPath(new URL('./data/articleList.generated.json', import.meta.url))
+    writeFileSync(outputPath, JSON.stringify(list, null, 2) + '\n', 'utf-8')
+    // eslint-disable-next-line no-console
+    console.log(`[articleList] 已產出 ${list.length} 筆文章 metadata`)
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.warn('[articleList] 產出失敗：', error instanceof Error ? error.message : error)
+  }
+}
+
+generateArticleList()
 
 const resolvePortfolioRoutes = () => {
   if (!Array.isArray(portfolio) || portfolio.length === 0) {
