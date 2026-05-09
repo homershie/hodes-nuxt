@@ -139,39 +139,45 @@ const visiblePages = computed(() => {
   min-width: 40px;
   height: 40px;
   padding: 0.5rem 1rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  color: var(--color-font);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  color: #ddd;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
   text-decoration: none;
+  font-size: 0.95rem;
   transition: all 0.3s ease;
 }
 
 .page-link:hover:not(.disabled) {
-  background-color: var(--maincolor);
-  color: white;
+  background: var(--maincolor);
+  color: #111;
   border-color: var(--maincolor);
 }
 
 .page-item.active .page-link {
-  background-color: var(--maincolor);
-  color: white;
+  background: var(--maincolor);
+  color: #111;
   border-color: var(--maincolor);
+  font-weight: 600;
 }
 
 .page-link.disabled {
-  color: #999;
+  color: rgba(255, 255, 255, 0.35);
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.08);
   cursor: not-allowed;
-  opacity: 0.5;
 }
 
 .page-link.dots {
   border: none;
+  background: transparent;
   cursor: default;
+  color: #999;
 }
 
 .page-link.dots:hover {
-  background-color: transparent;
-  color: var(--color-font);
+  background: transparent;
+  color: #999;
 }
 
 /* 響應式 */
