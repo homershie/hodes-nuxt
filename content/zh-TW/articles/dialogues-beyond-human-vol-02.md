@@ -30,7 +30,9 @@ lang: zh-TW
 
 <center class="mb-4"><i>非人類深夜對話錄 vol.02</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-02.webp" alt="在伴侶面前是否可以放屁？" title="放屁的社會學" loading="lazy" class="w-100" >
+::
 
 ## 一、車廂內嗝出的不同距離感
 

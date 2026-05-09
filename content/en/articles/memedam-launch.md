@@ -33,7 +33,9 @@ lang: en
 <center class="mb-4"><i>Building memedam vol.01</i></center>
 
 <!-- 📸 Image position 1 (Hero): Dual phone mockup — left: Home Meme Wall / right: Activity Wall, with tagline "Discover pure humor. Find your meme people." -->
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/MemeDam/memedam-launch.webp" alt="MemeDam dual phone mockup" title="Discover pure humor. Find your meme people." loading="lazy" class="w-100" >
+::
 
 Honestly, I used to be completely lost when it came to meme culture.
 
@@ -89,7 +91,9 @@ A dictionary is a passive tool — it assumes the user will actively look things
 So MemeDam isn't a dictionary. It's two walls.
 
 <!-- 📸 Image position 2: Home Meme Wall screenshot (mobile, dark mode) -->
+::image-md
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/MemeDam/memedam-home-meme-wall.webp" alt="MemeDam Home Meme Wall" title="Home Meme Wall — learn memes as you scroll" loading="lazy" class="w-100" >
+::
 
 **Home Meme Wall**: you scroll in, and every meme comes with a short explanation right there. You just get it as you go. The whole experience feels like scrolling Instagram, except you actually understand everything. No "I need to go look that up" — just "oh, I just learned that."
 
@@ -105,7 +109,9 @@ You want to recommend an obscure meme you love to someone who'll actually apprec
 So MemeDam has a second wall — the **Activity Wall**.
 
 <!-- 📸 Image position 3: Activity Wall screenshot (mobile), showing the community feel of recommendations and comments -->
+::image-md
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/MemeDam/memedam-activity-wall.webp" alt="MemeDam Activity Wall" title="Activity Wall — home for meme people" loading="lazy" class="w-100" >
+::
 
 The Activity Wall is where meme people connect. You can drop a meme you've been loving lately, see what others are recommending, comment on origins, share a niche meme with people who'll actually get it.
 
@@ -127,7 +133,9 @@ MemeDam actually has three levels of engagement — go as deep as you want:
 | **Level 3: Dig** | Collaborative editing, researching meme origins | Have a research obsession, want to become a meme scholar |
 
 <!-- 📸 Image position 4: Interaction UI, with the "dislike" button highlighted — showing off the intentional design choice -->
+::image-md
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/MemeDam/memedam-reactions.gif" alt="MemeDam reaction buttons" title="Like, Dislike, Comment, Save, Share" loading="lazy" class="w-100" >
+::
 
 Not everyone will make it to Level 3. But that door is always open.
 
@@ -148,7 +156,9 @@ Supabase handles real-time sync for likes, comments, and collaborative edits. Th
 We also rebuilt the UI, dark mode, and mobile experience from scratch. **Mobile-first, dark mode, easy to use one-handed** — because the most common moment to open MemeDam is on the commute, before bed, or during that ten-minute stretch at 2am when sleep isn't happening.
 
 <!-- 📸 Image position 5 (optional): Share preview comparison — bare URL on the left vs. rich preview card on the right -->
+::image-md
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/MemeDam/memedam-share-preview.webp" alt="MemeDam share preview" title="Links with cover images" loading="lazy" class="w-100" >
+::
 
 I won't go deeper into the technical side — what users feel is: fast to open, easy to understand, smooth to share.
 

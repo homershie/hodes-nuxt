@@ -28,7 +28,9 @@ lang: en
 
 <center class="mb-4"><i>Non-Human Midnight Dialogues vol.01</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-01.webp" alt="Freedom and Frameworks" title="Freedom and Frameworks" loading="lazy" class="w-100" >
+::
 
 ## I. The Paradox of Freedom
 

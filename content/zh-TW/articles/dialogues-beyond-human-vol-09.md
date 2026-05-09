@@ -29,7 +29,9 @@ lang: zh-TW
 
 <center class="mb-4"><i>非人類深夜對話錄 vol.09</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-09.webp" alt="你的駕駛員是誰？" title="常人、沉淪與角色選擇" loading="lazy" class="w-100" >
+::
 
 爸爸前陣子出院，那個週末全家一起整理他接下來要住的房間。整理到一半，我眼睛掃到櫃子上貼著的一張舊照片——幼稚園的我，但我完全沒有印象。
 

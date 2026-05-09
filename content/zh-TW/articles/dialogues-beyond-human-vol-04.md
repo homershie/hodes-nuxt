@@ -29,7 +29,9 @@ lang: zh-TW
 
 <center class="mb-4"><i>非人類深夜對話錄 vol.04</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-04.webp" alt="當優化讓愛窒息" title="當優化讓愛窒息" loading="lazy" class="w-100" >
+::
 
 **「我以為我在修復一段關係，但其實我在理性拆解一個人。」**
 

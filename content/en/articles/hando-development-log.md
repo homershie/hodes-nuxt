@@ -31,7 +31,9 @@ lang: en
 <center class="mb-4"><i>Side Project Chronicles vol.02</i></center>
 
 <!-- 🖼️ Image ①: Hero image (Mockup + Logo + Slogan) -->
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/Hando/hando-hero.webp" alt="Hando open-source image optimization tool hero image" title="Hando - The Image Delivery Companion for Designers" loading="lazy" class="w-100" >
+::
 
 ## I. The Designer's Chronic Pain: The Image Delivery Loop
 
@@ -77,7 +79,9 @@ I didn't compromise on compression quality. Each format uses the industry's best
 Each format has its own independent quality slider, so you can fine-tune for different assets. If the compressed output is larger than the original (e.g., an already-compressed JPEG), Hando is smart enough to skip it automatically. Accidentally over-compressed something? One-click Undo is supported — the original files go to the trash, ready to be recovered at any time.
 
 <!-- 🖼️ Image ②: Settings page screenshot -->
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/Hando/hando-settings.webp" alt="Hando settings page - independent quality sliders" title="Independent quality control per format" loading="lazy" class="w-100" >
+::
 
 ## IV. Tech Stack and Development Highlights
 

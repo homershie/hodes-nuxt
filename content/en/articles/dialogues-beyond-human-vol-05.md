@@ -29,7 +29,9 @@ lang: en
 
 <center class="mb-4"><i>Non-Human Midnight Dialogues vol.05</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-05.webp" alt="The Update Patch for the Next Relationship" title="The Update Patch for the Next Relationship" loading="lazy" class="w-100" >
+::
 
 In the logical world, we are used to breaking down every problem into bugs, analyzing pathways, and arriving at solutions. As an INTJ who habitually optimizes everything, I once believed that as long as both parties established a "debugging mechanism," the system could run sustainably.
 

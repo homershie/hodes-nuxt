@@ -29,7 +29,9 @@ lang: en
 
 <center class="mb-4"><i>Non-Human Midnight Dialogues vol.06</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-06.webp" alt="Heroism Rising from Economic Ruins" title="Heroism Rising from Economic Ruins" loading="lazy" class="w-100" >
+::
 
 From age 23 to 30, I always thought of myself as an explorer wandering across a wasteland. I called myself an "active nihilist," sneered at money, remained non-committal about the future, and drifted aimlessly under the guise of "freelancing." Until reality's hammer fell — I discovered that the so-called freedom was, in essence, an escape from the responsibility of existence.
 

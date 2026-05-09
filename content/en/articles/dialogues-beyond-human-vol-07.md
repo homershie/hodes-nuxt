@@ -30,7 +30,9 @@ lang: en
 
 <center class="mb-4"><i>Non-Human Midnight Dialogues vol.07</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-07.webp" alt="After I Die, Leave the Ashes to Freedom" title="After I Die, Leave the Ashes to Freedom" loading="lazy" class="w-100" >
+::
 
 It's Qingming season again, and the air carries that familiar blend of incense paper ash and damp earth. For someone like me — someone who habitually dissects the world with logic — ritual has always carried an inexplicable sense of absurdity. Praying to an uncertain recipient for an uncertain future feels like feeding coins into an unplugged vending machine, hoping it dispenses the drink you want.
 

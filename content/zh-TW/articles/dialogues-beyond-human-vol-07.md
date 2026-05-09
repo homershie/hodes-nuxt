@@ -30,7 +30,9 @@ lang: zh-TW
 
 <center class="mb-4"><i>非人類深夜對話錄 vol.07</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-07.webp" alt="我死後，請把餘燼留給自由" title="我死後，請把餘燼留給自由" loading="lazy" class="w-100" >
+::
 
 適逢清明，空氣裡又是那股熟悉的、混合了金紙灰燼與潮濕泥土的味道。對於我這種習慣用邏輯拆解世界的人來說，祭祀一直有一種難以言喻的荒謬感。對著不確定的對象祈求不確定的未來，像是在對著一台沒插電的自動販賣機投幣，祈禱它會掉下你想要的飲料。
 

@@ -29,7 +29,9 @@ lang: zh-TW
 
 <center class="mb-4"><i>非人類深夜對話錄 vol.01</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-01.webp" alt="自由與框架" title="自由與框架" loading="lazy" class="w-100" >
+::
 
 ## 一、自由的悖論
 

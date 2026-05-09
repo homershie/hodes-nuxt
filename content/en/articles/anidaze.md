@@ -29,7 +29,9 @@ lang: en
 
 <center class="mb-4"><i>Side Project Chronicles vol.01</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/AniDaze/anidaze-hero.webp" alt="AniDaze hero image" title="AniDaze - A Designer's Anime Dashboard" loading="lazy" class="w-100" >
+::
 
 ## I. The Pain of Fragmented Anime Tracking
 
@@ -43,7 +45,9 @@ For UI/UX, AniDaze's core idea is "subtraction." We don't need noise—we need t
 
 I designed four view modes (weekly and monthly, each with two layouts). This isn't just layout variation—it's different interpretations of **"time flow."** You can plan your weekend watchlist like a calendar, or quickly scan the season's trending shows.
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/AniDaze/anidaze-views.gif" alt="AniDaze view modes" title="Four modes, flexible switching" loading="lazy" class="w-100" >
+::
 
 ## III. The Power of Integration: Goodbye Tab Hopping
 
@@ -51,7 +55,9 @@ This was my biggest investment. AniDaze integrates AniList, Bangumi, Wikipedia a
 
 For users, this means: **no more "tab hopper" workflow.** On one page you can compare ratings, decide if a show is worth your time, and update your watch status—all in one place.
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/AniDaze/anidaze-integration.webp" alt="AniDaze multi-platform integration" title="Information integration" loading="lazy" class="w-100" >
+::
 
 ## IV. Responsive Experience: A Designer's Pride
 
@@ -59,7 +65,9 @@ AniDaze doesn't have a native app yet, but I have high standards for the web ver
 
 I especially optimized mobile controls—e.g., an intuitive **Bottom Sheet** for filters, search, and tracking with one hand. For me, the web version shouldn't be a compromise on mobile; it should feel like a perfectly adapted experience.
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/AniDaze/anidaze-mobile-mockup.webp" alt="AniDaze mobile mockup" title="Seamless cross-device experience" loading="lazy" class="w-100" >
+::
 
 ## V. Conclusion: An Evolving Side Project
 

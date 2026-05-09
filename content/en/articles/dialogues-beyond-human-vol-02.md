@@ -28,7 +28,9 @@ lang: en
 
 <center class="mb-4"><i>Non-Human Midnight Dialogues vol.02</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-02.webp" alt="Is it okay to fart in front of your partner?" title="The Sociology of Farting" loading="lazy" class="w-100" >
+::
 
 ## I. Different Distances in a Single Burp
 

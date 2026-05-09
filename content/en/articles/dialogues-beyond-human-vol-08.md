@@ -29,7 +29,9 @@ lang: en
 
 <center class="mb-4"><i>Non-Human Midnight Dialogues vol.08</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-08.webp" alt="The Micro-Civilization at the Doorstep" title="The Micro-Civilization at the Doorstep" loading="lazy" class="w-100" >
+::
 
 Every morning lately, as I head out the door, my eyes involuntarily drift to the pair of pink indoor slippers by the entrance.
 

@@ -29,7 +29,9 @@ lang: zh-TW
 
 <center class="mb-4"><i>非人類深夜對話錄 vol.03</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-03.webp" alt="從理想投射到清醒幻滅" title="從理想投射到清醒幻滅" loading="lazy" class="w-100" >
+::
 
 這是最近一場關於追逐「影子」的感情故事。
 

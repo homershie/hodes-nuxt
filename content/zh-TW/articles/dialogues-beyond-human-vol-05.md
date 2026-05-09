@@ -29,7 +29,9 @@ lang: zh-TW
 
 <center class="mb-4"><i>非人類深夜對話錄 vol.05</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-05.webp" alt="下一段關係的更新補丁" title="下一段關係的更新補丁" loading="lazy" class="w-100" >
+::
 
 在邏輯的世界裡，我們習慣將所有問題拆解成 Bug、分析路徑，最後導向解決方案。身為一個習慣優化一切的 INTJ，我曾以為只要雙方建立了「除錯機制」，這套系統就能永續運作。
 

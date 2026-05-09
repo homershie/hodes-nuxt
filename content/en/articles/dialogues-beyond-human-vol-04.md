@@ -29,7 +29,9 @@ lang: en
 
 <center class="mb-4"><i>Non-Human Midnight Dialogues vol.04</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-04.webp" alt="When Optimization Suffocates Love" title="When Optimization Suffocates Love" loading="lazy" class="w-100" >
+::
 
 **"I thought I was fixing a relationship, but I was actually rationally dismantling a person."**
 

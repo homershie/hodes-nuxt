@@ -29,7 +29,9 @@ lang: zh-TW
 
 <center class="mb-4"><i>非人類深夜對話錄 vol.06</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-06.webp" alt="在經濟殘骸中升起的英雄主義" title="在經濟殘骸中升起的英雄主義" loading="lazy" class="w-100" >
+::
 
 在 23 到 30 歲的那段日子裡，我一直以為自己是個在荒原上漫遊的探索者。標榜自己是「積極虛無主義者」，對金錢嗤之以鼻，對未來不置可否，躲在「自由接案」的幌子下過著渾渾噩噩的日子。直到現實的重錘落下，我才發現——那種所謂的自由，本質上是一種對存在責任的逃避。
 

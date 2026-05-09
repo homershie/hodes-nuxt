@@ -29,7 +29,9 @@ lang: en
 
 <center class="mb-4"><i>Non-Human Midnight Dialogues vol.03</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-03.webp" alt="From Idealized Projection to Lucid Disillusionment" title="From Idealized Projection to Lucid Disillusionment" loading="lazy" class="w-100" >
+::
 
 This is a recent story about chasing a "shadow" in love.
 

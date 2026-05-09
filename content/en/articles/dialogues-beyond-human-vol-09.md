@@ -29,7 +29,9 @@ lang: en
 
 <center class="mb-4"><i>Dialogues Beyond Human vol.09</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-09.webp" alt="Who's in the Driver's Seat?" title="das Man, Fallenness, and Character Selection" loading="lazy" class="w-100" >
+::
 
 My dad was discharged from the hospital a while ago, and that weekend the whole family pitched in to clean out the room he'd be moving into next. Halfway through, my eyes landed on an old photo stuck to the cabinet — a kindergarten-aged me, except I had absolutely no memory of it.
 

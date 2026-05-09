@@ -29,7 +29,9 @@ lang: zh-TW
 
 <center class="mb-4"><i>非人類深夜對話錄 vol.08</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/dialogues-beyond-human-vol-08.webp" alt="門口拖鞋的微型文明" title="門口拖鞋的微型文明" loading="lazy" class="w-100" >
+::
 
 最近每天早上出門，視線總會不由自主地略過門口那雙粉色的室內拖鞋。
 

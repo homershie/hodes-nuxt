@@ -29,7 +29,9 @@ lang: zh-TW
 
 <center class="mb-4"><i>Side Project Chronicles vol.01</i></center>
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/AniDaze/anidaze-hero.webp" alt="AniDaze 動畫時日首圖" title="AniDaze - 設計師的追番儀表板" loading="lazy" class="w-100" >
+::
 
 ## 一、碎片化時代的追番苦惱
 
@@ -43,7 +45,9 @@ lang: zh-TW
 
 針對不同使用者的習慣，我設計了四種檢視模式（週檢視、月檢視各搭配兩種視圖）。這不僅是排版上的變換，更是對於 **「時間流」**的不同詮釋——你可以像看行事曆一樣優雅地規劃週末的觀影清單，也可以快速掃描當季的熱門走向。
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/AniDaze/anidaze-views.gif" alt="AniDaze 檢視模式展示" title="四種模式的靈活切換" loading="lazy" class="w-100" >
+::
 
 ## 三、整合的力量：告別分頁俠
 
@@ -51,7 +55,9 @@ lang: zh-TW
 
 這對使用者來說意味著：**不再需要當「分頁俠」**。同一個頁面中，你可以同時參考多方平台的評價，決定這部作品是否值得投入時間，並在當下完成個人的觀看紀錄。
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/AniDaze/anidaze-integration.webp" alt="AniDaze 多平台整合特寫" title="資訊整合的視覺呈現" loading="lazy" class="w-100" >
+::
 
 ## 四、響應式體驗：設計師的自尊心
 
@@ -59,7 +65,9 @@ lang: zh-TW
 
 我特別優化了行動裝置的操作元件，例如引入了符合直覺的 **Bottom Sheet（底部抽屜選單）**，確保使用者即便在單手握持手機的情況下，也能流暢地進行篩選、搜尋與紀錄。對我來說，網頁版不應該是手機上的妥協，而應該是另一種適配後的完美呈現。
 
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/AniDaze/anidaze-mobile-mockup.webp" alt="AniDaze 行動版 Mockup" title="跨裝置的無縫體驗" loading="lazy" class="w-100" >
+::
 
 ## 五、結語：持續進化的 Side Project
 

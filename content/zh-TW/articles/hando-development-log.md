@@ -31,7 +31,9 @@ lang: zh-TW
 <center class="mb-4"><i>Side Project Chronicles vol.02</i></center>
 
 <!-- 🖼️ 圖片 ①:Hero 圖(Mockup + Logo + Slogan) -->
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/Hando/hando-hero.webp" alt="Hando 開源圖片優化工具首圖" title="Hando - 設計師的圖片交付神器" loading="lazy" class="w-100" >
+::
 
 ## 一、設計師的慢性疼痛:圖片交付的無效循環
 
@@ -77,7 +79,9 @@ Hando 最關鍵的設計是「同時輸出 WebP / AVIF 伴隨檔」。拖一張 
 每種格式都有獨立的品質滑桿,讓你能針對不同素材精細調整。如果壓出來反而比原檔大(例如已壓縮過的 JPEG),Hando 會聰明地自動跳過。不小心壓壞?支援一鍵 Undo,原檔都在垃圾桶裡,隨時可以撿回來。
 
 <!-- 🖼️ 圖片 ②:設定頁面截圖 -->
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/Hando/hando-settings.webp" alt="Hando 設定頁面 - 獨立品質滑桿" title="每種格式的獨立品質控制" loading="lazy" class="w-100" >
+::
 
 ## 四、技術棧與開發巧思
 
