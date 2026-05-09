@@ -41,6 +41,9 @@
                   'image-gallery': ArticleImageGallery,
                   'image-gallery-3': ArticleImageGallery3,
                   'image-masonry': ArticleImageMasonry,
+                  'image-sm': ArticleImageSm,
+                  'image-md': ArticleImageMd,
+                  'image-lg': ArticleImageLg,
                 }"
               />
             </div>
@@ -156,6 +159,9 @@ import ArticleLi from '@components/article/ArticleLi.vue'
 import ArticleBlockquote from '@components/article/ArticleBlockquote.vue'
 import ArticleImageGallery from '@components/article/ArticleImageGallery.vue'
 import ArticleImageMasonry from '@components/article/ArticleImageMasonry.vue'
+import ArticleImageSm from '@components/article/ArticleImageSm.vue'
+import ArticleImageMd from '@components/article/ArticleImageMd.vue'
+import ArticleImageLg from '@components/article/ArticleImageLg.vue'
 const ArticleImageGallery3 = ArticleImageGallery
 
 const { t, locale } = useI18n()

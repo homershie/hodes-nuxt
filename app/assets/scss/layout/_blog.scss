@@ -1,6 +1,38 @@
 /* Blogs
 -----------------------------------------------------------------*/
 
+.article-typo {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 30px 0;
+
+    th,
+    td {
+      padding: 14px 20px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    th {
+      font-weight: 600;
+      color: #fff;
+      border-bottom-color: rgba(255, 255, 255, 0.25);
+    }
+
+    td {
+      color: #ddd;
+      font-weight: 300;
+      font-family: $font-secondary;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
 .blog {
   .item {
     .img {

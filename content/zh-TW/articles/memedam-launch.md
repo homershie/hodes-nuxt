@@ -33,7 +33,9 @@ lang: zh-TW
 <center class="mb-4"><i>Building memedam vol.01</i></center>
 
 <!-- 📸 圖片位置 1（Hero 主視覺）：雙手機 mockup，左：首頁迷因牆 / 右：動態牆，搭配標語「發現單純的幽默，聚集喜歡迷因的你我」 -->
+::image-lg
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/MemeDam/memedam-launch.webp" alt="迷因典 memedam 雙手機 mockup" title="發現單純的幽默，聚集喜歡迷因的你我" loading="lazy" class="w-100" >
+::
 
 老實說，我以前對迷因文化是一知半解的。
 
@@ -89,7 +91,10 @@ lang: zh-TW
 所以迷因典不是字典。它是兩個牆。
 
 <!-- 📸 圖片位置 2：首頁迷因牆截圖（手機版、深色模式），凸顯「滑進來就是這樣」 -->
+::image-md
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/MemeDam/memedam-home-meme-wall.webp" alt="迷因典首頁迷因牆" title="首頁迷因牆 — 邊滑邊懂梗" loading="lazy" class="w-100" >
+::
+
 
 **首頁迷因牆**：滑進來，每張迷因旁邊就有簡單解說，看著看著就懂了。整個體驗像在滑 IG，但每張都看得懂。沒有「我要去查」這個動作，只有「我順便就知道了」這個結果。
 
@@ -106,7 +111,9 @@ Reddit 全英文、Discord 散在不同伺服器、Threads在成長卻分散。
 所以迷因典還有第二個牆——**動態牆**。
 
 <!-- 📸 圖片位置 3：動態牆截圖（手機版），展示使用者推薦/留言的社群感 -->
+::image-md
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/MemeDam/memedam-activity-wall.webp" alt="迷因典動態牆" title="動態牆 — 迷因人的家" loading="lazy" class="w-100" >
+::
 
 動態牆是給迷因人交流的地方。你可以貼一個你最近愛的梗、看別人在推什麼、留言聊起源、推薦冷門好梗給同類。
 
@@ -128,7 +135,9 @@ Reddit 全英文、Discord 散在不同伺服器、Threads在成長卻分散。
 | **第三層：挖** | 編輯共筆、研究歷史起源 | 具有考據癖、想成為迷因大師的人 |
 
 <!-- 📸 圖片位置 4：互動操作畫面，圈起「按爛」按鈕，凸顯這個有梗的設計 -->
+::image-md
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/MemeDam/memedam-reactions.gif" alt="迷因典互動按鈕" title="按讚、按爛、留言、收藏、分享" loading="lazy" class="w-100" >
+::
 
 不是每個人都會走到第三層，但那扇門一直在那裡。
 
@@ -149,7 +158,9 @@ Supabase 的好處則是讓按讚、留言、共筆都能即時同步。你補�
 順便把 UI、深色模式、手機體驗整個重做了一次。**手機優先、深色模式、單手好按**——因為迷因典最常被打開的時機，本來就是通勤時、睡前、半夜睡不著的那十分鐘。
 
 <!-- 📸 圖片位置 5（可選）：分享預覽對比圖，左邊「醜醜的網址」vs 右邊「自帶封面圖的卡片」 -->
+::image-md
 <img src="https://r2bucket.homershie.com/assets/imgs/blog/MemeDam/memedam-share-preview.webp" alt="迷因典分享預覽" title="分享連結自帶封面圖" loading="lazy" class="w-100" >
+::
 
 技術細節我這邊就不多談了，反正使用者體感是「打開快、看得懂、分享順」。
 
@@ -167,7 +178,7 @@ Supabase 的好處則是讓按讚、留言、共筆都能即時同步。你補�
 
 如果它順便變成一個迷因人聚集的家——那就太好了。
 
-## Closing
+## 總結
 
 回到那個朋友群組裡裝懂哈哈的瞬間。
 
