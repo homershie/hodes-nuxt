@@ -33,5 +33,12 @@
     "nameEn": "Relationships",
     "description": "探討人際與親密關係的種種面向",
     "descriptionEn": "Exploring aspects of interpersonal and intimate relationships"
+  },
+  "Psychology": {
+    "id": "Psychology",
+    "name": "心理思辨",
+    "nameEn": "Psychology",
+    "description": "探索自我覺察、心理機制與內在狀態的深層分析",
+    "descriptionEn": "Deep analysis of self-awareness, psychological mechanisms, and inner states"
   }
 }
